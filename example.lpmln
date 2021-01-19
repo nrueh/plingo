@@ -1,5 +1,5 @@
-alpha : bird :- residentBird.
-alpha : bird :- migratoryBird.
-alpha : :- residentBird, migratoryBird.
-alpha : residentBird.
-alpha : migratoryBird.
+bird :- residentBird.
+bird :- migratoryBird.
+:- residentBird, migratoryBird.
+2 :: residentBird.
+% 5 :: migratoryBird.
