@@ -1,5 +1,5 @@
-bird :- residentBird.
-bird :- migratoryBird.
-:- residentBird, migratoryBird.
-2 :: residentBird.
-5 :: migratoryBird.
+bird(X) :- residentBird(X).
+bird(X) :- migratoryBird(X).
+:- residentBird(X), migratoryBird(X).
+2 :: residentBird(jo).
+5 :: migratoryBird(jo).
