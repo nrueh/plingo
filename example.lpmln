@@ -2,4 +2,4 @@ bird :- residentBird.
 bird :- migratoryBird.
 :- residentBird, migratoryBird.
 2 :: residentBird.
-% 5 :: migratoryBird.
+5 :: migratoryBird.

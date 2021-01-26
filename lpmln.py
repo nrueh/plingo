@@ -1,49 +1,65 @@
+from typing import Any, List, Sequence, Mapping, Optional, MutableMapping, Tuple, Set, cast
 import sys
 
-import clingo
+from clingo import ast, Symbol, SymbolType, TheoryTerm, TheoryTermType, Number
+from clingo import Function, Model, PropagateInit, PropagateControl, Assignment
+from clingo import clingo_main, Application, Tuple_, Control, parse_program
+from clingo import Propagator, ApplicationOptions, SolveResult, parse_term
+from clingo.ast import AST
 
-# THEORY = """
-# #theory lpmln{
-#     diff_term {
-#     -  : 3, unary;
-#     ** : 2, binary, right;
-#     *  : 1, binary, left;
-#     /  : 1, binary, left;
-#     \\ : 1, binary, left;
-#     +  : 0, binary, left;
-#     -  : 0, binary, left
-#     };
-#     &diff/1 : weight, {::}, rule, any
-# }
-# """˚
+THEORY = """
+#theory lpmln{
+    constant {
+    -  : 0, unary
+    };
+    &weight/1 : constant, head
+}.
+"""
 
 
-def parse_lpmln(file):
-    with open(file, 'r') as fp:
-        lines = fp.read().splitlines()
+class WeightedRuleTransformer():
+    def visit(self, rule: AST):
+        print(rule.location)
+        return rule
 
-    ctl = clingo.Control()
 
-    for rule in lines:
-        rule = rule.strip()
-        # Skip comments
-        if rule[0] == '%':
-            continue
-        
-        if '::' in rule:
-            split = rule.split('::')
-            weight = int(split[0])
-            rule = split[1][1:]
-            # print('weight: ' + str(weight))
+class LPMLNApp(Application):
+    '''
+    Application extending clingo with probabilistic logic language LP^MLN.
+    '''
+    program_name: str = "clingo-lpmln"
+    version: str = "1.0"
 
-        ctl.add("base", [], rule)
-    
-    ctl.ground([("base", [])])
-    ctl.solve(on_model=print)
+    def _read(self, path: str):
+        if path == "-":
+            return sys.stdin.read()
+        with open(path) as file_:
+            return file_.read()
+
+    def _rewrite(self, ctl: Control, files: Sequence[str]):
+        with ctl.builder() as b:
+            wtr = WeightedRuleTransformer()
+            for path in files:
+                parse_program(
+                    self._read(path),
+                    lambda stm: b.add(cast(AST, wtr.visit(stm))))
+
+    def main(self, ctl: Control, files: Sequence[str]):
+        '''
+        Register the difference constraint propagator, and then ground and
+        solve.
+        '''
+
+        ctl.add("base", [], THEORY)
+
+        if not files:
+            files = ["-"]
+  
+        self._rewrite(ctl, files)
+
+        ctl.ground([("base", [])])
+        # ctl.solve(on_model=print)
 
 
 if __name__ == '__main__':
-    files = sys.argv[1:]
-    print(files)
-
-    parse_lpmln(files[0])
+    sys.exit(int(clingo_main(LPMLNApp(), sys.argv[1:])))
