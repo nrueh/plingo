@@ -11,8 +11,10 @@ from utils import Transformer
 
 
 class LPMLNTransformer(Transformer):
-    def visit_Rule(self, rule: AST):
+    def visit_Rule(self, rule: AST, weight: int):
         print(rule.head)
+        print(rule.body)
+        print(weight)
         return rule
 
 
@@ -29,6 +31,26 @@ class LPMLNApp(Application):
         with open(path) as file_:
             return file_.read()
 
+    def _extract_weight(self, lpmln_rule: str):
+        # Extracts weight from (soft) rules
+        # Weights are prepended and separated by '::'
+        if '::' in lpmln_rule:
+            split = lpmln_rule.split('::')
+            weight = split[0]
+            if weight != 'alpha':
+                try:
+                    weight = int(weight)
+                except(ValueError):
+                    raise AssertionError("Weight has to be 'alpha' or an integer")
+
+            lpmln_rule = split[1].strip()
+
+        # Hard rules have weight 'alpha' (can be omitted from code)
+        else:
+            weight = 'alpha'
+
+        return lpmln_rule, weight
+
     def _parse_lpmln(self, ctl: Control, files: Sequence[str]):
         with ctl.builder() as b:
             lt = LPMLNTransformer()
@@ -41,15 +63,10 @@ class LPMLNApp(Application):
                     if lpmln_rule[0] == '%':
                         continue
 
-                    # Extract weights from soft rules
-                    # Weights are prepended and separated by '::'
-                    if '::' in lpmln_rule:
-                        split = lpmln_rule.split('::')
-                        lpmln_rule = split[1].strip()
-
+                    lpmln_rule, weight = self._extract_weight(lpmln_rule)
                     parse_program(
                         lpmln_rule,
-                        lambda stm: b.add(cast(AST, lt.visit(stm))))
+                        lambda stm: b.add(cast(AST, lt.visit(stm, weight))))
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
