@@ -1,4 +1,5 @@
 from typing import Any, List, Sequence, Mapping, Optional, MutableMapping, Tuple, Set, cast
+from copy import copy
 import sys
 
 from clingo import ast, Symbol, SymbolType, TheoryTerm, TheoryTermType, Number
@@ -11,10 +12,37 @@ from utils import Transformer
 
 
 class LPMLNTransformer(Transformer):
-    def visit_Rule(self, rule: AST, weight: int):
-        print(rule.head)
-        print(rule.body)
-        print(weight)
+    '''
+    Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'
+    '''
+    def visit_Rule(self, rule: AST, weight, idx: int):
+        head = rule.head
+        body = rule.body
+        print('\n LP^MLN Rule')
+        print(rule)
+
+        if weight == 'alpha':
+            constraint_weight = 1
+            priority = 1
+        else:
+            constraint_weight = weight
+            weight = Number(weight)
+            priority = 0
+
+        unsat = Function("unsat", [Number(idx), weight])
+        not_unsat = ast.Literal(rule.location, ast.Sign.Negation, unsat)
+
+        asp_rule1 = ast.Rule(
+            rule.location,
+            unsat,
+            body + [ast.Literal(head.location, ast.Sign.Negation, head)])
+        asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
+        asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority, [], [unsat])
+
+        print('\n ASP Conversion')
+        print(asp_rule1)
+        print(asp_rule2)
+        print(asp_rule3)
         return rule
 
 
@@ -56,7 +84,7 @@ class LPMLNApp(Application):
             lt = LPMLNTransformer()
             for path in files:
                 lines = self._read(path).splitlines()
-                for lpmln_rule in lines:
+                for i, lpmln_rule in enumerate(lines):
                     lpmln_rule = lpmln_rule.strip()
 
                     # Skip comments
@@ -66,7 +94,7 @@ class LPMLNApp(Application):
                     lpmln_rule, weight = self._extract_weight(lpmln_rule)
                     parse_program(
                         lpmln_rule,
-                        lambda stm: b.add(cast(AST, lt.visit(stm, weight))))
+                        lambda stm: b.add(cast(AST, lt.visit(stm, weight, i))))
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
@@ -80,6 +108,10 @@ class LPMLNApp(Application):
         ctl.ground([("base", [])])
         ctl.solve(on_model=print)
 
+def test(rule):
+    if str(rule.type) == 'Minimize':
+        print(rule.weight.type)
 
 if __name__ == '__main__':
+    # parse_program(':~ a. [1@3]', test)
     sys.exit(int(clingo_main(LPMLNApp(), sys.argv[1:])))
