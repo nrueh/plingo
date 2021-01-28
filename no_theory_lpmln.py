@@ -15,35 +15,45 @@ class LPMLNTransformer(Transformer):
     '''
     Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'
     '''
-    def visit_Rule(self, rule: AST, weight, idx: int):
+    def visit_Rule(self, rule: AST, weight, idx: int, builder):
         head = rule.head
         body = rule.body
-        print('\n LP^MLN Rule')
-        print(rule)
+        # print('\n LP^MLN Rule')
+        # print(rule)
 
         if weight == 'alpha':
-            constraint_weight = 1
-            priority = 1
+            constraint_weight = Number(1)
+            priority = Number(1)
         else:
-            constraint_weight = weight
             weight = Number(weight)
-            priority = 0
+            constraint_weight = weight
+            priority = Number(0)
 
-        unsat = Function("unsat", [Number(idx), weight])
+        unsat = ast.SymbolicAtom(ast.Symbol(rule.location, Function("unsat", [Number(idx), weight])))
+        # unsat = ast.Function(rule.location, "unsat", [Number(idx), weight], False)
         not_unsat = ast.Literal(rule.location, ast.Sign.Negation, unsat)
+        unsat = ast.Literal(head.location, ast.Sign.NoSign, unsat)
+
+        not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
 
         asp_rule1 = ast.Rule(
             rule.location,
             unsat,
-            body + [ast.Literal(head.location, ast.Sign.Negation, head)])
+            body + [not_head])
         asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
+
+        constraint_weight = ast.Symbol(rule.location, constraint_weight)
+        priority = ast.Symbol(rule.location, priority)
         asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority, [], [unsat])
 
-        print('\n ASP Conversion')
-        print(asp_rule1)
-        print(asp_rule2)
-        print(asp_rule3)
-        return rule
+        # print('\n ASP Conversion')
+        # print(asp_rule1)
+        # print(asp_rule2)
+        # print(asp_rule3)
+        builder.add(asp_rule1)
+        builder.add(asp_rule2)
+        builder.add(asp_rule3)
+        # return asp_rule3
 
 
 class LPMLNApp(Application):
@@ -94,7 +104,7 @@ class LPMLNApp(Application):
                     lpmln_rule, weight = self._extract_weight(lpmln_rule)
                     parse_program(
                         lpmln_rule,
-                        lambda stm: b.add(cast(AST, lt.visit(stm, weight, i))))
+                        lambda stm: lt.visit(stm, weight, i, b))
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
