@@ -118,17 +118,58 @@ class LPMLNApp(Application):
                     parse_program(lpmln_rule,
                                   lambda stm: lt.visit(stm, weight, i, b))
 
+    def _extract_atoms(self, model):
+        atoms = model.symbols(atoms=True)
+        show_atoms = []
+        unsat_atoms = []
+        for a in atoms:
+            if a.name == 'unsat':
+                unsat_atoms.append(a)
+            else:
+                show_atoms.append(a)
+        return show_atoms, unsat_atoms
+
+    def _on_model(self, model: Model):
+        atoms = model.symbols(atoms=True)
+        print(atoms)
+        show_atoms = []
+        unsat_atoms = []
+        for a in atoms:
+            if a.name == 'unsat':
+                unsat_atoms.append(a)
+                # print(a.arguments[1].number)
+            else:
+                show_atoms.append(a)
+        # print(show_atoms)
+        # TODO: Remove brackets when printing
+        # print(show_atoms)
+        # print(unsat_atoms)
+        #print(','.join(str(show_atoms)))
+
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         if not files:
             files = ["-"]
+        ctl.configuration.solve.models = 0
+        ctl.configuration.solve.opt_mode = 'ignore'
 
         self._parse_lpmln(ctl, files)
-
+        ctl.add("base", [], "#show.")
         ctl.ground([("base", [])])
-        ctl.solve(on_model=print)
+        # ctl.solve(on_model=self._on_model)
+
+        models_show = []
+        models_unsat = []
+        with ctl.solve(yield_=True) as handle:
+            for model in handle:
+                show_atoms, unsat_atoms = self._extract_atoms(model)
+                models_show.append(show_atoms)
+                models_unsat.append(unsat_atoms)
+
+        print(models_show)
+        print(models_unsat)
 
 
 def test(rule):
