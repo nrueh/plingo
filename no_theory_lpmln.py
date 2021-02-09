@@ -15,12 +15,8 @@ class LPMLNTransformer(Transformer):
     '''
     Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'
     '''
-    def visit_Rule(self, rule: AST, weight, idx: int, builder):
-        head = rule.head
-        body = rule.body
-        # print('\n LP^MLN Rule')
-        # print(rule)
-
+    def _get_parameters(self, rule: AST, weight):
+        #TODO: Can you leave out rule as argument? Needed for location?
         if weight == 'alpha':
             constraint_weight = Number(1)
             priority = Number(1)
@@ -28,23 +24,39 @@ class LPMLNTransformer(Transformer):
             weight = Number(weight)
             constraint_weight = weight
             priority = Number(0)
+        constraint_weight = ast.Symbol(rule.location, constraint_weight)
+        priority = ast.Symbol(rule.location, priority)
+        return weight, constraint_weight, priority
 
-        unsat = ast.SymbolicAtom(ast.Symbol(rule.location, Function("unsat", [Number(idx), weight])))
+    def _get_unsat_atoms(self, rule: AST, weight, idx: int):
+        unsat = ast.SymbolicAtom(
+            ast.Symbol(rule.location, Function("unsat",
+                                               [Number(idx), weight])))
         # unsat = ast.Function(rule.location, "unsat", [Number(idx), weight], False)
         not_unsat = ast.Literal(rule.location, ast.Sign.Negation, unsat)
-        unsat = ast.Literal(head.location, ast.Sign.NoSign, unsat)
+        unsat = ast.Literal(rule.head.location, ast.Sign.NoSign, unsat)
+        return unsat, not_unsat
+
+    def visit_Rule(self, rule: AST, weight, idx: int, builder):
+        """
+        Visit rule, convert it to three ASP rules and
+        add it to the program builder.
+        """
+        head = rule.head
+        body = rule.body
+        # print('\n LP^MLN Rule')
+        # print(rule)
+
+        weight, constraint_weight, priority = self._get_parameters(
+            rule, weight)
+        unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
 
         not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
 
-        asp_rule1 = ast.Rule(
-            rule.location,
-            unsat,
-            body + [not_head])
+        asp_rule1 = ast.Rule(rule.location, unsat, body + [not_head])
         asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
-
-        constraint_weight = ast.Symbol(rule.location, constraint_weight)
-        priority = ast.Symbol(rule.location, priority)
-        asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority, [], [unsat])
+        asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority,
+                                 [], [unsat])
 
         # print('\n ASP Conversion')
         # print(asp_rule1)
@@ -78,8 +90,9 @@ class LPMLNApp(Application):
             if weight != 'alpha':
                 try:
                     weight = int(weight)
-                except(ValueError):
-                    raise AssertionError("Weight has to be 'alpha' or an integer")
+                except (ValueError):
+                    raise AssertionError(
+                        "Weight has to be 'alpha' or an integer")
 
             lpmln_rule = split[1].strip()
 
@@ -102,9 +115,8 @@ class LPMLNApp(Application):
                         continue
 
                     lpmln_rule, weight = self._extract_weight(lpmln_rule)
-                    parse_program(
-                        lpmln_rule,
-                        lambda stm: lt.visit(stm, weight, i, b))
+                    parse_program(lpmln_rule,
+                                  lambda stm: lt.visit(stm, weight, i, b))
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
@@ -118,9 +130,11 @@ class LPMLNApp(Application):
         ctl.ground([("base", [])])
         ctl.solve(on_model=print)
 
+
 def test(rule):
     if str(rule.type) == 'Minimize':
         print(rule.weight.type)
+
 
 if __name__ == '__main__':
     # parse_program(':~ a. [1@3]', test)
