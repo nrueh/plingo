@@ -42,35 +42,51 @@ class LPMLNTransformer(Transformer):
         Visit rule, convert it to three ASP rules and
         add it to the program builder.
         """
-        head = rule.head
-        body = rule.body
+
+        # print(head.elements[0].literal.child_keys)
+        # print(head)
+        # print(idx)
+        # print(head.elements[0].literal.child_keys.atom)
 
         weight, constraint_weight, priority = self._get_parameters(
             rule, weight)
-        unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
 
-        # Fix that integrity constraints will be accepted by grounder.
-        if str(head.atom.type) == 'BooleanConstant' and not head.atom.value:
-            not_head = ast.Literal(head.location, ast.Sign.NoSign,
-                                   ast.BooleanConstant(True))
+        # TODO: Setting that toggles whether hard rules are translated
+        if weight == 'alpha':
+            builder.add(rule)
         else:
-            not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
+            head = rule.head
+            body = rule.body
+            unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
 
-        # Create ASP rules
-        asp_rule1 = ast.Rule(rule.location, unsat, body + [not_head])
-        asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
-        asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority,
-                                 [], [unsat])
+            if str(head.type) == 'Aggregate':
+                not_head = ast.Literal(head.location, ast.Sign.NoSign,
+                                       ast.BooleanConstant(True))
+            # Fix that integrity constraints will be accepted by grounder.
+            elif str(head.atom.type
+                     ) == 'BooleanConstant' and not head.atom.value:
+                not_head = ast.Literal(head.location, ast.Sign.NoSign,
+                                       ast.BooleanConstant(True))
+            else:
+                not_head = ast.Literal(head.location, ast.Sign.Negation,
+                                       head.atom)
 
-        # print('\n LP^MLN Rule')
-        # print(rule)
-        # print('\n ASP Conversion')
-        # print(asp_rule1)
-        # print(asp_rule2)
-        # print(asp_rule3)
-        builder.add(asp_rule1)
-        builder.add(asp_rule2)
-        builder.add(asp_rule3)
+            # Create ASP rules
+            asp_rule1 = ast.Rule(rule.location, unsat, body + [not_head])
+            asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
+            asp_rule3 = ast.Minimize(rule.location, constraint_weight,
+                                     priority, [], [unsat])
+
+            # print('\n LP^MLN Rule')
+            # print(rule)
+            # print('\n ASP Conversion')
+            # print(asp_rule1)
+            # print(asp_rule2)
+            # print(asp_rule3)
+
+            builder.add(asp_rule1)
+            builder.add(asp_rule2)
+            builder.add(asp_rule3)
 
 
 class LPMLNApp(Application):
@@ -160,8 +176,8 @@ class LPMLNApp(Application):
         if not files:
             files = ["-"]
 
-        ctl.configuration.solve.opt_mode = 'enum'
-        ctl.configuration.solve.models = 0
+        # ctl.configuration.solve.opt_mode = 'enum'
+        # ctl.configuration.solve.models = 0
 
         self._parse_lpmln(ctl, files)
         ctl.add("base", [], "#show.")
