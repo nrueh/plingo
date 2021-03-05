@@ -1,8 +1,8 @@
-from typing import Any, List, Sequence, Mapping, Optional, MutableMapping, Tuple, Set, cast
+from typing import Any, List, Sequence, Mapping, Optional, MutableMapping, Set, cast
 from copy import copy
 import sys
 
-from clingo import ast, Symbol, SymbolType, TheoryTerm, TheoryTermType, Number
+from clingo import ast, Symbol, SymbolType, TheoryTerm, TheoryTermType, Number, String
 from clingo import Function, Model, PropagateInit, PropagateControl, Assignment
 from clingo import clingo_main, Application, Tuple_, Control, parse_program
 from clingo import ProgramBuilder, Propagator, ApplicationOptions, SolveResult, parse_term
@@ -29,9 +29,15 @@ class LPMLNTransformer(Transformer):
         return weight, constraint_weight, priority
 
     def _get_unsat_atoms(self, rule: AST, weight, idx: int):
+        variables = rule.body[0].atom.term.arguments
+        idx = ast.Symbol(rule.location, Number(idx))
+        weight = ast.Symbol(rule.location, weight)
+        unsat_arguments = [idx, weight] + variables
+
+        # TODO: Cleaner way to add variables?
         unsat = ast.SymbolicAtom(
-            ast.Symbol(rule.location, Function("unsat",
-                                               [Number(idx), weight])))
+            ast.Function(rule.location, "unsat", unsat_arguments, False))
+
         # unsat = ast.Function(rule.location, "unsat", [Number(idx), weight], False)
         not_unsat = ast.Literal(rule.location, ast.Sign.Negation, unsat)
         unsat = ast.Literal(rule.head.location, ast.Sign.NoSign, unsat)
@@ -50,13 +56,15 @@ class LPMLNTransformer(Transformer):
 
         weight, constraint_weight, priority = self._get_parameters(
             rule, weight)
-
+        # TODO: Add visitor design pattern to extract variables
         # TODO: Setting that toggles whether hard rules are translated
         if weight == 'alpha':
+            # print(rule)
             builder.add(rule)
         else:
             head = rule.head
             body = rule.body
+
             unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
 
             if str(head.type) == 'Aggregate':
@@ -140,6 +148,7 @@ class LPMLNApp(Application):
                     parse_program(lpmln_rule,
                                   lambda stm: lt.visit(stm, weight, idx, b))
                     idx += 1
+            ctl.cleanup()
 
     def _extract_atoms(self, model):
         atoms = model.symbols(atoms=True)
@@ -180,20 +189,21 @@ class LPMLNApp(Application):
         # ctl.configuration.solve.models = 0
 
         self._parse_lpmln(ctl, files)
-        ctl.add("base", [], "#show.")
+        # ctl.add("base", [], "#show disconnected/2.")
+        ctl.add("base", [], "#show in/1.")
         ctl.ground([("base", [])])
         # for sa in ctl.symbolic_atoms:
         #     print(sa.symbol)
         #     print(sa.literal)
-        # ctl.solve(on_model=self._on_model)
+        # ctl.solve(on_model=print)
 
         models_show = []
         models_unsat = []
         with ctl.solve(yield_=True) as handle:
             for model in handle:
                 show_atoms, unsat_atoms = self._extract_atoms(model)
-                print(show_atoms)
-                print(unsat_atoms)
+                # print(show_atoms)
+                # print(unsat_atoms)
                 models_show.append(show_atoms)
                 models_unsat.append(unsat_atoms)
 
