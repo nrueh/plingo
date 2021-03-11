@@ -1,4 +1,4 @@
 {in(X)} :- node(X).
-disconnected(X, Y) :- in(X), in(Y), not edge(X, Y), X != Y.
-2 :: :- not in(X), node(X).
-1 :: :- disconnected(X, Y).
+disconnected(X, Y) :- in(X), in(Y), not edge(X, Y).
+5 :: :- not in(X), node(X).
+5 :: :- disconnected(X, Y).
