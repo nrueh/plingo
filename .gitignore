@@ -3,3 +3,4 @@ __pycache__/
 .python-version
 
 benchmarks/random_graphs
+.DS_Store
