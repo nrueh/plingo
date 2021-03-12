@@ -8,7 +8,7 @@ from clingo import clingo_main, Application, Tuple_, Control, parse_program
 from clingo import ProgramBuilder, Propagator, ApplicationOptions, SolveResult, parse_term
 from clingo.ast import AST
 
-from utils import Transformer, Visitor
+from utils import Transformer
 
 
 class LPMLNTransformer(Transformer):
@@ -29,10 +29,9 @@ class LPMLNTransformer(Transformer):
         return weight, constraint_weight, priority
 
     def _get_unsat_atoms(self, rule: AST, weight, idx: int):
-        #variables = rule.body[0].atom.term.arguments
         idx = ast.Symbol(rule.location, Number(idx))
         weight = ast.Symbol(rule.location, weight)
-        unsat_arguments = [idx, weight]  #+ variables
+        unsat_arguments = [idx, weight] + self.global_variables
 
         # TODO: Cleaner way to add variables?
         unsat = ast.SymbolicAtom(
@@ -44,18 +43,15 @@ class LPMLNTransformer(Transformer):
         return unsat, not_unsat
 
     def _convert_rule(self, rule, weight, idx: int):
+        self.global_variables = []
         weight, constraint_weight, priority = self._get_parameters(
             rule, weight)
 
         head = rule.head
         body = rule.body
-        # print(head)
-        # print(body)
-        head_variables = self.visit(head, [])
-        body_variables = self.visit(body, [])
-        # print('\n Head and Body variables')
-        # print(head_variables)
-        # print(body_variables)
+
+        self.visit(head)
+        self.visit(body)
 
         unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
 
@@ -107,11 +103,9 @@ class LPMLNTransformer(Transformer):
             builder.add(asp_rule2)
             builder.add(asp_rule3)
 
-    def visit_Variable(self, variable: AST, global_variables: list):
-        # print('\n Encountered variable')
-        # print(variable)
-        global_variables.append(variable)
-        return global_variables
+    def visit_Variable(self, variable: AST):
+        if variable not in self.global_variables:
+            self.global_variables.append(variable)
 
 
 class LPMLNApp(Application):
