@@ -9,7 +9,8 @@ class Transformer:
     This class is similar to the `Visitor` but allows for mutating the AST by
     returning modified AST nodes from the visit methods.
     '''
-    def visit_children(self, x: AST, *args: Sequence[Any], **kwargs: Mapping[str, Any]):
+    def visit_children(self, x: AST, *args: Sequence[Any],
+                       **kwargs: Mapping[str, Any]):
         '''
         Visit the children of an AST node.
         '''
@@ -24,14 +25,16 @@ class Transformer:
                 setattr(x, key, z)
         return x
 
-    def _seq(self, i: int, z: AST, x: Sequence[AST], args: Sequence[Any], kwargs: Mapping[str, Any]):
+    def _seq(self, i: int, z: AST, x: Sequence[AST], args: Sequence[Any],
+             kwargs: Mapping[str, Any]):
         for y in x[:i]:
             yield y
         yield z
-        for y in x[i+1:]:
+        for y in x[i + 1:]:
             yield self.visit(y, *args, **kwargs)
 
-    def visit_list(self, x: List[AST], *args: Sequence[Any], **kwargs: Mapping[str, Any]):
+    def visit_list(self, x: List[AST], *args: Sequence[Any],
+                   **kwargs: Mapping[str, Any]):
         '''
         Visit a list of AST nodes.
         '''
@@ -41,7 +44,8 @@ class Transformer:
                 return list(self._seq(i, cast(AST, z), x, args, kwargs))
         return x
 
-    def visit_tuple(self, x: Sequence[AST], *args: Sequence[Any], **kwargs: Mapping[str, Any]):
+    def visit_tuple(self, x: Sequence[AST], *args: Sequence[Any],
+                    **kwargs: Mapping[str, Any]):
         '''
         Visit a tuple of AST nodes.
         '''
@@ -51,19 +55,20 @@ class Transformer:
                 return tuple(self._seq(i, cast(AST, z), x, args, kwargs))
         return x
 
-    def visit_none(self, x: None, *args: Sequence[Any], **kwargs: Mapping[str, Any]):
+    def visit_none(self, x: None, *args: Sequence[Any],
+                   **kwargs: Mapping[str, Any]):
         '''
         Called when an optional child in an AST is absent.
         '''
         # pylint: disable=no-self-use,unused-argument
         return x
 
-    def visit(self, x: Optional[AST], *args: Sequence[Any], **kwargs) -> Optional[AST]:
+    def visit(self, x: Optional[AST], *args: Sequence[Any],
+              **kwargs) -> Optional[AST]:
         '''
         Generic visit method dispatching to specific member functions to visit
         child nodes.
         '''
-
         if isinstance(x, AST):
             attr = "visit_" + str(x.type)
             if hasattr(self, attr):
@@ -75,4 +80,58 @@ class Transformer:
             return self.visit_tuple(x, *args, **kwargs)
         if x is None:
             return self.visit_none(x, *args, **kwargs)
+        raise TypeError("unexpected type: {}".format(x))
+
+
+class Visitor:
+    '''
+    A visitor for clingo's abstart syntaxt tree.
+
+    This class should be derived from. Implementing functions with name
+    `visit_<type>` can be used to visit nodes of the given type.
+    '''
+    def visit_children(self, x: AST, *args: Sequence[Any],
+                       **kwargs: Mapping[str, Any]):
+        '''
+        Visit the children of an AST node.
+        '''
+        for key in x.child_keys:
+            self.visit(getattr(x, key), *args, **kwargs)
+
+    def visit_list(self, x: List[AST], *args: Sequence[Any], **kwargs):
+        '''
+        Visit a list of AST nodes.
+        '''
+        for y in x:
+            self.visit(y, *args, **kwargs)
+
+    def visit_tuple(self, x: Sequence[AST], *args: Sequence[Any], **kwargs):
+        '''
+        Visit a tuple of AST nodes.
+        '''
+        for y in x:
+            self.visit(y, *args, **kwargs)
+
+    def visit_none(self, x: None, *args: Sequence[Any], **kwargs):
+        '''
+        Called when an optional child in an AST is absent.
+        '''
+
+    def visit(self, x: Optional[AST], *args: Sequence[Any], **kwargs):
+        '''
+        Generic visit method dispatching to specific member functions to visit
+        child nodes.
+        '''
+        if isinstance(x, AST):
+            attr = "visit_" + str(x.type)
+            if hasattr(self, attr):
+                getattr(self, attr)(x, *args, **kwargs)
+            else:
+                self.visit_children(x, *args, **kwargs)
+        if isinstance(x, list):
+            self.visit_list(x, *args, **kwargs)
+        if isinstance(x, tuple):
+            self.visit_tuple(x, *args, **kwargs)
+        if x is None:
+            self.visit_none(x, *args, **kwargs)
         raise TypeError("unexpected type: {}".format(x))

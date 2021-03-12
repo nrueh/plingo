@@ -3,12 +3,12 @@ from copy import copy
 import sys
 
 from clingo import ast, Symbol, SymbolType, TheoryTerm, TheoryTermType, Number, String
-from clingo import Function, Model, PropagateInit, PropagateControl, Assignment
+from clingo import Flag, Function, Model, PropagateInit, PropagateControl, Assignment
 from clingo import clingo_main, Application, Tuple_, Control, parse_program
 from clingo import ProgramBuilder, Propagator, ApplicationOptions, SolveResult, parse_term
 from clingo.ast import AST
 
-from utils import Transformer
+from utils import Transformer, Visitor
 
 
 class LPMLNTransformer(Transformer):
@@ -29,10 +29,10 @@ class LPMLNTransformer(Transformer):
         return weight, constraint_weight, priority
 
     def _get_unsat_atoms(self, rule: AST, weight, idx: int):
-        variables = rule.body[0].atom.term.arguments
+        #variables = rule.body[0].atom.term.arguments
         idx = ast.Symbol(rule.location, Number(idx))
         weight = ast.Symbol(rule.location, weight)
-        unsat_arguments = [idx, weight] + variables
+        unsat_arguments = [idx, weight]  #+ variables
 
         # TODO: Cleaner way to add variables?
         unsat = ast.SymbolicAtom(
@@ -43,7 +43,42 @@ class LPMLNTransformer(Transformer):
         unsat = ast.Literal(rule.head.location, ast.Sign.NoSign, unsat)
         return unsat, not_unsat
 
-    def visit_Rule(self, rule: AST, weight, idx: int, builder: ProgramBuilder):
+    def _convert_rule(self, rule, weight, idx: int):
+        weight, constraint_weight, priority = self._get_parameters(
+            rule, weight)
+
+        head = rule.head
+        body = rule.body
+        # print(head)
+        # print(body)
+        head_variables = self.visit(head, [])
+        body_variables = self.visit(body, [])
+        # print('\n Head and Body variables')
+        # print(head_variables)
+        # print(body_variables)
+
+        unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
+
+        # TODO: Fix that converter can handle aggregates
+        if str(head.type) == 'Aggregate':
+            not_head = ast.Literal(head.location, ast.Sign.NoSign,
+                                   ast.BooleanConstant(True))
+        # Fix that integrity constraints will be accepted by grounder.
+        elif str(head.atom.type) == 'BooleanConstant' and not head.atom.value:
+            not_head = ast.Literal(head.location, ast.Sign.NoSign,
+                                   ast.BooleanConstant(True))
+        else:
+            not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
+
+        # Create ASP rules
+        asp_rule1 = ast.Rule(rule.location, unsat, body + [not_head])
+        asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
+        asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority,
+                                 [], [unsat])
+        return asp_rule1, asp_rule2, asp_rule3
+
+    def visit_Rule(self, rule: AST, weight, idx: int, builder: ProgramBuilder,
+                   translate_hr: bool):
         """
         Visit rule, convert it to three ASP rules and
         add it to the program builder.
@@ -54,37 +89,13 @@ class LPMLNTransformer(Transformer):
         # print(idx)
         # print(head.elements[0].literal.child_keys.atom)
 
-        weight, constraint_weight, priority = self._get_parameters(
-            rule, weight)
         # TODO: Add visitor design pattern to extract variables
         # TODO: Setting that toggles whether hard rules are translated
-        if weight == 'alpha':
-            # print(rule)
+        if weight == 'alpha' and not translate_hr:
             builder.add(rule)
         else:
-            head = rule.head
-            body = rule.body
-
-            unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
-
-            if str(head.type) == 'Aggregate':
-                not_head = ast.Literal(head.location, ast.Sign.NoSign,
-                                       ast.BooleanConstant(True))
-            # Fix that integrity constraints will be accepted by grounder.
-            elif str(head.atom.type
-                     ) == 'BooleanConstant' and not head.atom.value:
-                not_head = ast.Literal(head.location, ast.Sign.NoSign,
-                                       ast.BooleanConstant(True))
-            else:
-                not_head = ast.Literal(head.location, ast.Sign.Negation,
-                                       head.atom)
-
-            # Create ASP rules
-            asp_rule1 = ast.Rule(rule.location, unsat, body + [not_head])
-            asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
-            asp_rule3 = ast.Minimize(rule.location, constraint_weight,
-                                     priority, [], [unsat])
-
+            asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(
+                rule, weight, idx)
             # print('\n LP^MLN Rule')
             # print(rule)
             # print('\n ASP Conversion')
@@ -96,6 +107,12 @@ class LPMLNTransformer(Transformer):
             builder.add(asp_rule2)
             builder.add(asp_rule3)
 
+    def visit_Variable(self, variable: AST, global_variables: list):
+        # print('\n Encountered variable')
+        # print(variable)
+        global_variables.append(variable)
+        return global_variables
+
 
 class LPMLNApp(Application):
     '''
@@ -103,6 +120,9 @@ class LPMLNApp(Application):
     '''
     program_name: str = "clingo-lpmln"
     version: str = "1.0"
+
+    def __init__(self):
+        self.translate_hard_rules = Flag(False)
 
     def _read(self, path: str):
         if path == "-":
@@ -140,15 +160,16 @@ class LPMLNApp(Application):
                 for lpmln_rule in lines:
                     lpmln_rule = lpmln_rule.strip()
 
-                    # Skip comments
-                    if lpmln_rule[0] == '%':
+                    # Skip comments and blank lines
+                    if lpmln_rule == '' or lpmln_rule[0] == '%':
                         continue
 
                     lpmln_rule, weight = self._extract_weight(lpmln_rule)
-                    parse_program(lpmln_rule,
-                                  lambda stm: lt.visit(stm, weight, idx, b))
+                    parse_program(
+                        lpmln_rule, lambda stm: lt.visit(
+                            stm, weight, idx, b, self.translate_hard_rules))
                     idx += 1
-            ctl.cleanup()
+            # ctl.cleanup()
 
     def _extract_atoms(self, model):
         atoms = model.symbols(atoms=True)
@@ -178,6 +199,14 @@ class LPMLNApp(Application):
         # print(unsat_atoms)
         #print(','.join(str(show_atoms)))
 
+    def register_options(self, options: ApplicationOptions) -> None:
+        """
+        Register application option.
+        """
+        group = 'LPMLN Options'
+        options.add_flag(group, 'hr', 'Translate hard rules',
+                         self.translate_hard_rules)
+
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
@@ -189,8 +218,7 @@ class LPMLNApp(Application):
         # ctl.configuration.solve.models = 0
 
         self._parse_lpmln(ctl, files)
-        # ctl.add("base", [], "#show disconnected/2.")
-        ctl.add("base", [], "#show in/1.")
+        ctl.add("base", [], "#show.")
         ctl.ground([("base", [])])
         # for sa in ctl.symbolic_atoms:
         #     print(sa.symbol)
