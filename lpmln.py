@@ -72,9 +72,9 @@ class LPMLNTransformer(Transformer):
             not_head = ast.Literal(head.location, ast.Sign.NoSign,
                                    ast.BooleanConstant(True))
         # Fix that integrity constraints will be accepted by grounder.
-        # TODO: Better way?
+        # TODO: Better way for this?
         elif str(head.atom.ast_type
-                 ) == 'BooleanConstant' and not head.atom.value:
+                 ) == 'ASTType.BooleanConstant' and not head.atom.value:
             not_head = ast.Literal(head.location, ast.Sign.NoSign,
                                    ast.BooleanConstant(True))
         else:
@@ -213,8 +213,8 @@ class LPMLNApp(Application):
         '''
         ctl.add("base", [], THEORY)
 
-        # ctl.configuration.solve.opt_mode = 'enum'
-        # ctl.configuration.solve.models = 0
+        ctl.configuration.solve.opt_mode = 'enum'
+        ctl.configuration.solve.models = 0
 
         if not files:
             files = ["-"]
