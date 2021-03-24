@@ -1,14 +1,13 @@
-from typing import Any, List, Sequence, Mapping, Optional, MutableMapping, Set, cast
-from copy import copy
+from copy import deepcopy
+from typing import Any, Sequence, cast
 import sys
 
-from clingo import ast, Symbol, SymbolType, TheoryTerm, TheoryTermType, Number, String
-from clingo import Flag, Function, Model, PropagateInit, PropagateControl, Assignment
-from clingo import clingo_main, Application, Tuple_, Control, parse_program
-from clingo import ProgramBuilder, Propagator, ApplicationOptions, SolveResult, parse_term
-from clingo.ast import AST
+from clingo import ast, Number, String, Flag, Model
+from clingo import clingo_main, Application, Control
+from clingo import ApplicationOptions
+from clingo.ast import AST, ASTSequence, parse_string, ProgramBuilder, Transformer
 
-from utils import Transformer
+# from utils import Transformer
 
 THEORY = """
 #theory lpmln{
@@ -25,19 +24,33 @@ class LPMLNTransformer(Transformer):
     def __init__(self):
         self.rule_idx = 0
 
+    def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
+        '''
+        Dispatch to a visit method in a base class or visit and transform the
+        children of the given AST if it is missing.
+        '''
+        # TODO: Is this necessary?
+        if isinstance(ast, AST):
+            attr = 'visit_' + str(ast.ast_type).replace('ASTType.', '')
+            if hasattr(self, attr):
+                return getattr(self, attr)(ast, *args, **kwargs)
+        if isinstance(ast, ASTSequence):
+            return self.visit_sequence(ast, *args, **kwargs)
+        return ast.update(**self.visit_children(ast, *args, **kwargs))
+
     def _get_constraint_parameters(self, location: dict):
         if self.weight == 'alpha':
-            constraint_weight = Number(1)
+            self.weight = ast.SymbolicTerm(location, String('alpha'))
+            constraint_weight = ast.SymbolicTerm(location, Number(1))
             priority = Number(1)
         else:
             constraint_weight = self.weight
             priority = Number(0)
-        constraint_weight = ast.Symbol(location, constraint_weight)
-        priority = ast.Symbol(location, priority)
+        priority = ast.SymbolicTerm(location, priority)
         return constraint_weight, priority
 
     def _get_unsat_atoms(self, location: dict):
-        idx = ast.Symbol(location, Number(self.rule_idx))
+        idx = ast.SymbolicTerm(location, Number(self.rule_idx))
         unsat_arguments = [idx, self.weight] + self.global_variables
 
         unsat = ast.SymbolicAtom(
@@ -46,6 +59,7 @@ class LPMLNTransformer(Transformer):
         # unsat = ast.Function(rule.location, "unsat", [Number(idx), weight], False)
         not_unsat = ast.Literal(location, ast.Sign.Negation, unsat)
         unsat = ast.Literal(location, ast.Sign.NoSign, unsat)
+
         return unsat, not_unsat
 
     def _convert_rule(self, head, body):
@@ -54,11 +68,13 @@ class LPMLNTransformer(Transformer):
         unsat, not_unsat = self._get_unsat_atoms(head.location)
 
         # TODO: Fix that converter can handle aggregates
-        if str(head.type) == 'Aggregate':
+        if str(head.ast_type) == 'Aggregate':
             not_head = ast.Literal(head.location, ast.Sign.NoSign,
                                    ast.BooleanConstant(True))
         # Fix that integrity constraints will be accepted by grounder.
-        elif str(head.atom.type) == 'BooleanConstant' and not head.atom.value:
+        # TODO: Better way?
+        elif str(head.atom.ast_type
+                 ) == 'BooleanConstant' and not head.atom.value:
             not_head = ast.Literal(head.location, ast.Sign.NoSign,
                                    ast.BooleanConstant(True))
         else:
@@ -66,8 +82,18 @@ class LPMLNTransformer(Transformer):
 
         # Create ASP rules
         # TODO: Is it ok to use 'head.location' for the rules?
-        asp_rule1 = ast.Rule(head.location, unsat, body + [not_head])
-        asp_rule2 = ast.Rule(head.location, head, body + [not_unsat])
+        # TODO: Better way to insert and delete items from body?
+
+        # Rule 1 (unsat :- Body, not Head)
+        body.insert(0, not_head)
+        asp_rule1 = ast.Rule(head.location, unsat, body)
+
+        #Rule 2 (Head :- Body, not unsat)
+        del body[0]
+        body.insert(0, not_unsat)
+        asp_rule2 = ast.Rule(head.location, head, body)
+
+        # Rule 3 (weak constraint unsat)
         asp_rule3 = ast.Minimize(head.location, constraint_weight, priority,
                                  [], [unsat])
         return asp_rule1, asp_rule2, asp_rule3
@@ -86,9 +112,9 @@ class LPMLNTransformer(Transformer):
         body = rule.body
 
         head = self.visit(head)
-        body = list(filter(None, self.visit(body)))
+        body = self.visit(body)
 
-        # print(body)
+        # print(repr(body))
         # print(self.global_variables)
         # print(self.weight)
 
@@ -103,7 +129,7 @@ class LPMLNTransformer(Transformer):
             # print('\n ASP Conversion')
             # print(asp_rule1)
             # print(asp_rule2)
-            print(asp_rule3)
+            # print(asp_rule3)
 
             builder.add(asp_rule1)
             builder.add(asp_rule2)
@@ -115,8 +141,10 @@ class LPMLNTransformer(Transformer):
         return variable
 
     def visit_TheoryAtom(self, atom: AST):
-        # print(atom.term.arguments[0].type)
+        # print(atom.term.arguments[0])
         self.weight = atom.term.arguments[0]  #.symbol.number
+        # TODO: Better way to remove TheoryAtom?
+        return ast.BooleanConstant(True)
 
 
 class LPMLNApp(Application):
@@ -135,55 +163,13 @@ class LPMLNApp(Application):
         with open(path) as file_:
             return file_.read()
 
-    # def _extract_weight(self, lpmln_rule: str):
-    #     # Extracts weight from (soft) rules
-    #     # Weights are prepended and separated by '::'
-    #     if '::' in lpmln_rule:
-    #         split = lpmln_rule.split('::')
-    #         weight = split[0].strip()
-    #         if str(weight) != 'alpha':
-    #             try:
-    #                 weight = int(weight)
-    #             except (ValueError):
-    #                 raise AssertionError(
-    #                     "Weight has to be 'alpha' or an integer")
-
-    #         lpmln_rule = split[1].strip()
-
-    #     # Hard rules have weight 'alpha' (can be omitted from encoding)
-    #     else:
-    #         weight = 'alpha'
-
-    #     return lpmln_rule, weight
-
-    # def _parse_lpmln(self, ctl: Control, files: Sequence[str]):
-    #     with ctl.builder() as b:
-    #         lt = LPMLNTransformer()
-    #         idx = 0
-    #         for path in files:
-    #             lines = self._read(path).splitlines()
-    #             for lpmln_rule in lines:
-    #                 lpmln_rule = lpmln_rule.strip()
-
-    #                 # Skip comments and blank lines
-    #                 if lpmln_rule == '' or lpmln_rule[0] == '%':
-    #                     continue
-    #                 # print(lpmln_rule)
-    #                 lpmln_rule, weight = self._extract_weight(lpmln_rule)
-    #                 parse_program(
-    #                     lpmln_rule, lambda stm: lt.visit(
-    #                         stm, weight, idx, b, self.translate_hard_rules))
-    #                 idx += 1
-    #         # ctl.cleanup()
-
     def _convert(self, ctl: Control, files: Sequence[str]):
-        with ctl.builder() as b:
+        with ProgramBuilder(ctl) as b:
             lt = LPMLNTransformer()
             for path in files:
-                parse_program(
+                parse_string(
                     self._read(path),
                     lambda stm: lt.visit(stm, b, self.translate_hard_rules))
-                #b.add(cast(AST, lt.visit(stm, self.translate_hard_rules))))
 
     def _extract_atoms(self, model):
         atoms = model.symbols(atoms=True)
@@ -226,6 +212,7 @@ class LPMLNApp(Application):
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
+
         # ctl.configuration.solve.opt_mode = 'enum'
         # ctl.configuration.solve.models = 0
 
