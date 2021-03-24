@@ -10,50 +10,48 @@ from clingo.ast import AST
 
 from utils import Transformer
 
+THEORY = """
+#theory lpmln{
+    constant { - : 0, unary };
+    &weight/1 : constant, body
+}.
+"""
+
 
 class LPMLNTransformer(Transformer):
     '''
     Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'
     '''
-    def _get_parameters(self, rule: AST, weight):
-        #TODO: Can rule be left out as argument? Needed for location?
-        if weight == 'alpha':
+    def __init__(self):
+        self.rule_idx = 0
+
+    def _get_constraint_parameters(self, location: dict):
+        if self.weight == 'alpha':
             constraint_weight = Number(1)
             priority = Number(1)
         else:
-            weight = Number(weight)
-            constraint_weight = weight
+            constraint_weight = self.weight
             priority = Number(0)
-        constraint_weight = ast.Symbol(rule.location, constraint_weight)
-        priority = ast.Symbol(rule.location, priority)
-        return weight, constraint_weight, priority
+        constraint_weight = ast.Symbol(location, constraint_weight)
+        priority = ast.Symbol(location, priority)
+        return constraint_weight, priority
 
-    def _get_unsat_atoms(self, rule: AST, weight, idx: int):
-        idx = ast.Symbol(rule.location, Number(idx))
-        weight = ast.Symbol(rule.location, weight)
-        unsat_arguments = [idx, weight] + self.global_variables
+    def _get_unsat_atoms(self, location: dict):
+        idx = ast.Symbol(location, Number(self.rule_idx))
+        unsat_arguments = [idx, self.weight] + self.global_variables
 
-        # TODO: Cleaner way to add variables?
         unsat = ast.SymbolicAtom(
-            ast.Function(rule.location, "unsat", unsat_arguments, False))
+            ast.Function(location, "unsat", unsat_arguments, False))
 
         # unsat = ast.Function(rule.location, "unsat", [Number(idx), weight], False)
-        not_unsat = ast.Literal(rule.location, ast.Sign.Negation, unsat)
-        unsat = ast.Literal(rule.head.location, ast.Sign.NoSign, unsat)
+        not_unsat = ast.Literal(location, ast.Sign.Negation, unsat)
+        unsat = ast.Literal(location, ast.Sign.NoSign, unsat)
         return unsat, not_unsat
 
-    def _convert_rule(self, rule, weight, idx: int):
-        self.global_variables = []
-        weight, constraint_weight, priority = self._get_parameters(
-            rule, weight)
-
-        head = rule.head
-        body = rule.body
-
-        self.visit(head)
-        self.visit(body)
-
-        unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
+    def _convert_rule(self, head, body):
+        constraint_weight, priority = self._get_constraint_parameters(
+            head.location)
+        unsat, not_unsat = self._get_unsat_atoms(head.location)
 
         # TODO: Fix that converter can handle aggregates
         if str(head.type) == 'Aggregate':
@@ -67,37 +65,45 @@ class LPMLNTransformer(Transformer):
             not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
 
         # Create ASP rules
-        asp_rule1 = ast.Rule(rule.location, unsat, body + [not_head])
-        asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
-        asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority,
+        # TODO: Is it ok to use 'head.location' for the rules?
+        asp_rule1 = ast.Rule(head.location, unsat, body + [not_head])
+        asp_rule2 = ast.Rule(head.location, head, body + [not_unsat])
+        asp_rule3 = ast.Minimize(head.location, constraint_weight, priority,
                                  [], [unsat])
         return asp_rule1, asp_rule2, asp_rule3
 
-    def visit_Rule(self, rule: AST, weight, idx: int, builder: ProgramBuilder,
+    def visit_Rule(self, rule: AST, builder: ProgramBuilder,
                    translate_hr: bool):
         """
         Visit rule, convert it to three ASP rules and
         add it to the program builder.
         """
+        # Set weight to alpha by default
+        self.weight = 'alpha'
+        self.global_variables = []
 
-        # print(head.elements[0].literal.child_keys)
-        # print(head)
-        # print(idx)
-        # print(head.elements[0].literal.child_keys.atom)
+        head = rule.head
+        body = rule.body
 
-        # TODO: Add visitor design pattern to extract variables
-        # TODO: Setting that toggles whether hard rules are translated
-        if weight == 'alpha' and not translate_hr:
-            builder.add(rule)
+        head = self.visit(head)
+        body = list(filter(None, self.visit(body)))
+
+        # print(body)
+        # print(self.global_variables)
+        # print(self.weight)
+
+        if self.weight == 'alpha' and not translate_hr:
+            self.rule_idx += 1
+            builder.add(ast.Rule(rule.location, head, body))
         else:
-            asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(
-                rule, weight, idx)
+            asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
+            self.rule_idx += 1
             # print('\n LP^MLN Rule')
             # print(rule)
             # print('\n ASP Conversion')
             # print(asp_rule1)
             # print(asp_rule2)
-            # print(asp_rule3)
+            print(asp_rule3)
 
             builder.add(asp_rule1)
             builder.add(asp_rule2)
@@ -106,6 +112,11 @@ class LPMLNTransformer(Transformer):
     def visit_Variable(self, variable: AST):
         if variable not in self.global_variables:
             self.global_variables.append(variable)
+        return variable
+
+    def visit_TheoryAtom(self, atom: AST):
+        # print(atom.term.arguments[0].type)
+        self.weight = atom.term.arguments[0]  #.symbol.number
 
 
 class LPMLNApp(Application):
@@ -124,46 +135,55 @@ class LPMLNApp(Application):
         with open(path) as file_:
             return file_.read()
 
-    def _extract_weight(self, lpmln_rule: str):
-        # Extracts weight from (soft) rules
-        # Weights are prepended and separated by '::'
-        if '::' in lpmln_rule:
-            split = lpmln_rule.split('::')
-            weight = split[0].strip()
-            if str(weight) != 'alpha':
-                try:
-                    weight = int(weight)
-                except (ValueError):
-                    raise AssertionError(
-                        "Weight has to be 'alpha' or an integer")
+    # def _extract_weight(self, lpmln_rule: str):
+    #     # Extracts weight from (soft) rules
+    #     # Weights are prepended and separated by '::'
+    #     if '::' in lpmln_rule:
+    #         split = lpmln_rule.split('::')
+    #         weight = split[0].strip()
+    #         if str(weight) != 'alpha':
+    #             try:
+    #                 weight = int(weight)
+    #             except (ValueError):
+    #                 raise AssertionError(
+    #                     "Weight has to be 'alpha' or an integer")
 
-            lpmln_rule = split[1].strip()
+    #         lpmln_rule = split[1].strip()
 
-        # Hard rules have weight 'alpha' (can be omitted from encoding)
-        else:
-            weight = 'alpha'
+    #     # Hard rules have weight 'alpha' (can be omitted from encoding)
+    #     else:
+    #         weight = 'alpha'
 
-        return lpmln_rule, weight
+    #     return lpmln_rule, weight
 
-    def _parse_lpmln(self, ctl: Control, files: Sequence[str]):
+    # def _parse_lpmln(self, ctl: Control, files: Sequence[str]):
+    #     with ctl.builder() as b:
+    #         lt = LPMLNTransformer()
+    #         idx = 0
+    #         for path in files:
+    #             lines = self._read(path).splitlines()
+    #             for lpmln_rule in lines:
+    #                 lpmln_rule = lpmln_rule.strip()
+
+    #                 # Skip comments and blank lines
+    #                 if lpmln_rule == '' or lpmln_rule[0] == '%':
+    #                     continue
+    #                 # print(lpmln_rule)
+    #                 lpmln_rule, weight = self._extract_weight(lpmln_rule)
+    #                 parse_program(
+    #                     lpmln_rule, lambda stm: lt.visit(
+    #                         stm, weight, idx, b, self.translate_hard_rules))
+    #                 idx += 1
+    #         # ctl.cleanup()
+
+    def _convert(self, ctl: Control, files: Sequence[str]):
         with ctl.builder() as b:
             lt = LPMLNTransformer()
-            idx = 0
             for path in files:
-                lines = self._read(path).splitlines()
-                for lpmln_rule in lines:
-                    lpmln_rule = lpmln_rule.strip()
-
-                    # Skip comments and blank lines
-                    if lpmln_rule == '' or lpmln_rule[0] == '%':
-                        continue
-
-                    lpmln_rule, weight = self._extract_weight(lpmln_rule)
-                    parse_program(
-                        lpmln_rule, lambda stm: lt.visit(
-                            stm, weight, idx, b, self.translate_hard_rules))
-                    idx += 1
-            # ctl.cleanup()
+                parse_program(
+                    self._read(path),
+                    lambda stm: lt.visit(stm, b, self.translate_hard_rules))
+                #b.add(cast(AST, lt.visit(stm, self.translate_hard_rules))))
 
     def _extract_atoms(self, model):
         atoms = model.symbols(atoms=True)
@@ -176,22 +196,22 @@ class LPMLNApp(Application):
                 show_atoms.append(a)
         return show_atoms, unsat_atoms
 
-    def _on_model(self, model: Model):
-        atoms = model.symbols(atoms=True)
-        print(atoms)
-        show_atoms = []
-        unsat_atoms = []
-        for a in atoms:
-            if a.name == 'unsat':
-                unsat_atoms.append(a)
-                # print(a.arguments[1].number)
-            else:
-                show_atoms.append(a)
-        # print(show_atoms)
-        # TODO: Remove brackets when printing
-        # print(show_atoms)
-        # print(unsat_atoms)
-        #print(','.join(str(show_atoms)))
+    # def _on_model(self, model: Model):
+    #     atoms = model.symbols(atoms=True)
+    #     print(atoms)
+    #     show_atoms = []
+    #     unsat_atoms = []
+    #     for a in atoms:
+    #         if a.name == 'unsat':
+    #             unsat_atoms.append(a)
+    #             # print(a.arguments[1].number)
+    #         else:
+    #             show_atoms.append(a)
+    #     # print(show_atoms)
+    #     # TODO: Remove brackets when printing
+    #     # print(show_atoms)
+    #     # print(unsat_atoms)
+    #     #print(','.join(str(show_atoms)))
 
     def register_options(self, options: ApplicationOptions) -> None:
         """
@@ -205,14 +225,16 @@ class LPMLNApp(Application):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
-        if not files:
-            files = ["-"]
-
+        ctl.add("base", [], THEORY)
         # ctl.configuration.solve.opt_mode = 'enum'
         # ctl.configuration.solve.models = 0
 
-        self._parse_lpmln(ctl, files)
-        ctl.add("base", [], "#show.")
+        if not files:
+            files = ["-"]
+        self._convert(ctl, files)
+        # self._parse_lpmln(ctl, files)
+
+        # ctl.add("base", [], "#show.")
         ctl.ground([("base", [])])
         # for sa in ctl.symbolic_atoms:
         #     print(sa.symbol)
