@@ -1,5 +1,4 @@
-from copy import deepcopy
-from typing import Any, Sequence, cast
+from typing import Any, Sequence
 import sys
 
 from clingo import ast, Number, String, Flag, Model
@@ -156,6 +155,7 @@ class LPMLNApp(Application):
 
     def __init__(self):
         self.translate_hard_rules = Flag(False)
+        self.display_all_probs = Flag(False)
 
     def _read(self, path: str):
         if path == "-":
@@ -177,9 +177,9 @@ class LPMLNApp(Application):
         unsat_atoms = []
         for a in atoms:
             if a.name == 'unsat':
-                unsat_atoms.append(a)
+                unsat_atoms.append(str(a))
             else:
-                show_atoms.append(a)
+                show_atoms.append(str(a))
         return show_atoms, unsat_atoms
 
     # def _on_model(self, model: Model):
@@ -206,47 +206,41 @@ class LPMLNApp(Application):
         group = 'LPMLN Options'
         options.add_flag(group, 'hr', 'Translate hard rules',
                          self.translate_hard_rules)
+        options.add_flag(group, 'all', 'Display all probabilities',
+                         self.display_all_probs)
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
+        # ctl.add("base", [], "#show.")
 
-        ctl.configuration.solve.opt_mode = 'enum'
-        ctl.configuration.solve.models = 0
+        if self.display_all_probs:
+            ctl.configuration.solve.opt_mode = 'enum'
+            ctl.configuration.solve.models = 0
 
         if not files:
             files = ["-"]
         self._convert(ctl, files)
-        # self._parse_lpmln(ctl, files)
 
-        # ctl.add("base", [], "#show.")
         ctl.ground([("base", [])])
-        # for sa in ctl.symbolic_atoms:
-        #     print(sa.symbol)
-        #     print(sa.literal)
-        # ctl.solve(on_model=print)
 
-        models_show = []
-        models_unsat = []
-        with ctl.solve(yield_=True) as handle:
-            for model in handle:
-                show_atoms, unsat_atoms = self._extract_atoms(model)
-                # print(show_atoms)
-                # print(unsat_atoms)
-                models_show.append(show_atoms)
-                models_unsat.append(unsat_atoms)
+        ctl.solve(on_model=print)
 
-        #print(models_show)
+        # models_show = []
+        # models_unsat = []
+        # with ctl.solve(yield_=True) as handle:
+        #     for model in handle:
+        #         show_atoms, unsat_atoms = self._extract_atoms(model)
+        #         print(show_atoms)
+        #         print(unsat_atoms)
+        #         models_show.append(show_atoms)
+        #         models_unsat.append(unsat_atoms)
+
+        # print(models_show)
         # print(models_unsat)
 
 
-def test(rule):
-    if str(rule.type) == 'Minimize':
-        print(rule.weight.type)
-
-
 if __name__ == '__main__':
-    # parse_program(':~ a. [1@3]', test)
     sys.exit(int(clingo_main(LPMLNApp(), sys.argv[1:])))
