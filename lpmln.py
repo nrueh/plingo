@@ -18,7 +18,8 @@ THEORY = """
 
 class LPMLNTransformer(Transformer):
     '''
-    Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'
+    Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'.
+    Weights of soft rules are encoded via a theory term &weight/1 in the body.
     '''
     def __init__(self):
         self.rule_idx = 0
@@ -38,6 +39,10 @@ class LPMLNTransformer(Transformer):
         return ast.update(**self.visit_children(ast, *args, **kwargs))
 
     def _get_constraint_parameters(self, location: dict):
+        """
+        Get the correct parameters for the
+        weak constraint in the conversion.
+        """
         if self.weight == 'alpha':
             self.weight = ast.SymbolicTerm(location, String('alpha'))
             constraint_weight = ast.SymbolicTerm(location, Number(1))
@@ -49,8 +54,12 @@ class LPMLNTransformer(Transformer):
         return constraint_weight, priority
 
     def _get_unsat_atoms(self, location: dict):
+        """
+        Creates the 'unsat' and 'not unsat' atoms
+        """
         idx = ast.SymbolicTerm(location, Number(self.rule_idx))
-        unsat_arguments = [idx, self.weight] + self.global_variables
+        unsat_arguments = [idx, self.weight
+                           ] + self.global_variables + self.expansions
 
         unsat = ast.SymbolicAtom(
             ast.Function(location, "unsat", unsat_arguments, False))
@@ -62,6 +71,9 @@ class LPMLNTransformer(Transformer):
         return unsat, not_unsat
 
     def _convert_rule(self, head, body):
+        """
+        Creates three conversion rules.
+        """
         constraint_weight, priority = self._get_constraint_parameters(
             head.location)
         unsat, not_unsat = self._get_unsat_atoms(head.location)
@@ -100,16 +112,17 @@ class LPMLNTransformer(Transformer):
     def visit_Rule(self, rule: AST, builder: ProgramBuilder,
                    translate_hr: bool):
         """
-        Visit rule, convert it to three ASP rules and
-        add it to the program builder.
+        Visits an LP^MLN rule, converts it to three ASP rules
+        if necessary and adds the result to the program builder.
         """
         # Set weight to alpha by default
         self.weight = 'alpha'
         self.global_variables = []
-
+        self.expansions = []  # TODO: Better name, better method?
         head = rule.head
         body = rule.body
 
+        # Traverse head and body to look for weights and variables
         head = self.visit(head)
         body = self.visit(body)
 
@@ -123,27 +136,48 @@ class LPMLNTransformer(Transformer):
         else:
             asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
             self.rule_idx += 1
+
             # print('\n LP^MLN Rule')
             # print(rule)
             # print('\n ASP Conversion')
-            # print(asp_rule1)
-            # print(asp_rule2)
-            # print(asp_rule3)
+            print(asp_rule1)
+            print(asp_rule2)
+            print(asp_rule3)
 
             builder.add(asp_rule1)
             builder.add(asp_rule2)
             builder.add(asp_rule3)
 
-    def visit_Variable(self, variable: AST):
+    def visit_Variable(self, variable: AST) -> AST:
+        """
+        Collects all global variables encountered in a rule
+        """
         if variable not in self.global_variables:
             self.global_variables.append(variable)
         return variable
 
-    def visit_TheoryAtom(self, atom: AST):
+    def visit_TheoryAtom(self, atom: AST) -> AST:
+        """
+        Extracts the weight of the rule and removes the theory atom
+        """
         # print(atom.term.arguments[0])
         self.weight = atom.term.arguments[0]  #.symbol.number
         # TODO: Better way to remove TheoryAtom?
         return ast.BooleanConstant(True)
+
+    def visit_Interval(self, interval: AST):
+        """
+        Collects any interval encountered in a rule
+        """
+        self.expansions.append(interval)
+        return interval
+
+    def visit_Pool(self, pool: AST):
+        """
+        Collects any pool encountered in a rule
+        """
+        self.expansions.append(pool)
+        return pool
 
 
 class LPMLNApp(Application):
@@ -214,7 +248,7 @@ class LPMLNApp(Application):
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
-        # ctl.add("base", [], "#show.")
+        ctl.add("base", [], "#show.")
 
         if self.display_all_probs:
             ctl.configuration.solve.opt_mode = 'enum'
