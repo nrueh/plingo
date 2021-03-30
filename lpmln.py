@@ -23,6 +23,7 @@ class LPMLNTransformer(Transformer):
     '''
     def __init__(self):
         self.rule_idx = 0
+        self.expansion_variables = 0
 
     def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
         '''
@@ -58,8 +59,7 @@ class LPMLNTransformer(Transformer):
         Creates the 'unsat' and 'not unsat' atoms
         """
         idx = ast.SymbolicTerm(location, Number(self.rule_idx))
-        unsat_arguments = [idx, self.weight
-                           ] + self.global_variables + self.expansions
+        unsat_arguments = [idx, self.weight] + self.global_variables
 
         unsat = ast.SymbolicAtom(
             ast.Function(location, "unsat", unsat_arguments, False))
@@ -118,13 +118,19 @@ class LPMLNTransformer(Transformer):
         # Set weight to alpha by default
         self.weight = 'alpha'
         self.global_variables = []
-        self.expansions = []  # TODO: Better name, better method?
+        self.expansions_in_body = []  # TODO: Better name, better method?
+
+        # print('\n LP^MLN Rule')
+        # print(rule)
+
         head = rule.head
         body = rule.body
 
         # Traverse head and body to look for weights and variables
         head = self.visit(head)
         body = self.visit(body)
+        for e in self.expansions_in_body:
+            body.insert(0, e)
 
         # print(repr(body))
         # print(self.global_variables)
@@ -137,12 +143,10 @@ class LPMLNTransformer(Transformer):
             asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
             self.rule_idx += 1
 
-            # print('\n LP^MLN Rule')
-            # print(rule)
             # print('\n ASP Conversion')
-            print(asp_rule1)
-            print(asp_rule2)
-            print(asp_rule3)
+            # print(asp_rule1)
+            # print(asp_rule2)
+            # print(asp_rule3)
 
             builder.add(asp_rule1)
             builder.add(asp_rule2)
@@ -169,15 +173,30 @@ class LPMLNTransformer(Transformer):
         """
         Collects any interval encountered in a rule
         """
-        self.expansions.append(interval)
-        return interval
+        interval_variable = ast.Variable(
+            interval.location, f'Interval{self.expansion_variables}')
+        conversion = ast.Literal(
+            interval.location, ast.Sign.NoSign,
+            ast.Comparison(5, interval_variable, interval))
+        self.global_variables.append(interval_variable)
+        self.expansions_in_body.append(conversion)
+        self.expansion_variables += 1
+        return interval_variable
 
     def visit_Pool(self, pool: AST):
         """
         Collects any pool encountered in a rule
         """
-        self.expansions.append(pool)
-        return pool
+        # TODO: Check if pool is already bound to a variable
+        # TODO: How to make sure variable is not used already?
+        pool_variable = ast.Variable(pool.location,
+                                     f'Pool{self.expansion_variables}')
+        conversion = ast.Literal(pool.location, ast.Sign.NoSign,
+                                 ast.Comparison(5, pool_variable, pool))
+        self.global_variables.append(pool_variable)
+        self.expansions_in_body.append(conversion)
+        self.expansion_variables += 1
+        return pool_variable
 
 
 class LPMLNApp(Application):
@@ -248,7 +267,7 @@ class LPMLNApp(Application):
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
-        ctl.add("base", [], "#show.")
+        # ctl.add("base", [], "#show.")
 
         if self.display_all_probs:
             ctl.configuration.solve.opt_mode = 'enum'
