@@ -1,4 +1,4 @@
-from typing import Any, Sequence
+from typing import Any, Sequence, cast
 import sys
 
 from clingo import ast, Number, String, Flag, Model
@@ -33,6 +33,8 @@ class LPMLNTransformer(Transformer):
         # TODO: Is this necessary?
         if isinstance(ast, AST):
             attr = 'visit_' + str(ast.ast_type).replace('ASTType.', '')
+            # print(ast)
+            # print(attr)
             if hasattr(self, attr):
                 return getattr(self, attr)(ast, *args, **kwargs)
         if isinstance(ast, ASTSequence):
@@ -79,9 +81,9 @@ class LPMLNTransformer(Transformer):
         unsat, not_unsat = self._get_unsat_atoms(head.location)
 
         # TODO: Fix that converter can handle aggregates
-        if str(head.ast_type) == 'Aggregate':
-            not_head = ast.Literal(head.location, ast.Sign.NoSign,
-                                   ast.BooleanConstant(True))
+        if str(head.ast_type) == 'ASTType.Aggregate':
+            not_head = ast.Literal(head.location, ast.Sign.Negation, head)
+
         # Fix that integrity constraints will be accepted by grounder.
         # TODO: Better way for this?
         elif str(head.atom.ast_type
@@ -129,8 +131,10 @@ class LPMLNTransformer(Transformer):
         # Traverse head and body to look for weights and variables
         head = self.visit(head)
         body = self.visit(body)
-        for e in self.expansions_in_body:
-            body.insert(0, e)
+
+        # # Add pools/intervals that are bound to a variable to the body
+        # for e in self.expansions_in_body:
+        #     body.insert(0, e)
 
         # print(repr(body))
         # print(self.global_variables)
@@ -138,7 +142,9 @@ class LPMLNTransformer(Transformer):
 
         if self.weight == 'alpha' and not translate_hr:
             self.rule_idx += 1
-            builder.add(ast.Rule(rule.location, head, body))
+            # print(rule)
+            return (rule)
+            # builder.add(ast.Rule(rule.location, head, body))
         else:
             asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
             self.rule_idx += 1
@@ -147,10 +153,12 @@ class LPMLNTransformer(Transformer):
             # print(asp_rule1)
             # print(asp_rule2)
             # print(asp_rule3)
-
+            # print('\n')
             builder.add(asp_rule1)
             builder.add(asp_rule2)
-            builder.add(asp_rule3)
+            # TODO: Cleaner way to do this? add two rules through builder and return third
+            return asp_rule3
+            # builder.add(asp_rule3)
 
     def visit_Variable(self, variable: AST) -> AST:
         """
@@ -169,34 +177,34 @@ class LPMLNTransformer(Transformer):
         # TODO: Better way to remove TheoryAtom?
         return ast.BooleanConstant(True)
 
-    def visit_Interval(self, interval: AST):
-        """
-        Collects any interval encountered in a rule
-        """
-        interval_variable = ast.Variable(
-            interval.location, f'Interval{self.expansion_variables}')
-        conversion = ast.Literal(
-            interval.location, ast.Sign.NoSign,
-            ast.Comparison(5, interval_variable, interval))
-        self.global_variables.append(interval_variable)
-        self.expansions_in_body.append(conversion)
-        self.expansion_variables += 1
-        return interval_variable
+    # def visit_Interval(self, interval: AST):
+    #     """
+    #     Collects any interval encountered in a rule
+    #     """
+    #     interval_variable = ast.Variable(
+    #         interval.location, f'Interval{self.expansion_variables}')
+    #     conversion = ast.Literal(
+    #         interval.location, ast.Sign.NoSign,
+    #         ast.Comparison(5, interval_variable, interval))
+    #     self.global_variables.append(interval_variable)
+    #     self.expansions_in_body.append(conversion)
+    #     self.expansion_variables += 1
+    #     return interval_variable
 
-    def visit_Pool(self, pool: AST):
-        """
-        Collects any pool encountered in a rule
-        """
-        # TODO: Check if pool is already bound to a variable
-        # TODO: How to make sure variable is not used already?
-        pool_variable = ast.Variable(pool.location,
-                                     f'Pool{self.expansion_variables}')
-        conversion = ast.Literal(pool.location, ast.Sign.NoSign,
-                                 ast.Comparison(5, pool_variable, pool))
-        self.global_variables.append(pool_variable)
-        self.expansions_in_body.append(conversion)
-        self.expansion_variables += 1
-        return pool_variable
+    # def visit_Pool(self, pool: AST):
+    #     """
+    #     Collects any pool encountered in a rule
+    #     """
+    #     # TODO: Check if pool is already bound to a variable
+    #     # TODO: How to make sure variable is not used already?
+    #     pool_variable = ast.Variable(pool.location,
+    #                                  f'Pool{self.expansion_variables}')
+    #     conversion = ast.Literal(pool.location, ast.Sign.NoSign,
+    #                              ast.Comparison(5, pool_variable, pool))
+    #     self.global_variables.append(pool_variable)
+    #     self.expansions_in_body.append(conversion)
+    #     self.expansion_variables += 1
+    #     return pool_variable
 
 
 class LPMLNApp(Application):
@@ -221,8 +229,9 @@ class LPMLNApp(Application):
             lt = LPMLNTransformer()
             for path in files:
                 parse_string(
-                    self._read(path),
-                    lambda stm: lt.visit(stm, b, self.translate_hard_rules))
+                    self._read(path), lambda stm: b.add(
+                        cast(AST, lt.visit(stm, b, self.translate_hard_rules)))
+                )
 
     def _extract_atoms(self, model):
         atoms = model.symbols(atoms=True)
@@ -267,7 +276,7 @@ class LPMLNApp(Application):
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
-        # ctl.add("base", [], "#show.")
+        ctl.add("base", [], "#show.")
 
         if self.display_all_probs:
             ctl.configuration.solve.opt_mode = 'enum'
@@ -279,17 +288,17 @@ class LPMLNApp(Application):
 
         ctl.ground([("base", [])])
 
-        ctl.solve(on_model=print)
+        # ctl.solve(on_model=print)
 
         # models_show = []
         # models_unsat = []
-        # with ctl.solve(yield_=True) as handle:
-        #     for model in handle:
-        #         show_atoms, unsat_atoms = self._extract_atoms(model)
-        #         print(show_atoms)
-        #         print(unsat_atoms)
-        #         models_show.append(show_atoms)
-        #         models_unsat.append(unsat_atoms)
+        with ctl.solve(yield_=True) as handle:
+            for model in handle:
+                show_atoms, unsat_atoms = self._extract_atoms(model)
+                print(show_atoms)
+                print(unsat_atoms)
+                # models_show.append(show_atoms)
+                # models_unsat.append(unsat_atoms)
 
         # print(models_show)
         # print(models_unsat)
