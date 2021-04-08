@@ -46,4 +46,29 @@ By default, only soft rules are converted to to ASP. To convert hard rules as we
 
 ## Examples
 
+### Integrity constraints
+### Simple choice rules
+Take the program consisting of the choice rule 
+```
+{a}.
+```
+If you use the `--hr` flag, this hard rule will be converted as well. The conversion is
+```
+unsat(0, "alpha") :- not {a}.
+{a} :- not unsat(0,"alpha").
+:~ unsat(0,"alpha")
+```
+Since the body of the first rule `not {a}` is always true, the grounder removes it and `unsat(0, "alpha")` becomes a fact. Thus rendering the second and third rule unnecessary. The only stable model is therefore `unsat(0, "alpha")`, which means the rule `{a}.`is never satisfied and therefore atom `a` never contained in a stable model. This is not the desired behavior. However, since in LPMLN it is already not mandatory for rules to be satisfied, the question is whether choice rules should ever be converted as described above.
 
+### Aggregates with pooling
+Next consider the rule
+```
+{a; b; c} = 2. 
+```
+Here exactly two of the atoms should be chosen. With the ``--hr`` flag, we get the following conversion
+```
+unsat(0,"alpha") :- not 2 = { a; b; c }.
+2 = { a; b; c } :- not unsat(0,"alpha").
+:~ unsat(0,"alpha"). [1@1]
+```
+The grounder replaces the aggregates with two `#delayed` statements and in this case we can enumerate all stable models which are `{a,b}`, `{a,c}`, `{b,c}` and `{unsat(0,"alpha)}`. In the last stable model the rule is not satisfied so we do not get any other atoms. 

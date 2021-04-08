@@ -1,12 +1,10 @@
 from typing import Any, Sequence, cast
 import sys
 
-from clingo import ast, Number, String, Flag, Model
+from clingo import ast, Number, String, Flag
 from clingo import clingo_main, Application, Control
 from clingo import ApplicationOptions
-from clingo.ast import AST, ASTSequence, parse_string, ProgramBuilder, Transformer
-
-# from utils import Transformer
+from clingo.ast import AST, ASTSequence, parse_string, ProgramBuilder
 
 THEORY = """
 #theory lpmln{
@@ -16,7 +14,7 @@ THEORY = """
 """
 
 
-class LPMLNTransformer(Transformer):
+class LPMLNTransformer(ast.Transformer):
     '''
     Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'.
     Weights of soft rules are encoded via a theory term &weight/1 in the body.
@@ -30,7 +28,6 @@ class LPMLNTransformer(Transformer):
         Dispatch to a visit method in a base class or visit and transform the
         children of the given AST if it is missing.
         '''
-        # TODO: Is this necessary?
         if isinstance(ast, AST):
             attr = 'visit_' + str(ast.ast_type).replace('ASTType.', '')
             # print(ast)
@@ -66,7 +63,6 @@ class LPMLNTransformer(Transformer):
         unsat = ast.SymbolicAtom(
             ast.Function(location, "unsat", unsat_arguments, False))
 
-        # unsat = ast.Function(rule.location, "unsat", [Number(idx), weight], False)
         not_unsat = ast.Literal(location, ast.Sign.Negation, unsat)
         unsat = ast.Literal(location, ast.Sign.NoSign, unsat)
 
@@ -80,12 +76,10 @@ class LPMLNTransformer(Transformer):
             head.location)
         unsat, not_unsat = self._get_unsat_atoms(head.location)
 
-        # TODO: Fix that converter can handle aggregates
         if str(head.ast_type) == 'ASTType.Aggregate':
             not_head = ast.Literal(head.location, ast.Sign.Negation, head)
 
         # Fix that integrity constraints will be accepted by grounder.
-        # TODO: Better way for this?
         elif str(head.atom.ast_type
                  ) == 'ASTType.BooleanConstant' and not head.atom.value:
             not_head = ast.Literal(head.location, ast.Sign.NoSign,
@@ -101,7 +95,7 @@ class LPMLNTransformer(Transformer):
         body.insert(0, not_head)
         asp_rule1 = ast.Rule(head.location, unsat, body)
 
-        #Rule 2 (Head :- Body, not unsat)
+        # Rule 2 (Head :- Body, not unsat)
         del body[0]
         body.insert(0, not_unsat)
         asp_rule2 = ast.Rule(head.location, head, body)
@@ -120,7 +114,7 @@ class LPMLNTransformer(Transformer):
         # Set weight to alpha by default
         self.weight = 'alpha'
         self.global_variables = []
-        self.expansions_in_body = []  # TODO: Better name, better method?
+        # self.expansions_in_body = []  # TODO: Better name, better method?
 
         # print('\n LP^MLN Rule')
         # print(rule)
@@ -142,21 +136,20 @@ class LPMLNTransformer(Transformer):
 
         if self.weight == 'alpha' and not translate_hr:
             self.rule_idx += 1
-            # print(rule)
-            return (rule)
+            return rule
             # builder.add(ast.Rule(rule.location, head, body))
         else:
             asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
             self.rule_idx += 1
 
-            # print('\n ASP Conversion')
-            # print(asp_rule1)
-            # print(asp_rule2)
-            # print(asp_rule3)
-            # print('\n')
+            print('\n ASP Conversion')
+            print(asp_rule1)
+            print(asp_rule2)
+            print(asp_rule3)
+            print('\n')
             builder.add(asp_rule1)
             builder.add(asp_rule2)
-            # TODO: Cleaner way to do this? add two rules through builder and return third
+            # TODO: Cleaner way to do this?
             return asp_rule3
             # builder.add(asp_rule3)
 
@@ -172,8 +165,7 @@ class LPMLNTransformer(Transformer):
         """
         Extracts the weight of the rule and removes the theory atom
         """
-        # print(atom.term.arguments[0])
-        self.weight = atom.term.arguments[0]  #.symbol.number
+        self.weight = atom.term.arguments[0]
         # TODO: Better way to remove TheoryAtom?
         return ast.BooleanConstant(True)
 
