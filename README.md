@@ -42,11 +42,30 @@ a(X) :- b(X), not unsat(idx, 5, X).
 ```
 where `idx` is the index of the rule in the LPMLN program and the `unsat` atom is True if the original rule is not satisfied. In that case the weak constraint adds the weight of the rule as a penalty. Note that the `unsat` atom contains information about the index, the weight and all variables in a rule.
 
+In general the conversion will look like the following
+```
+unsat :- body, not head.
+head :- body, not unsat.
+:~ unsat.
+```
+
 By default, only soft rules are converted to to ASP. To convert hard rules as well, the `--hr` flag can be added on the command line. 
 
 ## Examples
 
 ### Integrity constraints
+Look at the following program containing an integrity constraint
+```
+:- a.
+a.
+```
+When the conversion above is implemented directly, the integrity constaint will be converted to
+```
+unsat(0,"alpha") :- not #false; a.
+#false :- not unsat(0,"alpha"); a.
+:~ unsat(0,"alpha"). [1@1]
+````
+However, it appears that the grounder does not evaluate `not #false` to true, but rather that this expression can never be derived to be true. The result is that the grounder removes all of the three rules above and only keeps the integrity constraint. There will be only one stable model `{unsat(1,"alpha")}`, where the second rule is not satisfied and so atom `a` is never true. In theory there should be an additional stable model, `{a, unsat(0,"alpha")}, where the integrity constraint is not satisfied and so atom `a` is true. 
 ### Simple choice rules
 Take the program consisting of the choice rule 
 ```
@@ -65,7 +84,7 @@ Next consider the rule
 ```
 {a; b; c} = 2. 
 ```
-Here exactly two of the atoms should be chosen. With the ``--hr`` flag, we get the following conversion
+Here exactly two of the atoms should be chosen. Other than a simple choice rule, this cannot be naturally expressed within LPMLN. With the ``--hr`` flag, we get the following conversion
 ```
 unsat(0,"alpha") :- not 2 = { a; b; c }.
 2 = { a; b; c } :- not unsat(0,"alpha").
