@@ -3,19 +3,22 @@
 
 
 % Interval and Aggregate (converting interval leads to undesired results)
-% m(1..3) } = 1.
+{m(1..3) } = 1.
 
 % This only has one model in LPMLN, rule is unsatisfied because 'unsat :- not {a}.' is always true.
 % Should choice rules be converted? They are already functioning similar to LPMLN in the sense that they are optional
-% {a}.
+% a.
+
+% unsat(0, "alpha") :- not a.
+% a :- not unsat(0,"alpha").
+% :~ unsat(0,"alpha")
 
 % Intervals. Does it even make sense to apply LPMLN to these rules? 
-% size(2).
-% grid(1..S,1..S) :- size(S).
+size(2).
+grid(1..S,1..S) :- size(S).
 
-
-
-% unsat(0,"alpha",X,Y):-not grid(X,Y), X=(1;2;3), Y=(1;2;3).
+% unsat(0, "alpha",(1;2;3),(1;2;3)) :- not  grid((1;2;3),(1;2;3))
+unsat(0,"alpha", X, Y):-not grid(X,Y), X=(1;2;3), Y=(1;2;3).
 % grid(X,Y):-not unsat(0,"alpha",X,Y).
 % :~unsat(0,"alpha",X,Y).[1@1]
 
