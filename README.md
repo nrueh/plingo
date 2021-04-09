@@ -99,5 +99,30 @@ Next we consider intervals and pooling in general. Take the following program
 size(2).
 grid(1..S,1..S) :- size(S).
 ```
-
 The conversion looks as follows
+```
+unsat(0,"alpha") :- not size(2).
+size(2) :- not unsat(0,"alpha").
+:~ unsat(0,"alpha"). [1@1]
+
+unsat(1,"alpha",S) :- not grid((1..S),(1..S)); size(S).
+grid((1..S),(1..S)) :- not unsat(1,"alpha",S); size(S).
+:~ unsat(1,"alpha",S). [1@1]
+```
+Although the second rule instantiates four `grid/2` atoms, it only has one unsat atom. That means that either the entire rule is unsatisfied and no `grid/2` atoms are true, or all of them are true (in case the first rule is satisfied as well). Would it be desirable here to be able to (de)activate only some of the `grid/2` atoms? 
+Such thing would be possible if we pass along the interval information to the unsat atom in which case multiple unsat atoms will be instantiated. A naive approach would be to add the interval to the unsat atom
+```
+unsat(1, "alpha", S, (1..S),(1..S)) :- not grid((1..S),(1..S)); size(S).
+```
+However, this instantiates too many unsat atoms. Instead we would like the interval values to match. This can be achieved by binding the intervals to a variable and replacing the intervals inside the atoms with that variable.
+```
+unsat(1, "alpha", S, Int1, Int2) :- not grid(Int1, Int2,); size(S), Int1=(1..S), Int2=(1..S).
+```
+Here variables `Int1` and `Int2` are placeholders for the intervals. With this replacement we would get many stable models where all, none or some of the `grid/2` atoms are true.
+
+### Intervals and pooling with aggregates again
+Binding intervals (or pooling) to variables can also lead to clearly undesired behavior. Consider the following example that combines intervals with aggregates.
+```
+{m(1..3) } = 1.
+```
+Here the desired behavior is have exactly one `m/1` atom. However, if we bind the interval to a variable as described above we instantiate three aggregates rules. And so it will be possible to have more than `m/1` atom to be true. 
