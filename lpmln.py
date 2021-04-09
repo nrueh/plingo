@@ -1,111 +1,202 @@
-from typing import Any, List, Sequence, Mapping, Optional, MutableMapping, Set, cast
-from copy import copy
+from typing import Any, Sequence, cast
 import sys
 
-from clingo import ast, Symbol, SymbolType, TheoryTerm, TheoryTermType, Number, String
-from clingo import Flag, Function, Model, PropagateInit, PropagateControl, Assignment
-from clingo import clingo_main, Application, Tuple_, Control, parse_program
-from clingo import ProgramBuilder, Propagator, ApplicationOptions, SolveResult, parse_term
-from clingo.ast import AST
+from clingo import ast, Number, String, Flag
+from clingo import clingo_main, Application, Control
+from clingo import ApplicationOptions
+from clingo.ast import AST, ASTSequence, parse_string, ProgramBuilder
 
-from utils import Transformer
+THEORY = """
+#theory lpmln{
+    constant { - : 0, unary };
+    &weight/1 : constant, body
+}.
+"""
 
 
-class LPMLNTransformer(Transformer):
+class LPMLNTransformer(ast.Transformer):
     '''
-    Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'
+    Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'.
+    Weights of soft rules are encoded via a theory term &weight/1 in the body.
     '''
-    def _get_parameters(self, rule: AST, weight):
-        #TODO: Can rule be left out as argument? Needed for location?
-        if weight == 'alpha':
-            constraint_weight = Number(1)
+    def __init__(self):
+        self.rule_idx = 0
+        self.expansion_variables = 0
+
+    def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
+        '''
+        Dispatch to a visit method in a base class or visit and transform the
+        children of the given AST if it is missing.
+        '''
+        if isinstance(ast, AST):
+            attr = 'visit_' + str(ast.ast_type).replace('ASTType.', '')
+            # print(ast)
+            # print(attr)
+            if hasattr(self, attr):
+                return getattr(self, attr)(ast, *args, **kwargs)
+        if isinstance(ast, ASTSequence):
+            return self.visit_sequence(ast, *args, **kwargs)
+        return ast.update(**self.visit_children(ast, *args, **kwargs))
+
+    def _get_constraint_parameters(self, location: dict):
+        """
+        Get the correct parameters for the
+        weak constraint in the conversion.
+        """
+        if self.weight == 'alpha':
+            self.weight = ast.SymbolicTerm(location, String('alpha'))
+            constraint_weight = ast.SymbolicTerm(location, Number(1))
             priority = Number(1)
         else:
-            weight = Number(weight)
-            constraint_weight = weight
+            constraint_weight = self.weight
             priority = Number(0)
-        constraint_weight = ast.Symbol(rule.location, constraint_weight)
-        priority = ast.Symbol(rule.location, priority)
-        return weight, constraint_weight, priority
+        priority = ast.SymbolicTerm(location, priority)
+        return constraint_weight, priority
 
-    def _get_unsat_atoms(self, rule: AST, weight, idx: int):
-        idx = ast.Symbol(rule.location, Number(idx))
-        weight = ast.Symbol(rule.location, weight)
-        unsat_arguments = [idx, weight] + self.global_variables
+    def _get_unsat_atoms(self, location: dict):
+        """
+        Creates the 'unsat' and 'not unsat' atoms
+        """
+        idx = ast.SymbolicTerm(location, Number(self.rule_idx))
+        unsat_arguments = [idx, self.weight] + self.global_variables
 
-        # TODO: Cleaner way to add variables?
         unsat = ast.SymbolicAtom(
-            ast.Function(rule.location, "unsat", unsat_arguments, False))
+            ast.Function(location, "unsat", unsat_arguments, False))
 
-        # unsat = ast.Function(rule.location, "unsat", [Number(idx), weight], False)
-        not_unsat = ast.Literal(rule.location, ast.Sign.Negation, unsat)
-        unsat = ast.Literal(rule.head.location, ast.Sign.NoSign, unsat)
+        not_unsat = ast.Literal(location, ast.Sign.Negation, unsat)
+        unsat = ast.Literal(location, ast.Sign.NoSign, unsat)
+
         return unsat, not_unsat
 
-    def _convert_rule(self, rule, weight, idx: int):
-        self.global_variables = []
-        weight, constraint_weight, priority = self._get_parameters(
-            rule, weight)
+    def _convert_rule(self, head, body):
+        """
+        Creates three conversion rules.
+        """
+        constraint_weight, priority = self._get_constraint_parameters(
+            head.location)
+        unsat, not_unsat = self._get_unsat_atoms(head.location)
 
-        head = rule.head
-        body = rule.body
+        if str(head.ast_type) == 'ASTType.Aggregate':
+            not_head = ast.Literal(head.location, ast.Sign.Negation, head)
 
-        self.visit(head)
-        self.visit(body)
-
-        unsat, not_unsat = self._get_unsat_atoms(rule, weight, idx)
-
-        # TODO: Fix that converter can handle aggregates
-        if str(head.type) == 'Aggregate':
-            not_head = ast.Literal(head.location, ast.Sign.NoSign,
-                                   ast.BooleanConstant(True))
         # Fix that integrity constraints will be accepted by grounder.
-        elif str(head.atom.type) == 'BooleanConstant' and not head.atom.value:
+        elif str(head.atom.ast_type
+                 ) == 'ASTType.BooleanConstant' and not head.atom.value:
             not_head = ast.Literal(head.location, ast.Sign.NoSign,
                                    ast.BooleanConstant(True))
         else:
             not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
 
         # Create ASP rules
-        asp_rule1 = ast.Rule(rule.location, unsat, body + [not_head])
-        asp_rule2 = ast.Rule(rule.location, head, body + [not_unsat])
-        asp_rule3 = ast.Minimize(rule.location, constraint_weight, priority,
+        # TODO: Is it ok to use 'head.location' for the rules?
+        # TODO: Better way to insert and delete items from body?
+
+        # Rule 1 (unsat :- Body, not Head)
+        body.insert(0, not_head)
+        asp_rule1 = ast.Rule(head.location, unsat, body)
+
+        # Rule 2 (Head :- Body, not unsat)
+        del body[0]
+        body.insert(0, not_unsat)
+        asp_rule2 = ast.Rule(head.location, head, body)
+
+        # Rule 3 (weak constraint unsat)
+        asp_rule3 = ast.Minimize(head.location, constraint_weight, priority,
                                  [], [unsat])
         return asp_rule1, asp_rule2, asp_rule3
 
-    def visit_Rule(self, rule: AST, weight, idx: int, builder: ProgramBuilder,
+    def visit_Rule(self, rule: AST, builder: ProgramBuilder,
                    translate_hr: bool):
         """
-        Visit rule, convert it to three ASP rules and
-        add it to the program builder.
+        Visits an LP^MLN rule, converts it to three ASP rules
+        if necessary and adds the result to the program builder.
         """
+        # Set weight to alpha by default
+        self.weight = 'alpha'
+        self.global_variables = []
+        # self.expansions_in_body = []  # TODO: Better name, better method?
 
-        # print(head.elements[0].literal.child_keys)
-        # print(head)
-        # print(idx)
-        # print(head.elements[0].literal.child_keys.atom)
+        # print('\n LP^MLN Rule')
+        # print(rule)
 
-        # TODO: Add visitor design pattern to extract variables
-        # TODO: Setting that toggles whether hard rules are translated
-        if weight == 'alpha' and not translate_hr:
-            builder.add(rule)
+        head = rule.head
+        body = rule.body
+
+        # Traverse head and body to look for weights and variables
+        head = self.visit(head)
+        body = self.visit(body)
+
+        # # Add pools/intervals that are bound to a variable to the body
+        # for e in self.expansions_in_body:
+        #     body.insert(0, e)
+
+        # print(repr(body))
+        # print(self.global_variables)
+        # print(self.weight)
+
+        if self.weight == 'alpha' and not translate_hr:
+            self.rule_idx += 1
+            return rule
+            # builder.add(ast.Rule(rule.location, head, body))
         else:
-            asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(
-                rule, weight, idx)
-            # print('\n LP^MLN Rule')
-            # print(rule)
-            # print('\n ASP Conversion')
-            # print(asp_rule1)
-            # print(asp_rule2)
-            # print(asp_rule3)
+            asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
+            self.rule_idx += 1
 
+            print('\n ASP Conversion')
+            print(asp_rule1)
+            print(asp_rule2)
+            print(asp_rule3)
+            print('\n')
             builder.add(asp_rule1)
             builder.add(asp_rule2)
-            builder.add(asp_rule3)
+            # TODO: Cleaner way to do this?
+            return asp_rule3
+            # builder.add(asp_rule3)
 
-    def visit_Variable(self, variable: AST):
+    def visit_Variable(self, variable: AST) -> AST:
+        """
+        Collects all global variables encountered in a rule
+        """
         if variable not in self.global_variables:
             self.global_variables.append(variable)
+        return variable
+
+    def visit_TheoryAtom(self, atom: AST) -> AST:
+        """
+        Extracts the weight of the rule and removes the theory atom
+        """
+        self.weight = atom.term.arguments[0]
+        # TODO: Better way to remove TheoryAtom?
+        return ast.BooleanConstant(True)
+
+    # def visit_Interval(self, interval: AST):
+    #     """
+    #     Collects any interval encountered in a rule
+    #     """
+    #     interval_variable = ast.Variable(
+    #         interval.location, f'Interval{self.expansion_variables}')
+    #     conversion = ast.Literal(
+    #         interval.location, ast.Sign.NoSign,
+    #         ast.Comparison(5, interval_variable, interval))
+    #     self.global_variables.append(interval_variable)
+    #     self.expansions_in_body.append(conversion)
+    #     self.expansion_variables += 1
+    #     return interval_variable
+
+    # def visit_Pool(self, pool: AST):
+    #     """
+    #     Collects any pool encountered in a rule
+    #     """
+    #     # TODO: Check if pool is already bound to a variable
+    #     # TODO: How to make sure variable is not used already?
+    #     pool_variable = ast.Variable(pool.location,
+    #                                  f'Pool{self.expansion_variables}')
+    #     conversion = ast.Literal(pool.location, ast.Sign.NoSign,
+    #                              ast.Comparison(5, pool_variable, pool))
+    #     self.global_variables.append(pool_variable)
+    #     self.expansions_in_body.append(conversion)
+    #     self.expansion_variables += 1
+    #     return pool_variable
 
 
 class LPMLNApp(Application):
@@ -117,6 +208,7 @@ class LPMLNApp(Application):
 
     def __init__(self):
         self.translate_hard_rules = Flag(False)
+        self.display_all_probs = Flag(False)
 
     def _read(self, path: str):
         if path == "-":
@@ -124,46 +216,14 @@ class LPMLNApp(Application):
         with open(path) as file_:
             return file_.read()
 
-    def _extract_weight(self, lpmln_rule: str):
-        # Extracts weight from (soft) rules
-        # Weights are prepended and separated by '::'
-        if '::' in lpmln_rule:
-            split = lpmln_rule.split('::')
-            weight = split[0].strip()
-            if str(weight) != 'alpha':
-                try:
-                    weight = int(weight)
-                except (ValueError):
-                    raise AssertionError(
-                        "Weight has to be 'alpha' or an integer")
-
-            lpmln_rule = split[1].strip()
-
-        # Hard rules have weight 'alpha' (can be omitted from encoding)
-        else:
-            weight = 'alpha'
-
-        return lpmln_rule, weight
-
-    def _parse_lpmln(self, ctl: Control, files: Sequence[str]):
-        with ctl.builder() as b:
+    def _convert(self, ctl: Control, files: Sequence[str]):
+        with ProgramBuilder(ctl) as b:
             lt = LPMLNTransformer()
-            idx = 0
             for path in files:
-                lines = self._read(path).splitlines()
-                for lpmln_rule in lines:
-                    lpmln_rule = lpmln_rule.strip()
-
-                    # Skip comments and blank lines
-                    if lpmln_rule == '' or lpmln_rule[0] == '%':
-                        continue
-
-                    lpmln_rule, weight = self._extract_weight(lpmln_rule)
-                    parse_program(
-                        lpmln_rule, lambda stm: lt.visit(
-                            stm, weight, idx, b, self.translate_hard_rules))
-                    idx += 1
-            # ctl.cleanup()
+                parse_string(
+                    self._read(path), lambda stm: b.add(
+                        cast(AST, lt.visit(stm, b, self.translate_hard_rules)))
+                )
 
     def _extract_atoms(self, model):
         atoms = model.symbols(atoms=True)
@@ -171,27 +231,27 @@ class LPMLNApp(Application):
         unsat_atoms = []
         for a in atoms:
             if a.name == 'unsat':
-                unsat_atoms.append(a)
+                unsat_atoms.append(str(a))
             else:
-                show_atoms.append(a)
+                show_atoms.append(str(a))
         return show_atoms, unsat_atoms
 
-    def _on_model(self, model: Model):
-        atoms = model.symbols(atoms=True)
-        print(atoms)
-        show_atoms = []
-        unsat_atoms = []
-        for a in atoms:
-            if a.name == 'unsat':
-                unsat_atoms.append(a)
-                # print(a.arguments[1].number)
-            else:
-                show_atoms.append(a)
-        # print(show_atoms)
-        # TODO: Remove brackets when printing
-        # print(show_atoms)
-        # print(unsat_atoms)
-        #print(','.join(str(show_atoms)))
+    # def _on_model(self, model: Model):
+    #     atoms = model.symbols(atoms=True)
+    #     print(atoms)
+    #     show_atoms = []
+    #     unsat_atoms = []
+    #     for a in atoms:
+    #         if a.name == 'unsat':
+    #             unsat_atoms.append(a)
+    #             # print(a.arguments[1].number)
+    #         else:
+    #             show_atoms.append(a)
+    #     # print(show_atoms)
+    #     # TODO: Remove brackets when printing
+    #     # print(show_atoms)
+    #     # print(unsat_atoms)
+    #     #print(','.join(str(show_atoms)))
 
     def register_options(self, options: ApplicationOptions) -> None:
         """
@@ -200,44 +260,41 @@ class LPMLNApp(Application):
         group = 'LPMLN Options'
         options.add_flag(group, 'hr', 'Translate hard rules',
                          self.translate_hard_rules)
+        options.add_flag(group, 'all', 'Display all probabilities',
+                         self.display_all_probs)
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
+        ctl.add("base", [], THEORY)
+        ctl.add("base", [], "#show.")
+
+        if self.display_all_probs:
+            ctl.configuration.solve.opt_mode = 'enum'
+            ctl.configuration.solve.models = 0
+
         if not files:
             files = ["-"]
+        self._convert(ctl, files)
 
-        # ctl.configuration.solve.opt_mode = 'enum'
-        # ctl.configuration.solve.models = 0
-
-        self._parse_lpmln(ctl, files)
-        ctl.add("base", [], "#show.")
         ctl.ground([("base", [])])
-        # for sa in ctl.symbolic_atoms:
-        #     print(sa.symbol)
-        #     print(sa.literal)
+
         # ctl.solve(on_model=print)
 
-        models_show = []
-        models_unsat = []
+        # models_show = []
+        # models_unsat = []
         with ctl.solve(yield_=True) as handle:
             for model in handle:
                 show_atoms, unsat_atoms = self._extract_atoms(model)
-                # print(show_atoms)
-                # print(unsat_atoms)
-                models_show.append(show_atoms)
-                models_unsat.append(unsat_atoms)
+                print(show_atoms)
+                print(unsat_atoms)
+                # models_show.append(show_atoms)
+                # models_unsat.append(unsat_atoms)
 
-        #print(models_show)
+        # print(models_show)
         # print(models_unsat)
 
 
-def test(rule):
-    if str(rule.type) == 'Minimize':
-        print(rule.weight.type)
-
-
 if __name__ == '__main__':
-    # parse_program(':~ a. [1@3]', test)
     sys.exit(int(clingo_main(LPMLNApp(), sys.argv[1:])))
