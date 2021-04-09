@@ -65,7 +65,8 @@ unsat(0,"alpha") :- not #false; a.
 #false :- not unsat(0,"alpha"); a.
 :~ unsat(0,"alpha"). [1@1]
 ````
-However, it appears that the grounder does not evaluate `not #false` to true, but rather that this expression can never be derived to be true. The result is that the grounder removes all of the three rules above and only keeps the integrity constraint. There will be only one stable model `{unsat(1,"alpha")}`, where the second rule is not satisfied and so atom `a` is never true. In theory there should be an additional stable model, `{a, unsat(0,"alpha")}, where the integrity constraint is not satisfied and so atom `a` is true. 
+However, it appears that the grounder does not evaluate `not #false` to true, but rather that this expression can never be derived to be true. The result is that the grounder removes all of the three rules above and only keeps the integrity constraint. There will be only one stable model `{unsat(1,"alpha")}`, which means the second rule is not satisfied and so atom `a` is never true. In theory there should be an additional stable model, `{a, unsat(0,"alpha")}`, where the integrity constraint is not satisfied and so atom `a` can be true. 
+We fix this by explicitly replacing the `not #false`, with `#true` when the rule is an integrity constraint. 
 ### Simple choice rules
 Take the program consisting of the choice rule 
 ```
@@ -91,3 +92,12 @@ unsat(0,"alpha") :- not 2 = { a; b; c }.
 :~ unsat(0,"alpha"). [1@1]
 ```
 The grounder replaces the aggregates with two `#delayed` statements and in this case we can enumerate all stable models which are `{a,b}`, `{a,c}`, `{b,c}` and `{unsat(0,"alpha)}`. In the last stable model the rule is not satisfied so we do not get any other atoms. 
+
+### Intervals and pooling
+Next we consider intervals and pooling in general. Take the following program
+```
+size(2).
+grid(1..S,1..S) :- size(S).
+```
+
+The conversion looks as follows
