@@ -53,7 +53,7 @@ By default, only soft rules are converted to to ASP. To convert hard rules as we
 
 ## Examples
 
-### Integrity constraints
+### Integrity constraints (bug that has been fixed)
 Look at the following program containing an integrity constraint
 ```
 :- a.
@@ -67,7 +67,7 @@ unsat(0,"alpha") :- not #false; a.
 ````
 However, it appears that the grounder does not evaluate `not #false` to true, but rather that this expression can never be derived to be true. The result is that the grounder removes all of the three rules above and only keeps the integrity constraint. There will be only one stable model `{unsat(1,"alpha")}`, which means the second rule is not satisfied and so atom `a` is never true. In theory there should be an additional stable model, `{a, unsat(0,"alpha")}`, where the integrity constraint is not satisfied and so atom `a` can be true. 
 We fix this by explicitly replacing the `not #false`, with `#true` when the rule is an integrity constraint. 
-### Simple choice rules
+### Simple choice rules (bug that has been fixed)
 Take the program consisting of the choice rule 
 ```
 {a}.
@@ -79,6 +79,7 @@ unsat(0, "alpha") :- not {a}.
 :~ unsat(0,"alpha")
 ```
 Since the body of the first rule `not {a}` is always true, the grounder removes it and `unsat(0, "alpha")` becomes a fact. Thus rendering the second and third rule unnecessary. The only stable model is therefore `unsat(0, "alpha")`, which means the rule `{a}.`is never satisfied and therefore atom `a` never contained in a stable model. This is not the desired behavior. However, since in LPMLN it is already not mandatory for rules to be satisfied, the question is whether choice rules should ever be converted as described above.
+UPDATE: This was a bug that has been fixed. Now `not {a}` is always false, so that the `unsat` atom is never true and we end up with the only the choice rule `{a}.` again after the conversion.
 
 ### Aggregates with pooling
 Next consider the rule

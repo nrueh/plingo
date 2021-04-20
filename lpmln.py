@@ -78,12 +78,6 @@ class LPMLNTransformer(ast.Transformer):
 
         if str(head.ast_type) == 'ASTType.Aggregate':
             not_head = ast.Literal(head.location, ast.Sign.Negation, head)
-
-        # Fix that integrity constraints will be accepted by grounder.
-        elif str(head.atom.ast_type
-                 ) == 'ASTType.BooleanConstant' and not head.atom.value:
-            not_head = ast.Literal(head.location, ast.Sign.NoSign,
-                                   ast.BooleanConstant(True))
         else:
             not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
 

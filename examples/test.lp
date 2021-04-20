@@ -7,7 +7,7 @@
 
 % This only has one model in LPMLN, rule is unsatisfied because 'unsat :- not {a}.' is always true.
 % Should choice rules be converted? They are already functioning similar to LPMLN in the sense that they are optional
-% {a}.
+{a}.
 
 % This has the conversion
 % unsat(0, "alpha") :- not {a≠.
