@@ -268,7 +268,7 @@ class LPMLNApp(Application):
         ctl.add("base", [], "#show.")
 
         if self.display_all_probs:
-            ctl.configuration.solve.opt_mode = 'enum'
+            ctl.configuration.solve.opt_mode = 'enum,9999999999999'
             ctl.configuration.solve.models = 0
 
         if not files:
