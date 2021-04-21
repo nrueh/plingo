@@ -82,7 +82,8 @@ class LPMLNTransformer(ast.Transformer):
             head.location)
 
         if str(head.ast_type) == 'ASTType.Aggregate':
-            not_head = ast.Literal(head.location, ast.Sign.Negation, head)
+            return [ast.Rule(head.location, head, body)]
+            # not_head = ast.Literal(head.location, ast.Sign.Negation, head)
         else:
             not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
 
@@ -107,8 +108,6 @@ class LPMLNTransformer(ast.Transformer):
                                      [unsat])
             return [asp_rule1, asp_rule2, asp_rule3]
         else:
-            # TODO: Handle choice rules
-
             # Convert integrity constraint 'w: #false :- B.' to weak constraint
             # of form: ':~ B. [w, idx, X]'
             if str(head.atom.ast_type
@@ -169,7 +168,7 @@ class LPMLNTransformer(ast.Transformer):
 
             # print('\n ASP Conversion')
             # for r in asp_rules:
-            #    print(r)
+            #     print(r)
             # print('\n')
 
             # TODO: Cleaner way to add/return rules?
