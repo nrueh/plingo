@@ -19,9 +19,11 @@ class LPMLNTransformer(ast.Transformer):
     Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'.
     Weights of soft rules are encoded via a theory term &weight/1 in the body.
     '''
-    def __init__(self):
+    def __init__(self, options):
         self.rule_idx = 0
         self.expansion_variables = 0
+        self.translate_hr = options[0].flag
+        self.use_unsat = options[1].flag
 
     def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
         '''
@@ -43,6 +45,10 @@ class LPMLNTransformer(ast.Transformer):
         Get the correct parameters for the
         weak constraint in the conversion.
         """
+        idx = ast.SymbolicTerm(location, Number(self.rule_idx))
+        self.global_variables = ast.Function(location, "",
+                                             self.global_variables, False)
+
         if self.weight == 'alpha':
             self.weight = ast.SymbolicTerm(location, String('alpha'))
             constraint_weight = ast.SymbolicTerm(location, Number(1))
@@ -51,16 +57,13 @@ class LPMLNTransformer(ast.Transformer):
             constraint_weight = self.weight
             priority = Number(0)
         priority = ast.SymbolicTerm(location, priority)
-        return constraint_weight, priority
+        return idx, constraint_weight, priority
 
-    def _get_unsat_atoms(self, location: dict):
+    def _get_unsat_atoms(self, location: dict, idx):
         """
         Creates the 'unsat' and 'not unsat' atoms
         """
-        self.idx = ast.SymbolicTerm(location, Number(self.rule_idx))
-        self.global_variables = ast.Function(location, "",
-                                             self.global_variables, False)
-        unsat_arguments = [self.idx, self.weight, self.global_variables]
+        unsat_arguments = [idx, self.weight, self.global_variables]
 
         unsat = ast.SymbolicAtom(
             ast.Function(location, "unsat", unsat_arguments, False))
@@ -72,11 +75,11 @@ class LPMLNTransformer(ast.Transformer):
 
     def _convert_rule(self, head, body):
         """
-        Creates three conversion rules.
+        Converts the LPMLN rule using either the unsat atoms
+        or the simplified approach without them
         """
-        constraint_weight, priority = self._get_constraint_parameters(
+        idx, constraint_weight, priority = self._get_constraint_parameters(
             head.location)
-        unsat, not_unsat = self._get_unsat_atoms(head.location)
 
         if str(head.ast_type) == 'ASTType.Aggregate':
             not_head = ast.Literal(head.location, ast.Sign.Negation, head)
@@ -87,22 +90,49 @@ class LPMLNTransformer(ast.Transformer):
         # TODO: Is it ok to use 'head.location' for the rules?
         # TODO: Better way to insert and delete items from body?
 
-        # Rule 1 (unsat :- Body, not Head)
-        body.insert(0, not_head)
-        asp_rule1 = ast.Rule(head.location, unsat, body)
+        if self.use_unsat:
+            unsat, not_unsat = self._get_unsat_atoms(head.location, idx)
+            # Rule 1 (unsat :- Body, not Head)
+            body.insert(0, not_head)
+            asp_rule1 = ast.Rule(head.location, unsat, body)
 
-        # Rule 2 (Head :- Body, not unsat)
-        del body[0]
-        body.insert(0, not_unsat)
-        asp_rule2 = ast.Rule(head.location, head, body)
+            # Rule 2 (Head :- Body, not unsat)
+            del body[0]
+            body.insert(0, not_unsat)
+            asp_rule2 = ast.Rule(head.location, head, body)
 
-        # Rule 3 (weak constraint unsat)
-        asp_rule3 = ast.Minimize(head.location, constraint_weight, priority,
-                                 [self.idx, self.global_variables], [unsat])
-        return asp_rule1, asp_rule2, asp_rule3
+            # Rule 3 (weak constraint unsat)
+            asp_rule3 = ast.Minimize(head.location, constraint_weight,
+                                     priority, [idx, self.global_variables],
+                                     [unsat])
+            return [asp_rule1, asp_rule2, asp_rule3]
+        else:
+            # TODO: Handle choice rules
 
-    def visit_Rule(self, rule: AST, builder: ProgramBuilder,
-                   translate_hr: bool):
+            # Convert integrity constraint 'w: #false :- B.' to weak constraint
+            # of form: ':~ B. [w, idx, X]'
+            if str(head.atom.ast_type
+                   ) == 'ASTType.BooleanConstant' and not head.atom.value:
+                asp_rule = ast.Minimize(head.location, constraint_weight,
+                                        priority, [idx, self.global_variables],
+                                        body)
+                return [asp_rule]
+            # Convert normal rule 'w: H :- B.' to choice rule and weak
+            # constraint of form: '{H} :- B.' and ':~ B, not H. [w, idx, X]'
+            else:
+                cond_head = ast.ConditionalLiteral(head.location, head, [])
+                choice_head = ast.Aggregate(head.location, None, [cond_head],
+                                            None)
+                asp_rule1 = ast.Rule(head.location, choice_head, body)
+                not_head = ast.Literal(head.location, ast.Sign.Negation,
+                                       head.atom)
+                body.insert(0, not_head)
+                asp_rule2 = ast.Minimize(head.location, constraint_weight,
+                                         priority,
+                                         [idx, self.global_variables], body)
+                return [asp_rule1, asp_rule2]
+
+    def visit_Rule(self, rule: AST, builder: ProgramBuilder):
         """
         Visits an LP^MLN rule, converts it to three ASP rules
         if necessary and adds the result to the program builder.
@@ -114,7 +144,6 @@ class LPMLNTransformer(ast.Transformer):
 
         # print('\n LP^MLN Rule')
         # print(rule)
-
         head = rule.head
         body = rule.body
 
@@ -130,25 +159,24 @@ class LPMLNTransformer(ast.Transformer):
         # print(self.global_variables)
         # print(self.weight)
 
-        if self.weight == 'alpha' and not translate_hr:
+        if self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
             return rule
             # builder.add(ast.Rule(rule.location, head, body))
         else:
-            asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
+            asp_rules = self._convert_rule(head, body)
             self.rule_idx += 1
 
             # print('\n ASP Conversion')
-            # print(asp_rule1)
-            # print(asp_rule2)
-            # print(asp_rule3)
+            # for r in asp_rules:
+            #    print(r)
             # print('\n')
 
-            builder.add(asp_rule1)
-            builder.add(asp_rule2)
-            # TODO: Cleaner way to do this?
-            return asp_rule3
-            # builder.add(asp_rule3)
+            # TODO: Cleaner way to add/return rules?
+            for r in asp_rules[:-1]:
+                builder.add(r)
+
+            return asp_rules[-1]
 
     def visit_Variable(self, variable: AST) -> AST:
         """
@@ -206,6 +234,7 @@ class LPMLNApp(Application):
     def __init__(self):
         self.translate_hard_rules = Flag(False)
         self.display_all_probs = Flag(False)
+        self.use_unsat_approach = Flag(False)
 
     def _read(self, path: str):
         if path == "-":
@@ -214,13 +243,12 @@ class LPMLNApp(Application):
             return file_.read()
 
     def _convert(self, ctl: Control, files: Sequence[str]):
+        options = [self.translate_hard_rules, self.use_unsat_approach]
         with ProgramBuilder(ctl) as b:
-            lt = LPMLNTransformer()
+            lt = LPMLNTransformer(options)
             for path in files:
-                parse_string(
-                    self._read(path), lambda stm: b.add(
-                        cast(AST, lt.visit(stm, b, self.translate_hard_rules)))
-                )
+                parse_string(self._read(path),
+                             lambda stm: b.add(cast(AST, lt.visit(stm, b))))
 
     def _extract_atoms(self, model):
         atoms = model.symbols(atoms=True)
@@ -259,6 +287,8 @@ class LPMLNApp(Application):
                          self.translate_hard_rules)
         options.add_flag(group, 'all', 'Display all probabilities',
                          self.display_all_probs)
+        options.add_flag(group, 'unsat', 'Convert using unsat atoms',
+                         self.use_unsat_approach)
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
