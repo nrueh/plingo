@@ -57,8 +57,10 @@ class LPMLNTransformer(ast.Transformer):
         """
         Creates the 'unsat' and 'not unsat' atoms
         """
-        idx = ast.SymbolicTerm(location, Number(self.rule_idx))
-        unsat_arguments = [idx, self.weight] + self.global_variables
+        self.idx = ast.SymbolicTerm(location, Number(self.rule_idx))
+        self.global_variables = ast.Function(location, "",
+                                             self.global_variables, False)
+        unsat_arguments = [self.idx, self.weight, self.global_variables]
 
         unsat = ast.SymbolicAtom(
             ast.Function(location, "unsat", unsat_arguments, False))
@@ -96,7 +98,7 @@ class LPMLNTransformer(ast.Transformer):
 
         # Rule 3 (weak constraint unsat)
         asp_rule3 = ast.Minimize(head.location, constraint_weight, priority,
-                                 [], [unsat])
+                                 [self.idx, self.global_variables], [unsat])
         return asp_rule1, asp_rule2, asp_rule3
 
     def visit_Rule(self, rule: AST, builder: ProgramBuilder,
@@ -136,11 +138,12 @@ class LPMLNTransformer(ast.Transformer):
             asp_rule1, asp_rule2, asp_rule3 = self._convert_rule(head, body)
             self.rule_idx += 1
 
-            print('\n ASP Conversion')
-            print(asp_rule1)
-            print(asp_rule2)
-            print(asp_rule3)
-            print('\n')
+            # print('\n ASP Conversion')
+            # print(asp_rule1)
+            # print(asp_rule2)
+            # print(asp_rule3)
+            # print('\n')
+
             builder.add(asp_rule1)
             builder.add(asp_rule2)
             # TODO: Cleaner way to do this?
