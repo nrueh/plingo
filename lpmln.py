@@ -27,6 +27,15 @@ class LPMLNApp(Application):
         self.translate_hard_rules = Flag(False)
         self.display_all_probs = Flag(False)
         self.use_unsat_approach = Flag(False)
+        self.query = []
+
+    def _parse_query(self, value):
+        """
+        Parse query atom.
+        """
+        # TODO: What assertion does input query have to fulfill?
+        self.query.append(value)
+        return True
 
     def register_options(self, options: ApplicationOptions) -> None:
         """
@@ -39,6 +48,12 @@ class LPMLNApp(Application):
                          self.display_all_probs)
         options.add_flag(group, 'unsat', 'Convert using unsat atoms',
                          self.use_unsat_approach)
+        # TODO: How input query? One flag per atom or define query as set of atom(s)?
+        options.add(group,
+                    'q',
+                    'Get probability of query atom',
+                    self._parse_query,
+                    multi=True)
 
     def _read(self, path: str):
         if path == "-":
@@ -86,11 +101,12 @@ class LPMLNApp(Application):
 
         # models_show = []
         # models_unsat = []
+        # TODO: Handle optimum/all probability cases
         models = []
         with ctl.solve(yield_=True) as handle:
             for model in handle:
                 models.append(
-                    ([str(a) for a in model.symbols(atoms=True)], model.cost))
+                    ([a for a in model.symbols(atoms=True)], model.cost))
                 # print(model.cost)
                 # show_atoms, unsat_atoms = self._extract_atoms(model)
                 # print(show_atoms)
@@ -99,6 +115,12 @@ class LPMLNApp(Application):
                 # models_unsat.append(unsat_atoms)
 
         probs = ProbabilityModule(models, self.translate_hard_rules)
+
+        if self.display_all_probs:
+            probs.print_models_and_probs()
+
+        if len(self.query) != 0:
+            probs.get_query_probability(self.query)
 
         # print(models_show)
         # print(models_unsat)
