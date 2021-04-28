@@ -44,16 +44,16 @@ class LPMLNApp(Application):
         group = 'LPMLN Options'
         options.add_flag(group, 'hr', 'Translate hard rules',
                          self.translate_hard_rules)
-        options.add_flag(group, 'all', 'Display all probabilities',
+        options.add_flag(group, 'all,a', 'Display all probabilities',
                          self.display_all_probs)
-        options.add_flag(group, 'unsat', 'Convert using unsat atoms',
+        options.add_flag(group, 'unsat,u', 'Convert using unsat atoms',
                          self.use_unsat_approach)
-        # TODO: How input query? One flag per atom or define query as set of atom(s)?
-        options.add(group,
-                    'q',
-                    'Get probability of query atom',
-                    self._parse_query,
-                    multi=True)
+        # TODO: How input query? One flag per atom or flag per set?
+        # options.add(group,
+        #             'query,q',
+        #             'Get probability of query atom',
+        #             self._parse_query,
+        #             multi=True)
 
     def _read(self, path: str):
         if path == "-":
@@ -69,23 +69,11 @@ class LPMLNApp(Application):
                 parse_string(self._read(path),
                              lambda stm: b.add(cast(AST, lt.visit(stm, b))))
 
-    def _extract_atoms(self, model):
-        atoms = model.symbols(atoms=True)
-        show_atoms = []
-        unsat_atoms = []
-        for a in atoms:
-            if a.name == 'unsat':
-                unsat_atoms.append(str(a))
-            else:
-                show_atoms.append(str(a))
-        return show_atoms, unsat_atoms
-
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
-        ctl.add("base", [], "#show.")
 
         if self.display_all_probs:
             ctl.configuration.solve.opt_mode = 'enum,9999999999999'
@@ -97,30 +85,18 @@ class LPMLNApp(Application):
 
         ctl.ground([("base", [])])
 
-        # ctl.solve(on_model=print)
-
-        # models_show = []
-        # models_unsat = []
         # TODO: Handle optimum/all probability cases
-        models = []
+        model_costs = []
         with ctl.solve(yield_=True) as handle:
             for model in handle:
-                models.append(
-                    ([a for a in model.symbols(atoms=True)], model.cost))
-                # print(model.cost)
-                # show_atoms, unsat_atoms = self._extract_atoms(model)
-                # print(show_atoms)
-                # print(unsat_atoms)
-                # models_show.append(show_atoms)
-                # models_unsat.append(unsat_atoms)
+                model_costs.append(model.cost)
 
-        probs = ProbabilityModule(models, self.translate_hard_rules)
-
+        probs = ProbabilityModule(model_costs, self.translate_hard_rules)
         if self.display_all_probs:
-            probs.print_models_and_probs()
+            probs.print_probs()
 
-        if len(self.query) != 0:
-            probs.get_query_probability(self.query)
+        # if len(self.query) != 0:
+        #     probs.get_query_probability(self.query)
 
         # print(models_show)
         # print(models_unsat)
