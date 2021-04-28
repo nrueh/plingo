@@ -33,7 +33,7 @@ class ProbabilityModule():
     def print_probs(self):
         print('\n')
         if self.stable_models == []:
-            self.stable_models = list(range(len(self.model_probs)))
+            self.stable_models = np.arange((len(self.model_probs)))
 
         for i in range(len(self.model_probs)):
             model_idx = self.stable_models[i]
@@ -42,14 +42,10 @@ class ProbabilityModule():
         print('\n')
 
     def get_query_probability(self, query):
-        query_atoms = [
-            a for m in self.stable_models for a in m if a.name in query
-        ]
-        query_atoms = list(set(query_atoms))
-        n = len(self.stable_models)
-        for q in query_atoms:
-            query_probability = sum([
-                self.model_probs[i] for i in range(n)
-                if q in self.stable_models[i]
-            ])
-            print(f'{str(q)}: {query_probability:.2f}')
+        for k in query.keys():
+            current_query = query[k]
+            query_atoms = list(set([a[0] for a in current_query]))
+            for q in query_atoms:
+                model_indices = [int(t[1]) for t in current_query if t[0] == q]
+                prob = self.model_probs[model_indices].sum()
+                print(f'{q}: {prob:.2f}')

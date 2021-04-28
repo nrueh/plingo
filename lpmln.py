@@ -27,15 +27,39 @@ class LPMLNApp(Application):
         self.translate_hard_rules = Flag(False)
         self.display_all_probs = Flag(False)
         self.use_unsat_approach = Flag(False)
-        self.query = []
+        self.query = {}
 
     def _parse_query(self, value):
         """
         Parse query atom.
         """
         # TODO: What assertion does input query have to fulfill?
-        self.query.append(value)
+
+        # name = value.split(',')[0]
+        # if ',' in value:
+        #     arg = value.split(',')[1:]
+        #     arg = [
+        #         SymbolicTerm({
+        #             'begin': '',
+        #             'end': ''
+        #         }, String(a)) for a in arg
+        #     ]
+        # else:
+        #     arg = []
+        # query_atom = Function(name, arg, True)
+        self.query[value] = []
         return True
+
+    def _check_model_for_query(self, model):
+        # TODO: Use model.contains()?
+        # for qa in self.query:
+        #     print(qa)
+        #     if model.contains(qa):
+        #         print(str(qa))
+        #         print("model contains query")
+        for a in model.symbols(atoms=True):
+            if a.name in self.query.keys():
+                self.query[a.name].append([str(a), model.number - 1])
 
     def register_options(self, options: ApplicationOptions) -> None:
         """
@@ -44,16 +68,15 @@ class LPMLNApp(Application):
         group = 'LPMLN Options'
         options.add_flag(group, 'hr', 'Translate hard rules',
                          self.translate_hard_rules)
-        options.add_flag(group, 'all,a', 'Display all probabilities',
+        options.add_flag(group, 'all', 'Display all probabilities',
                          self.display_all_probs)
-        options.add_flag(group, 'unsat,u', 'Convert using unsat atoms',
+        options.add_flag(group, 'unsat', 'Convert using unsat atoms',
                          self.use_unsat_approach)
-        # TODO: How input query? One flag per atom or flag per set?
-        # options.add(group,
-        #             'query,q',
-        #             'Get probability of query atom',
-        #             self._parse_query,
-        #             multi=True)
+        options.add(group,
+                    'q',
+                    'Get probability of query atom',
+                    self._parse_query,
+                    multi=True)
 
     def _read(self, path: str):
         if path == "-":
@@ -90,16 +113,15 @@ class LPMLNApp(Application):
         with ctl.solve(yield_=True) as handle:
             for model in handle:
                 model_costs.append(model.cost)
+                if self.query != {}:
+                    self._check_model_for_query(model)
 
         probs = ProbabilityModule(model_costs, self.translate_hard_rules)
         if self.display_all_probs:
             probs.print_probs()
 
-        # if len(self.query) != 0:
-        #     probs.get_query_probability(self.query)
-
-        # print(models_show)
-        # print(models_unsat)
+        if self.query != {}:
+            probs.get_query_probability(self.query)
 
 
 if __name__ == '__main__':

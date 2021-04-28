@@ -71,6 +71,7 @@ class LPMLNTransformer(ast.Transformer):
         idx, constraint_weight, priority = self._get_constraint_parameters(
             head.location)
 
+        # TODO: Only choice rules can be skipped
         if str(head.ast_type) == 'ASTType.Aggregate':
             return [ast.Rule(head.location, head, body)]
             # not_head = ast.Literal(head.location, ast.Sign.Negation, head)
