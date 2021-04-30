@@ -2,8 +2,8 @@ from typing import Sequence, cast
 import sys
 
 from clingo import clingo_main, Application, Control
-from clingo import ApplicationOptions, Flag
-from clingo.ast import AST, parse_string, ProgramBuilder
+from clingo import ApplicationOptions, Flag, Function
+from clingo.ast import AST, parse_string, ProgramBuilder, SymbolicAtom
 
 from transformer import LPMLNTransformer
 from probability import ProbabilityModule
@@ -28,6 +28,8 @@ class LPMLNApp(Application):
         self.display_all_probs = Flag(False)
         self.use_unsat_approach = Flag(False)
         self.query = {}
+        self.evidence_file = ''
+        self.assumptions = []
 
     def _parse_query(self, value):
         """
@@ -61,6 +63,22 @@ class LPMLNApp(Application):
             if a.name in self.query.keys():
                 self.query[a.name].append([str(a), model.number - 1])
 
+    def _parse_evidence(self, value):
+        """
+        Parse evidence.
+        Can be specified as '.evid' file or separate atoms
+        """
+        if value[-5:] == '.evid':
+            self.evidence_file = self._read(value)
+        else:
+            # TODO: What possibilies for assumptions: positivity, True/False?
+            value = value.split(',')
+            name = value[0]
+            args = [Function(a) for a in value[1:]]
+            assumption = Function(name, args)
+            self.assumptions.append((assumption, True))
+        return True
+
     def register_options(self, options: ApplicationOptions) -> None:
         """
         Register application option.
@@ -77,6 +95,8 @@ class LPMLNApp(Application):
                     'Get probability of query atom',
                     self._parse_query,
                     multi=True)
+        options.add(group, 'evid', 'Provide evidence file',
+                    self._parse_evidence)
 
     def _read(self, path: str):
         if path == "-":
@@ -97,6 +117,7 @@ class LPMLNApp(Application):
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
+        ctl.add("base", [], self.evidence_file)
 
         if self.display_all_probs:
             ctl.configuration.solve.opt_mode = 'enum,9999999999999'
@@ -107,21 +128,22 @@ class LPMLNApp(Application):
         self._convert(ctl, files)
 
         ctl.ground([("base", [])])
-
         # TODO: Handle optimum/all probability cases
         model_costs = []
-        with ctl.solve(yield_=True) as handle:
+        with ctl.solve(yield_=True, assumptions=self.assumptions) as handle:
             for model in handle:
-                model_costs.append(model.cost)
-                if self.query != {}:
-                    self._check_model_for_query(model)
+                if self.display_all_probs or self.query != {}:
+                    model_costs.append(model.cost)
+                    if self.query != {}:
+                        self._check_model_for_query(model)
 
-        probs = ProbabilityModule(model_costs, self.translate_hard_rules)
-        if self.display_all_probs:
-            probs.print_probs()
+        if self.display_all_probs or self.query != {}:
+            probs = ProbabilityModule(model_costs, self.translate_hard_rules)
+            if self.display_all_probs:
+                probs.print_probs()
 
-        if self.query != {}:
-            probs.get_query_probability(self.query)
+            if self.query != {}:
+                probs.get_query_probability(self.query)
 
 
 if __name__ == '__main__':
