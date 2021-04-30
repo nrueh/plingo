@@ -42,13 +42,8 @@ class ProbabilityModule():
         print('\n')
 
     def get_query_probability(self, query):
-        # TODO: More efficient way?
         print('\n')
-        for k in query.keys():
-            current_query = query[k]
-            query_atoms = list(set([a[0] for a in current_query]))
-            for q in query_atoms:
-                model_indices = [int(t[1]) for t in current_query if t[0] == q]
-                prob = self.model_probs[model_indices].sum()
-                print(f'{q}: {prob:.2f}')
+        for q in query:
+            prob = self.model_probs[q[1]].sum()
+            print(f'{str(q[0])}: {prob:.2f}')
         print('\n')

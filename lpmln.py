@@ -3,7 +3,7 @@ import sys
 
 from clingo import clingo_main, Application, Control
 from clingo import ApplicationOptions, Flag, Function
-from clingo.ast import AST, parse_string, ProgramBuilder, SymbolicAtom
+from clingo.ast import AST, parse_string, ProgramBuilder
 
 from transformer import LPMLNTransformer
 from probability import ProbabilityModule
@@ -27,7 +27,7 @@ class LPMLNApp(Application):
         self.translate_hard_rules = Flag(False)
         self.display_all_probs = Flag(False)
         self.use_unsat_approach = Flag(False)
-        self.query = {}
+        self.query = []
         self.evidence_file = ''
         self.assumptions = []
 
@@ -36,32 +36,8 @@ class LPMLNApp(Application):
         Parse query atom.
         """
         # TODO: What assertion does input query have to fulfill?
-
-        # name = value.split(',')[0]
-        # if ',' in value:
-        #     arg = value.split(',')[1:]
-        #     arg = [
-        #         SymbolicTerm({
-        #             'begin': '',
-        #             'end': ''
-        #         }, String(a)) for a in arg
-        #     ]
-        # else:
-        #     arg = []
-        # query_atom = Function(name, arg, True)
-        self.query[value] = []
+        self.query.append(value)
         return True
-
-    def _check_model_for_query(self, model):
-        # TODO: Use model.contains()?
-        # for qa in self.query:
-        #     print(qa)
-        #     if model.contains(qa):
-        #         print(str(qa))
-        #         print("model contains query")
-        for a in model.symbols(atoms=True):
-            if a.name in self.query.keys():
-                self.query[a.name].append([str(a), model.number - 1])
 
     def _parse_evidence(self, value):
         """
@@ -112,6 +88,24 @@ class LPMLNApp(Application):
                 parse_string(self._read(path),
                              lambda stm: b.add(cast(AST, lt.visit(stm, b))))
 
+    def _ground_queries(self, symbolic_atoms):
+        # TODO: Add warning if query not present in program?
+        query_signatures = [
+            s for s in symbolic_atoms.signatures if s[0] in self.query
+        ]
+        self.query = []
+        for qs in query_signatures:
+            for sa in symbolic_atoms.by_signature(qs[0], qs[1], qs[2]):
+                self.query.append([sa.symbol, []])
+
+    def _check_model_for_query(self, model):
+        for qa in self.query:
+            if model.contains(qa[0]):
+                qa[1].append(model.number - 1)
+        # for a in model.symbols(atoms=True):
+        #     if a.name in self.query.keys():
+        #         self.query[a.name].append([str(a), model.number - 1])
+
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
@@ -128,13 +122,15 @@ class LPMLNApp(Application):
         self._convert(ctl, files)
 
         ctl.ground([("base", [])])
+        self._ground_queries(ctl.symbolic_atoms)
+
         # TODO: Handle optimum/all probability cases
         model_costs = []
         with ctl.solve(yield_=True, assumptions=self.assumptions) as handle:
             for model in handle:
-                if self.display_all_probs or self.query != {}:
+                if self.display_all_probs or self.query != []:
                     model_costs.append(model.cost)
-                    if self.query != {}:
+                    if self.query != []:
                         self._check_model_for_query(model)
 
         if self.display_all_probs or self.query != {}:
