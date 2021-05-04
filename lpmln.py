@@ -133,12 +133,11 @@ class LPMLNApp(Application):
                     if self.query != []:
                         self._check_model_for_query(model)
 
-        if self.display_all_probs or self.query != {}:
+        if self.display_all_probs or self.query != []:
             probs = ProbabilityModule(model_costs, self.translate_hard_rules)
             if self.display_all_probs:
                 probs.print_probs()
-
-            if self.query != {}:
+            if self.query != []:
                 probs.get_query_probability(self.query)
 
 
