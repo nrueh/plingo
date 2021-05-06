@@ -68,57 +68,60 @@ class LPMLNTransformer(ast.Transformer):
         Converts the LPMLN rule using either the unsat atoms
         or the simplified approach without them
         """
-        idx, constraint_weight, priority = self._get_constraint_parameters(
-            head.location)
+        loc = head.location
+        idx, constraint_weight, priority = self._get_constraint_parameters(loc)
 
-        # TODO: Only choice rules can be skipped
+        # TODO: Only choice rules without bounds can be skipped
         if str(head.ast_type) == 'ASTType.Aggregate':
-            return [ast.Rule(head.location, head, body)]
-            # not_head = ast.Literal(head.location, ast.Sign.Negation, head)
+            return [ast.Rule(loc, head, body)]
+            # not_head = ast.Literal(loc, ast.Sign.Negation, head)
         else:
-            not_head = ast.Literal(head.location, ast.Sign.Negation, head.atom)
+            not_head = ast.Literal(loc, ast.Sign.Negation, head.atom)
 
         # Create ASP rules
-        # TODO: Is it ok to use 'head.location' for the rules?
+        # TODO: Is it ok to use 'loc' for the rules?
         # TODO: Better way to insert and delete items from body?
 
         if self.use_unsat:
-            unsat, not_unsat = self._get_unsat_atoms(head.location, idx)
+            unsat, not_unsat = self._get_unsat_atoms(loc, idx)
             # Rule 1 (unsat :- Body, not Head)
             body.insert(0, not_head)
-            asp_rule1 = ast.Rule(head.location, unsat, body)
+            asp_rule1 = ast.Rule(loc, unsat, body)
 
             # Rule 2 (Head :- Body, not unsat)
             del body[0]
             body.insert(0, not_unsat)
-            asp_rule2 = ast.Rule(head.location, head, body)
+            asp_rule2 = ast.Rule(loc, head, body)
 
             # Rule 3 (weak constraint unsat)
-            asp_rule3 = ast.Minimize(head.location, constraint_weight,
-                                     priority, [idx, self.global_variables],
-                                     [unsat])
+            asp_rule3 = ast.Minimize(loc, constraint_weight, priority,
+                                     [idx, self.global_variables], [unsat])
             return [asp_rule1, asp_rule2, asp_rule3]
         else:
             # Convert integrity constraint 'w: #false :- B.' to weak constraint
             # of form: ':~ B. [w, idx, X]'
             if str(head.atom.ast_type
                    ) == 'ASTType.BooleanConstant' and not head.atom.value:
-                asp_rule = ast.Minimize(head.location, constraint_weight,
-                                        priority, [idx, self.global_variables],
-                                        body)
+                asp_rule = ast.Minimize(loc, constraint_weight, priority,
+                                        [idx, self.global_variables], body)
                 return [asp_rule]
             # Convert normal rule 'w: H :- B.' to choice rule and weak
             # constraint of form: '{H} :- B.' and ':~ B, not H. [w, idx, X]'
             else:
-                cond_head = ast.ConditionalLiteral(head.location, head, [])
-                choice_head = ast.Aggregate(head.location, None, [cond_head],
-                                            None)
-                asp_rule1 = ast.Rule(head.location, choice_head, body)
-                not_head = ast.Literal(head.location, ast.Sign.Negation,
-                                       head.atom)
+                cond_head = ast.ConditionalLiteral(loc, head, [])
+                choice_head = ast.Aggregate(loc, None, [cond_head], None)
+                asp_rule1 = ast.Rule(loc, choice_head, body)
+
+                not_head = ast.Literal(loc, ast.Sign.Negation, head.atom)
                 body.insert(0, not_head)
-                asp_rule2 = ast.Minimize(head.location, constraint_weight,
-                                         priority,
+                if str(priority) == '0':
+                    ext_helper_atom = ast.SymbolicAtom(
+                        ast.Function(loc, 'ext_helper', [], False))
+                    ext_helper_atom = ast.Literal(loc, ast.Sign.NoSign,
+                                                  ext_helper_atom)
+                    body.insert(0, ext_helper_atom)
+
+                asp_rule2 = ast.Minimize(loc, constraint_weight, priority,
                                          [idx, self.global_variables], body)
                 return [asp_rule1, asp_rule2]
 

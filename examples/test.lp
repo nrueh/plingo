@@ -7,15 +7,19 @@
 
 % This only has one model in LPMLN, rule is unsatisfied because 'unsat :- not {a}.' is always true.
 % Should choice rules be converted? They are already functioning similar to LPMLN in the sense that they are optional
-{a}.
-
+% {a}.
+b :- &weight(1).
+% :~ a. [5@4]
+% a :- b.
+% c :- a.
+% :~c. [5@4]
 % This has the conversion
 % unsat(0, "alpha") :- not {a≠.
 % {a} :- not unsat(0,"alpha").
 % :~ unsat(0,"alpha")
 
 %What about the following aggregate?
-%{a;b;c} = 2.
+% {a;b;c} = 2.
 
 % Intervals. Does it even make sense to apply LPMLN to these rules? 
 % size(2).

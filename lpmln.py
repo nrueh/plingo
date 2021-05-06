@@ -93,9 +93,10 @@ class LPMLNApp(Application):
         for qa in self.query:
             if model.contains(qa[0]):
                 qa[1].append(model.number - 1)
-        # for a in model.symbols(atoms=True):
-        #     if a.name in self.query.keys():
-        #         self.query[a.name].append([str(a), model.number - 1])
+
+    def test(self, m):
+        print(m.cost)
+        print('asdf')
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
@@ -103,10 +104,7 @@ class LPMLNApp(Application):
         '''
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
-
-        if self.display_all_probs:
-            ctl.configuration.solve.opt_mode = 'enum,9999999999999'
-            ctl.configuration.solve.models = 0
+        ctl.add("base", [], '#external ext_helper.')
 
         if not files:
             files = ["-"]
@@ -115,7 +113,20 @@ class LPMLNApp(Application):
         ctl.ground([("base", [])])
         self._ground_queries(ctl.symbolic_atoms)
 
-        # TODO: Handle optimum/all probability cases
+        # First solve call
+        # Soft rules are deactivated
+        # TODO: Suppress output of first solve call
+        # TODO: Activate this per flag
+        ctl.assign_external(Function("ext_helper"), False)
+        with ctl.solve(yield_=True) as h:
+            for m in h:
+                bound_hr = m.cost[0]
+        # TODO: Don't show ext_helper
+        ctl.assign_external(Function("ext_helper"), True)
+        if self.display_all_probs:
+            ctl.configuration.solve.opt_mode = f'enum, {bound_hr}, {int(9e18)}'
+            ctl.configuration.solve.models = 0
+
         model_costs = []
         with ctl.solve(yield_=True) as handle:
             for model in handle:
@@ -124,7 +135,9 @@ class LPMLNApp(Application):
                     if self.query != []:
                         self._check_model_for_query(model)
 
-        if self.display_all_probs or self.query != []:
+        # TODO: Handle case where there only soft or hard rules and model_costs
+        # array has wrong dimensions
+        if model_costs != [] and (self.display_all_probs or self.query != []):
             probs = ProbabilityModule(model_costs, self.translate_hard_rules)
             if self.display_all_probs:
                 probs.print_probs()
