@@ -127,3 +127,18 @@ Binding intervals (or pooling) to variables can also lead to clearly undesired b
 {m(1..3) } = 1.
 ```
 Here the desired behavior is have exactly one `m/1` atom. However, if we bind the interval to a variable as described above we instantiate three aggregates rules. And so it will be possible to have more than `m/1` atom to be true. 
+
+### Correct model cost
+Program with only choice rules, does not have any model costs. How to handle that case?
+```
+{a}.
+```
+
+Program with only hard rules, has only model costs at level 1. How to check that, pass that information to probability module?
+```
+b.
+```
+Vice versa program with only soft rules and option '--hr' has only model costs at level 0.
+```
+b :- &weight(1).
+```

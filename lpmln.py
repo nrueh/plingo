@@ -29,7 +29,6 @@ class LPMLNApp(Application):
         self.use_unsat_approach = Flag(False)
         self.query = []
         self.evidence_file = ''
-        self.assumptions = []
 
     def _parse_query(self, value):
         """
@@ -42,17 +41,9 @@ class LPMLNApp(Application):
     def _parse_evidence(self, value):
         """
         Parse evidence.
-        Can be specified as '.evid' file or separate atoms
+        Has to be specified as clingo file
         """
-        if value[-5:] == '.evid':
-            self.evidence_file = self._read(value)
-        else:
-            # TODO: What possibilies for assumptions: positivity, True/False?
-            value = value.split(',')
-            name = value[0]
-            args = [Function(a) for a in value[1:]]
-            assumption = Function(name, args)
-            self.assumptions.append((assumption, True))
+        self.evidence_file = self._read(value)
         return True
 
     def register_options(self, options: ApplicationOptions) -> None:
@@ -126,7 +117,7 @@ class LPMLNApp(Application):
 
         # TODO: Handle optimum/all probability cases
         model_costs = []
-        with ctl.solve(yield_=True, assumptions=self.assumptions) as handle:
+        with ctl.solve(yield_=True) as handle:
             for model in handle:
                 if self.display_all_probs or self.query != []:
                     model_costs.append(model.cost)
