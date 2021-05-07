@@ -16,6 +16,18 @@ THEORY = """
 """
 
 
+class Observer:
+    '''
+    Observes levels of weak constraint priorities that have been added to
+    the program to accurately calculate probabilities
+    '''
+    def __init__(self):
+        self.priorities = []
+
+    def minimize(self, priority: int, literals):
+        self.priorities.append(priority)
+
+
 class LPMLNApp(Application):
     '''
     Application extending clingo with probabilistic logic language LP^MLN.
@@ -60,7 +72,8 @@ class LPMLNApp(Application):
                          self.use_unsat_approach)
         options.add_flag(
             group, 'two-solve-calls',
-            'Use two solve calls (first determines LPMLN stable models, second their probabilities). \
+            'Use two solve calls (first determines LPMLN stable models, \
+                second their probabilities). \
                 Works only with --hr options.', self.two_solve_calls)
         options.add(group,
                     'q',
@@ -95,6 +108,7 @@ class LPMLNApp(Application):
 
     def _ground_queries(self, symbolic_atoms):
         # TODO: Add warning if query not present in program?
+        print(symbolic_atoms.signatures)
         query_signatures = [
             s for s in symbolic_atoms.signatures if s[0] in self.query
         ]
@@ -112,6 +126,9 @@ class LPMLNApp(Application):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
+        observer = Observer()
+        ctl.register_observer(observer)
+
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
         if self.two_solve_calls:
@@ -122,7 +139,8 @@ class LPMLNApp(Application):
         self._convert(ctl, files)
 
         ctl.ground([("base", [])])
-        self._ground_queries(ctl.symbolic_atoms)
+        if self.query != []:
+            self._ground_queries(ctl.symbolic_atoms)
 
         bound_hr = 2**63 - 1
         if self.two_solve_calls:
@@ -136,6 +154,7 @@ class LPMLNApp(Application):
                 for m in h:
                     bound_hr = m.cost[0]
             # TODO: Don't show ext_helper
+            # ctl.release_external(Function("ext_helper"))
             ctl.assign_external(Function("ext_helper"), True)
 
         if self.display_all_probs:
@@ -150,15 +169,25 @@ class LPMLNApp(Application):
                     if self.query != []:
                         self._check_model_for_query(model)
 
-        # TODO: Handle case where there are only soft or hard rules and model_costs
-        # array has wrong dimensions
         if model_costs != [] and (self.display_all_probs or self.query != []):
-            probs = ProbabilityModule(
-                model_costs, [self.translate_hard_rules, self.two_solve_calls])
-            if self.display_all_probs:
-                probs.print_probs()
-            if self.query != []:
-                probs.get_query_probability(self.query)
+            if 0 not in observer.priorities:
+                # TODO: Should this be error or warning?
+                print(
+                    'No soft weights in program. Cannot calculate probabilites'
+                )
+            # TODO: What about case where there are other priorities than 0 or 1?
+            # elif not self.two_solve_calls and any(
+            #         x > 1 for x in observer.priorities):
+            #     print(observer.priorities)
+            #     print('testasd')
+            else:
+                probs = ProbabilityModule(
+                    model_costs, observer.priorities,
+                    [self.translate_hard_rules, self.two_solve_calls])
+                if self.display_all_probs:
+                    probs.print_probs()
+                if self.query != []:
+                    probs.get_query_probability(self.query)
 
 
 if __name__ == '__main__':

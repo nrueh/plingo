@@ -5,9 +5,10 @@ class ProbabilityModule():
     '''
     Module that handles calculation of probabilities of models and query atoms
     '''
-    def __init__(self, model_costs, options):
+    def __init__(self, model_costs, priorities, options):
         self.translate_hr = options[0].flag
         self.two_solve_calls = options[1].flag
+        self.priorities = priorities
         self.stable_models = []
         self.model_weights = []
         self.model_probs = []
@@ -19,11 +20,11 @@ class ProbabilityModule():
         # (ones with max hard rules satisfied)
         self.model_weights = np.exp(-(model_costs))
         if self.two_solve_calls:
-            self.model_weights = self.model_weights[:, 1]
-        elif self.translate_hr:
+            self.model_weights = self.model_weights[:, -1]
+        elif self.translate_hr and self.priorities != [0]:
             hard_weights = model_costs[:, 0]
             min_alpha = hard_weights.min()
-            self.model_weights = self.model_weights[:, 1]
+            self.model_weights = self.model_weights[:, -1]
             self.model_weights[hard_weights != min_alpha] = 0
 
         self.model_weights = self.model_weights.flatten()
