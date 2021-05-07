@@ -14,6 +14,7 @@ class LPMLNTransformer(ast.Transformer):
         self.expansion_variables = 0
         self.translate_hr = options[0].flag
         self.use_unsat = options[1].flag
+        self.two_solve_calls = options[2].flag
 
     def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
         '''
@@ -71,15 +72,17 @@ class LPMLNTransformer(ast.Transformer):
         loc = head.location
         idx, constraint_weight, priority = self._get_constraint_parameters(loc)
 
-        # TODO: Only choice rules without bounds can be skipped
+        # Choice rules without bound can be skipped
         if str(head.ast_type) == 'ASTType.Aggregate':
-            return [ast.Rule(loc, head, body)]
-            # not_head = ast.Literal(loc, ast.Sign.Negation, head)
+            if head.left_guard is None and head.right_guard is None:
+                return [ast.Rule(loc, head, body)]
+            else:
+                not_head = ast.Literal(loc, ast.Sign.Negation, head)
+
         else:
             not_head = ast.Literal(loc, ast.Sign.Negation, head.atom)
 
         # Create ASP rules
-        # TODO: Is it ok to use 'loc' for the rules?
         # TODO: Better way to insert and delete items from body?
 
         if self.use_unsat:
@@ -98,32 +101,39 @@ class LPMLNTransformer(ast.Transformer):
                                      [idx, self.global_variables], [unsat])
             return [asp_rule1, asp_rule2, asp_rule3]
         else:
+            asp_rules = []
+            # Choice rules with bounds, e.g. 'w : { a; b } = 1 :- B.'
+            # get converted to two rules:
+            # w : { a ; b } :- B.       --> { a ; b } :- B.
+            # w : :- not { a ; b } = 1. --> :~ B, not {a ; b} = 1. [w,id, X]
+            if str(head.ast_type) == 'ASTType.Aggregate':
+                agg1 = ast.Aggregate(loc, None, head.elements, None)
+                asp_rules.append(ast.Rule(loc, agg1, body))
+                body.insert(0, not_head)
             # Convert integrity constraint 'w: #false :- B.' to weak constraint
             # of form: ':~ B. [w, idx, X]'
-            if str(head.atom.ast_type
-                   ) == 'ASTType.BooleanConstant' and not head.atom.value:
-                asp_rule = ast.Minimize(loc, constraint_weight, priority,
-                                        [idx, self.global_variables], body)
-                return [asp_rule]
+            elif str(head.atom.ast_type
+                     ) == 'ASTType.BooleanConstant' and not head.atom.value:
+                pass
             # Convert normal rule 'w: H :- B.' to choice rule and weak
             # constraint of form: '{H} :- B.' and ':~ B, not H. [w, idx, X]'
             else:
                 cond_head = ast.ConditionalLiteral(loc, head, [])
                 choice_head = ast.Aggregate(loc, None, [cond_head], None)
-                asp_rule1 = ast.Rule(loc, choice_head, body)
-
-                not_head = ast.Literal(loc, ast.Sign.Negation, head.atom)
+                asp_rules.append(ast.Rule(loc, choice_head, body))
                 body.insert(0, not_head)
-                if str(priority) == '0':
-                    ext_helper_atom = ast.SymbolicAtom(
-                        ast.Function(loc, 'ext_helper', [], False))
-                    ext_helper_atom = ast.Literal(loc, ast.Sign.NoSign,
-                                                  ext_helper_atom)
-                    body.insert(0, ext_helper_atom)
 
-                asp_rule2 = ast.Minimize(loc, constraint_weight, priority,
-                                         [idx, self.global_variables], body)
-                return [asp_rule1, asp_rule2]
+            if self.two_solve_calls and str(priority) == '0':
+                ext_helper_atom = ast.SymbolicAtom(
+                    ast.Function(loc, 'ext_helper', [], False))
+                ext_helper_atom = ast.Literal(loc, ast.Sign.NoSign,
+                                              ext_helper_atom)
+                body.insert(0, ext_helper_atom)
+
+            weak_constraint = ast.Minimize(loc, constraint_weight, priority,
+                                           [idx, self.global_variables], body)
+            asp_rules.append(weak_constraint)
+            return asp_rules
 
     def visit_Rule(self, rule: AST, builder: ProgramBuilder):
         """
