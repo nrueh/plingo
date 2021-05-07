@@ -27,6 +27,7 @@ class LPMLNApp(Application):
         self.translate_hard_rules = Flag(False)
         self.display_all_probs = Flag(False)
         self.use_unsat_approach = Flag(False)
+        self.two_solve_calls = Flag(False)
         self.query = []
         self.evidence_file = ''
 
@@ -57,6 +58,10 @@ class LPMLNApp(Application):
                          self.display_all_probs)
         options.add_flag(group, 'unsat', 'Convert using unsat atoms',
                          self.use_unsat_approach)
+        options.add_flag(
+            group, 'two-solve-calls',
+            'Use two solve calls (first determines LPMLN stable models, second their probabilities). \
+                Works only with --hr options.', self.two_solve_calls)
         options.add(group,
                     'q',
                     'Get probability of query atom',
@@ -65,6 +70,12 @@ class LPMLNApp(Application):
         options.add(group, 'evid', 'Provide evidence file',
                     self._parse_evidence)
 
+    # TODO: Shows error: TypeError: an integer is required
+    # def validate_options(self):
+    #     if self.two_solve_calls and not self.translate_hard_rules:
+    #         # TODO: Add error message
+    #         return False
+
     def _read(self, path: str):
         if path == "-":
             return sys.stdin.read()
@@ -72,7 +83,10 @@ class LPMLNApp(Application):
             return file_.read()
 
     def _convert(self, ctl: Control, files: Sequence[str]):
-        options = [self.translate_hard_rules, self.use_unsat_approach]
+        options = [
+            self.translate_hard_rules, self.use_unsat_approach,
+            self.two_solve_calls
+        ]
         with ProgramBuilder(ctl) as b:
             lt = LPMLNTransformer(options)
             for path in files:
@@ -94,17 +108,14 @@ class LPMLNApp(Application):
             if model.contains(qa[0]):
                 qa[1].append(model.number - 1)
 
-    def test(self, m):
-        print(m.cost)
-        print('asdf')
-
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
         '''
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
-        ctl.add("base", [], '#external ext_helper.')
+        if self.two_solve_calls:
+            ctl.add("base", [], '#external ext_helper.')
 
         if not files:
             files = ["-"]
@@ -113,18 +124,22 @@ class LPMLNApp(Application):
         ctl.ground([("base", [])])
         self._ground_queries(ctl.symbolic_atoms)
 
-        # First solve call
-        # Soft rules are deactivated
-        # TODO: Suppress output of first solve call
-        # TODO: Activate this per flag
-        ctl.assign_external(Function("ext_helper"), False)
-        with ctl.solve(yield_=True) as h:
-            for m in h:
-                bound_hr = m.cost[0]
-        # TODO: Don't show ext_helper
-        ctl.assign_external(Function("ext_helper"), True)
+        bound_hr = 2**63 - 1
+        if self.two_solve_calls:
+            # First solve call
+            # Soft rules are deactivated
+            # TODO: Suppress output of first solve call
+            # TODO: Activate this per flag
+
+            ctl.assign_external(Function("ext_helper"), False)
+            with ctl.solve(yield_=True) as h:
+                for m in h:
+                    bound_hr = m.cost[0]
+            # TODO: Don't show ext_helper
+            ctl.assign_external(Function("ext_helper"), True)
+
         if self.display_all_probs:
-            ctl.configuration.solve.opt_mode = f'enum, {bound_hr}, {int(9e18)}'
+            ctl.configuration.solve.opt_mode = f'enum, {bound_hr}, {(2**63)-1}'
             ctl.configuration.solve.models = 0
 
         model_costs = []
@@ -135,10 +150,11 @@ class LPMLNApp(Application):
                     if self.query != []:
                         self._check_model_for_query(model)
 
-        # TODO: Handle case where there only soft or hard rules and model_costs
+        # TODO: Handle case where there are only soft or hard rules and model_costs
         # array has wrong dimensions
         if model_costs != [] and (self.display_all_probs or self.query != []):
-            probs = ProbabilityModule(model_costs, self.translate_hard_rules)
+            probs = ProbabilityModule(
+                model_costs, [self.translate_hard_rules, self.two_solve_calls])
             if self.display_all_probs:
                 probs.print_probs()
             if self.query != []:

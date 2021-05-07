@@ -5,10 +5,9 @@ class ProbabilityModule():
     '''
     Module that handles calculation of probabilities of models and query atoms
     '''
-
-    # TODO: Possible to provide evidence
-    def __init__(self, model_costs, translate_hr: bool):
-        self.translate_hr = translate_hr
+    def __init__(self, model_costs, options):
+        self.translate_hr = options[0].flag
+        self.two_solve_calls = options[1].flag
         self.stable_models = []
         self.model_weights = []
         self.model_probs = []
@@ -19,7 +18,9 @@ class ProbabilityModule():
         # find stable models of LPMLN
         # (ones with max hard rules satisfied)
         self.model_weights = np.exp(-(model_costs))
-        if self.translate_hr:
+        if self.two_solve_calls:
+            self.model_weights = self.model_weights[:, 1]
+        elif self.translate_hr:
             hard_weights = model_costs[:, 0]
             min_alpha = hard_weights.min()
             self.model_weights = self.model_weights[:, 1]
