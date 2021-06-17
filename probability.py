@@ -6,6 +6,7 @@ class ProbabilityModule():
     Module that handles calculation of probabilities of models and query atoms
     '''
     def __init__(self, model_costs, priorities, options):
+        # TODO: Do weights need to be saved?
         self.translate_hr = options[0].flag
         self.two_solve_calls = options[1].flag
         self.priorities = priorities

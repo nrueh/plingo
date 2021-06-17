@@ -48,6 +48,7 @@ class LPMLNApp(Application):
         Parse query atom.
         """
         # TODO: What assertion does input query have to fulfill?
+        # TODO: Make it possible to specify queries with arguments
         self.query.append(value)
         return True
 
@@ -83,7 +84,7 @@ class LPMLNApp(Application):
         options.add(group, 'evid', 'Provide evidence file',
                     self._parse_evidence)
 
-    # TODO: Shows error: TypeError: an integer is required
+    # # TODO: Shows error: TypeError: an integer is required
     # def validate_options(self):
     #     if self.two_solve_calls and not self.translate_hard_rules:
     #         # TODO: Add error message
@@ -133,6 +134,7 @@ class LPMLNApp(Application):
         ctl.add("base", [], self.evidence_file)
         if self.two_solve_calls:
             ctl.add("base", [], '#external ext_helper.')
+        # TODO: Make sure the ext_helper atom is not contained in the program.
 
         if not files:
             files = ["-"]
@@ -146,7 +148,7 @@ class LPMLNApp(Application):
         if self.two_solve_calls:
             # First solve call
             # Soft rules are deactivated
-            # TODO: Suppress output of first solve call
+            # TODO: Suppress output of first solve call, add flag
             # TODO: Activate this per flag
 
             ctl.assign_external(Function("ext_helper"), False)
@@ -175,7 +177,7 @@ class LPMLNApp(Application):
                 print(
                     'No soft weights in program. Cannot calculate probabilites'
                 )
-            # TODO: What about case where there are other priorities than 0 or 1?
+            # TODO: What about case where there are other priorities than 0/1?
             # elif not self.two_solve_calls and any(
             #         x > 1 for x in observer.priorities):
             #     print(observer.priorities)

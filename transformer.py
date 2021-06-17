@@ -67,7 +67,7 @@ class LPMLNTransformer(ast.Transformer):
     def _convert_rule(self, head, body):
         """
         Converts the LPMLN rule using either the unsat atoms
-        or the simplified approach without them
+        or the simplified approach without them (default setting)
         """
         loc = head.location
         idx, constraint_weight, priority = self._get_constraint_parameters(loc)
@@ -84,7 +84,6 @@ class LPMLNTransformer(ast.Transformer):
 
         # Create ASP rules
         # TODO: Better way to insert and delete items from body?
-
         if self.use_unsat:
             unsat, not_unsat = self._get_unsat_atoms(loc, idx)
             # Rule 1 (unsat :- Body, not Head)
@@ -123,6 +122,7 @@ class LPMLNTransformer(ast.Transformer):
                 asp_rules.append(ast.Rule(loc, choice_head, body))
                 body.insert(0, not_head)
 
+            # TODO: Should the two solve calls work with unsat as well?
             if self.two_solve_calls and str(priority) == '0':
                 ext_helper_atom = ast.SymbolicAtom(
                     ast.Function(loc, 'ext_helper', [], False))
@@ -161,7 +161,6 @@ class LPMLNTransformer(ast.Transformer):
         # print(repr(body))
         # print(self.global_variables)
         # print(self.weight)
-
         if self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
             return rule
@@ -176,6 +175,7 @@ class LPMLNTransformer(ast.Transformer):
             # print('\n')
 
             # TODO: Cleaner way to add/return rules?
+            # We obtain between one and three conversion rules,
             for r in asp_rules[:-1]:
                 builder.add(r)
 
