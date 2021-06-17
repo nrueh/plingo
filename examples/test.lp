@@ -7,8 +7,10 @@
 
 % This only has one model in LPMLN, rule is unsatisfied because 'unsat :- not {a}.' is always true.
 % Should choice rules be converted? They are already functioning similar to LPMLN in the sense that they are optional
-% {a}.
-b :- &weight(1).
+{a} = 1.
+% { a; b } = 1 :- c.
+% c.
+% b :- &weight(1).
 % :~ a. [5@4]
 % a :- b.
 % c :- a.
