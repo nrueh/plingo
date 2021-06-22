@@ -38,6 +38,8 @@ class ProbabilityModule():
         print('\n')
         for s in self.stable_models:
             current_prob = self.model_probs[s]
+            if current_prob < 0.001:
+                continue
             print(f'Probability of Answer {s+1}: {current_prob:.2f}')
         print('\n')
 
