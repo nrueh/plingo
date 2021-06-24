@@ -2,7 +2,7 @@ from typing import Sequence, cast
 import sys
 
 from clingo import clingo_main, Application, Control
-from clingo import ApplicationOptions, Flag, Function
+from clingo import ApplicationOptions, Flag, Function, String
 from clingo.ast import AST, parse_string, ProgramBuilder
 
 from transformer import LPMLNTransformer
@@ -50,6 +50,10 @@ class LPMLNApp(Application):
         """
         # TODO: What assertion does input query have to fulfill?
         # TODO: Make it possible to specify queries with arguments
+        if ',' in value:
+            name, args = value.split(',', 1)
+            args = [Function(a) for a in args.split(',')]
+            value = Function(name, args)
         self.query.append(value)
         return True
 
@@ -110,11 +114,18 @@ class LPMLNApp(Application):
 
     def _ground_queries(self, symbolic_atoms):
         # TODO: Add warning if query not present in program?
-        print(symbolic_atoms.signatures)
+        general_queries = []
+        queries_with_args = []
+        for q in self.query:
+            if type(q) is str:
+                general_queries.append(q)
+            else:
+                queries_with_args.append([q, []])
+
         query_signatures = [
-            s for s in symbolic_atoms.signatures if s[0] in self.query
+            s for s in symbolic_atoms.signatures if s[0] in general_queries
         ]
-        self.query = []
+        self.query = queries_with_args
         for qs in query_signatures:
             for sa in symbolic_atoms.by_signature(qs[0], qs[1], qs[2]):
                 self.query.append([sa.symbol, []])

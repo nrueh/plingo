@@ -205,7 +205,6 @@ class LPMLNTransformer(ast.Transformer):
 
         # TODO: Make rounding factor a global variable?
         self.weight = Number(int(weight * (10**5)))
-        print(self.weight)
         # TODO: Better way to remove TheoryAtom?
         return ast.BooleanConstant(True)
 
