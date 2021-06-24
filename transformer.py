@@ -1,4 +1,5 @@
 from typing import Any
+from math import log
 
 from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
@@ -45,7 +46,7 @@ class LPMLNTransformer(ast.Transformer):
             constraint_weight = ast.SymbolicTerm(location, Number(1))
             priority = Number(1)
         else:
-            constraint_weight = self.weight
+            constraint_weight = ast.SymbolicTerm(location, self.weight)
             priority = Number(0)
         priority = ast.SymbolicTerm(location, priority)
         return idx, constraint_weight, priority
@@ -193,7 +194,18 @@ class LPMLNTransformer(ast.Transformer):
         """
         Extracts the weight of the rule and removes the theory atom
         """
-        self.weight = atom.term.arguments[0]
+        symbol = atom.term.arguments[0].symbol
+        if atom.term.name == 'weight':
+            try:
+                weight = symbol.number
+            except (RuntimeError):
+                weight = float(symbol.string)
+        elif atom.term.name == 'log':
+            weight = log(float(symbol.string))
+
+        # TODO: Make rounding factor a global variable?
+        self.weight = Number(int(weight * (10**5)))
+        print(self.weight)
         # TODO: Better way to remove TheoryAtom?
         return ast.BooleanConstant(True)
 

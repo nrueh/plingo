@@ -11,7 +11,8 @@ from probability import ProbabilityModule
 THEORY = """
 #theory lpmln{
     constant { - : 0, unary };
-    &weight/1 : constant, body
+    &weight/1 : constant, body;
+    &log/1 : constant, body
 }.
 """
 
