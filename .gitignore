@@ -1,6 +1,13 @@
 __pycache__/
 .vscode/
 .python-version
+.DS_Store
 
 benchmarks/random_graphs
-.DS_Store
+
+benchmarks/probabilistic_graph/graphs
+benchmarks/probabilistic_graph/logs
+
+benchmarks/probabilistic_grid_problog/grids
+benchmarks/probabilistic_grid_problog/grids2
+benchmarks/probabilistic_grid_probog/logs
