@@ -3,11 +3,9 @@ __pycache__/
 .python-version
 .DS_Store
 
-benchmarks/random_graphs
+benchmarks/relaxed_clique
 
 benchmarks/probabilistic_graph/graphs
-benchmarks/probabilistic_graph/logs
 
 benchmarks/probabilistic_grid_problog/grids
 benchmarks/probabilistic_grid_problog/grids2
-benchmarks/probabilistic_grid_probog/logs
