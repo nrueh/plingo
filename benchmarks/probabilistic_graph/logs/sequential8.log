@@ -1,0 +1,40 @@
+clingo-lpmln version 1.0
+Reading from ...abilistic_graph/probabilistic_graph.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 256
+  Optimum    : yes
+Calls        : 1
+Time         : 0.015s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.015s
+
+Choices      : 256     
+Conflicts    : 1        (Analyzed: 1)
+Restarts     : 0       
+Model-Level  : 5.3     
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 1        (Deleted: 0)
+  Binary     : 0        (Ratio:   0.00%)
+  Ternary    : 1        (Ratio: 100.00%)
+  Conflict   : 1        (Average Length:    3.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 1        (Average:  1.00 Max:   1 Sum:      1)
+  Executed   : 1        (Average:  1.00 Max:   1 Sum:      1 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 45      
+  Choice     : 8       
+  Minimize   : 1       
+Atoms        : 44      
+Bodies       : 37      
+Equivalences : 52       (Atom=Atom: 8 Body=Body: 0 Other: 44)
+Tight        : Yes
+Variables    : 36       (Eliminated:    0 Frozen:   36)
+Constraints  : 84       (Binary:  66.7% Ternary:  33.3% Other:   0.0%)
+
+
+
+
+

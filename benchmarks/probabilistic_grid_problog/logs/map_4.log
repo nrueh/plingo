@@ -1,0 +1,37 @@
+clingo-lpmln version 1.0
+Reading from ...ic_grid_problog/probabilistic_grids.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 1
+  Optimum    : yes
+Optimization : 0
+Calls        : 1
+Time         : 0.037s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.036s
+
+Choices      : 21      
+Conflicts    : 0        (Analyzed: 0)
+Restarts     : 0       
+Model-Level  : 22.0    
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 0        (Deleted: 0)
+  Binary     : 0        (Ratio:   0.00%)
+  Ternary    : 0        (Ratio:   0.00%)
+  Conflict   : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 0        (Average:  0.00 Max:   0 Sum:      0)
+  Executed   : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio: 100.00%)
+
+Rules        : 155     
+  Choice     : 27      
+  Minimize   : 1       
+Atoms        : 99      
+Bodies       : 127     
+Equivalences : 89       (Atom=Atom: 19 Body=Body: 0 Other: 70)
+Tight        : Yes
+Variables    : 155      (Eliminated:    0 Frozen:   80)
+Constraints  : 406      (Binary:  68.5% Ternary:  25.6% Other:   5.9%)
+
