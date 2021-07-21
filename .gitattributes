@@ -1,1 +1,2 @@
-benchmarks/
+benchmarks/*/logs
+benchmarks/*/instances
