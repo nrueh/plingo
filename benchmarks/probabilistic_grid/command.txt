@@ -1,0 +1,5 @@
+python lpmln.py benchmarks/probabilistic_grid/probabilistic_grids.lp benchmarks/probabilistic_grid/grids/grid${GRIDSIZE}.lp --evid benchmarks/probabilistic_grid/grids/evid${GRIDSIZE}.lp --quiet --stats > benchmarks/probabilistic_grid/logs/map_${GRIDSIZE}.log
+
+python lpmln.py benchmarks/probabilistic_grid/probabilistic_grids.lp benchmarks/probabilistic_grid/grids/grid${GRIDSIZE}.lp --q path,n_1_1,n_${GRIDSIZE}_${GRIDSIZE} --quiet --stats > benchmarks/probabilistic_grid/logs/marginal_${GRIDSIZE}.log
+
+python lpmln.py benchmarks/probabilistic_grid/probabilistic_grids.lp benchmarks/probabilistic_grid/grids/grid16.lp --evid benchmarks/probabilistic_grid/grids/evid${start}to16.lp --quiet --stats > benchmarks/probabilistic_grid/logs/problog2_from${start}to16.log

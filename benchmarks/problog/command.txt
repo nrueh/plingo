@@ -1,0 +1,1 @@
+time problog probabilistic_grids.pl grids/query${i}.pl

@@ -1,0 +1,7 @@
+python lpmln.py benchmarks/relaxed_clique/relaxed_clique.lp benchmarks/relaxed_clique/random_graphs_oneside/N${N}_p${p}.lp --stats > benchmarks/relaxed_clique/logs/N${N}_p${p}.log
+
+for N in 5 10 20 50 100 200 500 1000; do
+for p in 50 80 90 100; do
+python lpmln.py benchmarks/relaxed_clique/relaxed_clique.lp benchmarks/relaxed_clique/random_graphs_oneside/N${N}_p${p}.lp --stats > benchmarks/relaxed_clique/logs/N${N}_p${p}.log
+done; done
+

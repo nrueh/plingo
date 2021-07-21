@@ -1,0 +1,48 @@
+node(0).
+edge(0, 1).
+edge(0, 3).
+edge(0, 4).
+edge(0, 5).
+edge(0, 6).
+edge(0, 7).
+edge(0, 8).
+edge(0, 9).
+node(1).
+edge(1, 2).
+edge(1, 3).
+edge(1, 4).
+edge(1, 5).
+edge(1, 6).
+edge(1, 7).
+edge(1, 8).
+edge(1, 9).
+node(2).
+edge(2, 3).
+edge(2, 6).
+edge(2, 7).
+edge(2, 8).
+edge(2, 9).
+node(3).
+edge(3, 4).
+edge(3, 5).
+edge(3, 7).
+node(4).
+edge(4, 5).
+edge(4, 6).
+edge(4, 7).
+edge(4, 8).
+edge(4, 9).
+node(5).
+edge(5, 7).
+edge(5, 8).
+edge(5, 9).
+node(6).
+edge(6, 7).
+edge(6, 8).
+edge(6, 9).
+node(7).
+edge(7, 8).
+edge(7, 9).
+node(8).
+edge(8, 9).
+node(9).
