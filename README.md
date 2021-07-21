@@ -7,9 +7,10 @@ Further the Maximum a posteriori (MAP) estimate, the most probable stable model,
 
 
 ## Installation
-The program depends on Python 3 and clingo 5.5. Its easiest to install with Anaconda 
+The program depends on Python 3, clingo 5.5 and numpy. Its easiest to install with Anaconda 
 ```
 conda install -c potassco/label/dev clingo
+conda instal numpy
 ```
 See https://potassco.org/clingo/ for further information.
 
