@@ -7,7 +7,7 @@
 
 % This only has one model in LPMLN, rule is unsatisfied because 'unsat :- not {a}.' is always true.
 % Should choice rules be converted? They are already functioning similar to LPMLN in the sense that they are optional
-{a} = 1.
+% {a} = 1.
 % { a; b } = 1 :- c.
 % c.
 % b :- &weight(1).
@@ -32,5 +32,7 @@
 % unsat(0,"alpha", X, Y):-not grid(X,Y), X=(1;2;3), Y=(1;2;3).
 % grid(X,Y):-not unsat(0,"alpha",X,Y).
 % :~unsat(0,"alpha",X,Y).[1@1]
+
+% a :- &log("0.4").
 
 

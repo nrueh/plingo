@@ -1,11 +1,11 @@
-burglary :- &log("0.1").
-:- burglary,  &log("0.9").
+burglary :- &log("0.1/0.9").
+% :- burglary,  &log("0.9").
 
-earthquake :- &log("0.2").
-:- earthquake, &log("0.8").
+earthquake :- &log("0.2/0.8").
+% :- earthquake, &log("0.8").
 
-hears_alarm(X) :- person(X), &log("0.7").
-:- hears_alarm(X), person(X), &log("0.3").
+hears_alarm(X) :- person(X), &log("0.7/0.3").
+% :- hears_alarm(X), person(X), &log("0.3").
 
 alarm :- burglary. 
 alarm :- earthquake.
