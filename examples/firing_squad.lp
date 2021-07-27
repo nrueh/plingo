@@ -1,9 +1,12 @@
-c :- u. a :- c.
 u :- &log("0.7/0.3"). 
 w :- &log("0.2/0.8").
 
 c :- u.
 a :- c.
+b :- c.
+a :- w.
+d :- a.
+d :- b.
 
 cs :- u, not do(c1), not do(c0).
 as :- cs, not do(a1), not do(a0).
@@ -17,7 +20,3 @@ as :- do(a1).
 bs :- do(b1).
 ds :- do(d1).
 
-a :- w.
-b :- c.
-d :- a.
-d :- b.
