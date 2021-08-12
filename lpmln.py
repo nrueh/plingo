@@ -2,7 +2,7 @@ from typing import Sequence, cast
 import sys
 
 from clingo import clingo_main, Application, Control
-from clingo import ApplicationOptions, Flag, Function, String
+from clingo import ApplicationOptions, Flag, Function
 from clingo.ast import AST, parse_string, ProgramBuilder
 
 from transformer import LPMLNTransformer
@@ -171,7 +171,7 @@ class LPMLNApp(Application):
             # ctl.release_external(Function("ext_helper"))
             ctl.assign_external(Function("ext_helper"), True)
 
-        if self.display_all_probs:
+        if self.display_all_probs or self.query != []:
             ctl.configuration.solve.opt_mode = f'enum, {bound_hr}, {(2**63)-1}'
             ctl.configuration.solve.models = 0
 
