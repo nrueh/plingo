@@ -24,8 +24,6 @@ class LPMLNTransformer(ast.Transformer):
         '''
         if isinstance(ast, AST):
             attr = 'visit_' + str(ast.ast_type).replace('ASTType.', '')
-            # print(ast)
-            # print(attr)
             if hasattr(self, attr):
                 return getattr(self, attr)(ast, *args, **kwargs)
         if isinstance(ast, ASTSequence):
@@ -124,6 +122,7 @@ class LPMLNTransformer(ast.Transformer):
                 body.insert(0, not_head)
 
             # TODO: Should the two solve calls work with unsat as well?
+            # TODO: Check if ext_helper does not exist already
             if self.two_solve_calls and str(priority) == '0':
                 ext_helper_atom = ast.SymbolicAtom(
                     ast.Function(loc, 'ext_helper', [], False))
@@ -146,8 +145,6 @@ class LPMLNTransformer(ast.Transformer):
         self.global_variables = []
         # self.expansions_in_body = []  # TODO: Better name, better method?
 
-        # print('\n LP^MLN Rule')
-        # print(rule)
         head = rule.head
         body = rule.body
 
@@ -159,21 +156,12 @@ class LPMLNTransformer(ast.Transformer):
         # for e in self.expansions_in_body:
         #     body.insert(0, e)
 
-        # print(repr(body))
-        # print(self.global_variables)
-        # print(self.weight)
         if self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
             return rule
-            # builder.add(ast.Rule(rule.location, head, body))
         else:
             asp_rules = self._convert_rule(head, body)
             self.rule_idx += 1
-
-            # print('\n ASP Conversion')
-            # for r in asp_rules:
-            #     print(r)
-            # print('\n')
 
             # TODO: Cleaner way to add/return rules?
             # We obtain between one and three conversion rules,
@@ -199,9 +187,9 @@ class LPMLNTransformer(ast.Transformer):
             try:
                 weight = symbol.number
             except (RuntimeError):
-                weight = float(symbol.string)
+                weight = float(eval(symbol.string))
         elif atom.term.name == 'log':
-            weight = log(float(symbol.string))
+            weight = log(float(eval(symbol.string)))
 
         # TODO: Make rounding factor a global variable?
         self.weight = Number(int(weight * (10**5)))
