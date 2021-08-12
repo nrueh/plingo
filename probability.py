@@ -42,9 +42,9 @@ class ProbabilityModule():
             # TODO: Filter very small probs or not?
             # if current_prob < 0.000001:
             #     continue
-            # print(f'Probability of Answer {s+1}: {current_prob:.5f}')
-            print(f'Probability of Answer {s+1}: {current_prob}')
-        # TODO: Cutoff probabilities?
+            print(f'Probability of Answer {s+1}: {current_prob:.5f}')
+            # print(f'Probability of Answer {s+1}: {current_prob}')
+        # TODO: Round off probabilities?
         print('\n')
 
     def get_query_probability(self, query):

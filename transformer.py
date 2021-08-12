@@ -190,6 +190,8 @@ class LPMLNTransformer(ast.Transformer):
                 weight = float(eval(symbol.string))
         elif atom.term.name == 'log':
             weight = log(float(eval(symbol.string)))
+        elif atom.term.name == 'problog':
+            weight = log(float(symbol.string) / (1 - float(symbol.string)))
 
         # TODO: Make rounding factor a global variable?
         self.weight = Number(int(weight * (10**5)))

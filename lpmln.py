@@ -12,7 +12,8 @@ THEORY = """
 #theory lpmln{
     constant { - : 0, unary };
     &weight/1 : constant, body;
-    &log/1 : constant, body
+    &log/1 : constant, body;
+    &problog/1 : constant, body
 }.
 """
 
