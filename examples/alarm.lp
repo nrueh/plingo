@@ -13,5 +13,7 @@ person(john).
 #show earthquake/0.
 #show hears_alarm/1.
 
-&query(hears_alarm(_)).
+% &evidence(alarm,true).
+
+&query(hears_alarm(P)) :- person(P).
 &query(alarm).

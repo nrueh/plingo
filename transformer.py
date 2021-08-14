@@ -157,10 +157,11 @@ class LPMLNTransformer(ast.Transformer):
         # for e in self.expansions_in_body:
         #     body.insert(0, e)
         if self.weight == 'theory':
-            return ast.Rule(
-                rule.location,
-                ast.Literal(rule.location, ast.Sign.NoSign,
-                            ast.BooleanConstant(True)), body)
+            return rule
+        #     return ast.Rule(
+        #         rule.location,
+        #         ast.Literal(rule.location, ast.Sign.NoSign,
+        #                     ast.BooleanConstant(True)), body)
         elif self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
             return rule
@@ -187,24 +188,22 @@ class LPMLNTransformer(ast.Transformer):
         """
         Extracts the weight of the rule and removes the theory atom
         """
-
-        if atom.term.name == 'query':
+        if atom.term.name == 'query' or atom.term.name == 'evidence':
             self.weight = 'theory'
-            try:
-                self.query.append(atom.term.arguments[0].symbol)
-            except (AttributeError):
-                query = atom.term.arguments[0]
-                name = query.name
-                try:
-                    if query.arguments[0].name == '_':
-                        self.query.append(name)
-                except (AttributeError):
-                    args = [
-                        Function(arg.symbol.name) for arg in query.arguments
-                    ]
-                    self.query.append(Function(name, args))
-            return ast.BooleanConstant(True)
-
+            # try:
+            #     self.query.append(atom.term.arguments[0].symbol)
+            # except (AttributeError):
+            #     query = atom.term.arguments[0]
+            #     name = query.name
+            #     try:
+            #         if query.arguments[0].name == '_':
+            #             self.query.append(name)
+            #     except (AttributeError):
+            #         args = [
+            #             Function(arg.symbol.name) for arg in query.arguments
+            #         ]
+            #         self.query.append(Function(name, args))
+            # return ast.BooleanConstant(True)
         else:
             symbol = atom.term.arguments[0].symbol
             if atom.term.name == 'weight':

@@ -14,10 +14,12 @@ THEORY = """
     &weight/1 : constant, body;
     &log/1 : constant, body;
     &problog/1 : constant, body;
-    &query/1: constant, directive
+    &query/1: constant, head;
+    &evidence/2: constant, directive
 }.
 """
-# TODO: Add query and evidence to input language
+# TODO: Queries like literals or manual approach?
+# TODO: Add evidence to input languag
 
 
 class Observer:
@@ -114,8 +116,18 @@ class LPMLNApp(Application):
             for path in files:
                 parse_string(self._read(path),
                              lambda stm: b.add(cast(AST, lt.visit(stm, b))))
-        for q in lt.query:
-            self.query.append(q)
+        # for q in lt.query:
+        #     self.query.append(q)
+
+    def _add_theory_query(self, theory_atoms):
+        for t in theory_atoms:
+            if t.term.name == 'query':
+                query_atom = t.term.arguments[0]
+                name = query_atom.name
+                args = []
+                if query_atom.arguments != []:
+                    args = [Function(arg.name) for arg in query_atom.arguments]
+                self.query.append(Function(name, args))
 
     def _ground_queries(self, symbolic_atoms):
         # TODO: Add warning if query not present in program?
@@ -158,6 +170,8 @@ class LPMLNApp(Application):
         self._convert(ctl, files)
 
         ctl.ground([("base", [])])
+
+        self._add_theory_query(ctl.theory_atoms)
         if self.query != []:
             self._ground_queries(ctl.symbolic_atoms)
 
