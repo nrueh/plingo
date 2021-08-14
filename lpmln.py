@@ -13,9 +13,11 @@ THEORY = """
     constant { - : 0, unary };
     &weight/1 : constant, body;
     &log/1 : constant, body;
-    &problog/1 : constant, body
+    &problog/1 : constant, body;
+    &query/1: constant, directive
 }.
 """
+# TODO: Add query and evidence to input language
 
 
 class Observer:
@@ -112,6 +114,8 @@ class LPMLNApp(Application):
             for path in files:
                 parse_string(self._read(path),
                              lambda stm: b.add(cast(AST, lt.visit(stm, b))))
+        for q in lt.query:
+            self.query.append(q)
 
     def _ground_queries(self, symbolic_atoms):
         # TODO: Add warning if query not present in program?
@@ -154,6 +158,8 @@ class LPMLNApp(Application):
         self._convert(ctl, files)
 
         ctl.ground([("base", [])])
+        # for t in ctl.theory_atoms:
+        #     print(t)
         if self.query != []:
             self._ground_queries(ctl.symbolic_atoms)
 

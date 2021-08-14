@@ -1,7 +1,7 @@
 from typing import Any
 from math import log
 
-from clingo import ast, Number, String
+from clingo import ast, Number, String, Function
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
 
@@ -16,6 +16,7 @@ class LPMLNTransformer(ast.Transformer):
         self.translate_hr = options[0].flag
         self.use_unsat = options[1].flag
         self.two_solve_calls = options[2].flag
+        self.query = []
 
     def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
         '''
@@ -182,19 +183,30 @@ class LPMLNTransformer(ast.Transformer):
         """
         Extracts the weight of the rule and removes the theory atom
         """
-        symbol = atom.term.arguments[0].symbol
-        if atom.term.name == 'weight':
-            try:
-                weight = symbol.number
-            except (RuntimeError):
-                weight = float(eval(symbol.string))
-        elif atom.term.name == 'log':
-            weight = log(float(eval(symbol.string)))
-        elif atom.term.name == 'problog':
-            weight = log(float(symbol.string) / (1 - float(symbol.string)))
 
-        # TODO: Make rounding factor a global variable?
-        self.weight = Number(int(weight * (10**5)))
+        if atom.term.name == 'query':
+            try:
+                self.query.append(atom.term.arguments[0].symbol)
+            except (AttributeError):
+                query = atom.term.arguments[0]
+                name = query.name
+                args = [Function(arg.symbol.name) for arg in query.arguments]
+                self.query.append(Function(name, args))
+
+        else:
+            symbol = atom.term.arguments[0].symbol
+            if atom.term.name == 'weight':
+                try:
+                    weight = symbol.number
+                except (RuntimeError):
+                    weight = float(eval(symbol.string))
+            elif atom.term.name == 'log':
+                weight = log(float(eval(symbol.string)))
+            elif atom.term.name == 'problog':
+                weight = log(float(symbol.string) / (1 - float(symbol.string)))
+
+            # TODO: Make rounding factor a global variable?
+            self.weight = Number(int(weight * (10**5)))
         # TODO: Better way to remove TheoryAtom?
         return ast.BooleanConstant(True)
 
