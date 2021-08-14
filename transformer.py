@@ -156,8 +156,12 @@ class LPMLNTransformer(ast.Transformer):
         # # Add pools/intervals that are bound to a variable to the body
         # for e in self.expansions_in_body:
         #     body.insert(0, e)
-
-        if self.weight == 'alpha' and not self.translate_hr:
+        if self.weight == 'theory':
+            return ast.Rule(
+                rule.location,
+                ast.Literal(rule.location, ast.Sign.NoSign,
+                            ast.BooleanConstant(True)), body)
+        elif self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
             return rule
         else:
@@ -185,13 +189,21 @@ class LPMLNTransformer(ast.Transformer):
         """
 
         if atom.term.name == 'query':
+            self.weight = 'theory'
             try:
                 self.query.append(atom.term.arguments[0].symbol)
             except (AttributeError):
                 query = atom.term.arguments[0]
                 name = query.name
-                args = [Function(arg.symbol.name) for arg in query.arguments]
-                self.query.append(Function(name, args))
+                try:
+                    if query.arguments[0].name == '_':
+                        self.query.append(name)
+                except (AttributeError):
+                    args = [
+                        Function(arg.symbol.name) for arg in query.arguments
+                    ]
+                    self.query.append(Function(name, args))
+            return ast.BooleanConstant(True)
 
         else:
             symbol = atom.term.arguments[0].symbol
@@ -207,8 +219,8 @@ class LPMLNTransformer(ast.Transformer):
 
             # TODO: Make rounding factor a global variable?
             self.weight = Number(int(weight * (10**5)))
-        # TODO: Better way to remove TheoryAtom?
-        return ast.BooleanConstant(True)
+            # TODO: Better way to remove TheoryAtom?
+            return ast.BooleanConstant(True)
 
     # def visit_Interval(self, interval: AST):
     #     """

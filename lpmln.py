@@ -158,8 +158,6 @@ class LPMLNApp(Application):
         self._convert(ctl, files)
 
         ctl.ground([("base", [])])
-        # for t in ctl.theory_atoms:
-        #     print(t)
         if self.query != []:
             self._ground_queries(ctl.symbolic_atoms)
 

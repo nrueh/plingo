@@ -4,3 +4,5 @@ p :- &problog("0.6").
 q :- &problog("0.3").
 r :- p.
 r :- q.
+
+&query(r).
