@@ -1,30 +1,48 @@
+import argparse
 import json
 
 import matplotlib.pyplot as plt
 import numpy as np
 
+parser = argparse.ArgumentParser(description='Plot benchmark results.')
+parser.add_argument('--csv_file',
+                    '-c',
+                    type=str,
+                    help='CSV file containing benchmark results')
+parser.add_argument('--outfile', '-o', type=str, help='Path to save plot')
+parser.add_argument('--system',
+                    '-s',
+                    type=str,
+                    help="Which system was used (ours or azreasoners)")
+args = parser.parse_args()
+
 if __name__ == '__main__':
-    json_file = 'running_times.json'
+    # json_file = 'running_times.json'
 
-    with open(json_file, 'r') as fp:
-        benchmarks = json.load(fp)
+    # with open(json_file, 'r') as fp:
+    # benchmarks = json.load(fp)
+    data = np.genfromtxt(args.csv_file,
+                         delimiter=" ",
+                         dtype=None,
+                         encoding=None)
+    nodes = data[1:, 0].astype(np.int32)
+    probs = data[1:, 1].astype(np.int32)
+    times = data[1:, 2].astype(np.float32)
 
-    probs = [50, 80, 90, 100]
     plt.figure()
-    for p in probs:
-        num_nodes = []
-        times = []
-        for k in benchmarks.keys():
-            current_entry = benchmarks[k]
-            if current_entry['p'] == p:
-                num_nodes.append(current_entry['N'])
-                times.append(current_entry['time'])
-        plt.plot(num_nodes, times, label=f'p={p/100}', marker='+',
+    for p in np.unique(probs):
+        current_nodes = nodes[probs == p]
+        current_times = times[probs == p]
+
+        plt.plot(current_nodes,
+                 current_times,
+                 label=f'p={p/100}',
+                 marker='+',
                  ms=4)  #, s=20, marker='x')
     plt.legend(loc='upper left')
     #plt.yscale('log')
-    plt.ylim([-10, 150])
-    plt.title('Benchmark: Maximal relaxed clique')
+    plt.ylim([-10, 500])
+    plt.title(f'Runtime of {args.system} system')
     plt.xlabel('Number of nodes')
-    plt.ylabel('Running times in seconds')
-    plt.savefig('max_relaxed_clique.png', dpi=600)
+    plt.ylabel('Time(s)')
+    plt.savefig(args.outfile, dpi=600)
