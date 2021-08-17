@@ -1,6 +1,8 @@
 clingo-lpmln version 1.0
 Reading from ...abilistic_graph/probabilistic_graph.lp ...
 Solving...
+
+
 OPTIMUM FOUND
 
 Models       : 1024
@@ -33,8 +35,6 @@ Equivalences : 75       (Atom=Atom: 10 Body=Body: 0 Other: 65)
 Tight        : Yes
 Variables    : 55       (Eliminated:    0 Frozen:   55)
 Constraints  : 135      (Binary:  66.7% Ternary:  33.3% Other:   0.0%)
-
-
 
 
 

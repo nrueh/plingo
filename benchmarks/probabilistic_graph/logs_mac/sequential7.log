@@ -1,0 +1,168 @@
+clingo-lpmln version 1.0
+Reading from ...abilistic_graph/probabilistic_graph.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 128
+  Optimum    : yes
+Calls        : 1
+Time         : 0.016s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.015s
+
+Choices      : 129     
+Conflicts    : 2        (Analyzed: 2)
+Restarts     : 0       
+Model-Level  : 4.1     
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 2        (Deleted: 0)
+  Binary     : 2        (Ratio: 100.00%)
+  Ternary    : 0        (Ratio:   0.00%)
+  Conflict   : 2        (Average Length:    2.0 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2        (Average:  1.00 Max:   1 Sum:      2)
+  Executed   : 2        (Average:  1.00 Max:   1 Sum:      2 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 36      
+  Choice     : 7       
+  Minimize   : 1       
+Atoms        : 35      
+Bodies       : 29      
+Equivalences : 42       (Atom=Atom: 7 Body=Body: 0 Other: 35)
+Tight        : Yes
+Variables    : 28       (Eliminated:    0 Frozen:   28)
+Constraints  : 63       (Binary:  66.7% Ternary:  33.3% Other:   0.0%)
+
+
+
+Probability of Answer 1: 0.00043
+Probability of Answer 2: 0.00014
+Probability of Answer 3: 0.00130
+Probability of Answer 4: 0.00043
+Probability of Answer 5: 0.01069
+Probability of Answer 6: 0.00350
+Probability of Answer 7: 0.00351
+Probability of Answer 8: 0.00115
+Probability of Answer 9: 0.00001
+Probability of Answer 10: 0.00000
+Probability of Answer 11: 0.00023
+Probability of Answer 12: 0.00003
+Probability of Answer 13: 0.00007
+Probability of Answer 14: 0.00008
+Probability of Answer 15: 0.00001
+Probability of Answer 16: 0.00002
+Probability of Answer 17: 0.00075
+Probability of Answer 18: 0.00025
+Probability of Answer 19: 0.00002
+Probability of Answer 20: 0.00001
+Probability of Answer 21: 0.00230
+Probability of Answer 22: 0.00076
+Probability of Answer 23: 0.00041
+Probability of Answer 24: 0.01897
+Probability of Answer 25: 0.00005
+Probability of Answer 26: 0.00013
+Probability of Answer 27: 0.00621
+Probability of Answer 28: 0.00013
+Probability of Answer 29: 0.00623
+Probability of Answer 30: 0.00002
+Probability of Answer 31: 0.00004
+Probability of Answer 32: 0.00204
+Probability of Answer 33: 0.00136
+Probability of Answer 34: 0.00045
+Probability of Answer 35: 0.00405
+Probability of Answer 36: 0.00127
+Probability of Answer 37: 0.00133
+Probability of Answer 38: 0.00042
+Probability of Answer 39: 0.00415
+Probability of Answer 40: 0.00136
+Probability of Answer 41: 0.01236
+Probability of Answer 42: 0.00387
+Probability of Answer 43: 0.00406
+Probability of Answer 44: 0.00127
+Probability of Answer 45: 0.03417
+Probability of Answer 46: 0.01119
+Probability of Answer 47: 0.01122
+Probability of Answer 48: 0.00367
+Probability of Answer 49: 0.10175
+Probability of Answer 50: 0.03183
+Probability of Answer 51: 0.03332
+Probability of Answer 52: 0.01042
+Probability of Answer 53: 0.03341
+Probability of Answer 54: 0.01045
+Probability of Answer 55: 0.01094
+Probability of Answer 56: 0.00342
+Probability of Answer 57: 0.00718
+Probability of Answer 58: 0.00225
+Probability of Answer 59: 0.00241
+Probability of Answer 60: 0.00236
+Probability of Answer 61: 0.00074
+Probability of Answer 62: 0.00079
+Probability of Answer 63: 0.02194
+Probability of Answer 64: 0.00686
+Probability of Answer 65: 0.00737
+Probability of Answer 66: 0.00720
+Probability of Answer 67: 0.00225
+Probability of Answer 68: 0.00242
+Probability of Answer 69: 0.00003
+Probability of Answer 70: 0.00001
+Probability of Answer 71: 0.00015
+Probability of Answer 72: 0.00005
+Probability of Answer 73: 0.00005
+Probability of Answer 74: 0.00009
+Probability of Answer 75: 0.00003
+Probability of Answer 76: 0.00005
+Probability of Answer 77: 0.00002
+Probability of Answer 78: 0.00002
+Probability of Answer 79: 0.00003
+Probability of Answer 80: 0.00001
+Probability of Answer 81: 0.00073
+Probability of Answer 82: 0.00024
+Probability of Answer 83: 0.00024
+Probability of Answer 84: 0.00008
+Probability of Answer 85: 0.00009
+Probability of Answer 86: 0.00003
+Probability of Answer 87: 0.00387
+Probability of Answer 88: 0.00121
+Probability of Answer 89: 0.00130
+Probability of Answer 90: 0.00127
+Probability of Answer 91: 0.00040
+Probability of Answer 92: 0.00043
+Probability of Answer 93: 0.00127
+Probability of Answer 94: 0.00040
+Probability of Answer 95: 0.00043
+Probability of Answer 96: 0.00042
+Probability of Answer 97: 0.00013
+Probability of Answer 98: 0.00014
+Probability of Answer 99: 0.00047
+Probability of Answer 100: 0.00015
+Probability of Answer 101: 0.00016
+Probability of Answer 102: 0.00015
+Probability of Answer 103: 0.00005
+Probability of Answer 104: 0.00005
+Probability of Answer 105: 0.00218
+Probability of Answer 106: 0.00068
+Probability of Answer 107: 0.00071
+Probability of Answer 108: 0.00022
+Probability of Answer 109: 0.00072
+Probability of Answer 110: 0.00022
+Probability of Answer 111: 0.00023
+Probability of Answer 112: 0.00007
+Probability of Answer 113: 0.00026
+Probability of Answer 114: 0.00008
+Probability of Answer 115: 0.00009
+Probability of Answer 116: 0.00003
+Probability of Answer 117: 0.18054
+Probability of Answer 118: 0.05648
+Probability of Answer 119: 0.06064
+Probability of Answer 120: 0.05928
+Probability of Answer 121: 0.01855
+Probability of Answer 122: 0.01991
+Probability of Answer 123: 0.05911
+Probability of Answer 124: 0.01849
+Probability of Answer 125: 0.01985
+Probability of Answer 126: 0.01941
+Probability of Answer 127: 0.00607
+Probability of Answer 128: 0.00652
+
+

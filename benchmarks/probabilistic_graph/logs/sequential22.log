@@ -1,13 +1,15 @@
 clingo-lpmln version 1.0
 Reading from ...abilistic_graph/probabilistic_graph.lp ...
 Solving...
+
+
 OPTIMUM FOUND
 
 Models       : 4194304
   Optimum    : yes
 Calls        : 1
-Time         : 73.056s (Solving: 73.04s 1st Model: 0.00s Unsat: 0.00s)
-CPU Time     : 73.014s
+Time         : 115.746s (Solving: 115.72s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 115.742s
 
 Choices      : 4194314 
 Conflicts    : 6        (Analyzed: 6)
@@ -33,8 +35,6 @@ Equivalences : 297      (Atom=Atom: 22 Body=Body: 0 Other: 275)
 Tight        : Yes
 Variables    : 253      (Eliminated:    0 Frozen:  253)
 Constraints  : 693      (Binary:  66.7% Ternary:  33.3% Other:   0.0%)
-
-
 
 
 

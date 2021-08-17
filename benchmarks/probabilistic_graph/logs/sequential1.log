@@ -6,7 +6,7 @@ OPTIMUM FOUND
 Models       : 2
   Optimum    : yes
 Calls        : 1
-Time         : 0.005s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+Time         : 0.012s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
 CPU Time     : 0.005s
 
 Choices      : 1       
