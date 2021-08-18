@@ -51,5 +51,7 @@ class ProbabilityModule():
         print('\n')
         for q in query:
             prob = self.model_probs[q[1]].sum()
-            print(f'{str(q[0])}: {prob:.2f}')
+            # print(q[1])
+            # print(self.model_probs)
+            print(f'{str(q[0])}: {prob:.5f}')
         print('\n')

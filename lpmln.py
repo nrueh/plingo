@@ -2,7 +2,7 @@ from typing import Sequence, cast
 import sys
 
 from clingo import clingo_main, Application, Control
-from clingo import ApplicationOptions, Flag, Function
+from clingo import ApplicationOptions, Flag, Function, Number
 from clingo.ast import AST, parse_string, ProgramBuilder
 
 from transformer import LPMLNTransformer
@@ -119,6 +119,16 @@ class LPMLNApp(Application):
         # for q in lt.query:
         #     self.query.append(q)
 
+    def _convert_theory_arg(self, arg):
+        theory_type = str(arg.type)[15:]
+        if theory_type == 'Symbol':
+            return Function(arg.name)
+        elif theory_type == 'Number':
+            return Number(arg.number)
+        elif theory_type == 'Function':
+            args = [self._convert_theory_arg(targ) for targ in arg.arguments]
+            return Function(arg.name, args)
+
     def _add_theory_query(self, theory_atoms):
         for t in theory_atoms:
             if t.term.name == 'query':
@@ -126,7 +136,10 @@ class LPMLNApp(Application):
                 name = query_atom.name
                 args = []
                 if query_atom.arguments != []:
-                    args = [Function(arg.name) for arg in query_atom.arguments]
+                    args = [
+                        self._convert_theory_arg(arg)
+                        for arg in query_atom.arguments
+                    ]
                 self.query.append(Function(name, args))
 
     def _ground_queries(self, symbolic_atoms):
