@@ -56,8 +56,13 @@ class LPMLNApp(Application):
         # TODO: What assertion does input query have to fulfill?
         # TODO: Make it possible to specify queries with arguments
         if ',' in value:
-            name, args = value.split(',', 1)
-            args = [Function(a) for a in args.split(',')]
+            name = value.split(',')[0]
+            args = []
+            for a in value.split(',')[1:]:
+                try:
+                    args.append(Number(int(a)))
+                except (AttributeError):
+                    args.append(Function(a))
             value = Function(name, args)
         self.query.append(value)
         return True
