@@ -25,6 +25,10 @@ if __name__ == '__main__':
                          delimiter=" ",
                          dtype=None,
                          encoding=None)
+    # timeout_rows = np.argwhere(data == 'timeout')[:, 0]
+    data[np.argwhere(data == 'timeout'), 2] = 999999999
+    #data = np.delete(data, timeout_rows, axis=0)
+    print(data)
     nodes = data[1:, 0].astype(np.int32)
     probs = data[1:, 1].astype(np.int32)
     times = data[1:, 2].astype(np.float32)
@@ -38,10 +42,10 @@ if __name__ == '__main__':
                  current_times,
                  label=f'p={p/100}',
                  marker='+',
-                 ms=4)  #, s=20, marker='x')
+                 ms=6)  #, s=20, marker='x')
     plt.legend(loc='upper left')
     #plt.yscale('log')
-    plt.ylim([-10, 500])
+    plt.ylim([-10, 100])
     plt.title(f'Runtime of {args.system} system')
     plt.xlabel('Number of nodes')
     plt.ylabel('Time(s)')
