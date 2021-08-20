@@ -13,7 +13,8 @@ person(john).
 #show earthquake/0.
 #show hears_alarm/1.
 
-% &evidence(alarm,true).
+&evidence(alarm,true).
 
-&query(hears_alarm(P)) :- person(P).
-&query(alarm).
+&query(hears_alarm(P)) :-  hears_alarm(P).
+&query(burglary).
+&query(earthquake).

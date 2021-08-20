@@ -156,12 +156,18 @@ class LPMLNTransformer(ast.Transformer):
         # # Add pools/intervals that are bound to a variable to the body
         # for e in self.expansions_in_body:
         #     body.insert(0, e)
-        if self.weight == 'theory':
+
+        # Query theory atoms are grounded and then processed
+        if self.weight == 'query':
             return rule
-        #     return ast.Rule(
-        #         rule.location,
-        #         ast.Literal(rule.location, ast.Sign.NoSign,
-        #                     ast.BooleanConstant(True)), body)
+
+        # Evidence theory atoms are converted to integrity constraints
+        elif self.weight == 'evidence':
+            new_head = ast.Literal(head.location, ast.Sign.NoSign,
+                                   ast.BooleanConstant(False))
+            return ast.Rule(rule.location, new_head, [head])
+
+        # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
             return rule
@@ -188,8 +194,19 @@ class LPMLNTransformer(ast.Transformer):
         """
         Extracts the weight of the rule and removes the theory atom
         """
-        if atom.term.name == 'query' or atom.term.name == 'evidence':
-            self.weight = 'theory'
+        if atom.term.name == 'query':
+            self.weight = 'query'
+        elif atom.term.name == 'evidence':
+            # Evidency theory atoms are converted to integrity constraints
+            self.weight = 'evidence'
+            args = atom.term.arguments
+            evidence = args[0]
+            # by default we assume the literal is positive
+            sign = ast.Sign.Negation
+            if len(args) > 1:
+                if str(args[1]) == 'false':
+                    sign = ast.Sign.NoSign
+            return ast.Literal(atom.location, sign, ast.SymbolicAtom(evidence))
             # try:
             #     self.query.append(atom.term.arguments[0].symbol)
             # except (AttributeError):

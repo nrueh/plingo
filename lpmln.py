@@ -61,7 +61,7 @@ class LPMLNApp(Application):
             for a in value.split(',')[1:]:
                 try:
                     args.append(Number(int(a)))
-                except (AttributeError):
+                except (ValueError):
                     args.append(Function(a))
             value = Function(name, args)
         self.query.append(value)
@@ -134,18 +134,15 @@ class LPMLNApp(Application):
             args = [self._convert_theory_arg(targ) for targ in arg.arguments]
             return Function(arg.name, args)
 
-    def _add_theory_query(self, theory_atoms):
-        for t in theory_atoms:
-            if t.term.name == 'query':
-                query_atom = t.term.arguments[0]
-                name = query_atom.name
-                args = []
-                if query_atom.arguments != []:
-                    args = [
-                        self._convert_theory_arg(arg)
-                        for arg in query_atom.arguments
-                    ]
-                self.query.append(Function(name, args))
+    def _add_theory_query(self, theory_atom):
+        query_atom = theory_atom.term.arguments[0]
+        name = query_atom.name
+        args = []
+        if query_atom.arguments != []:
+            args = [
+                self._convert_theory_arg(arg) for arg in query_atom.arguments
+            ]
+        self.query.append(Function(name, args))
 
     def _ground_queries(self, symbolic_atoms):
         # TODO: Add warning if query not present in program?
@@ -189,7 +186,10 @@ class LPMLNApp(Application):
 
         ctl.ground([("base", [])])
 
-        self._add_theory_query(ctl.theory_atoms)
+        for t in ctl.theory_atoms:
+            if t.term.name == 'query':
+                self._add_theory_query(t)
+
         if self.query != []:
             self._ground_queries(ctl.symbolic_atoms)
 
