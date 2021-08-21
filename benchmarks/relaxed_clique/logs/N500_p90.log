@@ -10,8 +10,8 @@ Models       : 1
   Optimum    : yes
 Optimization : 250000000
 Calls        : 1
-Time         : 24.317s (Solving: 0.01s 1st Model: 0.01s Unsat: 0.00s)
-CPU Time     : 24.295s
+Time         : 48.443s (Solving: 0.03s 1st Model: 0.02s Unsat: 0.01s)
+CPU Time     : 48.441s
 
 Choices      : 500     
 Conflicts    : 0        (Analyzed: 0)

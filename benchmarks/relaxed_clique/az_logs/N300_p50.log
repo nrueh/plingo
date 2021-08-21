@@ -1,0 +1,38 @@
+clingo-lpmln version 1.0
+Reading from ...marks/relaxed_clique/relaxed_clique.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 6+
+  Optimum    : unknown
+Optimization : 147500000
+Calls        : 1
+Time         : 1200.001s (Solving: 1181.96s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.970s
+
+Choices      : 2977227 
+Conflicts    : 2308110  (Analyzed: 2308110)
+Restarts     : 5117     (Average: 451.07 Last: 1083)
+Model-Level  : 244.8   
+Problems     : 1        (Average Length: 1.00 Splits: 0)
+Lemmas       : 2308110  (Deleted: 2296106)
+  Binary     : 0        (Ratio:   0.00%)
+  Ternary    : 0        (Ratio:   0.00%)
+  Conflict   : 2308110  (Average Length:  134.9 Ratio: 100.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+Backjumps    : 2308110  (Average:  1.00 Max:   7 Sum: 2311196)
+  Executed   : 2308110  (Average:  1.00 Max:   7 Sum: 2311196 Ratio: 100.00%)
+  Bounded    : 0        (Average:  0.00 Max:   0 Sum:      0 Ratio:   0.00%)
+
+Rules        : 90601   
+  Choice     : 300     
+  Minimize   : 1       
+Atoms        : 90600   
+Bodies       : 33856   
+Equivalences : 56491    (Atom=Atom: 11318 Body=Body: 0 Other: 45173)
+Tight        : Yes
+Variables    : 34005    (Eliminated:    0 Frozen: 34005)
+Constraints  : 101115   (Binary:  66.7% Ternary:  33.3% Other:   0.0%)
+
