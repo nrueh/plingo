@@ -1,1 +1,1 @@
-for file in benchmarks/link_prediction/instances/*; do; python lpmln.py file --quiet --stats --time-limit 1200; done
+for file in benchmarks/link_prediction/instances/*; do; python lpmln.py $file --quiet --stats --time-limit 1200 > benchmarks/link_prediction/logs/$(basename -s .lp $file).log; done
