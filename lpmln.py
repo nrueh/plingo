@@ -15,11 +15,12 @@ THEORY = """
     &log/1 : constant, body;
     &problog/1 : constant, body;
     &query/1: constant, head;
-    &evidence/2: constant, directive
+    &evidence/2: constant, directive;
+    &attribute/3: constant, head
 }.
 """
 # TODO: Queries like literals or manual approach?
-# TODO: Add evidence to input languag
+# TODO: Add evidence/1 to input language
 
 
 class Observer:

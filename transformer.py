@@ -1,7 +1,7 @@
 from typing import Any
 from math import log
 
-from clingo import ast, Number, String, Function
+from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
 
@@ -30,6 +30,50 @@ class LPMLNTransformer(ast.Transformer):
         if isinstance(ast, ASTSequence):
             return self.visit_sequence(ast, *args, **kwargs)
         return ast.update(**self.visit_children(ast, *args, **kwargs))
+
+    def _plog_attribute(self, theory_atom):
+        loc = theory_atom.location
+        name, domain, attr_range = theory_atom.term.arguments
+
+        # Unique value for each attribute
+        if str(domain.ast_type) == 'ASTType.SymbolicTerm':
+            vars = [ast.Variable(loc, 'D')]
+        else:
+            lend = len(domain.arguments)
+            vars = [ast.Variable(loc, f'D{i+1}') for i in range(lend)]
+        rangevar1 = ast.Variable(loc, 'Y1')
+        rangevar2 = ast.Variable(loc, 'Y2')
+        vars.append(rangevar1)
+        attr = ast.Function(loc, str(name), vars, False)
+        negated_attr = ast.UnaryOperation(loc, ast.UnaryOperator.Minus, attr)
+        negated_attr = ast.Literal(loc, ast.Sign.NoSign,
+                                   ast.SymbolicAtom(negated_attr))
+        del (vars[-1])
+        vars.append(rangevar2)
+        attr2 = attr.update(arguments=vars)
+        attr2 = ast.Literal(loc, ast.Sign.NoSign, ast.SymbolicAtom(attr2))
+        comparison = ast.Literal(
+            loc, ast.Sign.NoSign,
+            ast.Comparison(ast.ComparisonOperator.NotEqual, rangevar1,
+                           rangevar2))
+        rangefunc1 = ast.Literal(
+            loc, ast.Sign.NoSign,
+            ast.SymbolicAtom(
+                ast.Function(loc, str(attr_range), [rangevar1], False)))
+        unique_attr_rule = ast.Rule(loc, negated_attr,
+                                    [attr2, comparison, rangefunc1])
+
+        # Fixed attributes will not be considered random
+        # intervene(roll(D)) :- do(roll(D,Y)).
+        do_func = ast.Function(loc, 'do', [attr], False)
+        do_func = ast.Literal(loc, ast.Sign.NoSign, ast.SymbolicAtom(do_func))
+        del (vars[-1])
+        intervene_func = ast.Function(loc, 'intervene',
+                                      [attr.update(arguments=vars)], False)
+        intervene_func = ast.Literal(loc, ast.Sign.NoSign,
+                                     ast.SymbolicAtom(intervene_func))
+        fixed_attr_rule = ast.Rule(loc, intervene_func, [do_func])
+        return [unique_attr_rule, fixed_attr_rule]
 
     def _get_constraint_parameters(self, location: dict):
         """
@@ -143,6 +187,7 @@ class LPMLNTransformer(ast.Transformer):
         """
         # Set weight to alpha by default
         self.weight = 'alpha'
+        self.theory_type = ''
         self.global_variables = []
         # self.expansions_in_body = []  # TODO: Better name, better method?
 
@@ -158,15 +203,17 @@ class LPMLNTransformer(ast.Transformer):
         #     body.insert(0, e)
 
         # Query theory atoms are grounded and then processed
-        if self.weight == 'query':
+        if self.theory_type == 'query':
             return rule
 
         # Evidence theory atoms are converted to integrity constraints
-        elif self.weight == 'evidence':
-            new_head = ast.Literal(head.location, ast.Sign.NoSign,
-                                   ast.BooleanConstant(False))
-            return ast.Rule(rule.location, new_head, [head])
-
+        elif self.theory_type == 'evidence':
+            int_constraint_head = ast.Literal(head.location, ast.Sign.NoSign,
+                                              ast.BooleanConstant(False))
+            return ast.Rule(rule.location, int_constraint_head, [head])
+        elif self.theory_type == 'attribute':
+            asp_rules = self._plog_attribute(head)
+            # return rule
         # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
@@ -177,10 +224,10 @@ class LPMLNTransformer(ast.Transformer):
 
             # TODO: Cleaner way to add/return rules?
             # We obtain between one and three conversion rules,
-            for r in asp_rules[:-1]:
-                builder.add(r)
+        for r in asp_rules[:-1]:
+            builder.add(r)
 
-            return asp_rules[-1]
+        return asp_rules[-1]
 
     def visit_Variable(self, variable: AST) -> AST:
         """
@@ -194,11 +241,13 @@ class LPMLNTransformer(ast.Transformer):
         """
         Extracts the weight of the rule and removes the theory atom
         """
-        if atom.term.name == 'query':
-            self.weight = 'query'
+        self.weight = ''
+        if atom.term.name in ['query', 'attribute']:
+            self.theory_type = atom.term.name
+            return atom
         elif atom.term.name == 'evidence':
             # Evidency theory atoms are converted to integrity constraints
-            self.weight = 'evidence'
+            self.theory_type = atom.term.name
             args = atom.term.arguments
             evidence = args[0]
             # by default we assume the literal is positive
@@ -231,8 +280,8 @@ class LPMLNTransformer(ast.Transformer):
             elif atom.term.name == 'log':
                 weight = log(float(eval(symbol.string)))
             elif atom.term.name == 'problog':
-                weight = log(float(symbol.string) / (1 - float(symbol.string)))
-
+                p = float(eval(symbol.string))
+                weight = log(p / (1 - p))
             # TODO: Make rounding factor a global variable?
             self.weight = Number(int(weight * (10**5)))
             # TODO: Better way to remove TheoryAtom?
