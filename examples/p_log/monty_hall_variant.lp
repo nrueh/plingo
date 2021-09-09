@@ -18,5 +18,10 @@ canopen(D) :- not -canopen(D), door(D).
 &random(r3, open, (canopen,)).
 
 % Probability atoms
-&pratom(prize = 1) = 0.3.
-&pratom(prize = 3) = 0.2.
+&pratom(prize(1), "0.3").
+&pratom(prize(3), "0.2").
+
+% Observations and actions
+obs(selected(1)).
+obs(open(2)).
+obs(-prize(2)).

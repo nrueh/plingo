@@ -171,15 +171,17 @@ class LPMLNTransformer(ast.Transformer):
                                               ast.BooleanConstant(False))
             return ast.Rule(rule.location, int_constraint_head, [head])
 
-        # Convert P-Log attributes to the corresponding rules in ASP
+        # Convert P-Log theory rules (attribute, random, pr-atom) to the corresponding rules in ASP
         elif self.theory_type == 'attribute':
             asp_rules = plog.convert_attribute(self.plog_attributes, head)
-
-        # Convert P-Log random selection rule to the corresponding rules in ASP
         elif self.theory_type == 'random':
             asp_rules = plog.convert_random_selection_rule(
                 self.plog_attributes, head, body)
-            # return rule
+        elif self.theory_type == 'pratom':
+            asp_rules = plog.convert_prob_atom(self.plog_attributes, head,
+                                               body)
+            return rule
+
         # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:
             self.rule_idx += 1
@@ -208,7 +210,7 @@ class LPMLNTransformer(ast.Transformer):
         Extracts the weight of the rule and removes the theory atom
         """
         self.weight = ''
-        if atom.term.name in ['query', 'attribute', 'random']:
+        if atom.term.name in ['query', 'attribute', 'random', 'pratom']:
             self.theory_type = atom.term.name
             return atom
         elif atom.term.name == 'evidence':

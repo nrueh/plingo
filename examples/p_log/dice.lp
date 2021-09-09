@@ -17,19 +17,10 @@ owner(d2, john).
 even(D) :- roll(D,Y), Y \ 2 = 0.
 -even(D) :- not even(D), dice(D).
 
-
 % Random selection rules
 &random(r1, roll(D), ()).
 
-% % Probability atoms
-% &pratom(roll(D, Y), "1/6") :- owner(D,john), score(Y).
-% &pratom(roll(D, 6), "1/4") :- owner(D, mike).
-% &pratom(roll(D, Y), "3/20") :- Y != 6, owner(D, mike).
-
-%% Random selection rules
-% random(r1, roll(D)) :- roll(D).
-
-% %% Probablity atoms
-% pratom(roll(D,Y), "1/6") :- owner(D, john), dice(D), score(Y).
-% pratom(roll(D,6), "1/4") :- owner(D, mike), dice(D).
-% pratom(roll(D,Y), "3/20") :-  owner(D,mike), dice(D), score(Y), Y != 6.
+% Probability atoms
+&pratom(roll(D, Y), "1/6") :- owner(D,john), score(Y).
+&pratom(roll(D, 6), "1/4") :- owner(D, mike).
+&pratom(roll(D, Y), "3/20") :- Y != 6, owner(D, mike).
