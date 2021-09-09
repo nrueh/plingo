@@ -29,12 +29,6 @@ if __name__ == '__main__':
     az_nodes = az_data[1:, 0].astype(np.int32)
     az_times = az_data[1:, 1].astype(np.float32)
 
-    # our_nodes = our_nodes[our_probs == 100][:6]
-    # our_times = our_times[our_probs == 100][:6]
-
-    # az_nodes = az_nodes[az_probs == 100][:6]
-    # az_times = az_times[az_probs == 100][:6]
-
     plt.figure()
     plt.plot(our_nodes, our_times, label='ours', marker='+',
              ms=6)  #, s=20, marker='x')
