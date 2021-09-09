@@ -16,7 +16,8 @@ THEORY = """
     &problog/1 : constant, body;
     &query/1: constant, head;
     &evidence/2: constant, directive;
-    &attribute/3: constant, head
+    &attribute/3: constant, head;
+    &random/3: constant, head
 }.
 """
 # TODO: Queries like literals or manual approach?

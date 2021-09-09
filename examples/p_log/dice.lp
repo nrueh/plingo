@@ -1,4 +1,4 @@
-%%% P-Log program %%%
+%%%%%% P-Log program %%%%%%
 %% Sort declarations 
 % dice = {d1,d2}.
 % score = {1,2,3,4,5,6}.
@@ -24,7 +24,7 @@
 % pr(roll(D) = Y | Y != 6, owner(D) = mike) = 3/20.
 
 
-%%% Translation to ASP %%%
+%%%%%% Translation to ASP %%%%%%
 % Sort declarations
 dice(d1;d2).
 score(1;2;3;4;5;6).
@@ -53,7 +53,6 @@ even(D) :- roll(D,Y), Y \ 2 = 0.
 % % :- even(D,B1), even(D,B2), B1 != B2.
 
 % fixed attributes will not be considered random
-% attributes(roll, owner,even).
 intervene(roll(D)) :- do(roll(D,Y)).
 intervene(owner(D)) :- do(owner(D,Y)).
 intervene(even(D)) :- do(even(D,Y)).
@@ -79,7 +78,7 @@ roll(D,Y) :- do(roll(D,Y)).
 owner(D,P) :- do(owner(D,P)).
 even(D,B) :- do(even(D,B)).
 
-%%% Translation to LPMLN %%%
+%%%%%% Translation to LPMLN %%%%%%
 %% Random selection rules
 % random(r1, roll(D)) :- roll(D).
 
@@ -87,18 +86,6 @@ even(D,B) :- do(even(D,B)).
 % pratom(roll(D,Y), "1/6") :- owner(D, john), dice(D), score(Y).
 % pratom(roll(D,6), "1/4") :- owner(D, mike), dice(D).
 % pratom(roll(D,Y), "3/20") :-  owner(D,mike), dice(D), score(Y), Y != 6.
-
-
-% % For every random selection rule
-% poss(R, attr(Name,Domain,range(V))) :- random(R, attr(Name,Domain,range(V))), range(V), not intervene(attr(Name,Domain)).
-
-% % For every pr-atom
-% posswithassprob(R, attr(Name,Domain,range(V))) :- poss(R, attr(Name,Domain,range(V))), pratom(Lit, Prob).
-% asspr(R, Attr) :- holds(Attr), posswithassprob(R,attr(Name,Domain,range(V))).
-
-% #show posswithassprob/3.
-% #show asspr/3.
-% #show attr/2.
 
 % Possible atoms
 poss(r1,roll(D, Y)) :- score(Y), not intervene(roll(D)), dice(D).
