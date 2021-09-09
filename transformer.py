@@ -4,6 +4,8 @@ from math import log
 from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
+import plog
+
 
 class LPMLNTransformer(ast.Transformer):
     '''
@@ -31,120 +33,6 @@ class LPMLNTransformer(ast.Transformer):
         if isinstance(ast, ASTSequence):
             return self.visit_sequence(ast, *args, **kwargs)
         return ast.update(**self.visit_children(ast, *args, **kwargs))
-
-    def _convert_plog_random(self, random_selection_rule, body):
-        loc = random_selection_rule.location
-        rule_name, attr, add_range = random_selection_rule.term.arguments
-        if str(attr.ast_type) == 'ASTType.SymbolicTerm':
-            attr_name = str(attr)
-            attr_vars = []
-        elif str(attr.ast_type) == 'ASTType.Function':
-            attr_name = str(attr.name)
-            attr_vars = [arg for arg in attr.arguments]
-        range_name = self.plog_attributes[str(attr_name)]['range']
-        attr_domain = self.plog_attributes[str(attr_name)]['domain']
-
-        # Generating rule
-        # Aggregate head
-        rangevar = ast.Variable(loc, 'Y')
-        attr_vars.append(rangevar)
-        attr_lit = ast.Literal(
-            loc, ast.Sign.NoSign,
-            ast.SymbolicAtom(attr.update(arguments=attr_vars)))
-
-        range_lit = [
-            ast.Literal(
-                loc, ast.Sign.NoSign,
-                ast.SymbolicAtom(
-                    ast.Function(loc, range_name, [rangevar], False)))
-        ]
-
-        if str(add_range) != '()':
-            if str(add_range.ast_type) == 'ASTType.SymbolicTerm':
-                add_range = [str(add_range)]
-            elif str(add_range.ast_type) == 'ASTType.Function':
-                add_range = [str(arg) for arg in add_range.arguments]
-            add_range_lit = [
-                ast.Literal(
-                    loc, ast.Sign.NoSign,
-                    ast.SymbolicAtom(ast.Function(loc, name, [rangevar],
-                                                  False)))
-                for name in add_range
-            ]
-            range_lit.extend(add_range_lit)
-
-        cond_lit = ast.ConditionalLiteral(loc, attr_lit, range_lit)
-        agg_guard = ast.AggregateGuard(ast.ComparisonOperator.Equal,
-                                       ast.SymbolicTerm(loc, Number(1)))
-        head_generating_rule = ast.Aggregate(loc, agg_guard, [cond_lit], None)
-
-        # Body
-
-        intervene_func = ast.Function(loc, 'intervene', [attr], False)
-        intervene_lit = ast.Literal(loc, ast.Sign.Negation,
-                                    ast.SymbolicAtom(intervene_func))
-
-        domain_func = [
-            ast.Function(loc, attr_domain[i], [attr_vars[i]], False)
-            for i in range(len(attr_domain))
-        ]
-        domain_lit = [
-            ast.Literal(loc, ast.Sign.NoSign, ast.SymbolicAtom(d))
-            for d in domain_func
-        ]
-        body.append(intervene_lit)
-        body.extend(domain_lit)
-        generating_rule = ast.Rule(loc, head_generating_rule, body)
-        print(generating_rule)
-        return [generating_rule]
-        # 1 {open(D) : door(D), canopen(D)} 1 :- not intervene(open).
-
-    def _convert_plog_attribute(self, theory_atom):
-        loc = theory_atom.location
-        name, domain, attr_range = theory_atom.term.arguments
-        if str(domain.ast_type) == 'ASTType.SymbolicTerm':
-            domain = [str(domain)]
-        else:
-            domain = [str(d) for d in domain.arguments]
-        self.plog_attributes[str(name)] = {
-            'domain': domain,
-            'range': str(attr_range)
-        }
-
-        # Unique value for each attribute
-        vars = [ast.Variable(loc, f'D{i+1}') for i in range(len(domain))]
-        rangevar1 = ast.Variable(loc, 'Y1')
-        rangevar2 = ast.Variable(loc, 'Y2')
-        vars.append(rangevar1)
-        attr = ast.Function(loc, str(name), vars, False)
-        negated_attr = ast.UnaryOperation(loc, ast.UnaryOperator.Minus, attr)
-        negated_attr_lit = ast.Literal(loc, ast.Sign.NoSign,
-                                       ast.SymbolicAtom(negated_attr))
-        del (vars[-1])
-        vars.append(rangevar2)
-        attr2 = attr.update(arguments=vars)
-        attr2_lit = ast.Literal(loc, ast.Sign.NoSign, ast.SymbolicAtom(attr2))
-        comparison = ast.Literal(
-            loc, ast.Sign.NoSign,
-            ast.Comparison(ast.ComparisonOperator.NotEqual, rangevar1,
-                           rangevar2))
-        range_lit1 = ast.Literal(
-            loc, ast.Sign.NoSign,
-            ast.SymbolicAtom(
-                ast.Function(loc, str(attr_range), [rangevar1], False)))
-        unique_attr_rule = ast.Rule(loc, negated_attr_lit,
-                                    [attr2_lit, comparison, range_lit1])
-        # Fixed attributes will not be considered random
-        # intervene(roll(D)) :- do(roll(D,Y)).
-        do_func = ast.Function(loc, 'do', [attr], False)
-        do_func = ast.Literal(loc, ast.Sign.NoSign, ast.SymbolicAtom(do_func))
-        del (vars[-1])
-        intervene_func = ast.Function(loc, 'intervene',
-                                      [attr.update(arguments=vars)], False)
-        intervene_func = ast.Literal(loc, ast.Sign.NoSign,
-                                     ast.SymbolicAtom(intervene_func))
-        fixed_attr_rule = ast.Rule(loc, intervene_func, [do_func])
-        return [unique_attr_rule, fixed_attr_rule]
 
     def _get_constraint_parameters(self, location: dict):
         """
@@ -285,11 +173,12 @@ class LPMLNTransformer(ast.Transformer):
 
         # Convert P-Log attributes to the corresponding rules in ASP
         elif self.theory_type == 'attribute':
-            asp_rules = self._convert_plog_attribute(head)
+            asp_rules = plog.convert_attribute(self.plog_attributes, head)
 
         # Convert P-Log random selection rule to the corresponding rules in ASP
         elif self.theory_type == 'random':
-            asp_rules = self._convert_plog_random(head, body)
+            asp_rules = plog.convert_random_selection_rule(
+                self.plog_attributes, head, body)
             # return rule
         # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:
