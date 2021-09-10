@@ -78,7 +78,7 @@ def convert_attribute(attributes, theory_atom):
 
 def convert_random_selection_rule(attributes, random_selection_rule, body):
     loc = random_selection_rule.location
-    rule_name, attr, add_range = random_selection_rule.term.arguments
+    rule_name, attr, set_term = random_selection_rule.term.arguments
     if str(attr.ast_type) == 'ASTType.SymbolicTerm':
         attr = ast.Function(loc, str(attr), [], False)
 
@@ -100,18 +100,18 @@ def convert_random_selection_rule(attributes, random_selection_rule, body):
             ast.SymbolicAtom(ast.Function(loc, range_name, [rangevar], False)))
     ]
 
-    if str(add_range) != '()':
-        if str(add_range.ast_type) == 'ASTType.SymbolicTerm':
-            add_range = [str(add_range)]
-        elif str(add_range.ast_type) == 'ASTType.Function':
-            add_range = [str(arg) for arg in add_range.arguments]
-        add_range_lit = [
+    if str(set_term) != '()':
+        if str(set_term.ast_type) == 'ASTType.SymbolicTerm':
+            set_term = [str(set_term)]
+        elif str(set_term.ast_type) == 'ASTType.Function':
+            set_term = [str(arg) for arg in set_term.arguments]
+        set_term_lit = [
             ast.Literal(
                 loc, 0,
                 ast.SymbolicAtom(ast.Function(loc, name, [rangevar], False)))
-            for name in add_range
+            for name in set_term
         ]
-        range_lit.extend(add_range_lit)
+        range_lit.extend(set_term_lit)
 
     cond_lit = ast.ConditionalLiteral(loc, attr_lit, range_lit)
     agg_guard = ast.AggregateGuard(ast.ComparisonOperator.Equal,
@@ -132,7 +132,8 @@ def convert_random_selection_rule(attributes, random_selection_rule, body):
     body.append(intervene_lit)
     body.extend(domain_lit)
     generating_rule = ast.Rule(loc, head_generating_rule, body)
-    print(generating_rule)
+
+    # Possible atoms
     return [generating_rule]
 
 
