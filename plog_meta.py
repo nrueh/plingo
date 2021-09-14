@@ -41,7 +41,6 @@ def convert_attribute(theory_atom):
                      False) for i in range(len(domain))
     ]
     domain_func = ast.Function(loc, 'domain', domain_sort, False)
-    # domain_lit = ast.Literal(loc, 0, ast.SymbolicAtom(domain_func))
 
     if str(attr_range) == 'boolean':
         range_var = None
@@ -54,9 +53,7 @@ def convert_attribute(theory_atom):
 
     meta_attr_func = ast.Function(loc, 'attribute',
                                   [name_func, domain_func, range_sort], False)
-    meta_attr_rule_body = [
-        ast.Literal(loc, 0, ast.SymbolicAtom(ds)) for ds in domain_sort
-    ]
+    meta_attr_rule_body = [lit(ds) for ds in domain_sort]
     if str(attr_range) != 'boolean':
         meta_attr_rule_body.insert(0, lit(range_sort))
     meta_attr_rule = ast.Rule(loc, lit(meta_attr_func), meta_attr_rule_body)
@@ -78,6 +75,32 @@ def convert_attribute(theory_atom):
     readable_to_meta_neg = ast.Rule(loc, lit(negated_hold),
                                     [lit(negated_attr)])
 
+    # Rule for obs conversion
+    obs_meta_func_pos = ast.Function(loc, 'obs', [hold_func], False)
+    obs_func_pos = ast.Function(loc, 'obs', [attr], False)
+    pos_obs = ast.Rule(
+        loc, lit(obs_meta_func_pos),
+        [lit(obs_func_pos), lit(meta_attr_func)])
+
+    obs_meta_func_neg = ast.Function(loc, 'obs', [negated_hold], False)
+    obs_func_neg = ast.Function(loc, 'obs', [negated_attr], False)
+    neg_obs = ast.Rule(
+        loc, lit(obs_meta_func_neg),
+        [lit(obs_func_neg), lit(meta_attr_func)])
+
+    # Rules for do conversion
+    do_meta_func_pos = ast.Function(loc, 'do', [hold_func], False)
+    do_func_pos = ast.Function(loc, 'do', [attr], False)
+    pos_do = ast.Rule(loc, lit(do_meta_func_pos),
+                      [lit(do_func_pos), lit(meta_attr_func)])
+
+    do_meta_func_neg = ast.Function(loc, 'do', [negated_hold], False)
+    do_func_neg = ast.Function(loc, 'do', [negated_attr], False)
+    neg_do = ast.Rule(loc, lit(do_meta_func_neg),
+                      [lit(do_func_neg), lit(meta_attr_func)])
+
+    print(pos_do)
+    print(neg_do)
     # # Unique value for each attribute
     # # -attr(D,Y1) :- attr(D,Y2), Y1 != Y2, range(Y1).
     # vars = [ast.Variable(loc, f'D{i+1}') for i in range(len(domain))]
@@ -138,7 +161,8 @@ def convert_attribute(theory_atom):
     #                                   [do_func])
     return [
         meta_attr_rule, meta_to_readable_pos, readable_to_meta_pos,
-        meta_to_readable_neg, readable_to_meta_neg
+        meta_to_readable_neg, readable_to_meta_neg, pos_obs, neg_obs, pos_do,
+        neg_do
     ]
 
 
