@@ -89,3 +89,5 @@ numdefprob(open, X) :- open(D), posswithdefprob(open(D)), X=#count{Y : posswithd
 
 :- not numdefprob(C,2),attr(C), &log("1/2").
 :- not numdefprob(C,3),attr(C), &log("1/3").
+
+#show numdefprob/2.

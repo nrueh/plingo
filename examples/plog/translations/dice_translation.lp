@@ -66,21 +66,21 @@ roll(D,Y) :- do(roll(D,Y)).
 owner(D,P) :- do(owner(D,P)).
 even(D,B) :- do(even(D,B)).
 
-%%%%%% Translation to LPMLN %%%%%%
-% Possible atoms
-poss(r1,roll(D, Y)) :- score(Y), not intervene(roll(D)), dice(D).
+% %%%%%% Translation to LPMLN %%%%%%
+% % Possible atoms
+% poss(r1,roll(D, Y)) :- score(Y), not intervene(roll(D)), dice(D).
 
-% Assigned probability
-posswithassprob(r1, owner(D,john), roll(D,Y)) :- poss(r1, roll(D,Y)), owner(D,john).
-posswithassprob(r1, owner(D,mike), roll(D,Y)) :- poss(r1, roll(D,Y)), owner(D,mike).
+% % Assigned probability
+% posswithassprob(r1, owner(D,john), roll(D,Y)) :- poss(r1, roll(D,Y)), owner(D,john).
+% posswithassprob(r1, owner(D,mike), roll(D,Y)) :- poss(r1, roll(D,Y)), owner(D,mike).
 
-asspr(r1, owner(D,john), roll(D,Y)) :- roll(D,Y), posswithassprob(r1,owner(D,john),roll(D,Y)).
-asspr(r1, owner(D,mike), roll(D,Y)) :- roll(D,Y), posswithassprob(r1, owner(D,mike), roll(D,Y)).
+% asspr(r1, owner(D,john), roll(D,Y)) :- roll(D,Y), posswithassprob(r1,owner(D,john),roll(D,Y)).
+% asspr(r1, owner(D,mike), roll(D,Y)) :- roll(D,Y), posswithassprob(r1, owner(D,mike), roll(D,Y)).
 
-:- not asspr(r1, owner(D,john), roll(D,Y)), dice(D), score(Y), &log("1/6").
-:- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y=6, &log("1/4").
-:- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y!=6, &log("3/20").
+% :- not asspr(r1, owner(D,john), roll(D,Y)), dice(D), score(Y), &log("1/6").
+% :- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y=6, &log("1/4").
+% :- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y!=6, &log("3/20").
 
-posswithassprob(Attr) :- posswithassprob(R,C,Attr).
+% posswithassprob(Attr) :- posswithassprob(R,C,Attr).
 
-&query(roll(D,Y)) :- roll(D,Y).
+% &query(roll(D,Y)) :- roll(D,Y).

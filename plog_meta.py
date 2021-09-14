@@ -61,18 +61,28 @@ def convert_attribute(theory_atom):
     if str(attr_range) != 'boolean':
         meta_attr_rule_body.insert(0, range_lit)
     meta_attr_rule = ast.Rule(loc, meta_attr_lit, meta_attr_rule_body)
-    print(meta_attr_rule)
+    # print(meta_attr_rule)
 
-    # Conversion between meta and readable
+    # Conversion between meta and readable for positive attributes
     if range_var is not None:
         domain_vars.append(range_var)
     attr = ast.Function(loc, str(attr_name), domain_vars, False)
-    del (domain_vars[-1])
     attr_lit = ast.Literal(loc, 0, ast.SymbolicAtom(attr))
     hold_func = ast.Function(loc, 'hold', [meta_attr_func], False)
     hold_lit = ast.Literal(loc, 0, ast.SymbolicAtom(hold_func))
-    meta_to_readable = ast.Rule(loc, attr_lit, [hold_lit])
-    readable_to_meta = ast.Rule(loc, hold_lit, [attr_lit])
+    meta_to_readable_pos = ast.Rule(loc, attr_lit, [hold_lit])
+    readable_to_meta_pos = ast.Rule(loc, hold_lit, [attr_lit])
+
+    # Convert between meta and readable for negative attributes
+    negated_attr = ast.UnaryOperation(loc, ast.UnaryOperator.Minus, attr)
+    negated_attr_lit = ast.Literal(loc, 0, ast.SymbolicAtom(negated_attr))
+    del (domain_vars[-1])
+    negated_hold = ast.UnaryOperation(loc, ast.UnaryOperator.Minus, hold_func)
+    negated_hold_lit = ast.Literal(loc, 0, ast.SymbolicAtom(negated_hold))
+    meta_to_readable_neg = ast.Rule(loc, negated_attr_lit, [negated_hold_lit])
+    readable_to_meta_neg = ast.Rule(loc, negated_hold_lit, [negated_attr_lit])
+    print(meta_to_readable_neg)
+    print(readable_to_meta_neg)
 
     # # Unique value for each attribute
     # # -attr(D,Y1) :- attr(D,Y2), Y1 != Y2, range(Y1).
@@ -132,7 +142,10 @@ def convert_attribute(theory_atom):
     # # attr(D,Y) :- do(attr(D,Y)).
     # actions_make_true_rule = ast.Rule(loc, ast.Literal(loc, 0, attr_atom),
     #                                   [do_func])
-    return [meta_attr_rule, meta_to_readable, readable_to_meta]
+    return [
+        meta_attr_rule, meta_to_readable_pos, readable_to_meta_pos,
+        meta_to_readable_neg, readable_to_meta_neg
+    ]
 
 
 def convert_random_selection_rule(attributes, random_selection_rule, body):

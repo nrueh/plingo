@@ -4,7 +4,7 @@ from math import log
 from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
-import plog
+import plog_meta
 
 
 class LPMLNTransformer(ast.Transformer):
@@ -172,14 +172,16 @@ class LPMLNTransformer(ast.Transformer):
             return ast.Rule(rule.location, int_constraint_head, [head])
 
         # Convert P-Log theory rules (attribute, random, pr-atom) to the corresponding rules in ASP
+        elif self.theory_type == 'sort':
+            asp_rules = plog_meta.convert_sort(head)
         elif self.theory_type == 'attribute':
-            asp_rules = plog.convert_attribute(self.plog_attributes, head)
-        elif self.theory_type == 'random':
-            asp_rules = plog.convert_random_selection_rule(
-                self.plog_attributes, head, body)
+            asp_rules = plog_meta.convert_attribute(head)
+        # elif self.theory_type == 'random':
+        #     asp_rules = plog.convert_random_selection_rule(
+        #         self.plog_attributes, head, body)
         elif self.theory_type == 'pratom':
-            asp_rules = plog.convert_prob_atom(self.plog_attributes, head,
-                                               body)
+            # asp_rules = plog.convert_prob_atom(self.plog_attributes, head,
+            #                                    body)
             return rule
 
         # Hard rules are translated only if option --hr is activated
@@ -210,7 +212,9 @@ class LPMLNTransformer(ast.Transformer):
         Extracts the weight of the rule and removes the theory atom
         """
         self.weight = ''
-        if atom.term.name in ['query', 'attribute', 'random', 'pratom']:
+        if atom.term.name in [
+                'query', 'sort', 'attribute', 'random', 'pratom'
+        ]:
             self.theory_type = atom.term.name
             return atom
         elif atom.term.name == 'evidence':
