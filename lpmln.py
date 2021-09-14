@@ -49,6 +49,7 @@ class LPMLNApp(Application):
         self.display_all_probs = Flag(False)
         self.use_unsat_approach = Flag(False)
         self.two_solve_calls = Flag(False)
+        self.calculate_plog = Flag(False)
         self.query = []
         self.evidence_file = ''
 
@@ -94,6 +95,8 @@ class LPMLNApp(Application):
             'Use two solve calls (first determines LPMLN stable models, \
                 second their probabilities). \
                 Works only with --hr options.', self.two_solve_calls)
+        options.add_flag(group, 'plog', 'Calculate P-Log program.',
+                         self.calculate_plog)
         options.add(group,
                     'q',
                     'Get probability of query atom',
@@ -179,6 +182,8 @@ class LPMLNApp(Application):
 
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
+        if self.calculate_plog:
+            ctl.add("base", [], self._read('plog_meta.lp'))
         if self.two_solve_calls:
             ctl.add("base", [], '#external ext_helper.')
         # TODO: Make sure the ext_helper atom is not contained in the program.
