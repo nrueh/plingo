@@ -3,22 +3,23 @@
 from clingo import ast, Number
 
 
+def lit(func):
+    return ast.Literal(func.location, 0, ast.SymbolicAtom(func))
+
+
 def convert_sort(theory_atom):
     loc = theory_atom.location
     name, terms = theory_atom.term.arguments
 
     # sort(Name, (X1;X2;X3;)).
     sort_func = ast.Function(loc, 'sort', [name, terms], False)
-    sort_lit = ast.Literal(loc, 0, ast.SymbolicAtom(sort_func))
-    sort_fact = ast.Rule(loc, sort_lit, [])
+    sort_fact = ast.Rule(loc, lit(sort_func), [])
 
     # Name(X) :- sort(Name, X).
     var = ast.Variable(loc, 'X')
     head_func = ast.Function(loc, str(name), [var], False)
-    head_lit = ast.Literal(loc, 0, ast.SymbolicAtom(head_func))
     body_func = ast.Function(loc, 'sort', [name, var], False)
-    body_lit = ast.Literal(loc, 0, ast.SymbolicAtom(body_func))
-    meta_to_readable = ast.Rule(loc, head_lit, [body_lit])
+    meta_to_readable = ast.Rule(loc, lit(head_func), [lit(body_func)])
     return [sort_fact, meta_to_readable]
 
 
@@ -50,39 +51,32 @@ def convert_attribute(theory_atom):
         range_sort = ast.Function(
             loc, 'sort',
             [ast.Function(loc, str(attr_range), [], False), range_var], False)
-        range_lit = ast.Literal(loc, 0, ast.SymbolicAtom(range_sort))
 
     meta_attr_func = ast.Function(loc, 'attribute',
                                   [name_func, domain_func, range_sort], False)
-    meta_attr_lit = ast.Literal(loc, 0, ast.SymbolicAtom(meta_attr_func))
     meta_attr_rule_body = [
         ast.Literal(loc, 0, ast.SymbolicAtom(ds)) for ds in domain_sort
     ]
     if str(attr_range) != 'boolean':
-        meta_attr_rule_body.insert(0, range_lit)
-    meta_attr_rule = ast.Rule(loc, meta_attr_lit, meta_attr_rule_body)
-    # print(meta_attr_rule)
+        meta_attr_rule_body.insert(0, lit(range_sort))
+    meta_attr_rule = ast.Rule(loc, lit(meta_attr_func), meta_attr_rule_body)
 
     # Conversion between meta and readable for positive attributes
     if range_var is not None:
         domain_vars.append(range_var)
     attr = ast.Function(loc, str(attr_name), domain_vars, False)
-    attr_lit = ast.Literal(loc, 0, ast.SymbolicAtom(attr))
     hold_func = ast.Function(loc, 'hold', [meta_attr_func], False)
-    hold_lit = ast.Literal(loc, 0, ast.SymbolicAtom(hold_func))
-    meta_to_readable_pos = ast.Rule(loc, attr_lit, [hold_lit])
-    readable_to_meta_pos = ast.Rule(loc, hold_lit, [attr_lit])
+    meta_to_readable_pos = ast.Rule(loc, lit(attr), [lit(hold_func)])
+    readable_to_meta_pos = ast.Rule(loc, lit(hold_func), [lit(attr)])
 
     # Convert between meta and readable for negative attributes
     negated_attr = ast.UnaryOperation(loc, ast.UnaryOperator.Minus, attr)
-    negated_attr_lit = ast.Literal(loc, 0, ast.SymbolicAtom(negated_attr))
     del (domain_vars[-1])
     negated_hold = ast.UnaryOperation(loc, ast.UnaryOperator.Minus, hold_func)
-    negated_hold_lit = ast.Literal(loc, 0, ast.SymbolicAtom(negated_hold))
-    meta_to_readable_neg = ast.Rule(loc, negated_attr_lit, [negated_hold_lit])
-    readable_to_meta_neg = ast.Rule(loc, negated_hold_lit, [negated_attr_lit])
-    print(meta_to_readable_neg)
-    print(readable_to_meta_neg)
+    meta_to_readable_neg = ast.Rule(loc, lit(negated_attr),
+                                    [lit(negated_hold)])
+    readable_to_meta_neg = ast.Rule(loc, lit(negated_hold),
+                                    [lit(negated_attr)])
 
     # # Unique value for each attribute
     # # -attr(D,Y1) :- attr(D,Y2), Y1 != Y2, range(Y1).
