@@ -154,6 +154,9 @@ class LPMLNTransformer(ast.Transformer):
         head = rule.head
         body = rule.body
 
+        if len(body) == 0:
+            return rule
+
         # Traverse head and body to look for weights and variables
         head = self.visit(head)
         body = self.visit(body)
