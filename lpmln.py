@@ -16,12 +16,11 @@ THEORY = """
     &problog/1 : constant, body;
     &query/1: constant, head;
     &evidence/2: constant, directive;
+    &sort/2: constant, head;
     &attribute/3: constant, head;
-    &random/3: constant, head;
-    &pratom/2: constant,head
+    &pratom/3: constant,any
 }.
 """
-# TODO: Queries like literals or manual approach?
 # TODO: Add evidence/1 to input language
 
 

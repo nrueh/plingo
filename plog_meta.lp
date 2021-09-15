@@ -38,19 +38,19 @@ poss(RandomIdentifier, attribute(AttrName, Domain, Range)) :- attribute(AttrName
                                                 not intervene(attribute(AttrName, Domain)).
 
 
-% % TODO: Implement dynamic range
-% % Assigned Probability
-% posswithassprob(RandomIdentifier, Attr) :- pratom(RandomIdentifier, Attr, Prob), poss(RandomIdentifier, Attr).
-% assprob(RandomIdentifier, Attr) :- hold(Attr), posswithassprob(RandomIdentifier, Attr).
-% :~ not assprob(RandomIdentifier, Attr), pratom(RandomIdentifier, Attr, Prob). [@log(Prob)@0]
-% posswithassprob(Attr) :- posswithassprob(RandomIdentifier, Attr).
+% TODO: Implement dynamic range
+% Assigned Probability
+posswithassprob(RandomIdentifier, Attr) :- pratom(RandomIdentifier, Attr, Prob), poss(RandomIdentifier, Attr).
+assprob(RandomIdentifier, Attr) :- hold(Attr), posswithassprob(RandomIdentifier, Attr).
+% :~ not assprob(RandomIdentifier, Attr), pratom(RandomIdentifier, Attr, Prob). [@log(Prob)@0,RandomIdentifier,Attr]
+posswithassprob(Attr) :- posswithassprob(RandomIdentifier, Attr).
 
-% % Default probability
-% posswithdefprob(Attr) :- poss(RandomIdentifier, Attr), not posswithassprob(RandomIdentifier, Attr).
-% numdefprob(attribute(Name, Domain), X) :- hold(attribute(Name, Domain, sort(R, Y1))), 
-%                                         posswithdefprob(attribute(Name, Domain, sort(R, Y1))),
-%                                         X = #count{Y2 : posswithdefprob(attribute(Name, Domain, sort(R,Y2)))}.
-% cardinality_numdefprob(M) :- numdefprob(_, M).
+% Default probability
+posswithdefprob(Attr) :- poss(RandomIdentifier, Attr), not posswithassprob(RandomIdentifier, Attr).
+numdefprob(attribute(Name, Domain), X) :- hold(attribute(Name, Domain, sort(R, Y1))), 
+                                        posswithdefprob(attribute(Name, Domain, sort(R, Y1))),
+                                        X = #count{Y2 : posswithdefprob(attribute(Name, Domain, sort(R,Y2)))}.
+cardinality_numdefprob(M) :- numdefprob(_, M).
 
 % :~ not numdefprob(attribute(Name, Domain), M), cardinality_numdefprob(M), attribute(Name, Domain), M>1. [@log(@frac(1,M))@0]
 
@@ -68,5 +68,5 @@ poss(RandomIdentifier, attribute(AttrName, Domain, Range)) :- attribute(AttrName
 % %                         S = #sum{@intprob(Prob) : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
 
 % totaldefprob(Attr2, X) :- remprob(Attr2, X), X > 0.
-% :~ not totaldefprob(Attr2, X), remprob(Attr2, X). [@log(@frac(X,100))@0]
+% % :~ not totaldefprob(Attr2, X), remprob(Attr2, X). [@log(@frac(X,100))@0]
 % :- remprob(Attr2, X), X <= 0.

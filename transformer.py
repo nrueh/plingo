@@ -5,6 +5,7 @@ from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
 import plog_meta
+from utils import calculate_weight
 
 
 class LPMLNTransformer(ast.Transformer):
@@ -180,9 +181,8 @@ class LPMLNTransformer(ast.Transformer):
         #     asp_rules = plog.convert_random_selection_rule(
         #         self.plog_attributes, head, body)
         elif self.theory_type == 'pratom':
-            # asp_rules = plog.convert_prob_atom(self.plog_attributes, head,
-            #                                    body)
-            return rule
+            asp_rules = plog_meta.convert_prob_atom(head, body)
+            # return rule
 
         # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:
@@ -255,7 +255,7 @@ class LPMLNTransformer(ast.Transformer):
                 p = float(eval(symbol.string))
                 weight = log(p / (1 - p))
             # TODO: Make rounding factor a global variable?
-            self.weight = Number(int(weight * (10**5)))
+            self.weight = calculate_weight(weight)
             # TODO: Better way to remove TheoryAtom?
             return ast.BooleanConstant(True)
 
