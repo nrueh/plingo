@@ -4,7 +4,7 @@ from math import log
 from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
-from plog_meta import ConvertPlog
+from plog import ConvertPlog
 from utils import calculate_weight
 
 

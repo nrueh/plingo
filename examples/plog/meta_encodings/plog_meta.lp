@@ -71,7 +71,7 @@ numdefprob(attribute(Name, Domain), X) :- hold(attribute(Name, Domain, sort(R, Y
                                         X = #count{Y2 : posswithdefprob(attribute(Name, Domain, sort(R,Y2)))}.
 cardinality_numdefprob(M) :- numdefprob(Attr, M), M>1.
 
-:~ not numdefprob(attribute(Name, Domain), M), cardinality_numdefprob(M), posswithdefprob(attribute(Name,Domain,_)). [@log(@frac(1,M))@0, Domain]
+:~ not numdefprob(attribute(Name, Domain), M), cardinality_numdefprob(M), posswithdefprob(attribute(Name,Domain,_)). [@log(@frac(1,M))@0, Name, Domain]
 
 % Numerator for default probability
 remprob(attribute(AttrName, Domain), @intprob(1)-S) :- 
@@ -88,9 +88,11 @@ remprob(attribute(AttrName, Domain), @intprob(1)-S) :-
 
 totaldefprob(Attr, X) :- remprob(Attr, X), X > 0.
 percentage(X) :- totaldefprob(Attr, X).
-:~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)))@0, Name]
+% :~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)))@0, Name]
 :- remprob(Attr, X), X <= 0.
 
 % #show posswithdefprob/1.
 % #show totaldefprob/2.
-% #show cardinality_numdefprob/1.
+#show cardinality_numdefprob/1.
+#show numdefprob/2.
+% cardinality_numdefprob(2).

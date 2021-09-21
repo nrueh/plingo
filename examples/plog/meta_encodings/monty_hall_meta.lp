@@ -1,4 +1,4 @@
-#include "../../plog_meta.lp".
+#include "plog_meta.lp".
 
 % Sort declarations
 sort(door, (1;2;3)).

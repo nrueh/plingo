@@ -184,7 +184,8 @@ class LPMLNApp(Application):
         ctl.add("base", [], self.evidence_file)
         if self.calculate_plog:
             enable_python()
-            ctl.add("base", [], self._read('plog_meta.lp'))
+            ctl.add("base", [],
+                    self._read('examples/plog/meta_encodings/plog_meta.lp'))
         if self.two_solve_calls:
             ctl.add("base", [], '#external ext_helper.')
         # TODO: Make sure the ext_helper atom is not contained in the program.
