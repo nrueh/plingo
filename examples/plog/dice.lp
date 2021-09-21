@@ -16,11 +16,14 @@ even(D) :- roll(D,Y), Y \ 2 = 0.
 
 % Random selection rules
 random(r1, roll).
-#show hold/1.
 
-% % Probability atoms
-% &pratom(roll(D, Y), "1/6") :- owner(D,john), score(Y).
-% &pratom(roll(D, 6), "1/4") :- owner(D, mike).
-% &pratom(roll(D, Y), "3/20") :- Y != 6, owner(D, mike).
+% Probability atoms
+% &pratom(r1, roll(D, Y), "1/6") :- owner(D,john).
+&pratom(r1, roll(D, 6), "1/4") :- owner(D, mike).
+% &pratom(r1, roll(D, Y), "3/20") :- Y != 6, owner(D, mike).
 
-% #show roll/2.
+% Observations and actions
+obs(roll(d2,1)).
+% do(roll(d2,1)).
+
+#show roll/2.

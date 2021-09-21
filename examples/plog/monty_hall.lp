@@ -1,5 +1,6 @@
 % Sort declarations
-door(1;2;3).
+&sort(door, (1;2;3)).
+&setterm(canopen)
 
 % Attributes
 &attribute(open, (), door).
@@ -12,9 +13,9 @@ door(1;2;3).
 canopen(D) :- not -canopen(D), door(D).
 
 % Random selection rules
-&random(r1, prize, ()).
-&random(r2, selected,()).
-&random(r3, open, (canopen,)).
+random(r1, prize).
+random(r2, selected).
+random(r3, open, (canopen)).
 
 % No probability atoms
 

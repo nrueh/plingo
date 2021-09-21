@@ -51,7 +51,8 @@ intervene(even(D)) :- do(even(D,Y)).
 
 % Rule for dynamic range omitted since no dynamic range
 
-% No observations and actions
+% Observations and actions
+obs(roll(d2,1)).
 
 % Observations have to be true in the answer set
 :- obs(roll(D,Y)), not roll(D,Y).
@@ -66,21 +67,37 @@ roll(D,Y) :- do(roll(D,Y)).
 owner(D,P) :- do(owner(D,P)).
 even(D,B) :- do(even(D,B)).
 
-% %%%%%% Translation to LPMLN %%%%%%
-% % Possible atoms
-% poss(r1,roll(D, Y)) :- score(Y), not intervene(roll(D)), dice(D).
+%%%%%% Translation to LPMLN %%%%%%
+% Possible atoms
+poss(r1,roll(D, Y)) :- score(Y), not intervene(roll(D)), dice(D).
 
-% % Assigned probability
+% Assigned probability
 % posswithassprob(r1, owner(D,john), roll(D,Y)) :- poss(r1, roll(D,Y)), owner(D,john).
-% posswithassprob(r1, owner(D,mike), roll(D,Y)) :- poss(r1, roll(D,Y)), owner(D,mike).
+posswithassprob(r1, owner(D,mike), roll(D, 6)) :- poss(r1, roll(D, 6)), owner(D, mike).
 
-% asspr(r1, owner(D,john), roll(D,Y)) :- roll(D,Y), posswithassprob(r1,owner(D,john),roll(D,Y)).
-% asspr(r1, owner(D,mike), roll(D,Y)) :- roll(D,Y), posswithassprob(r1, owner(D,mike), roll(D,Y)).
+asspr(r1, owner(D,john), roll(D,Y)) :- roll(D,Y), posswithassprob(r1,owner(D,john), roll(D,Y)).
+asspr(r1, owner(D,mike), roll(D,Y)) :- roll(D,Y), posswithassprob(r1, owner(D,mike), roll(D,Y)).
 
-% :- not asspr(r1, owner(D,john), roll(D,Y)), dice(D), score(Y), &log("1/6").
-% :- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y=6, &log("1/4").
-% :- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y!=6, &log("3/20").
+:- not asspr(r1, owner(D,john), roll(D,Y)), dice(D), score(Y), &log("1/6").
+:- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y=6, &log("1/4").
+:- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y!=6, &log("3/20").
 
-% posswithassprob(Attr) :- posswithassprob(R,C,Attr).
+posswithassprob(Attr) :- posswithassprob(R,C,Attr).
 
+% Default probability
+posswithdefprob(roll(D, Y)) :- poss(r1, roll(D, Y)), not posswithassprob(r1, _, roll(D, Y)).
+numdefprob(roll(D), X) :- roll(D, Y), posswithdefprob(roll(D, Y)), X = #count{Z : posswithdefprob(roll(D,Z))}.
+
+:- not numdefprob(roll(D), 2), dice(D), &log("1/2").
+:- not numdefprob(roll(D), 3), dice(D), &log("1/3").
+:- not numdefprob(roll(D), 4), dice(D), &log("1/4").
+:- not numdefprob(roll(D), 5), dice(D), &log("1/5").
+:- not numdefprob(roll(D), 6), dice(D), &log("1/6").
+
+% Numerator for default probability
+remprob(roll(D), 100-Z) :- roll(D, Y), posswithdefprob(roll(D, Y)), Z = #sum{25 : posswithassprob(r1, owner(D, mike), roll(D, 6))}.
+totaldefprob(roll(D), X) :- remprob(roll(D), X), X > 0. 
+:- not totaldefprob(roll(d1), 75),  &log("0.75").
+:- not totaldefprob(roll(d1), 100),  &log("1").
 % &query(roll(D,Y)) :- roll(D,Y).
+#show roll/2.

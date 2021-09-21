@@ -4,6 +4,7 @@ import sys
 from clingo import clingo_main, Application, Control
 from clingo import ApplicationOptions, Flag, Function, Number
 from clingo.ast import AST, parse_string, ProgramBuilder
+from clingo.script import enable_python
 
 from transformer import LPMLNTransformer
 from probability import ProbabilityModule
@@ -182,6 +183,7 @@ class LPMLNApp(Application):
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
         if self.calculate_plog:
+            enable_python()
             ctl.add("base", [], self._read('plog_meta.lp'))
         if self.two_solve_calls:
             ctl.add("base", [], '#external ext_helper.')

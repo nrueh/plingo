@@ -4,7 +4,7 @@ from math import log
 from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
-import plog_meta
+from plog_meta import ConvertPlog
 from utils import calculate_weight
 
 
@@ -20,7 +20,7 @@ class LPMLNTransformer(ast.Transformer):
         self.use_unsat = options[1].flag
         self.two_solve_calls = options[2].flag
         self.query = []
-        self.plog_attributes = {}
+        self.plog = ConvertPlog()
 
     def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
         '''
@@ -154,7 +154,7 @@ class LPMLNTransformer(ast.Transformer):
         head = rule.head
         body = rule.body
 
-        if len(body) == 0:
+        if str(head.ast_type) != 'ASTType.TheoryAtom' and len(body) == 0:
             return rule
 
         # Traverse head and body to look for weights and variables
@@ -175,17 +175,14 @@ class LPMLNTransformer(ast.Transformer):
                                               ast.BooleanConstant(False))
             return ast.Rule(rule.location, int_constraint_head, [head])
 
-        # Convert P-Log theory rules (attribute, random, pr-atom) to the corresponding rules in ASP
-        elif self.theory_type == 'sort':
-            asp_rules = plog_meta.convert_sort(head)
-        elif self.theory_type == 'attribute':
-            asp_rules = plog_meta.convert_attribute(head)
-        # elif self.theory_type == 'random':
-        #     asp_rules = plog.convert_random_selection_rule(
-        #         self.plog_attributes, head, body)
+        # Convert P-Log theory rules (attribute, random, pr-atom)
+        # to the corresponding rules in ASP
+        elif self.theory_type in ['sort', 'setterm', 'attribute']:
+            asp_rules = getattr(self.plog, f'convert_{self.theory_type}')(head)
+
         elif self.theory_type == 'pratom':
-            asp_rules = plog_meta.convert_prob_atom(head, body)
-            # return rule
+            asp_rules = getattr(self.plog, f'convert_{self.theory_type}')(head,
+                                                                          body)
 
         # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:
@@ -202,6 +199,9 @@ class LPMLNTransformer(ast.Transformer):
 
         return asp_rules[-1]
 
+    def visit_Minimize(self, minimize: AST, builder: ProgramBuilder) -> AST:
+        return minimize
+
     def visit_Variable(self, variable: AST) -> AST:
         """
         Collects all global variables encountered in a rule
@@ -216,7 +216,7 @@ class LPMLNTransformer(ast.Transformer):
         """
         self.weight = ''
         if atom.term.name in [
-                'query', 'sort', 'attribute', 'random', 'pratom'
+                'query', 'sort', 'setterm', 'attribute', 'pratom'
         ]:
             self.theory_type = atom.term.name
             return atom
@@ -231,20 +231,6 @@ class LPMLNTransformer(ast.Transformer):
                 if str(args[1]) == 'false':
                     sign = ast.Sign.NoSign
             return ast.Literal(atom.location, sign, ast.SymbolicAtom(evidence))
-            # try:
-            #     self.query.append(atom.term.arguments[0].symbol)
-            # except (AttributeError):
-            #     query = atom.term.arguments[0]
-            #     name = query.name
-            #     try:
-            #         if query.arguments[0].name == '_':
-            #             self.query.append(name)
-            #     except (AttributeError):
-            #         args = [
-            #             Function(arg.symbol.name) for arg in query.arguments
-            #         ]
-            #         self.query.append(Function(name, args))
-            # return ast.BooleanConstant(True)
         else:
             symbol = atom.term.arguments[0].symbol
             if atom.term.name == 'weight':
@@ -259,34 +245,4 @@ class LPMLNTransformer(ast.Transformer):
                 weight = log(p / (1 - p))
             # TODO: Make rounding factor a global variable?
             self.weight = calculate_weight(weight)
-            # TODO: Better way to remove TheoryAtom?
             return ast.BooleanConstant(True)
-
-    # def visit_Interval(self, interval: AST):
-    #     """
-    #     Collects any interval encountered in a rule
-    #     """
-    #     interval_variable = ast.Variable(
-    #         interval.location, f'Interval{self.expansion_variables}')
-    #     conversion = ast.Literal(
-    #         interval.location, ast.Sign.NoSign,
-    #         ast.Comparison(5, interval_variable, interval))
-    #     self.global_variables.append(interval_variable)
-    #     self.expansions_in_body.append(conversion)
-    #     self.expansion_variables += 1
-    #     return interval_variable
-
-    # def visit_Pool(self, pool: AST):
-    #     """
-    #     Collects any pool encountered in a rule
-    #     """
-    #     # TODO: Check if pool is already bound to a variable
-    #     # TODO: How to make sure variable is not used already?
-    #     pool_variable = ast.Variable(pool.location,
-    #                                  f'Pool{self.expansion_variables}')
-    #     conversion = ast.Literal(pool.location, ast.Sign.NoSign,
-    #                              ast.Comparison(5, pool_variable, pool))
-    #     self.global_variables.append(pool_variable)
-    #     self.expansions_in_body.append(conversion)
-    #     self.expansion_variables += 1
-    #     return pool_variable
