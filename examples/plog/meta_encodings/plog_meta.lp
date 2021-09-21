@@ -20,6 +20,10 @@ def intprob(a):
         return Number(a.number*100)
 #end.
 
+% Create boolean sort
+sort(boolean, t).
+sort(boolean, f).
+
 % Create attribute atoms without range
 attribute(Name, Domain) :- attribute(Name, Domain, Range).
 
@@ -88,11 +92,11 @@ remprob(attribute(AttrName, Domain), @intprob(1)-S) :-
 
 totaldefprob(Attr, X) :- remprob(Attr, X), X > 0.
 percentage(X) :- totaldefprob(Attr, X).
-% :~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)))@0, Name]
+:~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)))@0, Name]
 :- remprob(Attr, X), X <= 0.
 
 % #show posswithdefprob/1.
 % #show totaldefprob/2.
-#show cardinality_numdefprob/1.
-#show numdefprob/2.
+% #show cardinality_numdefprob/1.
+% #show numdefprob/2.
 % cardinality_numdefprob(2).

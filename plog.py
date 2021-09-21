@@ -58,22 +58,16 @@ class ConvertPlog:
         ]
         domain_func = ast.Function(loc, 'domain', domain_sort, False)
 
-        if str(attr_range) == 'boolean':
-            range_var = None
-            range_sort = ast.Function(loc, '', [], False)
-        else:
-            range_var = ast.Variable(loc, 'Y')
-            range_sort = ast.Function(
-                loc, 'sort',
-                [ast.Function(loc, str(attr_range), [], False), range_var],
-                False)
+        range_var = ast.Variable(loc, 'Y')
+        range_sort = ast.Function(
+            loc, 'sort',
+            [ast.Function(loc, str(attr_range), [], False), range_var], False)
 
         meta_attr_func = ast.Function(loc, 'attribute',
                                       [name_func, domain_func, range_sort],
                                       False)
         meta_attr_rule_body = [lit(ds) for ds in domain_sort]
-        if str(attr_range) != 'boolean':
-            meta_attr_rule_body.insert(0, lit(range_sort))
+        meta_attr_rule_body.insert(0, lit(range_sort))
         meta_attr_rule = ast.Rule(loc, lit(meta_attr_func),
                                   meta_attr_rule_body)
 
@@ -87,7 +81,9 @@ class ConvertPlog:
 
         # Convert between meta hold terms and readable for negative attributes
         negated_attr = ast.UnaryOperation(loc, ast.UnaryOperator.Minus, attr)
-        del (domain_vars[-1])
+
+        if range_var is not None:
+            del (domain_vars[-1])
         negated_hold = ast.UnaryOperation(loc, ast.UnaryOperator.Minus,
                                           hold_func)
         meta_to_readable_neg = ast.Rule(loc, lit(negated_attr),
