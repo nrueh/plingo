@@ -149,7 +149,6 @@ class LPMLNTransformer(ast.Transformer):
         self.weight = 'alpha'
         self.theory_type = ''
         self.global_variables = []
-        # self.expansions_in_body = []  # TODO: Better name, better method?
 
         head = rule.head
         body = rule.body
@@ -160,10 +159,6 @@ class LPMLNTransformer(ast.Transformer):
         # Traverse head and body to look for weights and variables
         head = self.visit(head)
         body = self.visit(body)
-
-        # # Add pools/intervals that are bound to a variable to the body
-        # for e in self.expansions_in_body:
-        #     body.insert(0, e)
 
         # Query theory atoms are grounded and then processed
         if self.theory_type == 'query':
@@ -192,7 +187,6 @@ class LPMLNTransformer(ast.Transformer):
             asp_rules = self._convert_rule(head, body)
             self.rule_idx += 1
 
-            # TODO: Cleaner way to add/return rules?
             # We obtain between one and three conversion rules,
         for r in asp_rules[:-1]:
             builder.add(r)

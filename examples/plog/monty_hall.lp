@@ -1,6 +1,6 @@
 % Sort declarations
 &sort(door, (1;2;3)).
-&setterm(canopen)
+&setterm(canopen, door).
 
 % Attributes
 &attribute(open, (), door).
@@ -23,3 +23,7 @@ random(r3, open, (canopen)).
 obs(selected(1)).
 obs(open(2)).
 obs(-prize(2)).
+
+#show selected/1.
+#show open/1.
+#show prize/1.

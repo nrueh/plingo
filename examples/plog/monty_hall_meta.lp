@@ -1,4 +1,4 @@
-#include "plog_meta.lp".
+#include "../../plog_meta.lp".
 
 % Sort declarations
 sort(door, (1;2;3)).
@@ -21,9 +21,9 @@ random(r3, open, canopen).
 % No probability atoms
 
 % Observations and actions
-obs(attribute(selected, domain(), sort(door,1))).
-obs(attribute(open, domain(), sort(door,2))).
-obs(-attribute(prize, domain(), sort(door,2))).
+obs(hold(attribute(selected, domain(), sort(door,1)))).
+obs(hold(attribute(open, domain(), sort(door,2)))).
+obs(-hold(attribute(prize, domain(), sort(door,2)))).
 
 % Convert meta attributes back to readable output
 open(D) :- hold(attribute(open, domain(), sort(_, D))).

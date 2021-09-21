@@ -1,4 +1,4 @@
-#include "plog_meta.lp".
+#include "../../plog_meta.lp".
 
 % Sort declarations
 sort(dice, (d1;d2)).
@@ -16,10 +16,6 @@ attribute(owner, domain(sort(dice, D)), sort(person, P)) :- sort(dice, D), sort(
 attribute(even, domain(sort(dice, D)), ()) :- sort(dice, D).
 
 % Regular part
-% hold(attribute(owner, domain(sort(dice, d1)), sort(person, mike))).
-% hold(attribute(owner, domain(sort(dice, d2)), sort(person, john))).
-% hold(even, domain(sort(dice,D)), ()) :- hold(roll, D, sort(score, Y)), Y \ 2 = 0.
-% -hold(even, domain(sort(dice, D)), ()) :- not hold(even, domain(sort(dice,D)), ()), sort(dice, D).
 owner(d1, mike).
 owner(d2, john).
 even(D) :- roll(D,Y), Y \ 2 = 0.

@@ -36,7 +36,7 @@ intervene(attribute(Name, Domain)) :- do(-hold(attribute(Name, Domain, Range))).
                                                                 not intervene(attribute(Name, Domain)).
 
 % Generation rule for random selection rules with set term
-1 {hold(attribute(Name, Domain, sort(Sort,Y))) : sort(Sort,Y), hold(SortTerm, sort(Sort, Y))}1 :- random(_, Name, SortTerm), 
+1 {hold(attribute(Name, Domain, sort(Sort,Y))) : sort(Sort,Y), hold(SetTerm, sort(Sort, Y))}1 :- random(_, Name, SetTerm), 
                                                                 attribute(Name, Domain, sort(Sort,_)), 
                                                                 not intervene(attribute(Name, Domain)).
 
@@ -93,4 +93,4 @@ percentage(X) :- totaldefprob(Attr, X).
 
 % #show posswithdefprob/1.
 % #show totaldefprob/2.
-#show cardinality_numdefprob/1.
+% #show cardinality_numdefprob/1.
