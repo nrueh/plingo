@@ -5,5 +5,5 @@ def lit(func):
     return ast.Literal(func.location, 0, ast.SymbolicAtom(func))
 
 
-def calculate_weight(f):
-    return Number(int(f * (10**5)))
+def calculate_weight(flt, factor):
+    return Number(int(flt * (10**factor)))

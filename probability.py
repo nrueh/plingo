@@ -9,6 +9,7 @@ class ProbabilityModule():
         # TODO: Do weights need to be saved?
         self.translate_hr = options[0].flag
         self.two_solve_calls = options[1].flag
+        self.power_of_ten = options[2]
         self.priorities = priorities
         self.stable_models = []
         self.model_weights = []
@@ -19,7 +20,7 @@ class ProbabilityModule():
         # If hard rules have been translated
         # find stable models of LPMLN
         # (ones with max hard rules satisfied)
-        model_costs = np.array(model_costs) * 10**(-5)
+        model_costs = np.array(model_costs) * 10**(-self.power_of_ten)
         self.model_weights = np.exp(-(model_costs))
         if self.two_solve_calls:
             self.model_weights = self.model_weights[:, -1]

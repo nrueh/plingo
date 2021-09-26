@@ -52,6 +52,7 @@ class LPMLNApp(Application):
         self.calculate_plog = Flag(False)
         self.query = []
         self.evidence_file = ''
+        self.power_of_ten = 5
 
     def _parse_query(self, value):
         """
@@ -120,7 +121,7 @@ class LPMLNApp(Application):
     def _convert(self, ctl: Control, files: Sequence[str]):
         options = [
             self.translate_hard_rules, self.use_unsat_approach,
-            self.two_solve_calls
+            self.two_solve_calls, self.power_of_ten
         ]
         with ProgramBuilder(ctl) as b:
             lt = LPMLNTransformer(options)
@@ -186,6 +187,7 @@ class LPMLNApp(Application):
             enable_python()
             ctl.add("base", [],
                     self._read('examples/plog/meta_encodings/plog_meta.lp'))
+            ctl.add("base", [], f'#const factor={self.power_of_ten}.')
         if self.two_solve_calls:
             ctl.add("base", [], '#external ext_helper.')
         # TODO: Make sure the ext_helper atom is not contained in the program.
@@ -242,9 +244,10 @@ class LPMLNApp(Application):
             #     print(observer.priorities)
             #     print('testasd')
             else:
-                probs = ProbabilityModule(
-                    model_costs, observer.priorities,
-                    [self.translate_hard_rules, self.two_solve_calls])
+                probs = ProbabilityModule(model_costs, observer.priorities, [
+                    self.translate_hard_rules, self.two_solve_calls,
+                    self.power_of_ten
+                ])
                 if self.display_all_probs:
                     probs.print_probs()
                 if self.query != []:

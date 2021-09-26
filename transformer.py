@@ -19,6 +19,7 @@ class LPMLNTransformer(ast.Transformer):
         self.translate_hr = options[0].flag
         self.use_unsat = options[1].flag
         self.two_solve_calls = options[2].flag
+        self.power_of_ten = options[3]
         self.query = []
         self.plog = ConvertPlog()
 
@@ -237,6 +238,5 @@ class LPMLNTransformer(ast.Transformer):
             elif atom.term.name == 'problog':
                 p = float(eval(symbol.string))
                 weight = log(p / (1 - p))
-            # TODO: Make rounding factor a global variable?
-            self.weight = calculate_weight(weight)
+            self.weight = calculate_weight(weight, self.power_of_ten)
             return ast.BooleanConstant(True)

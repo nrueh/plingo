@@ -2,22 +2,24 @@
 from clingo import Number, String
 from math import log as mathlog
 
-def log(a):
+def log(a, factor):
+    factor = factor.number
     if a.string == '0':
         pass
         # TODO: Raise Error
     ln = mathlog(float(eval(a.string)))
-    weight = Number(int(ln * (10**5)))
+    weight = Number(int(ln * (10**factor)))
     return weight
 
 def frac(n,d):
     return String(f'{n.number}/{d.number}')
 
 def intprob(a):
+    factor = 10**6
     if str(a.type) == 'SymbolType.String':
-        return Number(int(float(eval(a.string))*100))
+        return Number(int(float(eval(a.string))*factor))
     elif str(a.type) == 'SymbolType.Number':
-        return Number(a.number*100)
+        return Number(a.number*factor)
 #end.
 
 % Create boolean sort
@@ -65,7 +67,7 @@ poss(RandomIdentifier, attribute(AttrName, Domain, Range)) :- attribute(AttrName
 % Assigned Probability
 posswithassprob(RandomIdentifier, Attr) :- pratom(RandomIdentifier, Attr, Prob), poss(RandomIdentifier, Attr).
 assprob(RandomIdentifier, Attr) :- hold(Attr), posswithassprob(RandomIdentifier, Attr).
-:~ not assprob(RandomIdentifier, Attr), pratom(RandomIdentifier, Attr, Prob). [@log(Prob)@0,RandomIdentifier,Attr]
+:~ not assprob(RandomIdentifier, Attr), pratom(RandomIdentifier, Attr, Prob). [@log(Prob, factor)@0,RandomIdentifier,Attr]
 posswithassprob(Attr) :- posswithassprob(RandomIdentifier, Attr).
 
 % Default probability
@@ -73,16 +75,20 @@ posswithdefprob(Attr) :- poss(RandomIdentifier, Attr), not posswithassprob(Rando
 numdefprob(attribute(Name, Domain), X) :- hold(attribute(Name, Domain, sort(R, Y1))), 
                                         posswithdefprob(attribute(Name, Domain, sort(R, Y1))),
                                         X = #count{Y2 : posswithdefprob(attribute(Name, Domain, sort(R,Y2)))}.
-cardinality_numdefprob(M) :- numdefprob(Attr, M), M>1.
+                                        
+% Helper atom for numdefprob weak constraint
+% cardinality(attribute(Name, Domain), X) :-  posswithdefprob(attribute(Name, Domain, _)), X = #count{Y : posswithdefprob(attribute(Name, Domain, sort(R,Y)))}.
 
-:~ not numdefprob(attribute(Name, Domain), M), cardinality_numdefprob(M), posswithdefprob(attribute(Name,Domain,_)). [@log(@frac(1,M))@0, Name, Domain]
+:~ not numdefprob(attribute(Name, Domain), M), posswithdefprob(attribute(Name,Domain,_)), M=5..6. [@log(@frac(1,M), factor)@0, Name, Domain]
 
 % Numerator for default probability
 remprob(attribute(AttrName, Domain), @intprob(1)-S) :- 
                         Attr = attribute(AttrName, Domain, _),
                         hold(Attr), 
                         posswithdefprob(Attr), 
-                        S = #sum{@intprob(Prob) : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
+                        S = #sum{@intprob(Prob), R, Y : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
+percentage(@intprob(1)-S, Domain) :- attribute(_, Domain), S = #sum{@intprob(Prob), Y : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
+percentage(X) :- percentage(X, _).
 
 % remprob(attribute(AttrName, Domain), 100-S) :- random(RandomIdentifier, AttrName, SetTerm), 
 %                         Attr = attribute(AttrName, Domain, _),
@@ -91,12 +97,8 @@ remprob(attribute(AttrName, Domain), @intprob(1)-S) :-
 %                         S = #sum{@intprob(Prob) : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
 
 totaldefprob(Attr, X) :- remprob(Attr, X), X > 0.
-percentage(X) :- totaldefprob(Attr, X).
-:~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)))@0, Name]
+
+:~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)), factor)@0, Name, Domain]
 :- remprob(Attr, X), X <= 0.
 
-% #show posswithdefprob/1.
-% #show totaldefprob/2.
-% #show cardinality_numdefprob/1.
-% #show numdefprob/2.
-% cardinality_numdefprob(2).
+% percentage(1..100).
