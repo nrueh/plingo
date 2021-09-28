@@ -18,9 +18,9 @@ even(D) :- roll(D,Y), Y \ 2 = 0.
 random(r1, roll).
 
 % Probability atoms
-% &pratom(r1, roll(D, Y), "1/6") :- owner(D,john).
+&pratom(r1, roll(D, Y), "1/6") :- owner(D,john).
 &pratom(r1, roll(D, 6), "1/4") :- owner(D, mike).
-% &pratom(r1, roll(D, Y), "3/20") :- Y != 6, owner(D, mike).
+&pratom(r1, roll(D, Y), "3/20") :- Y != 6, owner(D, mike).
 
 % Observations and actions
 obs(roll(d2,1)).

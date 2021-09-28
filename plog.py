@@ -23,8 +23,8 @@ class ConvertPlog:
 
     def convert_setterm(self, theory_atom):
         # Conversion between meta hold statements and readable
-        # canopen(Y) :- hold(canopen, sort(Range, Y))
-        # hold(canopen, sort(Range, Y)) :- canopen(Y)
+        # setterm(Y) :- hold(setterm, sort(Range, Y))
+        # hold(setterm, sort(Range, Y)) :- setterm(Y)
         loc = theory_atom.location
         name, range_name = theory_atom.term.arguments
         range_var = ast.Variable(loc, 'Y')
@@ -45,6 +45,7 @@ class ConvertPlog:
             domain = [str(d) for d in domain.arguments]
 
         # Create meta attribute facts
+        # attribute(name, domain(Domain, D), sort(Range, Y))
         name_func = ast.Function(loc, str(attr_name), [], False)
 
         domain_vars = [

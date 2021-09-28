@@ -67,7 +67,7 @@ poss(RandomIdentifier, attribute(AttrName, Domain, Range)) :- attribute(AttrName
 % Assigned Probability
 posswithassprob(RandomIdentifier, Attr) :- pratom(RandomIdentifier, Attr, Prob), poss(RandomIdentifier, Attr).
 assprob(RandomIdentifier, Attr) :- hold(Attr), posswithassprob(RandomIdentifier, Attr).
-:~ not assprob(RandomIdentifier, Attr), pratom(RandomIdentifier, Attr, Prob). [@log(Prob, factor)@0,RandomIdentifier,Attr]
+:~ not assprob(RandomIdentifier, Attr), pratom(RandomIdentifier, Attr, Prob). [@log(Prob, factor)@0,assigned,RandomIdentifier,Attr]
 posswithassprob(Attr) :- posswithassprob(RandomIdentifier, Attr).
 
 % Default probability
@@ -75,20 +75,23 @@ posswithdefprob(Attr) :- poss(RandomIdentifier, Attr), not posswithassprob(Rando
 numdefprob(attribute(Name, Domain), X) :- hold(attribute(Name, Domain, sort(R, Y1))), 
                                         posswithdefprob(attribute(Name, Domain, sort(R, Y1))),
                                         X = #count{Y2 : posswithdefprob(attribute(Name, Domain, sort(R,Y2)))}.
-                                        
-% Helper atom for numdefprob weak constraint
-% cardinality(attribute(Name, Domain), X) :-  posswithdefprob(attribute(Name, Domain, _)), X = #count{Y : posswithdefprob(attribute(Name, Domain, sort(R,Y)))}.
 
-:~ not numdefprob(attribute(Name, Domain), M), posswithdefprob(attribute(Name,Domain,_)), M=5..6. [@log(@frac(1,M), factor)@0, Name, Domain]
+% Helper atom for numdefprob weak constraint
+range_cardinality(Name, X) :- attribute(Name, Domain), X = #count{Y : attribute(Name, Domain, sort(R,Y))}.
+
+:~ not numdefprob(attribute(Name, Domain), M), posswithdefprob(attribute(Name, Domain, _)), range_cardinality(Name, X), M=2..X. [@log(@frac(1,M), factor)@0,denominator,Name,Domain]
 
 % Numerator for default probability
-remprob(attribute(AttrName, Domain), @intprob(1)-S) :- 
+percentage(@intprob(1)-S, Domain) :- 
+                    attribute(_, Domain), 
+                    S = #sum{@intprob(Prob), Y : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
+
+remprob(attribute(AttrName, Domain), X) :- 
                         Attr = attribute(AttrName, Domain, _),
                         hold(Attr), 
                         posswithdefprob(Attr), 
-                        S = #sum{@intprob(Prob), R, Y : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
-percentage(@intprob(1)-S, Domain) :- attribute(_, Domain), S = #sum{@intprob(Prob), Y : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
-percentage(X) :- percentage(X, _).
+                        percentage(X, Domain).
+
 
 % remprob(attribute(AttrName, Domain), 100-S) :- random(RandomIdentifier, AttrName, SetTerm), 
 %                         Attr = attribute(AttrName, Domain, _),
@@ -96,9 +99,13 @@ percentage(X) :- percentage(X, _).
 %                         posswithdefprob(Attr), 
 %                         S = #sum{@intprob(Prob) : posswithassprob(RandomIdentifier, attribute(Name, Domain, sort(R, Y))), pratom(RandomIdentifier, attribute(Name, Domain, sort(R, Y)), Prob)}.
 
+
+
 totaldefprob(Attr, X) :- remprob(Attr, X), X > 0.
 
-:~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)), factor)@0, Name, Domain]
-:- remprob(Attr, X), X <= 0.
+% Helper atom for weak constraint generation
+percentage(X) :- percentage(X, _).
+:~ not totaldefprob(attribute(Name, Domain), X), posswithdefprob(attribute(Name, Domain,_)), percentage(X). [@log(@frac(X,@intprob(1)), factor)@0,numerator,Name, Domain]
 
-% percentage(1..100).
+% Percentages cannot be negative
+:- remprob(Attr, X), X <= 0.

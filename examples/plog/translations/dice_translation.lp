@@ -75,8 +75,7 @@ poss(r1,roll(D, Y)) :- score(Y), not intervene(roll(D)), dice(D).
 % posswithassprob(r1, owner(D,john), roll(D,Y)) :- poss(r1, roll(D,Y)), owner(D,john).
 posswithassprob(r1, owner(D,mike), roll(D, 6)) :- poss(r1, roll(D, 6)), owner(D, mike).
 
-asspr(r1, owner(D,john), roll(D,Y)) :- roll(D,Y), posswithassprob(r1,owner(D,john), roll(D,Y)).
-asspr(r1, owner(D,mike), roll(D,Y)) :- roll(D,Y), posswithassprob(r1, owner(D,mike), roll(D,Y)).
+asspr(R, owner(D, P), roll(D, Y)) :- roll(D, Y), posswithassprob(R, owner(D, P), roll(D, Y)).
 
 :- not asspr(r1, owner(D,john), roll(D,Y)), dice(D), score(Y), &log("1/6").
 :- not asspr(r1, owner(D,mike), roll(D,Y)), dice(D), score(Y), Y=6, &log("1/4").
@@ -99,5 +98,7 @@ remprob(roll(D), 100-Z) :- roll(D, Y), posswithdefprob(roll(D, Y)), Z = #sum{25 
 totaldefprob(roll(D), X) :- remprob(roll(D), X), X > 0. 
 :- not totaldefprob(roll(d1), 75),  &log("0.75").
 :- not totaldefprob(roll(d1), 100),  &log("1").
+
 % &query(roll(D,Y)) :- roll(D,Y).
+
 #show roll/2.
