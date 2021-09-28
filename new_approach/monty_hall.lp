@@ -16,7 +16,7 @@ _random(r3, (open,(),D)) :- canopen(D).
 % Observations and actions
 _obs((selected,(),1)).
 _obs((open,(),2)).
-_obs((-prize,(),2)).
+% _obs((prize,(),2)).
 
 %
 % Additional

@@ -31,11 +31,12 @@ _int((P,X)) :- _do((P,X,V)).
 :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_), option = 1,
     Y = #sum { @intprob(Pr),V1 : _random(E,(_, X, V1)), _pr(E,(_,X,V1),Pr) }, Y>0.       [-@log(@frac(@intprob(1)-Y, @intprob(1)), factor),num,E,P,X]
 
+_card(P, C) :- C = #count {V: _random(_, (P,X,V)) }, _random(_, (P, X, _)).
+#show _card/2.
+
 % default denominator
 :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_), option = 1,
-   M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) }, M>2.                       [-@log(@frac(1,M), factor),den,E,P,X]
-
-% range_cardinality(Name, X) :- attribute(Name, Domain), X = #count{Y : attribute(Name, Domain, sort(R,Y))}.
+   M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) }, M=2..C, _card(P, C).                   [-@log(@frac(1,M), factor),den,E,P,X]
 
 % %
 % % option = 2
