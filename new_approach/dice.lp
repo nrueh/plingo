@@ -36,7 +36,7 @@ _random(r1,(roll,D,X)) :- score(X), dice(D).
 % Probability atoms
 _pr(r1,(roll,D,X),"1/6") :- owns(D,john), score(X).
 _pr(r1,(roll,D,6),"1/4") :- owns(D,mike).
-% _pr(r1,(roll,D,X),"3/20") :- X !=6, score(X), owns(D,mike).
+_pr(r1,(roll,D,X),"3/20") :- X !=6, score(X), owns(D,mike).
 
 
 % ? roll(d2)=6.
