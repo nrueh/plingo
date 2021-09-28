@@ -22,7 +22,7 @@ owns:#dice,#person->#bool.
 owns(d1,mike).
 owns(d2,john).
 
-% random(roll(D, )).
+
 %
 %&random{ roll(D,X) : score(X) } :- dice(D).
 %
@@ -30,16 +30,13 @@ _random(r1,(roll,D,X)) :- score(X), dice(D).
 
 % probability information
 
-% pr(roll(D)=6|owns(D,mike))=1/4.
-% &pr{ roll(D,6) } = 1.4  :- owns(D,mike).
+% &pr{ roll(D,6) } = "1/4"  :- owns(D,mike).
 %
 % Probability atoms
 _pr(r1,(roll,D,X),"1/6") :- owns(D,john), score(X).
 _pr(r1,(roll,D,6),"1/4") :- owns(D,mike).
 _pr(r1,(roll,D,X),"3/20") :- X !=6, score(X), owns(D,mike).
 
-
-% ? roll(d2)=6.
 
 %
 % Additional

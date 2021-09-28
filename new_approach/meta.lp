@@ -33,7 +33,7 @@ _int((P,X)) :- _do((P,X,V)).
 
 % default denominator
 :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_), option = 1,
-   M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) }.                       [-@log(@frac(1,M), factor),den,E,P,X]
+   M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) }, M>2.                       [-@log(@frac(1,M), factor),den,E,P,X]
 
 % range_cardinality(Name, X) :- attribute(Name, Domain), X = #count{Y : attribute(Name, Domain, sort(R,Y))}.
 
