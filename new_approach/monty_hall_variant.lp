@@ -18,7 +18,7 @@ _pratom(r1, (prize,(),3), "0.2").
 % Observations and actions
 _obs((selected,(),1)).
 _obs((open,(),2)).
-% -_obs((prize,(),2)).
+-_obs((prize,(),2), false).
 
 _h((prize,(),D)) :- prize(D).
 prize(D) :- _h((prize,(),D)).
