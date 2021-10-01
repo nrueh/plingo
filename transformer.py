@@ -177,7 +177,7 @@ class LPMLNTransformer(ast.Transformer):
             asp_rules = getattr(self.plog, f'convert_{self.theory_type}')(head,
                                                                           body)
         elif self.theory_type in ['obs', 'do']:
-            asp_rules = getattr(self.plog, f'convert_{self.theory_type}')(head)
+            asp_rules = self.plog.convert_obs_do(head)
 
         # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:

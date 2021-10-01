@@ -59,10 +59,12 @@ class ConvertPlog:
         _pr_rule = ast.Rule(loc, lit(_pr), body)
         return [_pr_rule]
 
-    def convert_obs(self, ta):
+    def convert_obs_do(self, ta):
         '''
         &obs { name(dom, val) ; bool}. -> _obs((name, dom, val), bool).
         &obs { name(dom, val) }.       -> _obs((name, dom, val)).
+
+        &do { name(dom, val) }.        -> _do((name, dom, val)).
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
@@ -71,16 +73,5 @@ class ConvertPlog:
         if len(ta.elements) > 1:
             body.append(ta.elements[1].terms[0])
 
-        _obs = ast.Function(loc, '_obs', body, False)
-        print(_obs)
-        return [ast.Rule(loc, lit(_obs), [])]
-
-    def convert_do(self, ta):
-        '''
-        &do { name(dom, val) }.        -> _do((name, dom, val)).
-        '''
-        loc = ta.location
-        attr = ta.elements[0].terms[0]
-        attr_tup = self._get_tuple(attr)
-        _do = ast.Function(loc, '_do', [attr_tup], False)
-        return [ast.Rule(loc, lit(_do), [])]
+        _func = ast.Function(loc, f'_{ta.term.name}', body, False)
+        return [ast.Rule(loc, lit(_func), [])]
