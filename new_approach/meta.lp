@@ -22,7 +22,6 @@ _int((P,X)) :- _do((P,X,V)).
 %
 % Probabilities: TO MAXIMIZE
 %
-#const factor=5.
 #const option=1.
 % #const option=2.
 

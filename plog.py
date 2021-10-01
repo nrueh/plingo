@@ -6,6 +6,13 @@ from utils import lit
 
 
 class ConvertPlog:
+    def _get_tuple(self, attr):
+        loc = attr.location
+        attr_name = ast.Function(loc, attr.name, [], False)
+        domain_vars, range_var = attr.arguments[:-1], attr.arguments[-1]
+        domain_tup = ast.Function(loc, '', domain_vars, False)
+        return ast.Function(loc, '', [attr_name, domain_tup, range_var], False)
+
     def convert_sort(self, theory_atom):
         loc = theory_atom.location
         name, terms = theory_atom.term.arguments
@@ -117,7 +124,6 @@ class ConvertPlog:
         neg_do = ast.Rule(
             loc, lit(do_meta_func_neg),
             [lit(do_func_neg), lit(meta_attr_func)])
-
         return [
             meta_attr_rule, meta_to_readable_pos, readable_to_meta_pos,
             meta_to_readable_neg, readable_to_meta_neg, pos_obs, neg_obs,
@@ -150,4 +156,51 @@ class ConvertPlog:
                               [random_identifier, meta_attr, prob], False)
         body.insert(0, lit(meta_attr))
         pratom_rule = ast.Rule(loc, lit(pratom), body)
+        print(pratom_rule)
         return [pratom_rule]
+
+    def convert_random(self, ta, body):
+        '''
+        Input:
+            &random{ r1; name(D,Y) : range(Y) } :- domain(D).
+        Output:
+            _random(r1,(name,D,Y)) :- range(Y), domain(D).
+            _h((name,D,Y)) :- name(D,Y).
+            name(D,Y) :- _h((name,D,Y)).
+            #show name/X. (X: arity of name(D,Y) atom)
+        '''
+        loc = ta.location
+        exp = ta.elements[0].terms[0]
+        attr = ta.elements[1].terms[0]
+        range = ta.elements[1].condition[0]
+
+        attr_tup = self._get_tuple(attr)
+        _random = ast.Function(loc, '_random', [exp, attr_tup], False)
+
+        body.insert(0, range)
+        _random_rule = ast.Rule(loc, lit(_random), body)
+
+        hold = ast.Function(loc, '_h', [attr_tup], False)
+        attr = ast.Function(loc, attr.name, [v for v in attr.arguments], False)
+        readable_to_meta = ast.Rule(loc, lit(hold), [lit(attr)])
+        meta_to_readable = ast.Rule(loc, lit(attr), [lit(hold)])
+        show = ast.ShowSignature(loc, attr.name, len(attr.arguments), 1, 0)
+        return [_random_rule, readable_to_meta, meta_to_readable, show]
+
+    def convert_pr(self, ta, body):
+        '''
+        Input:
+            &pr{ r1; name(D,Y) } = "3/20"  :- body(D,Y).
+        Output:
+            _pr(r1,(name,D,Y),"3/20") :- body(D,Y).
+        '''
+        loc = ta.location
+        exp = ta.elements[0].terms[0]
+        attr = ta.elements[1].terms[0]
+        prob = ta.guard.term
+
+        attr_tup = self._get_tuple(attr)
+        _pr = ast.Function(loc, '_pr', [exp, attr_tup, prob], False)
+
+        _pr_rule = ast.Rule(loc, lit(_pr), body)
+        return [_pr_rule]

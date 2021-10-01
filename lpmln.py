@@ -17,9 +17,10 @@ THEORY = """
     &problog/1 : constant, body;
     &query/1: constant, head;
     &evidence/2: constant, directive;
-    &sort/2: constant, head;
-    &attribute/3: constant, head;
-    &pratom/3: constant,any
+    &random/0: constant, head;
+    &pr/0: constant, {=}, constant, head;
+    &obs/0, constant, head;
+    &do/0, constant, head
 }.
 """
 # TODO: Add evidence/1 to input language
@@ -185,12 +186,12 @@ class LPMLNApp(Application):
         ctl.add("base", [], self.evidence_file)
         if self.calculate_plog:
             enable_python()
-            ctl.add("base", [],
-                    self._read('examples/plog/meta_encodings/plog_meta.lp'))
+            ctl.add("base", [], self._read('new_approach/meta.lp'))
             ctl.add("base", [], f'#const factor={self.power_of_ten}.')
         if self.two_solve_calls:
             ctl.add("base", [], '#external ext_helper.')
         # TODO: Make sure the ext_helper atom is not contained in the program.
+        # TODO: Change number of underscores for ext_helper and plog meta atoms
 
         if not files:
             files = ["-"]
