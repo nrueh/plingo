@@ -19,8 +19,8 @@ THEORY = """
     &evidence/2: constant, directive;
     &random/0: constant, head;
     &pr/0: constant, {=}, constant, head;
-    &obs/0, constant, head;
-    &do/0, constant, head
+    &obs/0: constant, head;
+    &do/0: constant, head
 }.
 """
 # TODO: Add evidence/1 to input language
