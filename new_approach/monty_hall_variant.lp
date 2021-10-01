@@ -1,5 +1,5 @@
 % Sort declarations
-door(1..3).
+door(1..4).
 
 % Regular part
 -canopen(D) :- selected(D).
@@ -11,16 +11,15 @@ _random(r1, (prize,(),D)) :- door(D).
 _random(r2, (selected,(),D)) :- door(D).
 _random(r3, (open,(),D)) :- canopen(D).
 
-% No probability atoms
+% Probability atoms
+_pratom(r1, (prize,(),1), "0.3").
+_pratom(r1, (prize,(),3), "0.2").
 
 % Observations and actions
 _obs((selected,(),1)).
 _obs((open,(),2)).
 % -_obs((prize,(),2)).
 
-%
-% Additional
-%
 _h((prize,(),D)) :- prize(D).
 prize(D) :- _h((prize,(),D)).
 
@@ -29,7 +28,6 @@ selected(D) :- _h((selected,(),D)).
 
 _h((open,(),D)) :- open(D).
 open(D) :- _h((open,(),D)).
-
 
 #show selected/1.
 #show open/1.
