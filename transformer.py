@@ -173,12 +173,11 @@ class LPMLNTransformer(ast.Transformer):
 
         # Convert P-Log theory rules (attribute, random, pr-atom)
         # to the corresponding rules in ASP
-        elif self.theory_type in ['sort', 'setterm', 'attribute']:
-            asp_rules = getattr(self.plog, f'convert_{self.theory_type}')(head)
-
-        elif self.theory_type == 'pratom':
+        elif self.theory_type in ['random', 'pr']:
             asp_rules = getattr(self.plog, f'convert_{self.theory_type}')(head,
                                                                           body)
+        elif self.theory_type in ['obs', 'do']:
+            asp_rules = self.plog.convert_obs_do(head)
 
         # Hard rules are translated only if option --hr is activated
         elif self.weight == 'alpha' and not self.translate_hr:
@@ -210,9 +209,7 @@ class LPMLNTransformer(ast.Transformer):
         Extracts the weight of the rule and removes the theory atom
         """
         self.weight = ''
-        if atom.term.name in [
-                'query', 'sort', 'setterm', 'attribute', 'pratom'
-        ]:
+        if atom.term.name in ['query', 'random', 'pr', 'obs', 'do']:
             self.theory_type = atom.term.name
             return atom
         elif atom.term.name == 'evidence':

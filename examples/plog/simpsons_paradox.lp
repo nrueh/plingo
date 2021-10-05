@@ -1,28 +1,22 @@
 % Sort declarations
-
-% Attributes
-&attribute(male, (), boolean).
-&attribute(recover, (), boolean).
-&attribute(drug, (), boolean).
-
-% Regular part
+boolean(t;f).
 
 % Random selection rules
-random(r1, male).
-random(r2, recover).
-random(r3, drug).
+&random(r1) { male(B)    : boolean(B) }.
+&random(r2) { recover(B) : boolean(B) }.
+&random(r3) { drug(B)    : boolean(B) }.
 
 % Probability atoms
-&pratom(r1, male(B), "1/2").
-&pratom(r2, recover(B), "0.6") :- male(B), drug(B).
-&pratom(r2, recover(B), "0.7") :- male(B), -drug(B).
-&pratom(r2, recover(B), "0.2") :- -male(B), drug(B).
-&pratom(r2, recover(B), "0.3") :- -male(B), -drug(B).
-&pratom(r3, drug(B), "0.75") :- male(B).
-&pratom(r3, drug(B), "0.25") :- -male(B).
+&pr(r1) { male(t)    } = "1/2".
+&pr(r2) { recover(t) } = "0.6"  :- male(t), drug(t).
+&pr(r2) { recover(t) } = "0.7"  :- male(t), drug(f).
+&pr(r2) { recover(t) } = "0.2"  :- male(f), drug(t).
+&pr(r2) { recover(t) } = "0.3"  :- male(f), drug(f).
+&pr(r3) { drug(t)    } = "0.75" :- male(t).
+&pr(r3) { drug(t)    } = "0.25" :- male(f).
 
 % Observations and actions
-do(drug(t)).
+&do{ drug(f) }.
 
 #show male/1.
 #show recover/1.
