@@ -17,6 +17,8 @@ open(R) :- not -open(R), rooms(R).
 % Additional
 go_in(r0).
 break.
--open(r2).
+% -open(r2).
+
+&pr(r1) { in(1, R) } = "1/2" :- go_in(R), break.
 
 #show in/2.
