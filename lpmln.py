@@ -11,15 +11,15 @@ from probability import ProbabilityModule
 
 THEORY = """
 #theory lpmln{
-    constant { - : 0, unary };
+    constant { };
     &weight/1 : constant, body;
     &log/1 : constant, body;
     &problog/1 : constant, body;
     &query/1: constant, head;
     &evidence/2: constant, directive;
-    &random/0: constant, head;
-    &pr/0: constant, {=}, constant, head;
-    &obs/0: constant, head;
+    &random/1: constant, head;
+    &pr/1: constant, {=}, constant, head;
+    &obs/0: constant, {=}, constant head;
     &do/0: constant, head
 }.
 """
