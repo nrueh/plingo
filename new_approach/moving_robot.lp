@@ -14,7 +14,9 @@ open(R) :- not -open(R), rooms(R).
 % Random rules
 &random(r1) { in(1, R) : open(R) } :- go_in(R1), break.
 
+% Additional
 go_in(r0).
 break.
 -open(r2).
+
 #show in/2.
