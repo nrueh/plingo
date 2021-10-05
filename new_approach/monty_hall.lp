@@ -15,3 +15,7 @@ canopen(D)  :- not -canopen(D), door(D).
 &obs{ selected(1) }.
 &obs{ open(2)     }.
 &obs{ prize(2)    } = false.
+
+#show prize/1.
+#show selected/1.
+#show open/1.

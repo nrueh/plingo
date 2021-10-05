@@ -17,3 +17,7 @@ boolean(t;f).
 
 % Observations and actions
 &do{ drug(f) }.
+
+#show male/1.
+#show recover/1.
+#show drug/1.

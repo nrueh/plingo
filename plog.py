@@ -16,17 +16,16 @@ class ConvertPlog:
     def convert_random(self, ta, body):
         '''
         Input:
-            &random{ r1; name(D, Y) : range(Y) } :- domain(D).
+            &random(r1) { name(D, Y) : range(Y) } :- domain(D).
         Output:
             _random(r1, (name, D, Y)) :- range(Y), domain(D).
             _h((name, D, Y)) :- name(D, Y).
             name(D, Y) :- _h((name, D, Y)).
-            #show name/X. (X: arity of name(D, Y) atom)
         '''
         loc = ta.location
-        exp = ta.elements[0].terms[0]
-        attr = ta.elements[1].terms[0]
-        range = ta.elements[1].condition[0]
+        exp = ta.term.arguments[0]
+        attr = ta.elements[0].terms[0]
+        range = ta.elements[0].condition[0]
 
         attr_tup = self._get_tuple(attr)
         _random = ast.Function(loc, '_random', [exp, attr_tup], False)
@@ -38,19 +37,18 @@ class ConvertPlog:
         attr = ast.Function(loc, attr.name, [v for v in attr.arguments], False)
         readable_to_meta = ast.Rule(loc, lit(hold), [lit(attr)])
         meta_to_readable = ast.Rule(loc, lit(attr), [lit(hold)])
-        show = ast.ShowSignature(loc, attr.name, len(attr.arguments), 1, 0)
-        return [_random_rule, readable_to_meta, meta_to_readable, show]
+        return [_random_rule, readable_to_meta, meta_to_readable]
 
     def convert_pr(self, ta, body):
         '''
         Input:
-            &pr{ r1; name(D, Y) } = "3/20"  :- body(D, Y).
+            &pr(r1) { name(D, Y) } = "3/20"  :- body(D, Y).
         Output:
             _pr(r1, (name,D, Y), "3/20") :- body(D, Y).
         '''
         loc = ta.location
-        exp = ta.elements[0].terms[0]
-        attr = ta.elements[1].terms[0]
+        exp = ta.term.arguments[0]
+        attr = ta.elements[0].terms[0]
         prob = ta.guard.term
 
         attr_tup = self._get_tuple(attr)
@@ -61,17 +59,19 @@ class ConvertPlog:
 
     def convert_obs_do(self, ta):
         '''
-        &obs { name(dom, val) ; bool}. -> _obs((name, dom, val), bool).
-        &obs { name(dom, val) }.       -> _obs((name, dom, val)).
+        &obs { name(dom, val) } = bool. -> _obs((name, dom, val), bool).
+            bool can be omitted and is true by default
 
         &do { name(dom, val) }.        -> _do((name, dom, val)).
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
         attr_tup = self._get_tuple(attr)
-        body = [attr_tup]
-        if len(ta.elements) > 1:
-            body.append(ta.elements[1].terms[0])
-
-        _func = ast.Function(loc, f'_{ta.term.name}', body, False)
+        args = [attr_tup]
+        if ta.term.name == 'obs':
+            if ta.guard is not None:
+                args.append(ta.guard.term)
+            else:
+                args.append(ast.Function(loc, 'true', [], False))
+        _func = ast.Function(loc, f'_{ta.term.name}', args, False)
         return [ast.Rule(loc, lit(_func), [])]
