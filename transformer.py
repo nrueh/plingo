@@ -5,7 +5,10 @@ from clingo import ast, Number, String
 from clingo.ast import AST, ASTSequence, ProgramBuilder
 
 from plog import ConvertPlog
-from utils import calculate_weight
+
+
+def calculate_weight(flt, factor):
+    return Number(int(flt * (10**factor)))
 
 
 class LPMLNTransformer(ast.Transformer):

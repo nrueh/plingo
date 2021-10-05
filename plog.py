@@ -2,7 +2,9 @@
 
 from clingo import ast
 
-from utils import lit
+
+def lit(func):
+    return ast.Literal(func.location, 0, ast.SymbolicAtom(func))
 
 
 class ConvertPlog:
