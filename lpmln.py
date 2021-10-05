@@ -186,7 +186,7 @@ class LPMLNApp(Application):
         ctl.add("base", [], self.evidence_file)
         if self.calculate_plog:
             enable_python()
-            ctl.add("base", [], self._read('new_approach/meta.lp'))
+            ctl.add("base", [], self._read('examples/plog/meta.lp'))
             ctl.add("base", [], f'#const factor={self.power_of_ten}.')
         if self.two_solve_calls:
             ctl.add("base", [], '#external ext_helper.')

@@ -11,9 +11,7 @@
 _h(A) :- _do(A).
 
 _int((P,X)) :- _do((P,X,V)).
-% _int((P,X)) :- _do(-(P,X,V)).
 
-% :- _h((P,X,_)), 2 { _h(P,X,V) }.
 % -_h((P, X, V1)) :- _h((P,X,V2)), V1 != V2, _random(_, (P,X,V1)).
 
 
