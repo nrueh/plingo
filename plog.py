@@ -1,5 +1,3 @@
-# from math import log
-
 from clingo import ast
 
 
