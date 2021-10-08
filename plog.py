@@ -1,6 +1,4 @@
-# from math import log
-
-from clingo import ast
+from clingo import ast, Number
 
 
 def lit(func):
@@ -22,7 +20,7 @@ class ConvertPlog:
         Output:
             _random(r1, (name, D, Y)) :- range(Y), domain(D).
             _h((name, D, Y)) :- name(D, Y).
-            name(D, Y) :- _h((name, D, Y)).
+            { name(D, Y) : _random(_, (name, D, Y))} = 1 :- _random(_, (name, D, _)).
         '''
         loc = ta.location
         exp = ta.term.arguments[0]
@@ -38,8 +36,17 @@ class ConvertPlog:
         hold = ast.Function(loc, '_h', [attr_tup], False)
         attr = ast.Function(loc, attr.name, [v for v in attr.arguments], False)
         readable_to_meta = ast.Rule(loc, lit(hold), [lit(attr)])
-        meta_to_readable = ast.Rule(loc, lit(attr), [lit(hold)])
-        return [_random_rule, readable_to_meta, meta_to_readable]
+
+        anon = ast.Variable(loc, '_')
+        _random_anon = _random.update(arguments=[anon, attr_tup])
+        cond_lit = ast.ConditionalLiteral(loc, lit(attr), [lit(_random_anon)])
+        guard = ast.AggregateGuard(5, ast.SymbolicTerm(loc, Number(1)))
+        agg = ast.Aggregate(loc, None, [cond_lit], guard)
+        attr_tup_anon = attr_tup.update(
+            arguments=[attr_tup.arguments[0], attr_tup.arguments[1], anon])
+        _random_anon2 = _random.update(arguments=[anon, attr_tup_anon])
+        gen_rule = ast.Rule(loc, agg, [lit(_random_anon2)])
+        return [_random_rule, readable_to_meta, gen_rule]
 
     def convert_pr(self, ta, body):
         '''
@@ -59,21 +66,38 @@ class ConvertPlog:
         _pr_rule = ast.Rule(loc, lit(_pr), body)
         return [_pr_rule]
 
-    def convert_obs_do(self, ta):
+    def convert_obs(self, ta):
         '''
-        &obs { name(dom, val) } = bool. -> _obs((name, dom, val), bool).
+        &obs { name(D, Y) } = bool. -> _obs((name, D, Y), bool).
             bool can be omitted and is true by default
-
-        &do { name(dom, val) }.        -> _do((name, dom, val)).
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
         attr_tup = self._get_tuple(attr)
         args = [attr_tup]
-        if ta.term.name == 'obs':
-            if ta.guard is not None:
-                args.append(ta.guard.term)
-            else:
-                args.append(ast.Function(loc, 'true', [], False))
-        _func = ast.Function(loc, f'_{ta.term.name}', args, False)
-        return [ast.Rule(loc, lit(_func), [])]
+
+        if ta.guard is not None:
+            args.append(ta.guard.term)
+        else:
+            args.append(ast.Function(loc, 'true', [], False))
+        _obs = ast.Function(loc, f'_{ta.term.name}', args, False)
+
+        return [ast.Rule(loc, lit(_obs), [])]
+
+    def convert_do(self, ta):
+        '''
+        Input:
+            &do { name(D, Y) }.
+        Output:
+            _do((name, D, Y)).
+            name(D, Y) :- _do((name, D, Y)).
+        '''
+        loc = ta.location
+        attr = ta.elements[0].terms[0]
+        attr_tup = self._get_tuple(attr)
+        args = [attr_tup]
+        _do = ast.Function(loc, f'_{ta.term.name}', args, False)
+
+        attr = ast.Function(loc, attr.name, [v for v in attr.arguments], False)
+        do_rule = ast.Rule(loc, lit(attr), [lit(_do)])
+        return [ast.Rule(loc, lit(_do), []), do_rule]

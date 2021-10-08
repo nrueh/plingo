@@ -2,13 +2,13 @@
 % Meta-encoding
 %
 
-{ _h((P,X,V)) : _random(_, (P,X,V))} = 1 :- _random(_, (P,X, _)).
+% { _h((P,X,V)) : _random(_, (P,X,V))} = 1 :- _random(_, (P,X, _)).
 % { _h(A) : _random(E, A)} = 1 :- _random(E, _).
 
 :- not _h(A), _obs(A, true).
 :- _h(A), _obs(A, false).
 
-_h(A) :- _do(A).
+% _h(A) :- _do(A).
 
 _int((P,X)) :- _do((P,X,V)).
 
