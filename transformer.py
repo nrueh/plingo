@@ -131,10 +131,10 @@ class LPMLNTransformer(ast.Transformer):
                 body.insert(0, not_head)
 
             # TODO: Should the two solve calls work with unsat as well?
-            # TODO: Check if ext_helper does not exist already
+            # TODO: Check if _ext_helper does not exist already
             if self.two_solve_calls and str(priority) == '0':
                 ext_helper_atom = ast.SymbolicAtom(
-                    ast.Function(loc, 'ext_helper', [], False))
+                    ast.Function(loc, '_ext_helper', [], False))
                 ext_helper_atom = ast.Literal(loc, ast.Sign.NoSign,
                                               ext_helper_atom)
                 body.insert(0, ext_helper_atom)
