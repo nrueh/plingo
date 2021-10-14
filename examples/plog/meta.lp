@@ -1,7 +1,6 @@
 %
 % Meta-encoding
 %
-
 { _h((P,X,V)) : _random(_, (P,X,V))} = 1 :- _random(_, (P,X, _)).
 % { _h(A) : _random(E, A)} = 1 :- _random(E, _).
 
@@ -60,11 +59,11 @@ _densum(E,(P,X),M)   :- _default(E,(P,X)), M = #count{ V : _random(E,(P,X,V)), n
 :- _pr(E,(P,X),Pr), _no_int(E,(P,X)),   Pr=0.
 
 % default numerator
-:~ _numsum(E, (P,X), Y), @intpr(1)-Y>0. [-@log(@frac(@intpr(1)-Y, @intpr(1)),factor),num,E,P,X]
-:- _numsum(E, (P,X), Y),                @intpr(1)-Y<=0.
+:~ _numsum(E,(P,X), Y), @intpr(1)-Y>0.  [-@log(@frac(@intpr(1)-Y, @intpr(1)),factor),num,E,P,X]
+:- _numsum(E,(P,X), Y),                 @intpr(1)-Y<=0.
 
 % default denominator
-:~ _densum(E,(P,X),M),   M>1.            [-@log(@frac(1,M),factor),den,E,P,X]
+:~ _densum(E,(P,X),M),   M>1.           [-@log(@frac(1,M),factor),den,E,P,X]
 :- _densum(E,(P,X),M),                   M=0.
 
 
