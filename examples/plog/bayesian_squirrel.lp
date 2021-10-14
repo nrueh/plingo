@@ -7,12 +7,12 @@ boolean(t;f).
 found(P, D, f) :- not found(P, D, t), patch(P), day(D).
 
 % Random rules
-&random(r1) { hidden_in(P) : patch(P) }.
-&random(r2) { found(P, D, B) : boolean(B) } :- hidden_in(P), look(D, P).
+&random { hidden_in(P) : patch(P) }.
+&random { found(P, D, B) : boolean(B) } :- hidden_in(P), look(D, P).
 
 % Probability
-&pr(r1) { hidden_in(p1) } = "0.8".
-&pr(r2) { found(P, D, t) } = "0.2" :- patch(P), day(D).
+&pr { hidden_in(p1) } = "0.8".
+&pr { found(P, D, t) } = "0.2" :- patch(P), day(D).
 
 % Day 1
 look(1, p1).

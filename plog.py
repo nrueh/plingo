@@ -35,6 +35,8 @@ class ConvertPlog:
         '''
         Input:
             &random(r1(D)) { name(D, Y) : range(Y) } :- domain(D).
+                or
+            &random(r1) { name(D, Y) : range(Y) } :- domain(D).
                 or if one random rule per attribute
             &random { name(D, Y) : range(Y) } :- domain(D).
         Output:
@@ -65,9 +67,11 @@ class ConvertPlog:
     def convert_pr(self, ta, body):
         '''
         Input:
-            &pr(r1(D)) { name(D, Y) } = "3/20"  :- body(D, Y).
+            &pr(r1(D))  { name(D, Y) } = "3/20"  :- body(D, Y).
+                or
+            &pr(r1)     { name(D, Y) } = "3/20"  :- body(D, Y).
                 or if one random rule per attribute
-            &pr     { name(D, Y) } = "3/20"  :- body(D, Y).
+            &pr         { name(D, Y) } = "3/20"  :- body(D, Y).
         Output:
             _pr((r1, name, D), (name,D, Y), "3/20") :- body(D, Y).
                 or
