@@ -2,21 +2,21 @@
 boolean(t;f).
 
 % Random selection rules
-&random(r1) { male(B)    : boolean(B) }.
-&random(r2) { recover(B) : boolean(B) }.
-&random(r3) { drug(B)    : boolean(B) }.
+&random { male(B)    : boolean(B) }.
+&random { recover(B) : boolean(B) }.
+&random { drug(B)    : boolean(B) }.
 
 % Probability atoms
-&pr(r1) { male(t)    } = "1/2".
-&pr(r2) { recover(t) } = "0.6"  :- male(t), drug(t).
-&pr(r2) { recover(t) } = "0.7"  :- male(t), drug(f).
-&pr(r2) { recover(t) } = "0.2"  :- male(f), drug(t).
-&pr(r2) { recover(t) } = "0.3"  :- male(f), drug(f).
-&pr(r3) { drug(t)    } = "0.75" :- male(t).
-&pr(r3) { drug(t)    } = "0.25" :- male(f).
+&pr { male(t)    } = "1/2".
+&pr { recover(t) } = "0.6"  :- male(t), drug(t).
+&pr { recover(t) } = "0.7"  :- male(t), drug(f).
+&pr { recover(t) } = "0.2"  :- male(f), drug(t).
+&pr { recover(t) } = "0.3"  :- male(f), drug(f).
+&pr { drug(t)    } = "0.75" :- male(t).
+&pr { drug(t)    } = "0.25" :- male(f).
 
 % Observations and actions
-&do{ drug(f) }.
+&do{ drug(t) }.
 
 #show male/1.
 #show recover/1.

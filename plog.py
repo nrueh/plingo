@@ -6,6 +6,16 @@ def lit(func):
 
 
 class ConvertPlog:
+    def __get_experiment_id(self, args):
+        if len(args) != 0:
+            if str(args[0].ast_type).endswith('Function'):
+                exp_id = args[0].name
+            elif str(args[0].ast_type).endswith('SymbolicTerm'):
+                exp_id = args[0].symbol.name
+        else:
+            exp_id = ''
+        return exp_id
+
     def __get_tuple(self, attr, exp_id=''):
         loc = attr.location
         attr_name = ast.Function(loc, attr.name, [], False)
@@ -35,10 +45,7 @@ class ConvertPlog:
             3. name(D, Y) :- _h((name, D, Y)).
         '''
         loc = ta.location
-        if len(ta.term.arguments) != 0:
-            exp_id = ta.term.arguments[0].name
-        else:
-            exp_id = ''
+        exp_id = self.__get_experiment_id(ta.term.arguments)
 
         attr = ta.elements[0].terms[0]
         range = ta.elements[0].condition[0]
@@ -67,10 +74,8 @@ class ConvertPlog:
             _pr((name, D), (name,D, Y), "3/20") :- body(D, Y).
         '''
         loc = ta.location
-        if len(ta.term.arguments) != 0:
-            exp_id = ta.term.arguments[0].name
-        else:
-            exp_id = ''
+        exp_id = self.__get_experiment_id(ta.term.arguments)
+
         attr = ta.elements[0].terms[0]
         prob = ta.guard.term
 
