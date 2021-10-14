@@ -1,8 +1,8 @@
 %
 % Meta-encoding
 %
-{ _h((P,X,V)) : _random(_, (P,X,V))} = 1 :- _random(_, (P,X, _)).
-% { _h(A) : _random(E, A)} = 1 :- _random(E, _).
+% { _h((P,X,V)) : _random(_, (P,X,V))} = 1 :- _random(_, (P,X, _)).
+{ _h(A) : _random(E, A)} = 1 :- _random(E, _).
 
 :- not _h(A), _obs(A, true).
 :- _h(A), _obs(A, false).
@@ -47,24 +47,24 @@ _int((P,X)) :- _do((P,X,V)).
 % option = 2
 %
 
-_no_int(E,(P,X))  :- _random(E,(P,X,_)), not _int((P,X)).
-_pr(E,(P,X),Pr)   :- _random(E,(P,X,V)), _h((P,X,V)), _pr(E,(P,X,V),Pr).
-_default(E,(P,X)) :- _no_int(E,(P,X)), not _pr(E,(P,X), _).
+_no_int(E)  :- _random(E,(P,X,_)), not _int((P,X)).
+_pr(E,Pr)   :- _random(E,A), _h(A), _pr(E,A,Pr).
+_default(E) :- _no_int(E), not _pr(E, _).
 
-_numsum(E, (P,X), Y) :- _default(E,(P,X)), Y = #sum { @intpr(Pr),V : _random(E,(P,X,V)), _pr(E,(P,X,V),Pr) }.
-_densum(E,(P,X),M)   :- _default(E,(P,X)), M = #count{ V : _random(E,(P,X,V)), not _pr(E,(P,X,V),_) }.
+_numsum(E, Y) :- _default(E), Y = #sum { @intpr(Pr),A : _random(E,A), _pr(E,A,Pr) }.
+_densum(E,M)   :- _default(E), M = #count{ A : _random(E,A), not _pr(E,A,_) }.
 
 % assigned probability
-:~ _pr(E,(P,X),Pr), _no_int(E,(P,X)).   [-@log(Pr,factor),E,P,X]
-:- _pr(E,(P,X),Pr), _no_int(E,(P,X)),   Pr=0.
+:~ _pr(E,Pr), _no_int(E).         [-@log(Pr,factor),E]
+:- _pr(E,Pr), _no_int(E),         Pr=0.
 
 % default numerator
-:~ _numsum(E,(P,X), Y), @intpr(1)-Y>0.  [-@log(@frac(@intpr(1)-Y, @intpr(1)),factor),num,E,P,X]
-:- _numsum(E,(P,X), Y),                 @intpr(1)-Y<=0.
+:~ _numsum(E, Y), @intpr(1)-Y>0.  [-@log(@frac(@intpr(1)-Y, @intpr(1)),factor),num,E]
+:- _numsum(E, Y),                 @intpr(1)-Y<=0.
 
 % default denominator
-:~ _densum(E,(P,X),M),   M>1.           [-@log(@frac(1,M),factor),den,E,P,X]
-:- _densum(E,(P,X),M),                   M=0.
+:~ _densum(E,M),   M>1.           [-@log(@frac(1,M),factor),den,E]
+:- _densum(E,M),                   M=0.
 
 
 #script (python)
