@@ -12,13 +12,13 @@ in(1, R) :- in(0, R), not -in(1, R).
 open(R) :- not -open(R), rooms(R).
 
 % Random rules
-&random(r1) { in(1, R) : open(R) } :- go_in(R1), break.
+&random { in(1, R) : open(R) } :- go_in(R1), break.
 
 % Additional
 go_in(r0).
 break.
 % -open(r2).
 
-&pr(r1) { in(1, R) } = "1/2" :- go_in(R), break.
+&pr { in(1, R) } = "1/2" :- go_in(R), break.
 
 #show in/2.

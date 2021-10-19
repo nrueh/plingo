@@ -6,29 +6,54 @@ def lit(func):
 
 
 class ConvertPlog:
-    def _get_tuple(self, attr):
+    def __get_experiment_id(self, args):
+        if len(args) != 0:
+            if str(args[0].ast_type).endswith('Function'):
+                exp_id = args[0].name
+            elif str(args[0].ast_type).endswith('SymbolicTerm'):
+                exp_id = args[0].symbol.name
+        else:
+            exp_id = ''
+        return exp_id
+
+    def __get_tuple(self, attr, exp_id=''):
         loc = attr.location
         attr_name = ast.Function(loc, attr.name, [], False)
         domain_vars, range_var = attr.arguments[:-1], attr.arguments[-1]
         domain_tup = ast.Function(loc, '', domain_vars, False)
-        return ast.Function(loc, '', [attr_name, domain_tup, range_var], False)
+        attr_tup = ast.Function(loc, '', [attr_name, domain_tup, range_var],
+                                False)
+        if exp_id == '':
+            exp_args = [attr_name, domain_tup]
+        else:
+            exp_id = ast.Function(loc, exp_id, [], False)
+            exp_args = [exp_id, attr_name, domain_tup]
+        exp_tup = ast.Function(loc, '', exp_args, False)
+        return exp_tup, attr_tup,
 
     def convert_random(self, ta, body):
         '''
         Input:
+            &random(r1(D)) { name(D, Y) : range(Y) } :- domain(D).
+                or
             &random(r1) { name(D, Y) : range(Y) } :- domain(D).
+                or if one random rule per attribute
+            &random { name(D, Y) : range(Y) } :- domain(D).
         Output:
-            _random(r1, (name, D, Y)) :- range(Y), domain(D).
-            _h((name, D, Y)) :- name(D, Y).
-            name(D, Y) :- _h((name, D, Y)).
+            1. _random((r1,name,D), (name,D,Y)) :- range(Y), domain(D).
+                  or
+               _random((name,D), (name,D,Y)) :- range(Y), domain(D).
+            2. _h((name, D, Y)) :- name(D, Y).
+            3. name(D, Y) :- _h((name, D, Y)).
         '''
         loc = ta.location
-        exp = ta.term.arguments[0]
+        exp_id = self.__get_experiment_id(ta.term.arguments)
+
         attr = ta.elements[0].terms[0]
         range = ta.elements[0].condition[0]
 
-        attr_tup = self._get_tuple(attr)
-        _random = ast.Function(loc, '_random', [exp, attr_tup], False)
+        exp_tup, attr_tup = self.__get_tuple(attr, exp_id)
+        _random = ast.Function(loc, '_random', [exp_tup, attr_tup], False)
 
         body.insert(0, range)
         _random_rule = ast.Rule(loc, lit(_random), body)
@@ -42,17 +67,24 @@ class ConvertPlog:
     def convert_pr(self, ta, body):
         '''
         Input:
-            &pr(r1) { name(D, Y) } = "3/20"  :- body(D, Y).
+            &pr(r1(D))  { name(D, Y) } = "3/20"  :- body(D, Y).
+                or
+            &pr(r1)     { name(D, Y) } = "3/20"  :- body(D, Y).
+                or if one random rule per attribute
+            &pr         { name(D, Y) } = "3/20"  :- body(D, Y).
         Output:
-            _pr(r1, (name,D, Y), "3/20") :- body(D, Y).
+            _pr((r1, name, D), (name,D, Y), "3/20") :- body(D, Y).
+                or
+            _pr((name, D), (name,D, Y), "3/20") :- body(D, Y).
         '''
         loc = ta.location
-        exp = ta.term.arguments[0]
+        exp_id = self.__get_experiment_id(ta.term.arguments)
+
         attr = ta.elements[0].terms[0]
         prob = ta.guard.term
 
-        attr_tup = self._get_tuple(attr)
-        _pr = ast.Function(loc, '_pr', [exp, attr_tup, prob], False)
+        exp_tup, attr_tup = self.__get_tuple(attr, exp_id)
+        _pr = ast.Function(loc, '_pr', [exp_tup, attr_tup, prob], False)
 
         _pr_rule = ast.Rule(loc, lit(_pr), body)
         return [_pr_rule]
@@ -66,7 +98,7 @@ class ConvertPlog:
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
-        attr_tup = self._get_tuple(attr)
+        _, attr_tup = self.__get_tuple(attr)
         args = [attr_tup]
         if ta.term.name == 'obs':
             if ta.guard is not None:

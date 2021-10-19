@@ -7,13 +7,13 @@ door(1..4).
 canopen(D) :- not -canopen(D), door(D).
 
 % Random selection rules
-&random(r1) { prize(D)    : door(D)    }.
-&random(r2) { selected(D) : door(D)    }.
-&random(r3) { open(D)     : canopen(D) }.
+&random { prize(D)    : door(D)    }.
+&random { selected(D) : door(D)    }.
+&random { open(D)     : canopen(D) }.
 
 % Probability atoms
-&pr(r1) { prize(1) } = "0.3".
-&pr(r1) { prize(3) } = "0.2".
+&pr { prize(1) } = "0.3".
+&pr { prize(3) } = "0.2".
 
 % Observations and actions
 &obs{ selected(1) }.
