@@ -3,7 +3,7 @@ import sys
 
 from clingo import clingo_main, Application, Control
 from clingo import ApplicationOptions, Flag, Function, Number
-from clingo.ast import AST, parse_string, ProgramBuilder
+from clingo.ast import AST, ProgramBuilder, parse_files
 from clingo.script import enable_python
 
 from transformer import LPMLNTransformer
@@ -126,9 +126,7 @@ class LPMLNApp(Application):
         ]
         with ProgramBuilder(ctl) as b:
             lt = LPMLNTransformer(options)
-            for path in files:
-                parse_string(self._read(path),
-                             lambda stm: b.add(cast(AST, lt.visit(stm, b))))
+            parse_files(files, lambda stm: b.add(cast(AST, lt.visit(stm, b))))
         # for q in lt.query:
         #     self.query.append(q)
 
@@ -189,9 +187,9 @@ class LPMLNApp(Application):
             ctl.add("base", [], self._read('examples/plog/meta.lp'))
             ctl.add("base", [], f'#const factor={self.power_of_ten}.')
         if self.two_solve_calls:
-            ctl.add("base", [], '#external ext_helper.')
-        # TODO: Make sure the ext_helper atom is not contained in the program.
-        # TODO: Change number of underscores for ext_helper and plog meta atoms
+            ctl.add("base", [], '#external _ext_helper.')
+        # TODO: Make sure the _ext_helper atom is not contained in the program.
+        # TODO: Change number of underscores for _ext_helper and plog meta atoms
 
         if not files:
             files = ["-"]
@@ -213,13 +211,13 @@ class LPMLNApp(Application):
             # TODO: Suppress output of first solve call, add flag
             # TODO: Activate this per flag
 
-            ctl.assign_external(Function("ext_helper"), False)
+            ctl.assign_external(Function("_ext_helper"), False)
             with ctl.solve(yield_=True) as h:
                 for m in h:
                     bound_hr = m.cost[0]
-            # TODO: Don't show ext_helper
-            # ctl.release_external(Function("ext_helper"))
-            ctl.assign_external(Function("ext_helper"), True)
+            # TODO: Don't show _ext_helper
+            # ctl.release_external(Function("_ext_helper"))
+            ctl.assign_external(Function("_ext_helper"), True)
 
         if self.display_all_probs or self.query != []:
             ctl.configuration.solve.opt_mode = f'enum, {bound_hr}, {(2**63)-1}'

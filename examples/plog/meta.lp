@@ -12,61 +12,60 @@
 
 _int((P,X)) :- _do((P,X,V)).
 
-% -_h((P, X, V1)) :- _h((P,X,V2)), V1 != V2, _random(_, (P,X,V1)).
-
 
 %
 % Probabilities: TO MAXIMIZE
 %
-% #const option=1.
-% % #const option=2.
 
-% %
+%
 % % option = 1
-% %
+%
 
 % % assigned probability
-% :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)),     _pr(E,(P,X,V),Pr), option = 1.     [-@log(Pr, factor),E,P,X]
+% :~ _random((E,P,X),A), _h(A), not _int((P,X)),     _pr((E,P,X),A,Pr).           [-@log(Pr,factor),(E,P,X)]
 
-% :- _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)),     _pr(E,(P,X,V),Pr), option = 1,     Pr=0.
+% :- _random((E,P,X),A), _h(A), not _int((P,X)),     _pr((E,P,X),A,Pr),           Pr=0.
 
 % % default numerator
-% :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_), option = 1,
-%     Y = #sum { @intpr(Pr),V1 : _random(E,(_, X, V1)), _pr(E,(_,X,V1),Pr) }, @intpr(1)-Y>0.  [-@log(@frac(@intpr(1)-Y, @intpr(1)), factor),num,E,P,X]
+% :~ _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%     Y = #sum { @intpr(Pr),A1 : _random(E,A1), _pr(E,A1,Pr) }, @intpr(1)-Y>0.    [-@log(@frac(@intpr(1)-Y,@intpr(1)),factor),num,E]
 
-% :- _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_), option = 1,
-%     Y = #sum { @intpr(Pr),V1 : _random(E,(_, X, V1)), _pr(E,(_,X,V1),Pr) },                 @intpr(1)-Y<=0.
+% :- _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%     Y = #sum { @intpr(Pr),A1 : _random(E,A1), _pr(E,A1,Pr) },                   @intpr(1)-Y<=0.
 
 % % default denominator
-% :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_), option = 1,
-%    M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) }, M>1.                     [-@log(@frac(1,M), factor),den,E,P,X]
+% :~ _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%    M = #count { A1 : _random(E,A1), not _pr(E,A1,_) }, M>1.                     [-@log(@frac(1,M),factor),den,E,P,X]
 
-% :- _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_), option = 1,
-%    M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) },                          M=0.
+% :- _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%    M = #count { A1 : _random(E,A1), not _pr(E,A1,_) },                          M=0.
 
 %
 % option = 2
 %
 
-_no_int(E,(P,X))  :- _random(E,(P,X,_)), not _int((P,X)).
-_pr(E,(P,X),Pr)   :- _random(E,(P,X,V)), _h((P,X,V)), _pr(E,(P,X,V),Pr).
-_default(E,(P,X)) :- _no_int(E,(P,X)), not _pr(E,(P,X), _).
+%
+% option = 2
+%
 
-_numsum(E, (P,X), Y) :- _default(E,(P,X)), Y = #sum { @intpr(Pr),V : _random(E,(P,X,V)), _pr(E,(P,X,V),Pr) }.
-_densum(E,(P,X),M)   :- _default(E,(P,X)), M = #count{ V : _random(E,(P,X,V)), not _pr(E,(P,X,V),_) }.
+_no_int(E)  :- _random(E,(P,X,_)), not _int((P,X)).
+_pr(E,Pr)   :- _random(E,A), _h(A), _pr(E,A,Pr).
+_default(E) :- _no_int(E), not _pr(E, _).
+
+_numsum(E, Y) :- _default(E), Y = #sum { @intpr(Pr),A : _random(E,A), _pr(E,A,Pr) }.
+_densum(E,M)   :- _default(E), M = #count{ A : _random(E,A), not _pr(E,A,_) }.
 
 % assigned probability
-:~ _pr(E,(P,X),Pr), _no_int(E,(P,X)).   [-@log(Pr,factor),E,P,X]
-:- _pr(E,(P,X),Pr), _no_int(E,(P,X)),   Pr=0.
+:~ _pr(E,Pr), _no_int(E).         [-@log(Pr,factor),E]
+:- _pr(E,Pr), _no_int(E),         Pr=0.
 
 % default numerator
-:~ _numsum(E, (P,X), Y), @intpr(1)-Y>0. [-@log(@frac(@intpr(1)-Y, @intpr(1)),factor),num,E,P,X]
-:- _numsum(E, (P,X), Y),                @intpr(1)-Y<=0.
+:~ _numsum(E, Y), @intpr(1)-Y>0.  [-@log(@frac(@intpr(1)-Y, @intpr(1)),factor),num,E]
+:- _numsum(E, Y),                 @intpr(1)-Y<=0.
 
 % default denominator
-:~ _densum(E,(P,X),M),   M>1.            [-@log(@frac(1,M),factor),den,E,P,X]
-:- _densum(E,(P,X),M),                   M=0.
-
+:~ _densum(E,M),   M>1.           [-@log(@frac(1,M),factor),den,E]
+:- _densum(E,M),                   M=0.
 
 
 #script (python)

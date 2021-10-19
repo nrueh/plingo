@@ -131,10 +131,10 @@ class LPMLNTransformer(ast.Transformer):
                 body.insert(0, not_head)
 
             # TODO: Should the two solve calls work with unsat as well?
-            # TODO: Check if ext_helper does not exist already
+            # TODO: Check if _ext_helper does not exist already
             if self.two_solve_calls and str(priority) == '0':
                 ext_helper_atom = ast.SymbolicAtom(
-                    ast.Function(loc, 'ext_helper', [], False))
+                    ast.Function(loc, '_ext_helper', [], False))
                 ext_helper_atom = ast.Literal(loc, ast.Sign.NoSign,
                                               ext_helper_atom)
                 body.insert(0, ext_helper_atom)
@@ -190,7 +190,7 @@ class LPMLNTransformer(ast.Transformer):
             asp_rules = self._convert_rule(head, body)
             self.rule_idx += 1
 
-            # We obtain between one and three conversion rules,
+        # We might obtain more than one rule,
         for r in asp_rules[:-1]:
             builder.add(r)
 
