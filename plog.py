@@ -40,14 +40,12 @@ class ConvertPlog:
                 or if one random rule per attribute
             &random { name(D, Y) : range(Y) } :- domain(D).
         Output:
-            _random(r1, (name, D, Y)) :- range(Y), domain(D).
-            _h((name, D, Y)) :- name(D, Y).
-            { name(D, Y) : _random(_, (name, D, Y))} = 1 :- _random(_, (name, D, _)).
-            1. _random((r1,name,D), (name,D,Y)) :- range(Y), domain(D).
+            1. _random(r1, (name, D, Y)) :- range(Y), domain(D).
                   or
-               _random((name,D), (name,D,Y)) :- range(Y), domain(D).
+                _random((name,D), (name,D,Y)) :- range(Y), domain(D).
             2. _h((name, D, Y)) :- name(D, Y).
-            3. name(D, Y) :- _h((name, D, Y)).
+            3. { name(D, Y) : _random(_, (name, D, Y))} = 1 :-
+                                            _random(_, (name, D, _)).
         '''
         loc = ta.location
         exp_id = self.__get_experiment_id(ta.term.arguments)
@@ -108,7 +106,7 @@ class ConvertPlog:
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
-        attr_tup = self._get_tuple(attr)
+        _, attr_tup = self.__get_tuple(attr)
         args = [attr_tup]
 
         if ta.guard is not None:
@@ -116,7 +114,6 @@ class ConvertPlog:
         else:
             args.append(ast.Function(loc, 'true', [], False))
         _obs = ast.Function(loc, f'_{ta.term.name}', args, False)
-
         return [ast.Rule(loc, lit(_obs), [])]
 
     def convert_do(self, ta):
