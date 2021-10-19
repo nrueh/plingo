@@ -53,15 +53,15 @@ _numsum(E,Y) :- _default(E), Y = #sum { @intpr(Pr),A : _random(E,A), _pr(E,A,Pr)
 _densum(E,M) :- _default(E), M = #count{ A : _random(E,A), not _pr(E,A,_) }.
 
 % assigned probability
-:~ _pr(E,Pr), _no_int(E).       [   -@log(Pr,factor),E]
+:~ _pr(E,Pr), _no_int(E).       [   -@log(Pr,_lpmln_factor),E]
 :- _pr(E,Pr), _no_int(E),           Pr = 0.
 
 % default numerator
-:~ _numsum(E,Y), @intpr(1)-Y > 0.   [-@log(@frac(@intpr(1)-Y,@intpr(1)),factor),num,E]
+:~ _numsum(E,Y), @intpr(1)-Y > 0.   [-@log(@frac(@intpr(1)-Y,@intpr(1)),_lpmln_factor),num,E]
 :- _numsum(E,Y),                    @intpr(1) - Y <= 0.
 
 % default denominator
-:~ _densum(E,M), M > 1.             [-@log(@frac(1,M),factor),den,E]
+:~ _densum(E,M), M > 1.             [-@log(@frac(1,M),_lpmln_factor),den,E]
 :- _densum(E,M),                    M = 0.
 
 
