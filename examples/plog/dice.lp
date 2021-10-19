@@ -1,14 +1,14 @@
 % Sorts
-dice(d1; d2).
+dice(d1;d2).
 score(1..6).
-person(mike, john).
+person(mike;john).
 
 % Regular part
-owns(d1, mike).
-owns(d2, john).
+owns(d1,mike).
+owns(d2,john).
 
 % Random rules 
-&random(r1(D)) { roll(D, X) : score(X) } :- dice(D).
+&random(r1(D)) { roll(D,X) : score(X) } :- dice(D).
 
 % Probability atoms
 &pr(r1(D)) { roll(D,X) } = "1/6"  :- owns(D,john), score(X).
