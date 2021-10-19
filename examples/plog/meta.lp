@@ -22,23 +22,23 @@ _int((P,X)) :- _do((P,X,V)).
 %
 
 % % assigned probability
-% :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)),     _pr(E,(P,X,V),Pr).                 [-@log(Pr,factor),E,P,X]
+% :~ _random((E,P,X),A), _h(A), not _int((P,X)),     _pr((E,P,X),A,Pr).           [-@log(Pr,factor),(E,P,X)]
 
-% :- _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)),     _pr(E,(P,X,V),Pr),                 Pr=0.
+% :- _random((E,P,X),A), _h(A), not _int((P,X)),     _pr((E,P,X),A,Pr),           Pr=0.
 
 % % default numerator
-% :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%     Y = #sum { @intpr(Pr),V1 : _random(E,(_, X, V1)), _pr(E,(_,X,V1),Pr) }, @intpr(1)-Y>0.  [-@log(@frac(@intpr(1)-Y,@intpr(1)),factor),num,E,P,X]
+% :~ _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%     Y = #sum { @intpr(Pr),A1 : _random(E,A1), _pr(E,A1,Pr) }, @intpr(1)-Y>0.    [-@log(@frac(@intpr(1)-Y,@intpr(1)),factor),num,E]
 
-% :- _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%     Y = #sum { @intpr(Pr),V1 : _random(E,(_, X, V1)), _pr(E,(_,X,V1),Pr) },                 @intpr(1)-Y<=0.
+% :- _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%     Y = #sum { @intpr(Pr),A1 : _random(E,A1), _pr(E,A1,Pr) },                   @intpr(1)-Y<=0.
 
 % % default denominator
-% :~ _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%    M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) }, M>1.                     [-@log(@frac(1,M),factor),den,E,P,X]
+% :~ _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%    M = #count { A1 : _random(E,A1), not _pr(E,A1,_) }, M>1.                     [-@log(@frac(1,M),factor),den,E,P,X]
 
-% :- _random(E,(P,X,V)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%    M = #count { V1 : _random(E,(P,X,V1)), not _pr(E,(P,X,V1),_) },                          M=0.
+% :- _random((E,P,X),A), _h(A), not _int((P,X)), not _pr((E,P,X),A,_),
+%    M = #count { A1 : _random(E,A1), not _pr(E,A1,_) },                          M=0.
 
 
 %
