@@ -6,16 +6,6 @@ def lit(func):
 
 
 class ConvertPlog:
-    # def __get_experiment_id(self, args):
-    #     if len(args) != 0:
-    #         if str(args[0].ast_type).endswith('Function'):
-    #             exp_id = args[0].name
-    #         elif str(args[0].ast_type).endswith('SymbolicTerm'):
-    #             exp_id = args[0].symbol.name
-    #     else:
-    #         exp_id = ''
-    #     return exp_id
-
     def __get_tuple(self, attr):
         loc = attr.location
         attr_name = ast.Function(loc, attr.name, [], False)
@@ -34,13 +24,13 @@ class ConvertPlog:
     def convert_random(self, ta, body):
         '''
         Input:
-            &random(r(D)) { name(D,Y) : range(Y) } :- domain(D).
+            &random(r(D)) { name(D,Y) : range(Y) } :- body(D).
                 or if one random rule per attribute
-            &random       { name(D,Y) : range(Y) } :- domain(D).
+            &random       { name(D,Y) : range(Y) } :- body(D).
         Output:
-            1. _random(r(D),(name,D,Y)) :- range(Y), domain(D).
-                  or
-               _random(name(D),(name,D,Y)) :- range(Y), domain(D).
+            Let E = r(D) or E = name(D)
+
+            1. _random(E,(name,D,Y)) :- range(Y), body(D).
             2. _h((name,D,Y)) :- name(D,Y).
             3. name(D,Y) :- _h((name,D,Y)).
         '''
@@ -70,9 +60,8 @@ class ConvertPlog:
                 or if one random rule per attribute
             &pr        { name(D,Y) } = "3/20"  :- body(D,Y).
         Output:
-            _pr(r(D),(name,D,Y),"3/20") :- body(D,Y).
-                or
-            _pr(name(D),(name,D,Y),"3/20") :- body(D,Y).
+            Let E = r(D) or E = name(D)
+            _pr(E),(name,D,Y),"3/20") :- body(D,Y).
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
