@@ -78,7 +78,7 @@ Time         : 0.006s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
 CPU Time     : 0.006s
 ```
 ## Input
-Syntactically, in LPMLN differs between "soft" rules and "hard" rules, where "soft" rules have a (real number) weight and "hard" rules the weight "alpha". 
+Syntactically, LPMLN differs between "soft" rules and "hard" rules, where "soft" rules have a (real number) weight and "hard" rules the weight "alpha". 
 
 Weights can be added by the theory atom `&weight/1` to the body of a rule. The argument has to be an integer or a string containing a float or an expression like `2/3`. For example
 ```
@@ -93,3 +93,33 @@ To compute LPMLN programs, a rule in an LPMLN program is converted to ASP with w
 By default, only soft rules are converted. To convert hard rules as well, the `--hr` flag can be added on the command line. This option essentially makes hard rules optional, whereas in the default setting all hard rules have to be satisfied as usually in ASP.
 
 ## Examples
+A number of examples can be found in the directory `examples`. There are also two sub-directories containing a number of examples from other probabilistic logic languages ProbLog and P-log.
+
+## Commandline options
+- `--all`
+
+    Enumerates all stable models and prints their probabilities.
+
+- `--evid=file`
+
+    Provides an evidence file to the program (`.lp` file with clingo syntax rules)
+
+- `--hr`
+
+    Converts hard rules as well. Useful for debugging or resolving inconsistencies in the program.
+
+- `--plog`
+
+    Necessary when calculating P-log programs.
+
+- `--q=atom`
+
+    Adds a query atom `atom`. The argument has to be either just the name of the atom (`--q=isPerson`) or the name plus arguments separated by comma (`--q=isPerson,John,Doe` queries for atom `isPerson(John,Doe)`).
+
+- `--two-solve-calls`
+
+    Uses two solve calls: The first one finds the minimal bound for weak constraints priorities higher than 0. The second one solves for probabilistic stable models of LP^MLN.
+
+- `--unsat`
+
+    Uses the conversion with `unsat` atoms
