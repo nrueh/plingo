@@ -93,7 +93,7 @@ To compute LPMLN programs, a rule in an LPMLN program is converted to ASP with w
 By default, only soft rules are converted. To convert hard rules as well, the `--hr` flag can be added on the command line. This option essentially makes hard rules optional, whereas in the default setting all hard rules have to be satisfied as usually in ASP.
 
 ## Examples
-A number of examples can be found in the directory `examples`. There are also two sub-directories containing a number of examples from other probabilistic logic languages ProbLog and P-log.
+A number of examples can be found in the directory `examples`. There are also two sub-directories containing examples from the other probabilistic logic languages ProbLog and P-log.
 
 ## Commandline options
 - `--all`
