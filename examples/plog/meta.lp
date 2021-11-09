@@ -2,67 +2,38 @@
 % Meta-encoding
 %
 
-{ _h(A) : _random(E,A)} = 1 :- _random(E,_).
+{ _lpmln_h(A) : _lpmln_random(E,A)} = 1 :- _lpmln_random(E,_).
 
-:- not _h(A), _obs(A,true).
-:- _h(A),     _obs(A,false).
+:- not _lpmln_h(A), _lpmln_obs(A,true).
+:- _lpmln_h(A),     _lpmln_obs(A,false).
 
-_h(A) :- _do(A).
+_lpmln_h(A) :- _lpmln_do(A).
 
-_int((P,X)) :- _do((P,X,V)).
-
-
-%
-% Probabilities: TO MAXIMIZE
-%
+_lpmln_int((P,X)) :- _lpmln_do((P,X,V)).
 
 
 %
-% option = 1
+% Probabilities
 %
 
-% % assigned probability
-% :~ _random(E,(P,X,_)), _h((P,X,V)), not _int((P,X)), _pr(E,(P,X,V),Pr).     [-@log(Pr,_lpmln_factor),E]
+_lpmln_no_int(E)  :- _lpmln_random(E,(P,X,_)), not _lpmln_int((P,X)).
+_lpmln_pr(E,Pr)   :- _lpmln_random(E,A),_lpmln_h(A), _lpmln_pr(E,A,Pr).
+_lpmln_default(E) :- _lpmln_no_int(E), not _lpmln_pr(E,_).
 
-% :- _random(E,(P,X,_)), _h((P,X,V)), not _int((P,X)), _pr(E,(P,X,V),Pr),     Pr=0.
-
-% % default numerator
-% :~ _random(E,(P,X,_)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%     Y = #sum { @intpr(Pr),A : _random(E,A), _pr(E,A,Pr) }, @intpr(1)-Y > 0. [-@log(@frac(@intpr(1)-Y,@intpr(1)),_lpmln_factor),num,E]
-
-% :- _random(E,(P,X,_)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%     Y = #sum { @intpr(Pr),A : _random(E,A), _pr(E,A,Pr) },                  @intpr(1)-Y<=0.
-
-% % default denominator
-% :~ _random(E,(P,X,_)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%    M = #count { A : _random(E,A), not _pr(E,A,_) }, M>1.                    [-@log(@frac(1,M),_lpmln_factor),den,E]
-
-% :- _random(E,(P,X,_)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
-%    M = #count { A : _random(E,A), not _pr(E,A,_) },                         M=0.
-
-
-%
-% option = 2
-%
-
-_no_int(E)  :- _random(E,(P,X,_)), not _int((P,X)).
-_pr(E,Pr)   :- _random(E,A),_h(A), _pr(E,A,Pr).
-_default(E) :- _no_int(E), not _pr(E,_).
-
-_numsum(E,Y) :- _default(E), Y = #sum { @intpr(Pr),A : _random(E,A), _pr(E,A,Pr) }.
-_densum(E,M) :- _default(E), M = #count{ A : _random(E,A), not _pr(E,A,_) }.
+_lpmln_numsum(E,Y) :- _lpmln_default(E), Y = #sum { @intpr(Pr),A : _lpmln_random(E,A), _lpmln_pr(E,A,Pr) }.
+_lpmln_densum(E,M) :- _lpmln_default(E), M = #count{ A : _lpmln_random(E,A), not _lpmln_pr(E,A,_) }.
 
 % assigned probability
-:~ _pr(E,Pr), _no_int(E).       [   -@log(Pr,_lpmln_factor),E]
-:- _pr(E,Pr), _no_int(E),           Pr = 0.
+:~ _lpmln_pr(E,Pr), _lpmln_no_int(E).       [   -@log(Pr,_lpmln_factor),E]
+:- _lpmln_pr(E,Pr), _lpmln_no_int(E),           Pr = 0.
 
 % default numerator
-:~ _numsum(E,Y), @intpr(1)-Y > 0.   [-@log(@frac(@intpr(1)-Y,@intpr(1)),_lpmln_factor),num,E]
-:- _numsum(E,Y),                    @intpr(1) - Y <= 0.
+:~ _lpmln_numsum(E,Y), @intpr(1)-Y > 0.   [-@log(@frac(@intpr(1)-Y,@intpr(1)),_lpmln_factor),num,E]
+:- _lpmln_numsum(E,Y),                    @intpr(1) - Y <= 0.
 
 % default denominator
-:~ _densum(E,M), M > 1.             [-@log(@frac(1,M),_lpmln_factor),den,E]
-:- _densum(E,M),                    M = 0.
+:~ _lpmln_densum(E,M), M > 1.             [-@log(@frac(1,M),_lpmln_factor),den,E]
+:- _lpmln_densum(E,M),                    M = 0.
 
 
 #script (python)

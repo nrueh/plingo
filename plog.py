@@ -13,11 +13,6 @@ class ConvertPlog:
         domain_tup = ast.Function(loc, '', domain_vars, False)
         attr_tup = ast.Function(loc, '', [attr_name, domain_tup, range_var],
                                 False)
-        # if exp_id == '':
-        #     exp_args = [attr_name, domain_tup]
-        # else:
-        #     exp_id = ast.Function(loc, exp_id, [], False)
-        #     exp_args = [exp_id, attr_name, domain_tup]
         exp_tup = ast.Function(loc, attr.name, [domain_tup], False)
         return attr_tup, exp_tup
 
@@ -33,6 +28,10 @@ class ConvertPlog:
             1. _random(E,(name,D,Y)) :- range(Y), body(D).
             2. _h((name,D,Y)) :- name(D,Y).
             3. name(D,Y) :- _h((name,D,Y)).
+
+        Note:
+            We actually prepend _lpmln to all of the above
+            atoms with underscore to avoid naming conflicts.
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
@@ -42,12 +41,13 @@ class ConvertPlog:
         if len(ta.term.arguments) != 0:
             exp_tup = ta.term.arguments[0]
 
-        _random = ast.Function(loc, '_random', [exp_tup, attr_tup], False)
+        _random = ast.Function(loc, '_lpmln_random', [exp_tup, attr_tup],
+                               False)
 
         body.insert(0, range)
         _random_rule = ast.Rule(loc, lit(_random), body)
 
-        hold = ast.Function(loc, '_h', [attr_tup], False)
+        hold = ast.Function(loc, '_lpmln_h', [attr_tup], False)
         attr = ast.Function(loc, attr.name, [v for v in attr.arguments], False)
         readable_to_meta = ast.Rule(loc, lit(hold), [lit(attr)])
         meta_to_readable = ast.Rule(loc, lit(attr), [lit(hold)])
@@ -62,6 +62,9 @@ class ConvertPlog:
         Output:
             Let E = r(D) or E = name(D)
             _pr(E),(name,D,Y),"3/20") :- body(D,Y).
+        Note:
+            We actually prepend _lpmln to all of the above
+            atoms with underscore to avoid naming conflicts.
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
@@ -70,7 +73,7 @@ class ConvertPlog:
         attr_tup, exp_tup = self.__get_tuple(attr)
         if len(ta.term.arguments) != 0:
             exp_tup = ta.term.arguments[0]
-        _pr = ast.Function(loc, '_pr', [exp_tup, attr_tup, prob], False)
+        _pr = ast.Function(loc, '_lpmln_pr', [exp_tup, attr_tup, prob], False)
 
         _pr_rule = ast.Rule(loc, lit(_pr), body)
         return [_pr_rule]
@@ -91,5 +94,5 @@ class ConvertPlog:
                 args.append(ta.guard.term)
             else:
                 args.append(ast.Function(loc, 'true', [], False))
-        _func = ast.Function(loc, f'_{ta.term.name}', args, False)
+        _func = ast.Function(loc, f'_lpmln_{ta.term.name}', args, False)
         return [ast.Rule(loc, lit(_func), [])]
