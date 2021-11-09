@@ -2,7 +2,6 @@
 % Meta-encoding
 %
 
-% { _h((P,X,V)) : _random(_,(P,X,V))} = 1   :- _random(_,(P,X,_)).
 % { _h(A)       : _random(E,A)} = 1         :- _random(E,_).
 
 :- not _h(A), _obs(A,true).
@@ -39,10 +38,6 @@ _int((P,X)) :- _do((P,X,V)).
 
 % :- _random(E,(P,X,_)), _h((P,X,V)), not _int((P,X)), not _pr(E,(P,X,V),_),
 %    M = #count { A : _random(E,A), not _pr(E,A,_) },                         M=0.
-
-%
-% option = 2
-%
 
 %
 % option = 2

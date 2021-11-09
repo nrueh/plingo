@@ -6,16 +6,6 @@ def lit(func):
 
 
 class ConvertPlog:
-    # def __get_experiment_id(self, args):
-    #     if len(args) != 0:
-    #         if str(args[0].ast_type).endswith('Function'):
-    #             exp_id = args[0].name
-    #         elif str(args[0].ast_type).endswith('SymbolicTerm'):
-    #             exp_id = args[0].symbol.name
-    #     else:
-    #         exp_id = ''
-    #     return exp_id
-
     def __get_tuple(self, attr):
         loc = attr.location
         attr_name = ast.Function(loc, attr.name, [], False)
@@ -23,11 +13,7 @@ class ConvertPlog:
         domain_tup = ast.Function(loc, '', domain_vars, False)
         attr_tup = ast.Function(loc, '', [attr_name, domain_tup, range_var],
                                 False)
-        # if exp_id == '':
-        #     exp_args = [attr_name, domain_tup]
-        # else:
-        #     exp_id = ast.Function(loc, exp_id, [], False)
-        #     exp_args = [exp_id, attr_name, domain_tup]
+
         exp_tup = ast.Function(loc, attr.name, [domain_tup], False)
         return attr_tup, exp_tup
 
