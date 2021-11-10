@@ -78,21 +78,37 @@ class ConvertPlog:
         _pr_rule = ast.Rule(loc, lit(_pr), body)
         return [_pr_rule]
 
-    def convert_obs_do(self, ta):
+    def convert_obs(self, ta, body):
         '''
-        &obs { name(D,Y) } = bool. -> _obs((name,D,Y), bool).
-            bool can be omitted and is true by default
+        Input:
+            &obs { name(D,Y) } = bool :- body.
+        Output:
+             _obs((name,D,Y), bool) :- body.
 
-        &do { name(D,Y) }.         -> _do((name,D,Y)).
+            bool can be omitted and is true by default
         '''
         loc = ta.location
         attr = ta.elements[0].terms[0]
         attr_tup, _ = self.__get_tuple(attr)
         args = [attr_tup]
-        if ta.term.name == 'obs':
-            if ta.guard is not None:
-                args.append(ta.guard.term)
-            else:
-                args.append(ast.Function(loc, 'true', [], False))
-        _func = ast.Function(loc, f'_lpmln_{ta.term.name}', args, False)
-        return [ast.Rule(loc, lit(_func), [])]
+        if ta.guard is not None:
+            args.append(ta.guard.term)
+        else:
+            args.append(ast.Function(loc, 'true', [], False))
+        _obs = ast.Function(loc, '_lpmln_obs', args, False)
+        return [ast.Rule(loc, lit(_obs), body)]
+
+    def convert_do(self, ta, body):
+        '''
+            Input:
+                &do { name(D,Y) } :- body.
+            Output:
+                _do((name,D,Y))  :- body.
+        '''
+        loc = ta.location
+        attr = ta.elements[0].terms[0]
+        attr_tup, _ = self.__get_tuple(attr)
+        args = [attr_tup]
+
+        _do = ast.Function(loc, '_lpmln_do', args, False)
+        return [ast.Rule(loc, lit(_do), body)]
