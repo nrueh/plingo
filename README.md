@@ -1,4 +1,4 @@
-# LPMLN
+# clingo-lpmln
 A probabilistic extension for clingo based on LP^MLN.
 
 ## Introduction
