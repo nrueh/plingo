@@ -15,8 +15,10 @@ boolean(t;f).
 &pr { drug(t)    } = "0.75" :- male(t).
 &pr { drug(t)    } = "0.25" :- male(f).
 
+
 % Observations and actions
-&do{ drug(t) }.
+#const do_drug = t.
+&do{ drug(do_drug) }.
 
 #show male/1.
 #show recover/1.
