@@ -15,9 +15,9 @@ open(R) :- not -open(R), rooms(R).
 &random { in(1,R) : open(R) } :- go_in(_), break.
 
 % Additional rules
-go_in(r0).
-break.
-% -open(r2).
-&pr { in(1,R) } = "1/2" :- go_in(R), break.
+#const x = 0.
+go_in(r0) :- x > 0.
+break :- x > 1.
+&pr { in(1,R) } = "1/2" :- go_in(R), break, x = 3.
 
 #show in/2.
