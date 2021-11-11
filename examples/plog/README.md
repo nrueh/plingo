@@ -59,10 +59,20 @@ Probability of Answer 1: 0.33333
 Probability of Answer 2: 0.33333
 Probability of Answer 3: 0.33333
 ```
-Finally, `x=3` adds more probability information.
+Finally, `x=3` adds more probabilistic information changing the probability distribution.
 
 
 ### Bayesian squirrel
+This is an example used to illustrate the notion of Bayesian learning where you start with a "prior density" on a set of candidate models and update it in light of new observations. We describe here the Bayesian squirrel. The squirrel has hidden its acorns in one of two patches, say Patch 1 and Patch 2, but can’t remember which. The squirrel is 80% certain the food is hidden in Patch 1. Also, it knows there is a 20% chance of finding food per day when it looking in the right patch (and, of course, a 0% probability if it’s looking in the wrong patch).
+
+The squirrel looks for food every day starting with "Day 1" and predict its chances to find the acorns for the next day. For simplicity we have made two extra assumptions in our encoding. 
+    1. The squirrel has looked for the acorns in patch `p1` every day since the beginning
+    2. She has not found her food in all past days
+The instance can be run with the constant `prediction_day` that specifies for which day the squirrel wants to predict whether to find the acorns. You can run it with
+```
+python lpmln.py examples/plog/bayesian_squirrel.lp --plog --all -c prediction_day=1
+```
+With these assumptions it can be seen that the squirrel's initial belief for finding the food in patch `p1` decreases every day.
 ## References
 <a id="1">[1]</a>
 M. Gelfond C. Baral and J.N. Rushton (2009).
