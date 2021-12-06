@@ -16,7 +16,7 @@ See https://potassco.org/clingo/ for further information.
 
 For installation just clone the repository
 ```
-https://github.com/nrueh/plingo.git
+git clone https://github.com/nrueh/plingo.git
 ```
 
 ## Usage
