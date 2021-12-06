@@ -30,7 +30,7 @@ class ConvertPlog:
             3. name(D,Y) :- _h((name,D,Y)).
 
         Note:
-            We actually prepend _lpmln to all of the above
+            We actually prepend _plingo to all of the above
             atoms with underscore to avoid naming conflicts.
         '''
         loc = ta.location
@@ -41,13 +41,13 @@ class ConvertPlog:
         if len(ta.term.arguments) != 0:
             exp_tup = ta.term.arguments[0]
 
-        _random = ast.Function(loc, '_lpmln_random', [exp_tup, attr_tup],
+        _random = ast.Function(loc, '_plingo_random', [exp_tup, attr_tup],
                                False)
 
         body.insert(0, range)
         _random_rule = ast.Rule(loc, lit(_random), body)
 
-        hold = ast.Function(loc, '_lpmln_h', [attr_tup], False)
+        hold = ast.Function(loc, '_plingo_h', [attr_tup], False)
         attr = ast.Function(loc, attr.name, [v for v in attr.arguments], False)
         readable_to_meta = ast.Rule(loc, lit(hold), [lit(attr)])
         meta_to_readable = ast.Rule(loc, lit(attr), [lit(hold)])
@@ -63,7 +63,7 @@ class ConvertPlog:
             Let E = r(D) or E = name(D)
             _pr(E),(name,D,Y),"3/20") :- body(D,Y).
         Note:
-            We actually prepend _lpmln to all of the above
+            We actually prepend _plingo to all of the above
             atoms with underscore to avoid naming conflicts.
         '''
         loc = ta.location
@@ -73,7 +73,7 @@ class ConvertPlog:
         attr_tup, exp_tup = self.__get_tuple(attr)
         if len(ta.term.arguments) != 0:
             exp_tup = ta.term.arguments[0]
-        _pr = ast.Function(loc, '_lpmln_pr', [exp_tup, attr_tup, prob], False)
+        _pr = ast.Function(loc, '_plingo_pr', [exp_tup, attr_tup, prob], False)
 
         _pr_rule = ast.Rule(loc, lit(_pr), body)
         return [_pr_rule]
@@ -95,7 +95,7 @@ class ConvertPlog:
             args.append(ta.guard.term)
         else:
             args.append(ast.Function(loc, 'true', [], False))
-        _obs = ast.Function(loc, '_lpmln_obs', args, False)
+        _obs = ast.Function(loc, '_plingo_obs', args, False)
         return [ast.Rule(loc, lit(_obs), body)]
 
     def convert_do(self, ta, body):
@@ -110,5 +110,5 @@ class ConvertPlog:
         attr_tup, _ = self.__get_tuple(attr)
         args = [attr_tup]
 
-        _do = ast.Function(loc, '_lpmln_do', args, False)
+        _do = ast.Function(loc, '_plingo_do', args, False)
         return [ast.Rule(loc, lit(_do), body)]
