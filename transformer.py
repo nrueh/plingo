@@ -134,7 +134,7 @@ class PlingoTransformer(ast.Transformer):
             # TODO: Check if _ext_helper does not exist already
             if self.two_solve_calls and str(priority) == '0':
                 ext_helper_atom = ast.SymbolicAtom(
-                    ast.Function(loc, '_lpmln_ext_helper', [], False))
+                    ast.Function(loc, '_plingo_ext_helper', [], False))
                 ext_helper_atom = ast.Literal(loc, ast.Sign.NoSign,
                                               ext_helper_atom)
                 body.insert(0, ext_helper_atom)

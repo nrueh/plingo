@@ -177,9 +177,9 @@ class PlingoApp(Application):
         if self.calculate_plog:
             enable_python()
             ctl.add("base", [], self._read('examples/plog/meta.lp'))
-            ctl.add("base", [], f'#const _lpmln_factor={self.power_of_ten}.')
+            ctl.add("base", [], f'#const _plingo_factor={self.power_of_ten}.')
         if self.two_solve_calls:
-            ctl.add("base", [], '#external _lpmln_ext_helper.')
+            ctl.add("base", [], '#external _plingo_ext_helper.')
         # TODO: Make sure the _ext_helper atom is not contained in the program.
         # TODO: Change number of underscores for _ext_helper and plog meta atoms
 
@@ -203,13 +203,13 @@ class PlingoApp(Application):
             # TODO: Suppress output of first solve call, add flag
             # TODO: Activate this per flag
 
-            ctl.assign_external(Function("_lpmln_ext_helper"), False)
+            ctl.assign_external(Function("_plingo_ext_helper"), False)
             with ctl.solve(yield_=True) as h:
                 for m in h:
                     bound_hr = m.cost[0]
             # TODO: Don't show _ext_helper
             # ctl.release_external(Function("_ext_helper"))
-            ctl.assign_external(Function("_lpmln_ext_helper"), True)
+            ctl.assign_external(Function("_plingo_ext_helper"), True)
 
         if self.display_all_probs or self.query != []:
             ctl.configuration.solve.opt_mode = f'enum, {bound_hr}, {(2**63)-1}'
