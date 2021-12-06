@@ -20,7 +20,6 @@ class ProbabilityModule():
         # If hard rules have been translated
         # find stable models of LPMLN
         # (ones with max hard rules satisfied)
-        model_costs = np.array(model_costs)
         self.model_weights = np.exp(-(model_costs * 10**(-self.power_of_ten)))
         if self.two_solve_calls:
             self.model_weights = self.model_weights[:, -1]

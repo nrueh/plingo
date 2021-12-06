@@ -150,15 +150,16 @@ class LPMLNTransformer(ast.Transformer):
         if necessary and adds the result to the program builder.
         """
         # Set weight to alpha by default
-        self.weight = 'alpha'
-        self.theory_type = ''
-        self.global_variables = []
-
         head = rule.head
         body = rule.body
 
-        if str(head.ast_type) != 'ASTType.TheoryAtom' and len(body) == 0:
+        if not self.translate_hr and str(
+                head.ast_type) != 'ASTType.TheoryAtom' and len(body) == 0:
             return rule
+
+        self.weight = 'alpha'
+        self.theory_type = ''
+        self.global_variables = []
 
         # Traverse head and body to look for weights and variables
         head = self.visit(head)

@@ -13,7 +13,7 @@ parser.add_argument('--outfile', '-o', type=str, help='Path to save plot')
 parser.add_argument('--system',
                     '-s',
                     type=str,
-                    help="Which system was used (ours or azreasoners)")
+                    help="Which system was used (ours or LPMLN)")
 args = parser.parse_args()
 
 if __name__ == '__main__':
