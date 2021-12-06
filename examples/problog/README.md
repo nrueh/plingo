@@ -4,7 +4,7 @@ This directory contains examples from ProbLog converted to the input language of
 ### Simple
 Just a simple encoding showcasing both ways to write probabilistic facts in our system
 ```
-python lpmln.py examples/problog/simple.lp
+python plingo.py examples/problog/simple.lp
 ```
 
 ### Tossing coins
@@ -12,7 +12,7 @@ Basic example from [here](https://dtai.cs.kuleuven.be/problog/tutorial/basic/01_
 Suppose we have two coins. The first coin is fair (when tossed, it will land on heads with 50% probability), the second coin is biased (it will land on heads with 60% probability). What is now the probability that, if we toss the coins, both will land on heads? 
 We can run this with
 ```
-python lpmln.py examples/problog/tossing_coins.lp
+python plingo.py examples/problog/tossing_coins.lp
 ```
 Note that we do not need any command line options, as the queries are inside the encoding like in ProbLog. As excepted we find that the probability for heads on both coins is 0.30.
 ```
@@ -39,7 +39,7 @@ heads1: 0.50000
 ### Alarm
 This is taken from [[1]](#1). There are two persons, Mary and John, and a burglary can happen with probability 0.1. An earthquake can happen with probability 0.2. Any of those two events will trigger an alarm which either person hears with probability 0.7. What is the probability of an earthquake or a burglary, given that the alarm has been triggered
 ```
-python lpmln.py examples/problog/alarm.lp
+python plingo.py examples/problog/alarm.lp
 ```
 This gives us the following (conditional) probabilities
 ```
@@ -52,7 +52,7 @@ hears_alarm(john): 0.70000
 ### Monty Hall (Alternative Encoding)
 This example is taken from the ProbLog [Tutorial](https://dtai.cs.kuleuven.be/problog/tutorial/various/01_montyhall.html) website as well. Unlike the P-log encoding it has encoded explicitly the two options to switch or not to switch doors after Monty has opened a door.
 ```
-python lpmln.py examples/problog/monty_hall_alternative.lp
+python plingo.py examples/problog/monty_hall_alternative.lp
 ``` 
 
 ## References

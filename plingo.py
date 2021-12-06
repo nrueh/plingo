@@ -6,11 +6,11 @@ from clingo import ApplicationOptions, Flag, Function, Number
 from clingo.ast import AST, ProgramBuilder, parse_files
 from clingo.script import enable_python
 
-from transformer import LPMLNTransformer
+from transformer import PlingoTransformer
 from probability import ProbabilityModule
 
 THEORY = """
-#theory lpmln{
+#theory plingo{
     constant { };
     &query/1: constant, head
 }.
@@ -30,11 +30,11 @@ class Observer:
         self.priorities.append(priority)
 
 
-class LPMLNApp(Application):
+class PlingoApp(Application):
     '''
     Application extending clingo with probabilistic logic language LP^MLN.
     '''
-    program_name: str = "clingo-lpmln"
+    program_name: str = "plingo"
     version: str = "1.0"
 
     def __init__(self):
@@ -77,7 +77,7 @@ class LPMLNApp(Application):
         """
         Register application option.
         """
-        group = 'LPMLN Options'
+        group = 'Plingo Options'
         options.add_flag(group, 'hr', 'Translate hard rules',
                          self.translate_hard_rules)
         options.add_flag(group, 'all', 'Display all probabilities',
@@ -117,7 +117,7 @@ class LPMLNApp(Application):
             self.two_solve_calls, self.power_of_ten
         ]
         with ProgramBuilder(ctl) as b:
-            lt = LPMLNTransformer(options)
+            lt = PlingoTransformer(options)
             parse_files(files, lambda stm: b.add(cast(AST, lt.visit(stm, b))))
         # for q in lt.query:
         #     self.query.append(q)
@@ -246,4 +246,4 @@ class LPMLNApp(Application):
 
 
 if __name__ == '__main__':
-    sys.exit(int(clingo_main(LPMLNApp(), sys.argv[1:])))
+    sys.exit(int(clingo_main(PlingoApp(), sys.argv[1:])))

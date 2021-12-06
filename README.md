@@ -1,4 +1,4 @@
-# clingo-lpmln
+# Plingo
 A probabilistic extension for clingo based on LP^MLN.
 
 ## Introduction
@@ -10,23 +10,23 @@ Further the Maximum a posteriori (MAP) estimate, the most probable stable model,
 The program depends on Python 3, clingo 5.5 and numpy. The requirements are easiest to install with Anaconda 
 ```
 conda install -c potassco/label/dev clingo
-conda instal numpy
+conda install numpy
 ```
 See https://potassco.org/clingo/ for further information.
 
 For installation just clone the repository
 ```
-git clone https://github.com/nrueh/LPMLN.git
+https://github.com/nrueh/plingo.git
 ```
 
 ## Usage
-To try out the program run the file `lpmln.py` in python with any LPMLN instance appended. For example
+To try out the program run the file `plingo.py` in python with any LPMLN instance appended. For example
 ```
-python lpmln.py examples/birds.lp
+python plingo.py examples/birds.lp
 ```
 This gives the MAP estimate. 
 ```
-clingo-lpmln version 1.0
+plingo version 1.0
 Reading from examples/birds.lp
 Solving...
 Answer: 1
@@ -46,11 +46,11 @@ CPU Time     : 0.005s
 ```
 To list all stable models, add the flag `--all`. 
 ```
-python lpmln.py birds.lp --all
+python plingo.py birds.lp --all
 ```
 with output 
 ```
-clingo-lpmln version 1.0
+plingo version 1.0
 Reading from examples/birds.lp
 Solving...
 Answer: 1

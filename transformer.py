@@ -11,7 +11,7 @@ def calculate_weight(flt, factor):
     return Number(int(flt * (10**factor)))
 
 
-class LPMLNTransformer(ast.Transformer):
+class PlingoTransformer(ast.Transformer):
     '''
     Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'.
     Weights of soft rules are encoded via a theory term &weight/1 in the body.

@@ -5,29 +5,29 @@ This directory contains the five examples from [[1]](#1) plus a variant of the M
 ### Dice
 This is the introductory example from [[1]](#1) demonstrating how P-log programs can be input and calculated with our system. 
 ```
-python lpmln.py examples/plog/dice.lp --plog --all
+python plingo.py examples/plog/dice.lp --plog --all
 ```
 
 ### Monty Hall
 P-log encoding of the famous Monty Hall Problem
 ```
-python lpmln.py examples/plog/monty_hall.lp --plog --all
+python plingo.py examples/plog/monty_hall.lp --plog --all
 ```
 There is also a variation with four door and assigned probabilities
 ```
-python lpmln.py examples/plog/monty_hall_variant.lp --plog --all
+python plingo.py examples/plog/monty_hall_variant.lp --plog --all
 ```
 
 ### Simpson's paradox
 Simpson's paradox is a phenomenom where some event seems more likely in the general population but less likely in every subpopulation (or vice versa). In this case we are looking at a patient who is wondering whether he should take a drug or not. For both females and males not taking the drug has a higher recovery rate. However, when looking at the entire population the recovery rate seems to be lower when taking the drug. One way to resolve this paradox is by using the causal reasoning of P-log. For adjusting whether or not the patient takes the drug, set constant `do_drug` to `t` or `f` (default is `do_drug=t`). 
 ```
-python lpmln.py examples/plog/simpsons_paradox.lp --plog --all -c do_drug=t
+python plingo.py examples/plog/simpsons_paradox.lp --plog --all -c do_drug=t
 ```
 
 ### Moving robot
 This encoding contains a robot and three doors that are reachable from the robot's position. The doors can be open or closed but the robot cannot open the doors. It is known that the robot navigation is usually successful. However, a malfunction can cause the robot to go off course and enter any one of the open rooms. The basic encoding contains some additional information that can be activated through the constant `x`. While `x=0` contains only the basic encoding, when `x=1`  there is an additional fact that the robot goes into room `r0`.
 ```
-python lpmln.py examples/plog/moving_robot.lp --plog --all -c x=1
+python plingo.py examples/plog/moving_robot.lp --plog --all -c x=1
 ```
 Accordingly, the output states that the robot is in room `r0`.
 ```
@@ -39,7 +39,7 @@ SATISFIABLE
 ```
 For `x=2` the robot is now addtionally malfunctioning which activates the random selection rule. 
 ```
-python lpmln.py examples/plog/moving_robot.lp --plog --all -c x=2
+python plingo.py examples/plog/moving_robot.lp --plog --all -c x=2
 ```
 Now it is uncertain in what room the robot will land and there are three possible worlds with equal probability. 
 ```
@@ -70,7 +70,7 @@ The squirrel looks for food every day starting with "Day 1" and predict its chan
     2. She has not found her food in all past days
 The instance can be run with the constant `prediction_day` that specifies for which day the squirrel wants to predict whether to find the acorns. You can run it with
 ```
-python lpmln.py examples/plog/bayesian_squirrel.lp --plog --all -c prediction_day=1
+python plingo.py examples/plog/bayesian_squirrel.lp --plog --all -c prediction_day=1
 ```
 With these assumptions it can be seen that the squirrel's initial belief for finding the food in patch `p1` decreases every day.
 ## References
