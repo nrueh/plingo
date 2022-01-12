@@ -37,7 +37,9 @@ if __name__ == '__main__':
     for p in np.unique(probs):
         current_nodes = nodes[probs == p]
         current_times = times[probs == p]
-
+        if p == 80:
+            current_nodes -= 2
+            print(current_nodes)
         plt.plot(current_nodes,
                  current_times,
                  label=f'p={p/100}',
