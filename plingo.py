@@ -185,10 +185,12 @@ class PlingoApp(Application):
             for sa in symbolic_atoms.by_signature(qs[0], qs[1], qs[2]):
                 self.query.append([sa.symbol, []])
 
-    def _check_model_for_query(self, model):
+    def _check_model_for_query(self, model, model_number=None):
+        if model_number is None:
+            model_number = model.number - 1
         for qa in self.query:
             if model.contains(qa[0]):
-                qa[1].append(model.number - 1)
+                qa[1].append(model_number)
 
     def _on_model(self, model: Model) -> bool:
         '''
@@ -199,7 +201,11 @@ class PlingoApp(Application):
         # if self._heu:
         #     self._heu.on_model(model)
         if model.optimality_proven:
-            self.model_costs.append(model.cost)
+            if self.display_all_probs or self.query != []:
+                self.model_costs.append(model.cost)
+                if self.query != []:
+                    self._check_model_for_query(model, self._proven)
+
             self._proven += 1
         else:
             self._intermediate += 1
@@ -279,18 +285,18 @@ class PlingoApp(Application):
             }
         })
 
-    def _optimize(self, control: Control):
+    def _optimize(self, control: Control, obs: MinObs):
         '''
         Run optimal solution enumeration algorithm.
         '''
-        obs = MinObs()
-        control.register_observer(obs)
+        # obs = MinObs()
+        # control.register_observer(obs)
 
         # if self._restore:
         #     self._heu = RestoreHeu()
         #     control.register_propagator(self._heu)
 
-        control.ground([('base', [])])
+        # control.ground([('base', [])])
         res = cast(
             SolveResult,
             control.solve(on_model=self._on_model,
@@ -351,20 +357,25 @@ class PlingoApp(Application):
 
         solve_config = cast(Configuration, ctl.configuration.solve)
 
+        if solve_config.opt_mode == 'optN':
+            obs = MinObs()
+            ctl.register_observer(obs)
+
+        ctl.ground([("base", [])])
+
+        # Get queries in input program
+        for t in ctl.theory_atoms:
+            if t.term.name == 'query':
+                self._add_theory_query(t)
+        if self.query != []:
+            self._ground_queries(ctl.symbolic_atoms)
+
+        # Solve
         bound_hr = 2**63 - 1
         self.model_costs = []
         if solve_config.opt_mode == 'optN':
-            self._optimize(ctl)
+            self._optimize(ctl, obs)
         else:
-            ctl.ground([("base", [])])
-
-            for t in ctl.theory_atoms:
-                if t.term.name == 'query':
-                    self._add_theory_query(t)
-
-            if self.query != []:
-                self._ground_queries(ctl.symbolic_atoms)
-
             if self.two_solve_calls:
                 # First solve call
                 # Soft rules are deactivated
@@ -390,7 +401,6 @@ class PlingoApp(Application):
                         if self.query != []:
                             self._check_model_for_query(model)
 
-        print(self.model_costs)
         if self.model_costs != []:
             if 0 not in prio_obs.priorities:
                 # TODO: Should this be error or warning?

@@ -5,6 +5,7 @@ class ProbabilityModule():
     '''
     Module that handles calculation of probabilities of models and query atoms
     '''
+
     def __init__(self, model_costs, priorities, options):
         # TODO: Do weights need to be saved?
         self.translate_hr = options[0].flag
@@ -51,7 +52,5 @@ class ProbabilityModule():
         print('\n')
         for q in query:
             prob = self.model_probs[q[1]].sum()
-            # print(q[1])
-            # print(self.model_probs)
             print(f'{str(q[0])}: {prob:.5f}')
         print('\n')
