@@ -1,14 +1,12 @@
-from typing import cast, Sequence, Dict, List, Tuple, Optional
+from typing import cast, Sequence
 import sys
 
 from clingo import clingo_main, Application, Control
 from clingo import ApplicationOptions, Flag, Function, Number
 from clingo.ast import AST, ProgramBuilder, parse_files
-from clingo.backend import Backend, Observer
+from clingo.backend import Observer
 from clingo.configuration import Configuration
 from clingo.script import enable_python
-from clingo.solving import SolveResult, Model
-from clingo.statistics import StatisticsMap
 
 from transformer import PlingoTransformer
 import query
@@ -167,12 +165,11 @@ class PlingoApp(Application):
             self.query = query.ground(self.query, ctl.symbolic_atoms)
 
         # Solve
-        bound_hr = 2**63 - 1
-        model_costs = []
         if solve_config.opt_mode == 'optN':
-            opt_enum = OptEnum(self.query)
-            opt_enum._optimize(ctl, obs)
+            opt = OptEnum(self.query)
+            model_costs, self.query = opt._optimize(ctl, obs)
         else:
+            bound_hr = 2**63 - 1
             if self.two_solve_calls:
                 # First solve call
                 # Soft rules are deactivated
@@ -191,6 +188,7 @@ class PlingoApp(Application):
                 ctl.configuration.solve.opt_mode = f'enum, {bound_hr}, {(2**63)-1}'
                 ctl.configuration.solve.models = 0
 
+            model_costs = []
             with ctl.solve(yield_=True) as handle:
                 for model in handle:
                     if self.display_all_probs or self.query != []:
