@@ -11,6 +11,8 @@ from clingo.solving import SolveResult, Model
 from clingo.statistics import StatisticsMap
 
 from transformer import PlingoTransformer
+import query
+from opt import MinObs, OptEnum
 from probability import ProbabilityModule
 
 THEORY = """
@@ -20,22 +22,6 @@ THEORY = """
 }.
 """
 # TODO: Add evidence/1 to input language
-
-
-class MinObs(Observer):
-    '''
-    Observer to extract ground minimize constraint.
-    '''
-    literals: Dict[int, List[Tuple[int, int]]]
-
-    def __init__(self):
-        self.literals = {}
-
-    def minimize(self, priority: int, literals: Sequence[Tuple[int, int]]):
-        '''
-        Intercept minimize constraint and add it to member `literals`.
-        '''
-        self.literals.setdefault(priority, []).extend(literals)
 
 
 class PriorityObs(Observer):
@@ -67,10 +53,6 @@ class PlingoApp(Application):
         self.query = []
         self.evidence_file = ''
         self.power_of_ten = 5
-
-        self._aux_level = {}
-        self._proven = 0
-        self._intermediate = 0
 
     def _parse_query(self, value):
         """
@@ -147,192 +129,6 @@ class PlingoApp(Application):
         # for q in lt.query:
         #     self.query.append(q)
 
-    def _convert_theory_arg(self, arg):
-        theory_type = str(arg.type)[15:]
-        if theory_type == 'Symbol':
-            return Function(arg.name)
-        elif theory_type == 'Number':
-            return Number(arg.number)
-        elif theory_type == 'Function':
-            args = [self._convert_theory_arg(targ) for targ in arg.arguments]
-            return Function(arg.name, args)
-
-    def _add_theory_query(self, theory_atom):
-        query_atom = theory_atom.term.arguments[0]
-        name = query_atom.name
-        args = []
-        if query_atom.arguments != []:
-            args = [
-                self._convert_theory_arg(arg) for arg in query_atom.arguments
-            ]
-        self.query.append(Function(name, args))
-
-    def _ground_queries(self, symbolic_atoms):
-        # TODO: Add warning if query not present in program?
-        general_queries = []
-        queries_with_args = []
-        for q in self.query:
-            if type(q) is str:
-                general_queries.append(q)
-            else:
-                queries_with_args.append([q, []])
-
-        query_signatures = [
-            s for s in symbolic_atoms.signatures if s[0] in general_queries
-        ]
-        self.query = queries_with_args
-        for qs in query_signatures:
-            for sa in symbolic_atoms.by_signature(qs[0], qs[1], qs[2]):
-                self.query.append([sa.symbol, []])
-
-    def _check_model_for_query(self, model, model_number=None):
-        if model_number is None:
-            model_number = model.number - 1
-        for qa in self.query:
-            if model.contains(qa[0]):
-                qa[1].append(model_number)
-
-    def _on_model(self, model: Model) -> bool:
-        '''
-        Intercept models.
-        This function counts optimal and intermediate models as well as passes
-        model to the restore heuristic.
-        '''
-        # if self._heu:
-        #     self._heu.on_model(model)
-        if model.optimality_proven:
-            if self.display_all_probs or self.query != []:
-                self.model_costs.append(model.cost)
-                if self.query != []:
-                    self._check_model_for_query(model, self._proven)
-
-            self._proven += 1
-        else:
-            self._intermediate += 1
-        return True
-
-    def _add_upper_bound(self, backend: Backend, wlits: Sequence[Tuple[int,
-                                                                       int]],
-                         bound: int, level: Optional[int]):
-        '''
-        Adds the constraint `a <> { wlits } < bound` and returns literal `a`.
-        If level is None, then an integrity constraint is added and no
-        auxiliary literal is introduced.
-        This function reuses literals introduced in earlier iterations.
-        '''
-        hd = []
-        if level is not None:
-            if (level, bound) in self._aux_level:
-                return self._aux_level[(level, bound)]
-            hd.append(backend.add_atom())
-            self._aux_level[(level, bound)] = hd[0]
-
-        lower = -bound
-        wlits_lower = []
-        for l, w in wlits:
-            if w > 0:
-                lower += w
-                l = -l
-            else:
-                w = -w
-            wlits_lower.append((l, w))
-
-        backend.add_weight_rule(hd, lower, wlits_lower)
-        return hd[0] if hd else None
-
-    def _set_upper_bound(self, backend: Backend,
-                         minimize: Sequence[Sequence[Tuple[int, int]]],
-                         bound: Sequence[int]):
-        '''
-        Adds constraints discarding solutions lexicographically smaller or
-        equal than the bound.
-        The weighted literals in the minimize variable directly correspond to
-        how the solver represents minimize constraints.
-        '''
-        assert minimize and len(minimize) == len(bound)
-        if len(minimize) == 1:
-            self._add_upper_bound(backend, minimize[0], bound[0], None)
-        else:
-            # Note: we could also introduce a chain. But then there are
-            # typically few priorities and this should resolve nicely.
-            # :- l0 <= b0-1
-            # :- l0 <= b0 && l1 <= b1-1
-            # :- l0 <= b0 && l1 <= b1 && l2 <= b2-1
-            # ...
-            # :- l0 <= b0 && l1 <= b1 && l2 <= b2 && ... && ln <= bn
-            prefix = []
-            for i, (wlits, value) in enumerate(zip(minimize, bound)):
-                if i == len(minimize) - 1:
-                    prefix.append(
-                        self._add_upper_bound(backend, wlits, value, i))
-                    backend.add_rule([], prefix)
-                else:
-                    prefix.append(
-                        self._add_upper_bound(backend, wlits, value - 1, i))
-                    backend.add_rule([], prefix)
-                    prefix[-1] = self._add_upper_bound(backend, wlits, value,
-                                                       i)
-
-    def _on_statistics(self, step: StatisticsMap, accu: StatisticsMap):
-        '''
-        Sets optimization specific statistics.
-        '''
-        #pylint: disable=unused-argument
-        accu.update({
-            'Enumerate': {
-                'Enumerated': self._proven,
-                'Intermediate': self._intermediate
-            }
-        })
-
-    def _optimize(self, control: Control, obs: MinObs):
-        '''
-        Run optimal solution enumeration algorithm.
-        '''
-        # obs = MinObs()
-        # control.register_observer(obs)
-
-        # if self._restore:
-        #     self._heu = RestoreHeu()
-        #     control.register_propagator(self._heu)
-
-        # control.ground([('base', [])])
-        res = cast(
-            SolveResult,
-            control.solve(on_model=self._on_model,
-                          on_statistics=self._on_statistics))
-
-        solve_config = cast(Configuration, control.configuration.solve)
-
-        num_models = int(cast(str, solve_config.models))
-
-        minimize = [
-            x[1] for x in sorted(obs.literals.items(), key=lambda x: -x[0])
-        ]
-
-        while (res.satisfiable and not res.interrupted and minimize
-               and 'costs' in control.statistics['summary']):
-            summary = control.statistics['summary']
-            if num_models > 0:
-                num_models -= int(summary['models']['optimal'])
-                if num_models <= 0:
-                    break
-                solve_config.models = num_models
-
-            costs = cast(
-                Tuple[int],
-                tuple(int(x) for x in control.statistics['summary']['costs']))
-            with control.backend() as backend:
-                self._set_upper_bound(backend, minimize, costs)
-
-            # if self._heu is not None:
-            #     self._heu.set_restore(costs)
-
-            res = cast(
-                SolveResult,
-                control.solve(on_model=self._on_model,
-                              on_statistics=self._on_statistics))
-
     def main(self, ctl: Control, files: Sequence[str]):
         '''
         Parse LP^MLN program and convert to ASP with weak constraints.
@@ -366,15 +162,16 @@ class PlingoApp(Application):
         # Get queries in input program
         for t in ctl.theory_atoms:
             if t.term.name == 'query':
-                self._add_theory_query(t)
+                self.query.append(query.convert_theory_query(t))
         if self.query != []:
-            self._ground_queries(ctl.symbolic_atoms)
+            self.query = query.ground(self.query, ctl.symbolic_atoms)
 
         # Solve
         bound_hr = 2**63 - 1
-        self.model_costs = []
+        model_costs = []
         if solve_config.opt_mode == 'optN':
-            self._optimize(ctl, obs)
+            opt_enum = OptEnum(self.query)
+            opt_enum._optimize(ctl, obs)
         else:
             if self.two_solve_calls:
                 # First solve call
@@ -397,11 +194,12 @@ class PlingoApp(Application):
             with ctl.solve(yield_=True) as handle:
                 for model in handle:
                     if self.display_all_probs or self.query != []:
-                        self.model_costs.append(model.cost)
+                        model_costs.append(model.cost)
                         if self.query != []:
-                            self._check_model_for_query(model)
+                            self.query = query.check_model_for_query(
+                                self.query, model)
 
-        if self.model_costs != []:
+        if model_costs != []:
             if 0 not in prio_obs.priorities:
                 # TODO: Should this be error or warning?
                 print(
@@ -413,11 +211,10 @@ class PlingoApp(Application):
             #     print(prio_obs.priorities)
             #     print('testasd')
             else:
-                probs = ProbabilityModule(
-                    self.model_costs, prio_obs.priorities, [
-                        self.translate_hard_rules, self.two_solve_calls,
-                        self.power_of_ten
-                    ])
+                probs = ProbabilityModule(model_costs, prio_obs.priorities, [
+                    self.translate_hard_rules, self.two_solve_calls,
+                    self.power_of_ten
+                ])
                 if self.display_all_probs:
                     probs.print_probs()
                 if self.query != []:
