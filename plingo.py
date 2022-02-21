@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 from typing import cast, Sequence
 import sys
 
@@ -34,6 +35,22 @@ class PriorityObs(Observer):
     def minimize(self, priority: int, literals):
         self.priorities.append(priority)
 
+    # def theory_atom(self, atom_id_or_zero, term_id, elements):
+    #     print("theory atom")
+    #     print(atom_id_or_zero)
+    #     print(term_id)
+
+    # def theory_term_compound(self, a, b, c):
+    #     print("theory term compound")
+    #     print(a)
+    #     print(b)
+    #     print(c)
+
+    # def theory_term_string(self, a, b):
+    #     print("Theory term string")
+    #     print(a)
+    #     print(b)
+
 
 class PlingoApp(Application):
     '''
@@ -50,6 +67,7 @@ class PlingoApp(Application):
         self.calculate_plog = Flag(False)
         self.query = []
         self.evidence_file = ''
+        self.balanced_models = None
         self.power_of_ten = 5
 
     def _parse_query(self, value):
@@ -78,6 +96,23 @@ class PlingoApp(Application):
         self.evidence_file = self._read(value)
         return True
 
+    def _parse_balanced_query(self, value):
+        """
+        Sets number of models to find for
+        balanced query approximation
+        """
+        # print(value)
+        try:
+            self.balanced_models = int(value)
+            if self.balanced_models < 1:
+                raise ValueError
+            return True
+        except ValueError:
+            print(
+                "Warning: --balanced N has to be set to an integer large than 0."
+            )
+            return False
+
     def register_options(self, options: ApplicationOptions) -> None:
         """
         Register application option.
@@ -85,15 +120,14 @@ class PlingoApp(Application):
         group = 'Plingo Options'
         options.add_flag(group, 'hr', 'Translate hard rules',
                          self.translate_hard_rules)
-        options.add_flag(group, 'all', 'Display all probabilities',
+        options.add_flag(group, 'all,a', 'Display all probabilities',
                          self.display_all_probs)
         options.add_flag(group, 'unsat', 'Convert using unsat atoms',
                          self.use_unsat_approach)
         options.add_flag(
             group, 'two-solve-calls',
-            'Use two solve calls (first determines LPMLN stable models, \
-                second their probabilities). \
-                Works only with --hr options.', self.two_solve_calls)
+            'Use two solve calls (first determines LPMLN stable models, second their probabilities). \n'
+            'Works only with --hr options.', self.two_solve_calls)
         options.add_flag(group, 'plog', 'Calculate P-Log program.',
                          self.calculate_plog)
         options.add(group,
@@ -103,6 +137,12 @@ class PlingoApp(Application):
                     multi=True)
         options.add(group, 'evid', 'Provide evidence file',
                     self._parse_evidence)
+        options.add(
+            group, 'balanced,b', 'Approximate query in a balanced way. \
+            Use as --balanced N, where max. 2N models are determined \
+                (N models with query true and false respectively). \
+                This overwrites the --models option',
+            self._parse_balanced_query)
 
     # # TODO: Shows error: TypeError: an integer is required
     # def validate_options(self):
@@ -166,7 +206,7 @@ class PlingoApp(Application):
 
         # Solve
         if solve_config.opt_mode == 'optN':
-            opt = OptEnum(self.query)
+            opt = OptEnum(self.query, self.balanced_models)
             model_costs, self.query = opt._optimize(ctl, obs)
         else:
             bound_hr = 2**63 - 1

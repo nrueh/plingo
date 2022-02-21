@@ -27,12 +27,29 @@ class MinObs(Observer):
 
 class OptEnum:
 
-    def __init__(self, query):
+    def __init__(self, query, balanced=None):
         self._aux_level = {}
         self._proven = 0
         self._intermediate = 0
         self.model_costs = []
         self.query = query
+        self.num_balanced_models = balanced
+        self.reached_max = None
+        self.assumptions = []
+
+    def _check_reached_max(self):
+        m_with_q = len(self.query[0][1])
+        if m_with_q == self.num_balanced_models:
+            self.reached_max = True
+        m_without_q = len(self.model_costs) - m_with_q
+        if m_without_q == self.num_balanced_models:
+            self.reached_max = False
+        # Update assumptions for next solve calls
+        if self.reached_max is not None:
+            [
+                self.assumptions.append((q[0], not self.reached_max))
+                for q in self.query
+            ]
 
     def _on_model(self, model: Model) -> bool:
         '''
@@ -47,9 +64,14 @@ class OptEnum:
             if self.query != []:
                 self.query = check_model_for_query(self.query, model,
                                                    self._proven)
-            # print(self.model_costs)
-            # print(self.query)
-            self._proven += 1
+                self._proven += 1
+                if self.num_balanced_models is not None and self.reached_max is None:
+                    self._check_reached_max()
+                    if self.reached_max:
+                        model.context.add_clause([(self.query[0][0], False)])
+                    elif self.reached_max is False:
+                        model.context.add_clause([(self.query[0][0], True)])
+
         else:
             self._intermediate += 1
         return True
@@ -127,24 +149,23 @@ class OptEnum:
             }
         })
 
-    def _optimize(self, control: Control, obs: MinObs):
+    def _optimize(self, ctl: Control, obs: MinObs):
         '''
         Run optimal solution enumeration algorithm.
         '''
-        # obs = MinObs()
-        # control.register_observer(obs)
-
         # if self._restore:
         #     self._heu = RestoreHeu()
-        #     control.register_propagator(self._heu)
+        #     ctl.register_propagator(self._heu)
 
-        # control.ground([('base', [])])
+        if self.num_balanced_models is not None:
+            ctl.configuration.solve.models = 2 * self.num_balanced_models
+
         res = cast(
             SolveResult,
-            control.solve(on_model=self._on_model,
-                          on_statistics=self._on_statistics))
+            ctl.solve(on_model=self._on_model,
+                      on_statistics=self._on_statistics))
 
-        solve_config = cast(Configuration, control.configuration.solve)
+        solve_config = cast(Configuration, ctl.configuration.solve)
 
         num_models = int(cast(str, solve_config.models))
 
@@ -153,8 +174,8 @@ class OptEnum:
         ]
 
         while (res.satisfiable and not res.interrupted and minimize
-               and 'costs' in control.statistics['summary']):
-            summary = control.statistics['summary']
+               and 'costs' in ctl.statistics['summary']):
+            summary = ctl.statistics['summary']
             if num_models > 0:
                 num_models -= int(summary['models']['optimal'])
                 if num_models <= 0:
@@ -163,8 +184,8 @@ class OptEnum:
 
             costs = cast(
                 Tuple[int],
-                tuple(int(x) for x in control.statistics['summary']['costs']))
-            with control.backend() as backend:
+                tuple(int(x) for x in ctl.statistics['summary']['costs']))
+            with ctl.backend() as backend:
                 self._set_upper_bound(backend, minimize, costs)
 
             # if self._heu is not None:
@@ -172,6 +193,7 @@ class OptEnum:
 
             res = cast(
                 SolveResult,
-                control.solve(on_model=self._on_model,
-                              on_statistics=self._on_statistics))
+                ctl.solve(assumptions=self.assumptions,
+                          on_model=self._on_model,
+                          on_statistics=self._on_statistics))
         return self.model_costs, self.query
