@@ -64,13 +64,13 @@ class OptEnum:
             if self.query != []:
                 self.query = check_model_for_query(self.query, model,
                                                    self._proven)
-                self._proven += 1
                 if self.num_balanced_models is not None and self.reached_max is None:
                     self._check_reached_max()
                     if self.reached_max:
                         model.context.add_clause([(self.query[0][0], False)])
                     elif self.reached_max is False:
                         model.context.add_clause([(self.query[0][0], True)])
+            self._proven += 1
 
         else:
             self._intermediate += 1
