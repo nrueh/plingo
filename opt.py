@@ -1,3 +1,4 @@
+from turtle import update
 from typing import cast, Optional, Dict, List, Sequence, Tuple
 
 from clingo.backend import Backend, Observer
@@ -27,7 +28,7 @@ class MinObs(Observer):
 
 class OptEnum:
 
-    def __init__(self, query, balanced=None):
+    def __init__(self, query, balanced=None, use_backend=False):
         self._aux_level = {}
         self._proven = 0
         self._intermediate = 0
@@ -36,6 +37,7 @@ class OptEnum:
         self.num_balanced_models = balanced
         self.reached_max = None
         self.assumptions = []
+        self.use_backend = use_backend
 
     def _check_reached_max(self):
         m_with_q = len(self.query[0][1])
@@ -45,11 +47,8 @@ class OptEnum:
         if m_without_q == self.num_balanced_models:
             self.reached_max = False
         # Update assumptions for next solve calls
-        if self.reached_max is not None:
-            [
-                self.assumptions.append((q[0], not self.reached_max))
-                for q in self.query
-            ]
+        if self.reached_max is not None and not self.use_backend:
+            self.assumptions.append((self.query[0][0], not self.reached_max))
 
     def _on_model(self, model: Model) -> bool:
         '''
@@ -142,12 +141,15 @@ class OptEnum:
         Sets optimization specific statistics.
         '''
         #pylint: disable=unused-argument
-        accu.update({
+        update_dict = {
             'Enumerate': {
                 'Enumerated': self._proven,
                 'Intermediate': self._intermediate
             }
-        })
+        }
+        if self.query != []:
+            update_dict['Enumerate']['Contain Query'] = len(self.query[0][1])
+        accu.update(update_dict)
 
     def _optimize(self, ctl: Control, obs: MinObs):
         '''
@@ -159,6 +161,11 @@ class OptEnum:
 
         if self.num_balanced_models is not None:
             ctl.configuration.solve.models = 2 * self.num_balanced_models
+            if self.use_backend:
+                query_literal = [
+                    sa.literal for sa in ctl.symbolic_atoms
+                    if sa.symbol == self.query[0][0]
+                ][0]
 
         res = cast(
             SolveResult,
@@ -181,12 +188,19 @@ class OptEnum:
                 if num_models <= 0:
                     break
                 solve_config.models = num_models
-
             costs = cast(
                 Tuple[int],
                 tuple(int(x) for x in ctl.statistics['summary']['costs']))
+
             with ctl.backend() as backend:
                 self._set_upper_bound(backend, minimize, costs)
+                if self.use_backend:
+                    if self.reached_max:
+                        backend.add_rule([], [query_literal])
+                        self.use_backend = False
+                    elif self.reached_max is False:
+                        backend.add_rule([], [-query_literal])
+                        self.use_backend = False
 
             # if self._heu is not None:
             #     self._heu.set_restore(costs)
@@ -196,4 +210,5 @@ class OptEnum:
                 ctl.solve(assumptions=self.assumptions,
                           on_model=self._on_model,
                           on_statistics=self._on_statistics))
+
         return self.model_costs, self.query

@@ -65,6 +65,7 @@ class PlingoApp(Application):
         self.use_unsat_approach = Flag(False)
         self.two_solve_calls = Flag(False)
         self.calculate_plog = Flag(False)
+        self.use_backend = Flag(False)
         self.query = []
         self.evidence_file = ''
         self.balanced_models = None
@@ -126,13 +127,13 @@ class PlingoApp(Application):
                          self.use_unsat_approach)
         options.add_flag(
             group, 'two-solve-calls',
-            'Use two solve calls (first determines LPMLN stable models, second their probabilities). \n'
-            'Works only with --hr options.', self.two_solve_calls)
+            'Use two solve calls (first determines LPMLN stable models, second their probabilities). \
+            Works only with --hr options.', self.two_solve_calls)
         options.add_flag(group, 'plog', 'Calculate P-Log program.',
                          self.calculate_plog)
         options.add(group,
                     'q',
-                    'Get probability of query atom',
+                    'Probability of query atom',
                     self._parse_query,
                     multi=True)
         options.add(group, 'evid', 'Provide evidence file',
@@ -141,14 +142,20 @@ class PlingoApp(Application):
             group, 'balanced,b', 'Approximate query in a balanced way. \
             Use as --balanced N, where max. 2N models are determined \
                 (N models with query true and false respectively). \
-                This overwrites the --models option',
+                This overwrites the --models option \
+                This works only for a single (ground) query atom!',
             self._parse_balanced_query)
+        options.add_flag(
+            group, 'use-backend',
+            'Adds constaints for query approximation in backend instead of using assumptions.',
+            self.use_backend)
 
-    # # TODO: Shows error: TypeError: an integer is required
-    # def validate_options(self):
-    #     if self.two_solve_calls and not self.translate_hard_rules:
-    #         # TODO: Add error message
-    #         return False
+    def validate_options(self):
+        if self.two_solve_calls and not self.translate_hard_rules:
+            # TODO: Add error message
+            return False
+        else:
+            return True
 
     def _read(self, path: str):
         if path == "-":
@@ -206,7 +213,7 @@ class PlingoApp(Application):
 
         # Solve
         if solve_config.opt_mode == 'optN':
-            opt = OptEnum(self.query, self.balanced_models)
+            opt = OptEnum(self.query, self.balanced_models, self.use_backend)
             model_costs, self.query = opt._optimize(ctl, obs)
         else:
             bound_hr = 2**63 - 1
@@ -245,7 +252,7 @@ class PlingoApp(Application):
                 )
             # TODO: What about case where there are other priorities than 0/1?
             # elif not self.two_solve_calls and any(
-            #         x > 1 for x in prio_obs.priori´ties):
+            #         x > 1 for x in prio_obs.priorities):
             #     print(prio_obs.priorities)
             #     print('testasd')
             else:
