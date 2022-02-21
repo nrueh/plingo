@@ -210,6 +210,11 @@ class PlingoApp(Application):
                 self.query.append(query.convert_theory_query(t))
         if self.query != []:
             self.query = query.ground(self.query, ctl.symbolic_atoms)
+            if self.balanced_models is not None and len(self.query) > 1:
+                self.query = self.query[0:1]
+                print(
+                    f'Warning: Only one (ground) query atom can be specified for balanced approximation. Querying: {self.query[0][0]}'
+                )
 
         # Solve
         if solve_config.opt_mode == 'optN':
