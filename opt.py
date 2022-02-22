@@ -1,4 +1,3 @@
-from turtle import update
 from typing import cast, Optional, Dict, List, Sequence, Tuple
 
 from clingo.backend import Backend, Observer
@@ -53,8 +52,10 @@ class OptEnum:
     def _on_model(self, model: Model) -> bool:
         '''
         Intercept models.
-        This function counts optimal and intermediate models as well as passes
-        model to the restore heuristic.
+        This function counts optimal and intermediate models.
+        If the balanced, approximate query mode is activated
+        it also checks whether enough models with(out) the query
+        have been found and adds a corresponding clause.
         '''
         # if self._heu:
         #     self._heu.on_model(model)
@@ -93,13 +94,13 @@ class OptEnum:
 
         lower = -bound
         wlits_lower = []
-        for l, w in wlits:
+        for lit, w in wlits:
             if w > 0:
                 lower += w
-                l = -l
+                lit = -lit
             else:
                 w = -w
-            wlits_lower.append((l, w))
+            wlits_lower.append((lit, w))
         backend.add_weight_rule(hd, lower, wlits_lower)
         return hd[0] if hd else None
 
@@ -140,7 +141,6 @@ class OptEnum:
         '''
         Sets optimization specific statistics.
         '''
-        #pylint: disable=unused-argument
         update_dict = {
             'Enumerate': {
                 'Enumerated': self._proven,
@@ -154,6 +154,9 @@ class OptEnum:
     def _optimize(self, ctl: Control, obs: MinObs):
         '''
         Run optimal solution enumeration algorithm.
+        Optionally for approximating a query this
+        can find models which do (not) contain
+        the query  in a balanced way.
         '''
         # if self._restore:
         #     self._heu = RestoreHeu()

@@ -1,4 +1,3 @@
-from multiprocessing.sharedctypes import Value
 from typing import cast, Sequence
 import sys
 
@@ -35,26 +34,13 @@ class PriorityObs(Observer):
     def minimize(self, priority: int, literals):
         self.priorities.append(priority)
 
-    # def theory_atom(self, atom_id_or_zero, term_id, elements):
-    #     print("theory atom")
-    #     print(atom_id_or_zero)
-    #     print(term_id)
-
-    # def theory_term_compound(self, a, b, c):
-    #     print("theory term compound")
-    #     print(a)
-    #     print(b)
-    #     print(c)
-
-    # def theory_term_string(self, a, b):
-    #     print("Theory term string")
-    #     print(a)
-    #     print(b)
-
 
 class PlingoApp(Application):
     '''
-    Application extending clingo with probabilistic logic language LP^MLN.
+    Application extending clingo with weighted rules 
+    and probability calculation module.
+    Plingo can compute other probabilistic logic languages
+    LP^MLN, ProbLog and P-Log.
     '''
     program_name: str = "plingo"
     version: str = "1.0"
@@ -73,10 +59,12 @@ class PlingoApp(Application):
 
     def _parse_query(self, value):
         """
-        Parse query atom.
+        Parse query atom specified through command-line.
+        If query is passed with arguments (separated through comma),
+        create a clingo.Function.
+        Otherwise save the string of the atom name.
         """
         # TODO: What assertion does input query have to fulfill?
-        # TODO: Make it possible to specify queries with arguments
         if ',' in value:
             name = value.split(',')[0]
             args = []
@@ -92,15 +80,17 @@ class PlingoApp(Application):
     def _parse_evidence(self, value):
         """
         Parse evidence.
-        Has to be specified as clingo file
+        Has to be specified as (clingo) file path.
         """
         self.evidence_file = self._read(value)
         return True
 
     def _parse_balanced_query(self, value):
         """
-        Sets number of models to find for
-        balanced query approximation
+        Sets number of models N to find for
+        balanced query approximation.
+        This will determine max. N models
+        with and without the query.
         """
         # print(value)
         try:
@@ -152,7 +142,9 @@ class PlingoApp(Application):
 
     def validate_options(self):
         if self.two_solve_calls and not self.translate_hard_rules:
-            # TODO: Add error message
+            print(
+                'The two-solve-calls mode only works if hard rules are translated.'
+            )
             return False
         else:
             return True
@@ -171,18 +163,18 @@ class PlingoApp(Application):
         with ProgramBuilder(ctl) as b:
             lt = PlingoTransformer(options)
             parse_files(files, lambda stm: b.add(cast(AST, lt.visit(stm, b))))
-        # for q in lt.query:
-        #     self.query.append(q)
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
-        Parse LP^MLN program and convert to ASP with weak constraints.
+        Parse clingo program with weights and convert to ASP with weak constraints.
         '''
         prio_obs = PriorityObs()
         ctl.register_observer(prio_obs)
 
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
+
+        # Add meta file for calculating P-Log
         if self.calculate_plog:
             enable_python()
             ctl.add("base", [], self._read('examples/plog/meta.lp'))
@@ -204,12 +196,12 @@ class PlingoApp(Application):
 
         ctl.ground([("base", [])])
 
-        # Get queries in input program
+        # Get theory queries in input program
         for t in ctl.theory_atoms:
             if t.term.name == 'query':
                 self.query.append(query.convert_theory_query(t))
         if self.query != []:
-            self.query = query.ground(self.query, ctl.symbolic_atoms)
+            self.query = query.collect(self.query, ctl.symbolic_atoms)
             if self.balanced_models is not None and len(self.query) > 1:
                 self.query = self.query[0:1]
                 print(
@@ -233,7 +225,6 @@ class PlingoApp(Application):
                     for m in h:
                         bound_hr = m.cost[0]
                 # TODO: Don't show _ext_helper
-                # ctl.release_external(Function("_ext_helper"))
                 ctl.assign_external(Function("_plingo_ext_helper"), True)
 
             if self.display_all_probs or self.query != []:

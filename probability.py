@@ -3,7 +3,7 @@ import numpy as np
 
 class ProbabilityModule():
     '''
-    Module that handles calculation of probabilities of models and query atoms
+    Calculates probabilities of models and query atoms.
     '''
 
     def __init__(self, model_costs, priorities, options):
@@ -18,9 +18,12 @@ class ProbabilityModule():
         self.calculate_probabilites(np.array(model_costs))
 
     def calculate_probabilites(self, model_costs):
-        # If hard rules have been translated
-        # find stable models of LPMLN
-        # (ones with max hard rules satisfied)
+        '''
+        Calculates probabilities based on list of model costs.
+        If hard rules have been translated
+        find only stable models of LP^MLN
+        (ones with max hard rules satisfied).
+        '''
         self.model_weights = np.exp(-(model_costs * 10**(-self.power_of_ten)))
         if self.two_solve_calls:
             self.model_weights = self.model_weights[:, -1]
@@ -37,6 +40,9 @@ class ProbabilityModule():
         # TODO: Unittest/Check that probabilities sum up to 1
 
     def print_probs(self):
+        '''
+        Prints probabilities of stable models.
+        '''
         print('\n')
         for s in self.stable_models:
             current_prob = self.model_probs[s]
@@ -49,6 +55,9 @@ class ProbabilityModule():
         print('\n')
 
     def get_query_probability(self, query):
+        '''
+        Prints probabilities of query atoms.
+        '''
         print('\n')
         for q in query:
             prob = self.model_probs[q[1]].sum()
