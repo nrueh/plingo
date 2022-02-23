@@ -37,7 +37,7 @@ class PriorityObs(Observer):
 
 class PlingoApp(Application):
     '''
-    Application extending clingo with weighted rules 
+    Application extending clingo with weighted rules
     and probability calculation module.
     Plingo can compute other probabilistic logic languages
     LP^MLN, ProbLog and P-Log.
@@ -117,23 +117,24 @@ class PlingoApp(Application):
                          self.use_unsat_approach)
         options.add_flag(
             group, 'two-solve-calls',
-            'Use two solve calls (first determines LPMLN stable models, second their probabilities). \
-            Works only with --hr options.', self.two_solve_calls)
+            '''Use two solve calls (first determines LPMLN stable models, second their probabilities).
+                            Works only with --hr options.''',
+            self.two_solve_calls)
         options.add_flag(group, 'plog', 'Calculate P-Log program.',
                          self.calculate_plog)
         options.add(group,
-                    'q',
+                    'query',
                     'Probability of query atom',
                     self._parse_query,
                     multi=True)
         options.add(group, 'evid', 'Provide evidence file',
                     self._parse_evidence)
         options.add(
-            group, 'balanced,b', 'Approximate query in a balanced way. \
-            Use as --balanced N, where max. 2N models are determined \
-                (N models with query true and false respectively). \
-                This overwrites the --models option \
-                This works only for a single (ground) query atom!',
+            group, 'balanced,b', '''Approximate query in a balanced way.
+                            Use as --balanced N, where max. 2N models are determined
+                            (N models with query true and false respectively).
+                            This overwrites the --models option
+                            This works only for a single (ground) query atom!''',
             self._parse_balanced_query)
         options.add_flag(
             group, 'use-backend',
@@ -146,8 +147,7 @@ class PlingoApp(Application):
                 'The two-solve-calls mode only works if hard rules are translated.'
             )
             return False
-        else:
-            return True
+        return True
 
     def _read(self, path: str):
         if path == "-":
@@ -203,9 +203,8 @@ class PlingoApp(Application):
         if self.query != []:
             self.query = query.collect(self.query, ctl.symbolic_atoms)
             if self.balanced_models is not None and len(self.query) > 1:
-                self.query = self.query[0:1]
-                print(
-                    f'Warning: Only one (ground) query atom can be specified for balanced approximation. Querying: {self.query[0][0]}'
+                raise RuntimeError(
+                    'Only one (ground) query atom can be specified for balanced approximation.'
                 )
 
         # Solve

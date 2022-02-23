@@ -155,8 +155,8 @@ class OptEnum:
         '''
         Run optimal solution enumeration algorithm.
         Optionally for approximating a query this
-        can find models which do (not) contain
-        the query  in a balanced way.
+        can find models which do/do not contain
+        the query in a balanced way.
         '''
         # if self._restore:
         #     self._heu = RestoreHeu()
