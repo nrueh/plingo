@@ -1,4 +1,4 @@
-from typing import cast, Optional, Dict, List, Sequence, Tuple
+from typing import cast, Optional, Sequence, Tuple, Dict, List
 
 from clingo.backend import Backend, Observer
 from clingo.configuration import Configuration
@@ -13,16 +13,22 @@ class MinObs(Observer):
     '''
     Observer to extract ground minimize constraint.
     '''
+    priorities: List[int]
     literals: Dict[int, List[Tuple[int, int]]]
 
-    def __init__(self):
-        self.literals = {}
+    def __init__(self, mode):
+        self.mode = mode
+        self.priorities = []
+        if mode == 'optN':
+            self.literals = {}
 
     def minimize(self, priority: int, literals: Sequence[Tuple[int, int]]):
         '''
         Intercept minimize constraint and add it to member `literals`.
         '''
-        self.literals.setdefault(priority, []).extend(literals)
+        self.priorities.append(priority)
+        if self.mode == 'optN':
+            self.literals.setdefault(priority, []).extend(literals)
 
 
 class OptEnum:
@@ -151,7 +157,7 @@ class OptEnum:
             update_dict['Enumerate']['Contain Query'] = len(self.query[0][1])
         accu.update(update_dict)
 
-    def _optimize(self, ctl: Control, obs: MinObs):
+    def _optimize(self, ctl: Control, obs):
         '''
         Run optimal solution enumeration algorithm.
         Optionally for approximating a query this

@@ -4,7 +4,6 @@ import sys
 from clingo import clingo_main, Application, Control
 from clingo import ApplicationOptions, Flag, Function, Number
 from clingo.ast import AST, ProgramBuilder, parse_files
-from clingo.backend import Observer
 from clingo.configuration import Configuration
 from clingo.script import enable_python
 
@@ -19,20 +18,6 @@ THEORY = """
     &query/1: constant, head
 }.
 """
-# TODO: Add evidence/1 to input language
-
-
-class PriorityObs(Observer):
-    '''
-    Observes levels of weak constraint priorities that have been added to
-    the program to accurately calculate probabilities
-    '''
-
-    def __init__(self):
-        self.priorities = []
-
-    def minimize(self, priority: int, literals):
-        self.priorities.append(priority)
 
 
 class PlingoApp(Application):
@@ -168,8 +153,6 @@ class PlingoApp(Application):
         '''
         Parse clingo program with weights and convert to ASP with weak constraints.
         '''
-        prio_obs = PriorityObs()
-        ctl.register_observer(prio_obs)
 
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
@@ -189,10 +172,8 @@ class PlingoApp(Application):
         self._convert(ctl, files)
 
         solve_config = cast(Configuration, ctl.configuration.solve)
-
-        if solve_config.opt_mode == 'optN':
-            obs = MinObs()
-            ctl.register_observer(obs)
+        obs = MinObs(solve_config.opt_mode)
+        ctl.register_observer(obs)
 
         ctl.ground([("base", [])])
 
@@ -240,18 +221,18 @@ class PlingoApp(Application):
                                 self.query, model)
 
         if model_costs != []:
-            if 0 not in prio_obs.priorities:
+            if 0 not in obs.priorities:
                 # TODO: Should this be error or warning?
                 print(
                     'No soft weights in program. Cannot calculate probabilites'
                 )
             # TODO: What about case where there are other priorities than 0/1?
             # elif not self.two_solve_calls and any(
-            #         x > 1 for x in prio_obs.priorities):
-            #     print(prio_obs.priorities)
+            #         x > 1 for x in obs.priorities):
+            #     print(obs.priorities)
             #     print('testasd')
             else:
-                probs = ProbabilityModule(model_costs, prio_obs.priorities, [
+                probs = ProbabilityModule(model_costs, obs.priorities, [
                     self.translate_hard_rules, self.two_solve_calls,
                     self.power_of_ten
                 ])
