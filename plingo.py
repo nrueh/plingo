@@ -6,7 +6,7 @@ from clingo.ast import AST, ProgramBuilder, parse_files, parse_string
 from clingo.configuration import Configuration
 from clingo.control import Control
 from clingo.script import enable_python
-from clingo.symbol import Function, Number, Symbol
+from clingo.symbol import Function, Symbol
 
 from transformer import PlingoTransformer
 import query
@@ -72,17 +72,6 @@ class PlingoApp(Application):
         except RuntimeError:
             print(f'Query \'{value}\' cannot be parsed.')
             return False
-
-        # if ',' in value:
-        #     name = value.split(',')[0]
-        #     args = []
-        #     for a in value.split(',')[1:]:
-        #         try:
-        #             args.append(Number(int(a)))
-        #         except (ValueError):
-        #             args.append(Function(a))
-        #     value = Function(name, args)
-        # self.query.append(value)
         return True
 
     def _parse_evidence(self, value: str) -> bool:
@@ -100,7 +89,6 @@ class PlingoApp(Application):
         This will determine max. N models
         with and without the query.
         """
-        # print(value)
         try:
             self.balanced_models = int(value)
             if self.balanced_models < 1:
@@ -201,16 +189,8 @@ class PlingoApp(Application):
         ctl.register_observer(obs)
         return solve_config, obs
 
-    def main(self, ctl: Control, files: Sequence[str]):
-        '''
-        Parse clingo program with weights and convert to ASP with weak constraints.
-        '''
-        solve_config, obs = self._preprocessing(ctl, files)
-
-        ctl.ground([("base", [])])
-
-        self.query = query.collect(ctl.theory_atoms, self.balanced_models)
-
+    def get_model_costs(self, ctl: Control, solve_config: Configuration,
+                        obs: MinObs):
         # Solve
         if solve_config.opt_mode == 'optN':
             opt = OptEnum(self.query, self.balanced_models, self.use_backend)
@@ -242,27 +222,37 @@ class PlingoApp(Application):
                         if self.query != []:
                             self.query = query.check_model_for_query(
                                 self.query, model)
+        return model_costs
+
+    def probabilities(self, model_costs: List[int], priorities: List[int]):
+        if 0 not in priorities:
+            # TODO: Should this be error or warning?
+            print('No soft weights in program. Cannot calculate probabilites')
+        # TODO: What about case where there are other priorities than 0/1?
+        # elif not self.two_solve_calls and any(
+        #         x > 1 for x in priorities):
+        #     print(priorities)
+        else:
+            probs = ProbabilityModule(model_costs, priorities, [
+                self.translate_hard_rules, self.two_solve_calls,
+                self.power_of_ten
+            ])
+            if self.display_all_probs:
+                probs.print_probs()
+            if self.query != []:
+                probs.get_query_probability(self.query)
+
+    def main(self, ctl: Control, files: Sequence[str]):
+        '''
+        Parse clingo program with weights and convert to ASP with weak constraints.
+        '''
+        solve_config, obs = self._preprocessing(ctl, files)
+        ctl.ground([("base", [])])
+        self.query = query.collect(ctl.theory_atoms, self.balanced_models)
+        model_costs = self.get_model_costs(ctl, solve_config, obs)
 
         if model_costs != []:
-            if 0 not in obs.priorities:
-                # TODO: Should this be error or warning?
-                print(
-                    'No soft weights in program. Cannot calculate probabilites'
-                )
-            # TODO: What about case where there are other priorities than 0/1?
-            # elif not self.two_solve_calls and any(
-            #         x > 1 for x in obs.priorities):
-            #     print(obs.priorities)
-            #     print('testasd')
-            else:
-                probs = ProbabilityModule(model_costs, obs.priorities, [
-                    self.translate_hard_rules, self.two_solve_calls,
-                    self.power_of_ten
-                ])
-                if self.display_all_probs:
-                    probs.print_probs()
-                if self.query != []:
-                    probs.get_query_probability(self.query)
+            self.probabilities(model_costs, obs.priorities)
 
 
 if __name__ == '__main__':

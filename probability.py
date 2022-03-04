@@ -1,12 +1,25 @@
+from typing import List, Union, Tuple
+
+from clingo.application import Flag
+from clingo.symbol import Symbol
+
 import numpy as np
+# from numpy.typing import ndarray
 
 
 class ProbabilityModule():
     '''
     Calculates probabilities of models and query atoms.
     '''
+    translate_hr: Flag
+    two_solve_calls: Flag
+    power_of_ten: int
+    priorities: List[int]
+    stable_models: np.ndarray
+    model_weights: np.ndarray
 
-    def __init__(self, model_costs, priorities, options):
+    def __init__(self, model_costs: List[int], priorities: List[int],
+                 options: Union[Flag, Flag, int]):
         # TODO: Do weights need to be saved?
         self.translate_hr = options[0].flag
         self.two_solve_calls = options[1].flag
@@ -17,7 +30,7 @@ class ProbabilityModule():
         self.model_probs = []
         self.calculate_probabilites(np.array(model_costs))
 
-    def calculate_probabilites(self, model_costs):
+    def calculate_probabilites(self, model_costs: np.ndarray):
         '''
         Calculates probabilities based on list of model costs.
         If hard rules have been translated
@@ -54,12 +67,12 @@ class ProbabilityModule():
         # TODO: Round off probabilities?
         print('\n')
 
-    def get_query_probability(self, query):
+    def get_query_probability(self, queries: List[Tuple[Symbol, List[int]]]):
         '''
         Prints probabilities of query atoms.
         '''
         print('\n')
-        for q in query:
+        for q in queries:
             prob = self.model_probs[q[1]].sum()
             print(f'{str(q[0])}: {prob:.5f}')
         print('\n')
