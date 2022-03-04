@@ -2,7 +2,7 @@ from typing import cast, Sequence, List, Tuple, Optional
 import sys
 
 from clingo.application import clingo_main, Application, ApplicationOptions, Flag
-from clingo.ast import AST, ProgramBuilder, parse_files
+from clingo.ast import AST, ProgramBuilder, parse_files, parse_string
 from clingo.configuration import Configuration
 from clingo.control import Control
 from clingo.script import enable_python
@@ -19,6 +19,10 @@ THEORY = """
     &query/1: constant, head
 }.
 """
+
+
+def parse_callback(ast):
+    return ast
 
 
 class PlingoApp(Application):
@@ -57,21 +61,28 @@ class PlingoApp(Application):
     def _parse_query(self, value: str) -> bool:
         """
         Parse query atom specified through command-line.
-        If query is passed with arguments (separated through comma),
-        create a clingo.Function.
-        Otherwise save the string of the atom name.
+        This will be added to the programs as a theory atom
+        '&query(value).' later, where value is the value string
+        specified through the command-line.
         """
-        # TODO: What assertion does input query have to fulfill?
-        if ',' in value:
-            name = value.split(',')[0]
-            args = []
-            for a in value.split(',')[1:]:
-                try:
-                    args.append(Number(int(a)))
-                except (ValueError):
-                    args.append(Function(a))
-            value = Function(name, args)
-        self.query.append(value)
+        # TODO: Keep old way as well?
+        try:
+            parse_string(f'&query({value}).', parse_callback)
+            self.query.append(value)
+        except RuntimeError:
+            print(f'Query \'{value}\' cannot be parsed.')
+            return False
+
+        # if ',' in value:
+        #     name = value.split(',')[0]
+        #     args = []
+        #     for a in value.split(',')[1:]:
+        #         try:
+        #             args.append(Number(int(a)))
+        #         except (ValueError):
+        #             args.append(Function(a))
+        #     value = Function(name, args)
+        # self.query.append(value)
         return True
 
     def _parse_evidence(self, value: str) -> bool:
@@ -158,8 +169,8 @@ class PlingoApp(Application):
             self.two_solve_calls, self.power_of_ten
         ]
         with ProgramBuilder(ctl) as b:
-            lt = PlingoTransformer(options)
-            parse_files(files, lambda stm: b.add(cast(AST, lt.visit(stm, b))))
+            pt = PlingoTransformer(options)
+            parse_files(files, lambda stm: b.add(cast(AST, pt.visit(stm, b))))
 
     def _preprocessing(self, ctl: Control,
                        files: Sequence[str]) -> Tuple[Configuration, MinObs]:
@@ -180,6 +191,11 @@ class PlingoApp(Application):
             files = ["-"]
         self._convert(ctl, files)
 
+        if self.query != []:
+            for q in self.query:
+                ctl.add("base", [], f'&query({q}).')
+            self.query = []
+
         solve_config = cast(Configuration, ctl.configuration.solve)
         obs = MinObs(solve_config.opt_mode)
         ctl.register_observer(obs)
@@ -193,17 +209,8 @@ class PlingoApp(Application):
 
         ctl.ground([("base", [])])
 
-        # self.query = query._add_from_theory(ctl: Control, self.query: List[])
-        # Get theory queries in input program
-        for t in ctl.theory_atoms:
-            if t.term.name == 'query':
-                self.query.append(query.convert_theory_query(t))
-        if self.query != []:
-            self.query = query.collect(self.query, ctl.symbolic_atoms)
-            if self.balanced_models is not None and len(self.query) > 1:
-                raise RuntimeError(
-                    'Only one (ground) query atom can be specified for balanced approximation.'
-                )
+        self.query = query.collect(ctl.theory_atoms, self.balanced_models)
+
         # Solve
         if solve_config.opt_mode == 'optN':
             opt = OptEnum(self.query, self.balanced_models, self.use_backend)

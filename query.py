@@ -1,7 +1,13 @@
-from clingo import Function, Number
+from typing import Tuple, List, Optional
+
+from clingo.control import Control
+from clingo.solving import Model
+from clingo.symbol import Function, Number, Symbol
+from clingo.symbolic_atoms import SymbolicAtom
+from clingo.theory_atoms import TheoryAtom
 
 
-def convert_theory_arg(arg):
+def convert_theory_arg(arg: Symbol) -> Symbol:
     '''
     Converts the argument of a theory
     &query/1 atom to the correct Symbol.
@@ -16,7 +22,7 @@ def convert_theory_arg(arg):
         return Function(arg.name, args)
 
 
-def convert_theory_query(theory_atom):
+def convert_theory_query(theory_atom: TheoryAtom) -> Function:
     '''
     Converts a &query/1 atom to a Symbol.
     '''
@@ -28,34 +34,25 @@ def convert_theory_query(theory_atom):
     return Function(name, args)
 
 
-def collect(queries, symbolic_atoms):
+def collect(theory_atoms: List[TheoryAtom], balanced_models: Optional[int]):
     '''
-    Collects all symbolic atoms which have been queried
-    through the command-line without arguments
-    and combines them with other queries
-    (command-line with arguments OR as theory atoms).
+    Collect all queries from theory atoms.
+    For balanced query mode only one query atom is allowed.
     '''
-    # TODO: Add warning if query not present in program?
-    general_queries = []
-    queries_with_args = []
-    for q in queries:
-        if type(q) is str:
-            general_queries.append(q)
-        else:
-            queries_with_args.append([q, []])
-
-    query_signatures = [
-        s for s in symbolic_atoms.signatures if s[0] in general_queries
-    ]
-    queries = queries_with_args
-    for qs in query_signatures:
-        for sa in symbolic_atoms.by_signature(qs[0], qs[1], qs[2]):
-            if [sa.symbol, []] not in queries:
-                queries.append([sa.symbol, []])
+    queries = []
+    for t in theory_atoms:
+        if t.term.name == 'query':
+            queries.append((convert_theory_query(t), []))
+    if balanced_models is not None and len(queries) > 1:
+        raise RuntimeError(
+            'Only one (ground) query atom can be specified for balanced approximation.'
+        )
     return queries
 
 
-def check_model_for_query(queries, model, model_number=None):
+def check_model_for_query(queries: List[Tuple[Symbol, List[int]]],
+                          model: Model,
+                          model_number: Optional[int] = None):
     '''
     Efficiently checks if a model contains a query
     and if so, saves the current model number.
