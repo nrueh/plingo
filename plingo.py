@@ -1,11 +1,12 @@
-from typing import cast, Sequence
+from typing import cast, Sequence, List, Tuple, Optional
 import sys
 
-from clingo import clingo_main, Application, Control
-from clingo import ApplicationOptions, Flag, Function, Number
+from clingo.application import clingo_main, Application, ApplicationOptions, Flag
 from clingo.ast import AST, ProgramBuilder, parse_files
 from clingo.configuration import Configuration
+from clingo.control import Control
 from clingo.script import enable_python
+from clingo.symbol import Function, Number, Symbol
 
 from transformer import PlingoTransformer
 import query
@@ -27,6 +28,17 @@ class PlingoApp(Application):
     Plingo can compute other probabilistic logic languages
     LP^MLN, ProbLog and P-Log.
     '''
+    translate_hard_rules: Flag
+    display_all_probs: Flag
+    use_unsat_approach: Flag
+    two_solve_calls: Flag
+    calculate_plog: Flag
+    use_backend: Flag
+    query: List[Tuple[Symbol, List[int]]]
+    evidence_file: str
+    balanced_models: Optional[int]
+    power_of_ten: int
+
     program_name: str = "plingo"
     version: str = "1.0"
 
@@ -42,7 +54,7 @@ class PlingoApp(Application):
         self.balanced_models = None
         self.power_of_ten = 5
 
-    def _parse_query(self, value):
+    def _parse_query(self, value: str) -> bool:
         """
         Parse query atom specified through command-line.
         If query is passed with arguments (separated through comma),
@@ -62,7 +74,7 @@ class PlingoApp(Application):
         self.query.append(value)
         return True
 
-    def _parse_evidence(self, value):
+    def _parse_evidence(self, value: str) -> bool:
         """
         Parse evidence.
         Has to be specified as (clingo) file path.
@@ -70,7 +82,7 @@ class PlingoApp(Application):
         self.evidence_file = self._read(value)
         return True
 
-    def _parse_balanced_query(self, value):
+    def _parse_balanced_query(self, value) -> bool:
         """
         Sets number of models N to find for
         balanced query approximation.
@@ -126,7 +138,7 @@ class PlingoApp(Application):
             'Adds constaints for query approximation in backend instead of using assumptions.',
             self.use_backend)
 
-    def validate_options(self):
+    def validate_options(self) -> bool:
         if self.two_solve_calls and not self.translate_hard_rules:
             print(
                 'The two-solve-calls mode only works if hard rules are translated.'
@@ -149,11 +161,8 @@ class PlingoApp(Application):
             lt = PlingoTransformer(options)
             parse_files(files, lambda stm: b.add(cast(AST, lt.visit(stm, b))))
 
-    def main(self, ctl: Control, files: Sequence[str]):
-        '''
-        Parse clingo program with weights and convert to ASP with weak constraints.
-        '''
-
+    def _preprocessing(self, ctl: Control,
+                       files: Sequence[str]) -> Tuple[Configuration, MinObs]:
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
 
@@ -174,9 +183,17 @@ class PlingoApp(Application):
         solve_config = cast(Configuration, ctl.configuration.solve)
         obs = MinObs(solve_config.opt_mode)
         ctl.register_observer(obs)
+        return solve_config, obs
+
+    def main(self, ctl: Control, files: Sequence[str]):
+        '''
+        Parse clingo program with weights and convert to ASP with weak constraints.
+        '''
+        solve_config, obs = self._preprocessing(ctl, files)
 
         ctl.ground([("base", [])])
 
+        # self.query = query._add_from_theory(ctl: Control, self.query: List[])
         # Get theory queries in input program
         for t in ctl.theory_atoms:
             if t.term.name == 'query':
@@ -187,7 +204,6 @@ class PlingoApp(Application):
                 raise RuntimeError(
                     'Only one (ground) query atom can be specified for balanced approximation.'
                 )
-
         # Solve
         if solve_config.opt_mode == 'optN':
             opt = OptEnum(self.query, self.balanced_models, self.use_backend)

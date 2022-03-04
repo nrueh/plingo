@@ -4,7 +4,6 @@ This directory contains two examples taken from LP^MLN [[1]](#1) [[3]](#3).
 
 
 ## Instances
-For descriptions of the ProbLog and P-log examples have a look at the READMEs in the corresponding directories.
 ### Birds
 This example is taken from [[1]](#1). Imagine there are two databases who provide inconsistent information. With LP^MLN this can be resolved. To get all stable models and their probabilities
 ```
