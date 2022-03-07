@@ -178,7 +178,7 @@ class OptEnum:
             update_dict['Enumerate']['Contain Query'] = len(self.query[0][1])
         accu.update(update_dict)
 
-    def _optimize(self, ctl: Control, obs: MinObs):
+    def optimize(self, ctl: Control, obs: MinObs):
         '''
         Run optimal solution enumeration algorithm.
         Optionally for approximating a query this
@@ -234,7 +234,6 @@ class OptEnum:
 
             # if self._heu is not None:
             #     self._heu.set_restore(costs)
-
             res = cast(
                 SolveResult,
                 ctl.solve(assumptions=self.assumptions,

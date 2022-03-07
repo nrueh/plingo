@@ -1,26 +1,26 @@
 from typing import Tuple, List, Optional
 
 from clingo.solving import Model
-from clingo.symbol import Function, Number, Symbol
+from clingo.symbol import Function, Number, String, Symbol
 from clingo.theory_atoms import TheoryAtom
 
 
-def convert_theory_arg(arg: Symbol) -> Symbol:
+def _convert_theory_arg(arg: Symbol) -> Symbol:
     '''
     Converts the argument of a theory
     &query/1 atom to the correct Symbol.
     '''
-    theory_type = str(arg.type)[15:]
+    theory_type = str(arg.type).replace('TheoryTermType.', '')
     if theory_type == 'Symbol':
-        return Function(arg.name)
+        return String(str(arg.name).strip('"'))
     elif theory_type == 'Number':
         return Number(arg.number)
     elif theory_type == 'Function':
-        args = [convert_theory_arg(targ) for targ in arg.arguments]
+        args = [_convert_theory_arg(targ) for targ in arg.arguments]
         return Function(arg.name, args)
 
 
-def convert_theory_query(theory_atom: TheoryAtom) -> Function:
+def _convert_theory_query(theory_atom: TheoryAtom) -> Function:
     '''
     Converts a &query/1 atom to a Symbol.
     '''
@@ -28,11 +28,12 @@ def convert_theory_query(theory_atom: TheoryAtom) -> Function:
     name = query_atom.name
     args = []
     if query_atom.arguments != []:
-        args = [convert_theory_arg(arg) for arg in query_atom.arguments]
+        args = [_convert_theory_arg(arg) for arg in query_atom.arguments]
     return Function(name, args)
 
 
-def collect(theory_atoms: List[TheoryAtom], balanced_models: Optional[int]):
+def collect_query(theory_atoms: List[TheoryAtom],
+                  balanced_models: Optional[int]):
     '''
     Collect all queries from theory atoms.
     For balanced query mode only one query atom is allowed.
@@ -40,7 +41,7 @@ def collect(theory_atoms: List[TheoryAtom], balanced_models: Optional[int]):
     queries = []
     for t in theory_atoms:
         if t.term.name == 'query':
-            queries.append((convert_theory_query(t), []))
+            queries.append((_convert_theory_query(t), []))
     if balanced_models is not None and len(queries) > 1:
         raise RuntimeError(
             'Only one (ground) query atom can be specified for balanced approximation.'

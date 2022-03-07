@@ -9,7 +9,7 @@ from clingo.script import enable_python
 from clingo.symbol import Function, Symbol
 
 from transformer import PlingoTransformer
-import query
+from query import collect_query, check_model_for_query
 from opt import MinObs, OptEnum
 from probability import ProbabilityModule
 
@@ -162,6 +162,9 @@ class PlingoApp(Application):
 
     def _preprocessing(self, ctl: Control,
                        files: Sequence[str]) -> Tuple[Configuration, MinObs]:
+        '''
+        Performs some preprocessing.
+        '''
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
 
@@ -179,6 +182,7 @@ class PlingoApp(Application):
             files = ["-"]
         self._convert(ctl, files)
 
+        # Add queries specified through command-line to program as theory
         if self.query != []:
             for q in self.query:
                 ctl.add("base", [], f'&query({q}).')
@@ -189,12 +193,15 @@ class PlingoApp(Application):
         ctl.register_observer(obs)
         return solve_config, obs
 
-    def get_model_costs(self, ctl: Control, solve_config: Configuration,
-                        obs: MinObs):
-        # Solve
+    def _solve(self, ctl: Control, solve_config: Configuration, obs: MinObs):
+        '''
+        Solves either for most probable stable model, all models
+        or enumerates models by optimality.
+        The latter option can be used for approximate calculations.
+        '''
         if solve_config.opt_mode == 'optN':
             opt = OptEnum(self.query, self.balanced_models, self.use_backend)
-            model_costs, self.query = opt._optimize(ctl, obs)
+            model_costs, self.query = opt.optimize(ctl, obs)
         else:
             bound_hr = 2**63 - 1
             if self.two_solve_calls:
@@ -220,27 +227,29 @@ class PlingoApp(Application):
                     if self.display_all_probs or self.query != []:
                         model_costs.append(model.cost)
                         if self.query != []:
-                            self.query = query.check_model_for_query(
+                            self.query = check_model_for_query(
                                 self.query, model)
         return model_costs
 
-    def probabilities(self, model_costs: List[int], priorities: List[int]):
+    def _probabilities(self, model_costs: List[int], priorities: List[int]):
+        '''
+        Calls probability module and prints probababilities.
+        '''
         if 0 not in priorities:
             # TODO: Should this be error or warning?
             print('No soft weights in program. Cannot calculate probabilites')
+            return
         # TODO: What about case where there are other priorities than 0/1?
         # elif not self.two_solve_calls and any(
         #         x > 1 for x in priorities):
         #     print(priorities)
-        else:
-            probs = ProbabilityModule(model_costs, priorities, [
-                self.translate_hard_rules, self.two_solve_calls,
-                self.power_of_ten
-            ])
-            if self.display_all_probs:
-                probs.print_probs()
-            if self.query != []:
-                probs.get_query_probability(self.query)
+        probs = ProbabilityModule(model_costs, priorities, [
+            self.translate_hard_rules, self.two_solve_calls, self.power_of_ten
+        ])
+        if self.display_all_probs:
+            probs.print_probs()
+        if self.query != []:
+            probs.get_query_probability(self.query)
 
     def main(self, ctl: Control, files: Sequence[str]):
         '''
@@ -248,11 +257,11 @@ class PlingoApp(Application):
         '''
         solve_config, obs = self._preprocessing(ctl, files)
         ctl.ground([("base", [])])
-        self.query = query.collect(ctl.theory_atoms, self.balanced_models)
-        model_costs = self.get_model_costs(ctl, solve_config, obs)
+        self.query = collect_query(ctl.theory_atoms, self.balanced_models)
+        model_costs = self._solve(ctl, solve_config, obs)
 
         if model_costs != []:
-            self.probabilities(model_costs, obs.priorities)
+            self._probabilities(model_costs, obs.priorities)
 
 
 if __name__ == '__main__':
