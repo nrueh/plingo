@@ -15,8 +15,9 @@ class ProbabilityModule():
     two_solve_calls: Flag
     power_of_ten: int
     priorities: List[int]
-    stable_models: np.ndarray
     model_weights: np.ndarray
+    stable_models: np.ndarray
+    model_probs: np.ndarray
 
     def __init__(self, model_costs: List[int], priorities: List[int],
                  options: Union[Flag, Flag, int]):
@@ -25,8 +26,8 @@ class ProbabilityModule():
         self.two_solve_calls = options[1].flag
         self.power_of_ten = options[2]
         self.priorities = priorities
-        self.stable_models = []
         self.model_weights = []
+        self.stable_models = []
         self.model_probs = []
         self.calculate_probabilites(np.array(model_costs))
 
