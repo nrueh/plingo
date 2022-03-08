@@ -1,17 +1,17 @@
 from typing import cast, Sequence, List, Tuple, Optional
 import sys
 
-from clingo.application import clingo_main, Application, ApplicationOptions, Flag
+from clingo.application import Application, ApplicationOptions, Flag
 from clingo.ast import AST, ProgramBuilder, parse_files, parse_string
 from clingo.configuration import Configuration
 from clingo.control import Control
 from clingo.script import enable_python
 from clingo.symbol import Function, Symbol
 
-from transformer import PlingoTransformer
-from query import collect_query, check_model_for_query
-from opt import MinObs, OptEnum
-from probability import ProbabilityModule
+from .transformer import PlingoTransformer
+from .query import collect_query, check_model_for_query
+from .opt import MinObs, OptEnum
+from .probability import ProbabilityModule
 
 THEORY = """
 #theory plingo{
@@ -263,6 +263,3 @@ class PlingoApp(Application):
         if model_costs != []:
             self._probabilities(model_costs, obs.priorities)
 
-
-if __name__ == '__main__':
-    sys.exit(int(clingo_main(PlingoApp(), sys.argv[1:])))

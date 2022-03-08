@@ -7,7 +7,7 @@ from clingo.solving import SolveResult, Model
 from clingo.statistics import StatisticsMap
 from clingo.symbol import Symbol
 
-from query import check_model_for_query
+from .query import check_model_for_query
 
 
 class MinObs(Observer):
