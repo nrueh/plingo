@@ -262,4 +262,3 @@ class PlingoApp(Application):
 
         if model_costs != []:
             self._probabilities(model_costs, obs.priorities)
-

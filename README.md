@@ -31,7 +31,7 @@ pip install .
 
 `plingo` is an extension of [clingo](https://potassco.org/clingo/), therefore it counts with all of clingo's functionality with new options.
 
-Run the following command and look at `plingos` options under Plingo Options:
+Run the following command and look at `plingo`'s options under Plingo Options:
 
 ```
 plingo -h
@@ -62,7 +62,7 @@ Calls        : 1
 Time         : 0.005s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
 CPU Time     : 0.005s
 ```
-
+#### Marginal probabilities
 To list all stable models, add the flag `--all`. 
 
 ```
