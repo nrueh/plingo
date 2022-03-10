@@ -171,7 +171,9 @@ class PlingoApp(Application):
         # Add meta file for calculating P-Log
         if self.calculate_plog:
             enable_python()
-            ctl.add("base", [], self._read('examples/plog/meta.lp'))
+            from importlib.resources import files as importfiles
+            meta_path = importfiles('plingo').joinpath('meta.lp')
+            ctl.add("base", [], self._read(meta_path))
             ctl.add("base", [], f'#const _plingo_factor={self.power_of_ten}.')
         if self.two_solve_calls:
             ctl.add("base", [], '#external _plingo_ext_helper.')
