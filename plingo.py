@@ -134,7 +134,7 @@ class PlingoApp(Application):
             self._parse_balanced_query)
         options.add_flag(
             group, 'use-backend',
-            'Adds constaints for query approximation in backend instead of using assumptions.',
+            'Adds constraints for query approximation in backend instead of using assumptions.',
             self.use_backend)
 
     def validate_options(self) -> bool:

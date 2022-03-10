@@ -100,6 +100,10 @@ A number of examples can be found in the directory `examples`. There are also tw
 
     Enumerates all stable models and prints their probabilities.
 
+- `--balanced=N`
+
+    Approximates a query in a balaned way, i.e. it will determine N stable models containing the query, and N stable models *not* containing the query. This overwrites clingo's `--models` option. Works only for a single ground query atom!
+
 - `--evid=file`
 
     Provides an evidence file to the program (`.lp` file with clingo syntax rules)
@@ -112,9 +116,9 @@ A number of examples can be found in the directory `examples`. There are also tw
 
     Necessary when calculating P-log programs.
 
-- `--q=atom`
+- `--query='atom'`
 
-    Adds a query atom `atom`. The argument has to be either just the name of the atom (`--q=isPerson`) or the name plus arguments separated by comma (`--q=isPerson,John,Doe` queries for atom `isPerson(John,Doe)`).
+    Adds a query atom `atom`, e.g. using the example from above `--query='bird(jo)'`. The argument has to be inside single quotation marks (otherwise the command-line might not be able to parse it correctly).
 
 - `--two-solve-calls`
 
@@ -123,3 +127,8 @@ A number of examples can be found in the directory `examples`. There are also tw
 - `--unsat`
 
     Uses the conversion with `unsat` atoms
+
+- `--use-backend`
+
+    Adds constraints for query approximation in backend instead of using assumptions.
+
