@@ -7,24 +7,41 @@ Further the Maximum a posteriori (MAP) estimate, the most probable stable model,
 
 
 ## Installation
-The program depends on Python 3, clingo 5.5 and numpy. The requirements are easiest to install with Anaconda 
-```
-conda install -c potassco/label/dev clingo
-conda install numpy
-```
-See https://potassco.org/clingo/ for further information.
 
-For installation just clone the repository
+- Clone the repository
+
 ```
 git clone https://github.com/nrueh/plingo.git
 ```
 
+- Move to the repository
+
+```
+cd plingo
+```
+
+- Install project and requirements with pip. 
+  
+```
+pip install .
+```
+
+
 ## Usage
-To try out the program run the file `plingo.py` in python with any LPMLN instance appended. For example
+
+`plingo` is an extension of [clingo](https://potassco.org/clingo/), therefore it counts with all of clingo's functionality with new options.
+
+Run the following command and look at `plingo`'s options under Plingo Options:
+
 ```
-python plingo.py examples/birds.lp
+plingo -h
 ```
-This gives the MAP estimate. 
+
+#### MAP estimate
+
+```
+plingo examples/lpmln/birds.lp
+```
 ```
 plingo version 1.0
 Reading from examples/birds.lp
@@ -44,11 +61,12 @@ Calls        : 1
 Time         : 0.005s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
 CPU Time     : 0.005s
 ```
+#### Marginal probabilities
 To list all stable models, add the flag `--all`. 
+
 ```
-python plingo.py birds.lp --all
+plingo examples/lpmln/birds.lp --all
 ```
-with output 
 ```
 plingo version 1.0
 Reading from examples/birds.lp
@@ -77,6 +95,7 @@ Calls        : 1
 Time         : 0.006s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
 CPU Time     : 0.006s
 ```
+
 ## Input
 Syntactically, LPMLN differs between "soft" rules and "hard" rules, where "soft" rules have a (real number) weight and "hard" rules the weight "alpha". 
 
@@ -112,9 +131,9 @@ A number of examples can be found in the directory `examples`. There are also tw
 
     Necessary when calculating P-log programs.
 
-- `--q=atom`
+- `--query='atom'`
 
-    Adds a query atom `atom`. The argument has to be either just the name of the atom (`--q=isPerson`) or the name plus arguments separated by comma (`--q=isPerson,John,Doe` queries for atom `isPerson(John,Doe)`).
+    Adds a query atom `atom`, e.g. using the example from above `--query='bird(jo)'`. The argument has to be inside single quotation marks (otherwise the command-line might not be able to parse it correctly).
 
 - `--two-solve-calls`
 
@@ -123,3 +142,26 @@ A number of examples can be found in the directory `examples`. There are also tw
 - `--unsat`
 
     Uses the conversion with `unsat` atoms
+
+
+### Solution enumeration by optimality algorithm
+Taken from [[1]](#1).
+
+- `--opt-enum`
+
+    Enumerates stable models by optimality. 
+    This can be used for approximating probabilities and queries.
+    Recommended to use along with -q1 to suppress printing of intermediate models
+    
+- `--balanced=N`
+
+    Approximates a query in a balanced way, i.e. it will determine N stable models containing the query, and N stable models *not* containing the query. This overwrites clingo's `--models` option. Works only for a single ground query atom!
+- `--use-backend`
+
+    Adds constraints for query approximation in backend instead of using assumptions.
+
+## References
+<a id="1">[1]</a>
+J. Pajunen and T. Janhunen. (2021).
+Solution Enumeration by Optimality in Answer Set Programming.
+Theory and Practice of Logic Programming, 21(6), 750-767.

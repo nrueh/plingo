@@ -1,31 +1,54 @@
-from typing import cast, Optional, Dict, List, Sequence, Tuple
+from typing import cast, Optional, Sequence, Tuple, Dict, List
 
 from clingo.backend import Backend, Observer
 from clingo.configuration import Configuration
 from clingo.control import Control
 from clingo.solving import SolveResult, Model
 from clingo.statistics import StatisticsMap
+from clingo.symbol import Symbol
 
-from query import check_model_for_query
+from .query import check_model_for_query
 
 
 class MinObs(Observer):
     '''
     Observer to extract ground minimize constraint.
     '''
+    opt_enum: bool
+    priorities: List[int]
     literals: Dict[int, List[Tuple[int, int]]]
 
-    def __init__(self):
-        self.literals = {}
+    def __init__(self, opt_enum=False):
+        self.opt_enum = opt_enum
+        self.priorities = []
+        if self.opt_enum:
+            self.literals = {}
 
     def minimize(self, priority: int, literals: Sequence[Tuple[int, int]]):
         '''
         Intercept minimize constraint and add it to member `literals`.
         '''
-        self.literals.setdefault(priority, []).extend(literals)
+        self.priorities.append(priority)
+        if self.opt_enum:
+            self.literals.setdefault(priority, []).extend(literals)
 
 
 class OptEnum:
+    '''
+    Class implementing optimal model enumeration.
+    This can be used to approximate probabilities of stable models.
+    Optionally stable models can be found in a balanced way
+    when calculating probabilities of a query. 
+    '''
+    _aux_level: Dict[Tuple[int, int], int]
+    _proven: int
+    _intermediate: int
+    model_costs: List[int]
+    query: List[Tuple[Symbol, List[int]]]
+    num_balanced_models: Optional[int]
+    reached_max: Optional[bool]
+    assumptions: List[Tuple[Symbol, bool]]
+    use_backend: bool
 
     def __init__(self, query, balanced=None, use_backend=False):
         self._aux_level = {}
@@ -39,6 +62,11 @@ class OptEnum:
         self.use_backend = use_backend
 
     def _check_reached_max(self):
+        '''
+        Used for balanced query mode.
+        Checks whether the max. number of models 
+        with (or without) the query have been found already.
+        '''
         m_with_q = len(self.query[0][1])
         if m_with_q == self.num_balanced_models:
             self.reached_max = True
@@ -151,7 +179,7 @@ class OptEnum:
             update_dict['Enumerate']['Contain Query'] = len(self.query[0][1])
         accu.update(update_dict)
 
-    def _optimize(self, ctl: Control, obs: MinObs):
+    def optimize(self, ctl: Control, obs: MinObs):
         '''
         Run optimal solution enumeration algorithm.
         Optionally for approximating a query this
@@ -207,7 +235,6 @@ class OptEnum:
 
             # if self._heu is not None:
             #     self._heu.set_restore(costs)
-
             res = cast(
                 SolveResult,
                 ctl.solve(assumptions=self.assumptions,

@@ -1,5 +1,5 @@
 # P-log examples
-This directory contains the five examples from [[1]](#1) plus a variant of the Monty Hall problem taken from [[2]](#2). To run any of the examples add the `--plog` option. The file `meta.lp` is used by our system. Since in that file all meta atoms have `_lpmln` prepended, there is an additional `meta_readable.lp` which contains the same rules without the prefix.
+This directory contains the five examples from [[1]](#1) plus a variant of the Monty Hall problem taken from [[2]](#2). To run any of the examples add the `--plog` option.
 
 ## Instances
 ### Dice

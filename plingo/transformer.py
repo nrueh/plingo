@@ -1,29 +1,38 @@
-from typing import Any
+from typing import Any, List, Union
 from math import log
 
-from clingo import ast, Number, String
-from clingo.ast import AST, ASTSequence, ProgramBuilder
+from clingo import ast
+from clingo.application import Flag
+from clingo.ast import AST, ASTSequence, ProgramBuilder, Transformer
+from clingo.symbol import Number, String
 
-from plog import ConvertPlog
+from .plog import ConvertPlog
 
 
-def calculate_weight(flt, factor):
+def calculate_weight(flt: float, factor: int) -> Number:
     return Number(int(flt * (10**factor)))
 
 
-class PlingoTransformer(ast.Transformer):
+class PlingoTransformer(Transformer):
     '''
-    Transforms LP^MLN rules to ASP with weak constraints in the 'Penalty Way'.
-    Weights of soft rules are encoded via a theory term &weight/1 in the body.
+    Transforms rules with weights to ASP with weak constraints.
+    LP^MLN rules are converted in the 'Penalty Way'.
+    Weights can be encoded via one of the theory atoms
+    &weight/1, &log/1 or &problog/1 in the body.
     '''
-    def __init__(self, options):
+    rule_idx: int
+    translate_hr: Flag
+    use_unsat: Flag
+    two_solve_calls: Flag
+    power_of_ten: int
+    plog: ConvertPlog
+
+    def __init__(self, options: Union[Flag, Flag, Flag, int]):
         self.rule_idx = 0
-        self.expansion_variables = 0
         self.translate_hr = options[0].flag
         self.use_unsat = options[1].flag
         self.two_solve_calls = options[2].flag
         self.power_of_ten = options[3]
-        self.query = []
         self.plog = ConvertPlog()
 
     def visit(self, ast: AST, *args: Any, **kwargs: Any) -> AST:
@@ -58,7 +67,7 @@ class PlingoTransformer(ast.Transformer):
         priority = ast.SymbolicTerm(location, priority)
         return idx, constraint_weight, priority
 
-    def _get_unsat_atoms(self, location: dict, idx):
+    def _get_unsat_atoms(self, location: dict, idx: int):
         """
         Creates the 'unsat' and 'not unsat' atoms
         """
@@ -72,7 +81,7 @@ class PlingoTransformer(ast.Transformer):
 
         return unsat, not_unsat
 
-    def _convert_rule(self, head, body):
+    def _convert_rule(self, head: AST, body: List):
         """
         Converts the LPMLN rule using either the unsat atoms
         or the simplified approach without them (default setting)
@@ -194,9 +203,6 @@ class PlingoTransformer(ast.Transformer):
             builder.add(r)
 
         return asp_rules[-1]
-
-    def visit_Minimize(self, minimize: AST, builder: ProgramBuilder) -> AST:
-        return minimize
 
     def visit_Variable(self, variable: AST) -> AST:
         """

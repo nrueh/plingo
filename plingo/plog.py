@@ -1,12 +1,20 @@
+from typing import List, Tuple
+
 from clingo import ast
+from clingo.ast import AST, ASTSequence
 
 
-def lit(func):
+def lit(func: AST) -> AST:
     return ast.Literal(func.location, 0, ast.SymbolicAtom(func))
 
 
 class ConvertPlog:
-    def __get_tuple(self, attr):
+    '''
+    Provides functions to convert various theory atoms
+    used for modeling P-Log.
+    '''
+
+    def __get_tuple(self, attr: AST) -> Tuple[AST, AST]:
         loc = attr.location
         attr_name = ast.Function(loc, attr.name, [], False)
         domain_vars, range_var = attr.arguments[:-1], attr.arguments[-1]
@@ -14,9 +22,9 @@ class ConvertPlog:
         attr_tup = ast.Function(loc, '', [attr_name, domain_tup, range_var],
                                 False)
         exp_tup = ast.Function(loc, attr.name, [domain_tup], False)
-        return attr_tup, exp_tup
+        return (attr_tup, exp_tup)
 
-    def convert_random(self, ta, body):
+    def convert_random(self, ta: AST, body: ASTSequence) -> List[AST]:
         '''
         Input:
             &random(r(D)) { name(D,Y) : range(Y) } :- body(D).
@@ -53,7 +61,7 @@ class ConvertPlog:
         meta_to_readable = ast.Rule(loc, lit(attr), [lit(hold)])
         return [_random_rule, readable_to_meta, meta_to_readable]
 
-    def convert_pr(self, ta, body):
+    def convert_pr(self, ta: AST, body: ASTSequence) -> List[AST]:
         '''
         Input:
             &pr(r(D)) { name(D,Y) } = "3/20"  :- body(D,Y).
@@ -78,7 +86,7 @@ class ConvertPlog:
         _pr_rule = ast.Rule(loc, lit(_pr), body)
         return [_pr_rule]
 
-    def convert_obs(self, ta, body):
+    def convert_obs(self, ta: AST, body: ASTSequence) -> List[AST]:
         '''
         Input:
             &obs { name(D,Y) } = bool :- body.
@@ -98,7 +106,7 @@ class ConvertPlog:
         _obs = ast.Function(loc, '_plingo_obs', args, False)
         return [ast.Rule(loc, lit(_obs), body)]
 
-    def convert_do(self, ta, body):
+    def convert_do(self, ta: AST, body: ASTSequence) -> List[AST]:
         '''
             Input:
                 &do { name(D,Y) } :- body.

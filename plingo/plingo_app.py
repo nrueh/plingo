@@ -1,17 +1,17 @@
-from typing import cast, Sequence
+from typing import cast, Sequence, List, Tuple, Optional
 import sys
 
-from clingo import clingo_main, Application, Control
-from clingo import ApplicationOptions, Flag, Function, Number
-from clingo.ast import AST, ProgramBuilder, parse_files
-from clingo.backend import Observer
+from clingo.application import Application, ApplicationOptions, Flag
+from clingo.ast import AST, ProgramBuilder, parse_files, parse_string
 from clingo.configuration import Configuration
+from clingo.control import Control
 from clingo.script import enable_python
+from clingo.symbol import Function, Symbol
 
-from transformer import PlingoTransformer
-import query
-from opt import MinObs, OptEnum
-from probability import ProbabilityModule
+from .transformer import PlingoTransformer
+from .query import collect_query, check_model_for_query
+from .opt import MinObs, OptEnum
+from .probability import ProbabilityModule
 
 THEORY = """
 #theory plingo{
@@ -19,20 +19,10 @@ THEORY = """
     &query/1: constant, head
 }.
 """
-# TODO: Add evidence/1 to input language
 
 
-class PriorityObs(Observer):
-    '''
-    Observes levels of weak constraint priorities that have been added to
-    the program to accurately calculate probabilities
-    '''
-
-    def __init__(self):
-        self.priorities = []
-
-    def minimize(self, priority: int, literals):
-        self.priorities.append(priority)
+def parse_callback(ast):
+    return ast
 
 
 class PlingoApp(Application):
@@ -42,6 +32,18 @@ class PlingoApp(Application):
     Plingo can compute other probabilistic logic languages
     LP^MLN, ProbLog and P-Log.
     '''
+    translate_hard_rules: Flag
+    display_all_probs: Flag
+    use_unsat_approach: Flag
+    two_solve_calls: Flag
+    calculate_plog: Flag
+    opt_enum: Flag
+    use_backend: Flag
+    query: List[Tuple[Symbol, List[int]]]
+    evidence_file: str
+    balanced_models: Optional[int]
+    power_of_ten: int
+
     program_name: str = "plingo"
     version: str = "1.0"
 
@@ -51,33 +53,30 @@ class PlingoApp(Application):
         self.use_unsat_approach = Flag(False)
         self.two_solve_calls = Flag(False)
         self.calculate_plog = Flag(False)
+        self.opt_enum = Flag(False)
         self.use_backend = Flag(False)
         self.query = []
         self.evidence_file = ''
         self.balanced_models = None
         self.power_of_ten = 5
 
-    def _parse_query(self, value):
+    def _parse_query(self, value: str) -> bool:
         """
         Parse query atom specified through command-line.
-        If query is passed with arguments (separated through comma),
-        create a clingo.Function.
-        Otherwise save the string of the atom name.
+        This will be added to the programs as a theory atom
+        '&query(value).' later, where value is the value string
+        specified through the command-line.
         """
-        # TODO: What assertion does input query have to fulfill?
-        if ',' in value:
-            name = value.split(',')[0]
-            args = []
-            for a in value.split(',')[1:]:
-                try:
-                    args.append(Number(int(a)))
-                except (ValueError):
-                    args.append(Function(a))
-            value = Function(name, args)
-        self.query.append(value)
+        # TODO: Keep old way as well?
+        try:
+            parse_string(f'&query({value}).', parse_callback)
+            self.query.append(value)
+        except RuntimeError:
+            print(f'Query \'{value}\' cannot be parsed.')
+            return False
         return True
 
-    def _parse_evidence(self, value):
+    def _parse_evidence(self, value: str) -> bool:
         """
         Parse evidence.
         Has to be specified as (clingo) file path.
@@ -85,14 +84,13 @@ class PlingoApp(Application):
         self.evidence_file = self._read(value)
         return True
 
-    def _parse_balanced_query(self, value):
+    def _parse_balanced_query(self, value) -> bool:
         """
         Sets number of models N to find for
         balanced query approximation.
         This will determine max. N models
         with and without the query.
         """
-        # print(value)
         try:
             self.balanced_models = int(value)
             if self.balanced_models < 1:
@@ -129,6 +127,11 @@ class PlingoApp(Application):
                     multi=True)
         options.add(group, 'evid', 'Provide evidence file',
                     self._parse_evidence)
+        options.add_flag(group, 'opt-enum', 
+                    '''Enumerates models by optimality. 
+                            This can be used for approximating probabilities and queries.
+                            Recommended to use -q1 to suppress printing of intermediate models.''', 
+                        self.opt_enum)
         options.add(
             group, 'balanced,b', '''Approximate query in a balanced way.
                             Use as --balanced N, where max. 2N models are determined
@@ -138,14 +141,21 @@ class PlingoApp(Application):
             self._parse_balanced_query)
         options.add_flag(
             group, 'use-backend',
-            'Adds constaints for query approximation in backend instead of using assumptions.',
+            'Adds constraints for query approximation in backend instead of using assumptions.',
             self.use_backend)
+        
 
-    def validate_options(self):
+    def validate_options(self) -> bool:
         if self.two_solve_calls and not self.translate_hard_rules:
             print(
-                'The two-solve-calls mode only works if hard rules are translated.'
+                'The two-solve-calls mode only works if hard rules are translated (--hr).'
             )
+            return False
+        if self.balanced_models is not None and not self.opt_enum:
+            print('Balanced approximation only works with optimal enumeration algorithm (--opt-enum)')
+            return False
+        if self.use_backend and not self.balanced_models is not None :
+            print('The --use-backend option only works with balanced query approximation (--balanced N).')
             return False
         return True
 
@@ -161,23 +171,23 @@ class PlingoApp(Application):
             self.two_solve_calls, self.power_of_ten
         ]
         with ProgramBuilder(ctl) as b:
-            lt = PlingoTransformer(options)
-            parse_files(files, lambda stm: b.add(cast(AST, lt.visit(stm, b))))
+            pt = PlingoTransformer(options)
+            parse_files(files, lambda stm: b.add(cast(AST, pt.visit(stm, b))))
 
-    def main(self, ctl: Control, files: Sequence[str]):
+    def _preprocessing(self, ctl: Control,
+                       files: Sequence[str]) -> Tuple[Configuration, MinObs]:
         '''
-        Parse clingo program with weights and convert to ASP with weak constraints.
+        Performs some preprocessing.
         '''
-        prio_obs = PriorityObs()
-        ctl.register_observer(prio_obs)
-
         ctl.add("base", [], THEORY)
         ctl.add("base", [], self.evidence_file)
 
         # Add meta file for calculating P-Log
         if self.calculate_plog:
             enable_python()
-            ctl.add("base", [], self._read('examples/plog/meta.lp'))
+            from importlib.resources import files as importfiles
+            meta_path = importfiles('plingo').joinpath('meta.lp')
+            ctl.add("base", [], self._read(meta_path))
             ctl.add("base", [], f'#const _plingo_factor={self.power_of_ten}.')
         if self.two_solve_calls:
             ctl.add("base", [], '#external _plingo_ext_helper.')
@@ -188,29 +198,26 @@ class PlingoApp(Application):
             files = ["-"]
         self._convert(ctl, files)
 
-        solve_config = cast(Configuration, ctl.configuration.solve)
-
-        if solve_config.opt_mode == 'optN':
-            obs = MinObs()
-            ctl.register_observer(obs)
-
-        ctl.ground([("base", [])])
-
-        # Get theory queries in input program
-        for t in ctl.theory_atoms:
-            if t.term.name == 'query':
-                self.query.append(query.convert_theory_query(t))
+        # Add queries specified through command-line to program as theory
         if self.query != []:
-            self.query = query.collect(self.query, ctl.symbolic_atoms)
-            if self.balanced_models is not None and len(self.query) > 1:
-                raise RuntimeError(
-                    'Only one (ground) query atom can be specified for balanced approximation.'
-                )
+            for q in self.query:
+                ctl.add("base", [], f'&query({q}).')
+            self.query = []
 
-        # Solve
-        if solve_config.opt_mode == 'optN':
+        obs = MinObs(self.opt_enum.flag)
+        ctl.register_observer(obs)
+        return obs
+
+    def _solve(self, ctl: Control, obs: MinObs):
+        '''
+        Solves either for most probable stable model, all models
+        or enumerates models by optimality.
+        The latter option can be used for approximate calculations.
+        '''
+        if self.opt_enum.flag:
+            ctl.configuration.solve.opt_mode = 'optN'
             opt = OptEnum(self.query, self.balanced_models, self.use_backend)
-            model_costs, self.query = opt._optimize(ctl, obs)
+            model_costs, self.query = opt.optimize(ctl, obs)
         else:
             bound_hr = 2**63 - 1
             if self.two_solve_calls:
@@ -236,30 +243,38 @@ class PlingoApp(Application):
                     if self.display_all_probs or self.query != []:
                         model_costs.append(model.cost)
                         if self.query != []:
-                            self.query = query.check_model_for_query(
+                            self.query = check_model_for_query(
                                 self.query, model)
+        return model_costs
+
+    def _probabilities(self, model_costs: List[int], priorities: List[int]):
+        '''
+        Calls probability module and prints probababilities.
+        '''
+        if 0 not in priorities:
+            # TODO: Should this be error or warning?
+            print('No soft weights in program. Cannot calculate probabilites')
+            return
+        # TODO: What about case where there are other priorities than 0/1?
+        # elif not self.two_solve_calls and any(
+        #         x > 1 for x in priorities):
+        #     print(priorities)
+        probs = ProbabilityModule(model_costs, priorities, [
+            self.translate_hard_rules, self.two_solve_calls, self.power_of_ten
+        ])
+        if self.display_all_probs:
+            probs.print_probs()
+        if self.query != []:
+            probs.get_query_probability(self.query)
+
+    def main(self, ctl: Control, files: Sequence[str]):
+        '''
+        Parse clingo program with weights and convert to ASP with weak constraints.
+        '''
+        obs = self._preprocessing(ctl, files)
+        ctl.ground([("base", [])])
+        self.query = collect_query(ctl.theory_atoms, self.balanced_models)
+        model_costs = self._solve(ctl, obs)
 
         if model_costs != []:
-            if 0 not in prio_obs.priorities:
-                # TODO: Should this be error or warning?
-                print(
-                    'No soft weights in program. Cannot calculate probabilites'
-                )
-            # TODO: What about case where there are other priorities than 0/1?
-            # elif not self.two_solve_calls and any(
-            #         x > 1 for x in prio_obs.priorities):
-            #     print(prio_obs.priorities)
-            #     print('testasd')
-            else:
-                probs = ProbabilityModule(model_costs, prio_obs.priorities, [
-                    self.translate_hard_rules, self.two_solve_calls,
-                    self.power_of_ten
-                ])
-                if self.display_all_probs:
-                    probs.print_probs()
-                if self.query != []:
-                    probs.get_query_probability(self.query)
-
-
-if __name__ == '__main__':
-    sys.exit(int(clingo_main(PlingoApp(), sys.argv[1:])))
+            self._probabilities(model_costs, obs.priorities)
