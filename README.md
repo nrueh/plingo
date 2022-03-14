@@ -7,24 +7,42 @@ Further the Maximum a posteriori (MAP) estimate, the most probable stable model,
 
 
 ## Installation
-The program depends on Python 3, clingo 5.5 and numpy. The requirements are easiest to install with Anaconda 
-```
-conda install -c potassco/label/dev clingo
-conda install numpy
-```
-See https://potassco.org/clingo/ for further information.
 
-For installation just clone the repository
+- Clone the repository
+
 ```
 git clone https://github.com/nrueh/plingo.git
 ```
 
+- Move to the repository
+
+```
+cd plingo
+```
+
+- Install project and requirements with pip. 
+  
+```
+pip install .
+```
+
+
 ## Usage
-To try out the program run the file `plingo.py` in python with any LPMLN instance appended. For example
+
+`plingo` is an extension of [clingo](https://potassco.org/clingo/), therefore it counts with all of clingo's functionality with new options.
+
+Run the following command and look at `plingo`'s options under Plingo Options:
+
 ```
-python plingo.py examples/birds.lp
+plingo -h
 ```
-This gives the MAP estimate. 
+
+#### MAP estimate
+
+```
+
+plingo examples/lpmln/birds.lp
+```
 ```
 plingo version 1.0
 Reading from examples/birds.lp
@@ -44,11 +62,12 @@ Calls        : 1
 Time         : 0.005s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
 CPU Time     : 0.005s
 ```
+#### Marginal probabilities
 To list all stable models, add the flag `--all`. 
+
 ```
-python plingo.py birds.lp --all
+plingo examples/lpmln/birds.lp --all
 ```
-with output 
 ```
 plingo version 1.0
 Reading from examples/birds.lp
@@ -77,6 +96,7 @@ Calls        : 1
 Time         : 0.006s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
 CPU Time     : 0.006s
 ```
+
 ## Input
 Syntactically, LPMLN differs between "soft" rules and "hard" rules, where "soft" rules have a (real number) weight and "hard" rules the weight "alpha". 
 

@@ -8,3 +8,4 @@ examples/birds_conversion.lp
 examples/birds_evid.lp
 examples/test.lp
 additions.bib
+*.egg-info

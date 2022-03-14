@@ -6,7 +6,7 @@ from clingo.application import Flag
 from clingo.ast import AST, ASTSequence, ProgramBuilder, Transformer
 from clingo.symbol import Number, String
 
-from plog import ConvertPlog
+from .plog import ConvertPlog
 
 
 def calculate_weight(flt: float, factor: int) -> Number:
