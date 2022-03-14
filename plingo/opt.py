@@ -14,13 +14,14 @@ class MinObs(Observer):
     '''
     Observer to extract ground minimize constraint.
     '''
+    opt_enum: bool
     priorities: List[int]
     literals: Dict[int, List[Tuple[int, int]]]
 
-    def __init__(self, mode):
-        self.mode = mode
+    def __init__(self, opt_enum=False):
+        self.opt_enum = opt_enum
         self.priorities = []
-        if mode == 'optN':
+        if self.opt_enum:
             self.literals = {}
 
     def minimize(self, priority: int, literals: Sequence[Tuple[int, int]]):
@@ -28,7 +29,7 @@ class MinObs(Observer):
         Intercept minimize constraint and add it to member `literals`.
         '''
         self.priorities.append(priority)
-        if self.mode == 'optN':
+        if self.opt_enum:
             self.literals.setdefault(priority, []).extend(literals)
 
 

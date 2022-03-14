@@ -40,7 +40,6 @@ plingo -h
 #### MAP estimate
 
 ```
-
 plingo examples/lpmln/birds.lp
 ```
 ```
@@ -120,10 +119,6 @@ A number of examples can be found in the directory `examples`. There are also tw
 
     Enumerates all stable models and prints their probabilities.
 
-- `--balanced=N`
-
-    Approximates a query in a balaned way, i.e. it will determine N stable models containing the query, and N stable models *not* containing the query. This overwrites clingo's `--models` option. Works only for a single ground query atom!
-
 - `--evid=file`
 
     Provides an evidence file to the program (`.lp` file with clingo syntax rules)
@@ -148,7 +143,25 @@ A number of examples can be found in the directory `examples`. There are also tw
 
     Uses the conversion with `unsat` atoms
 
+
+### Solution enumeration by optimality algorithm
+Taken from [[1]](#1).
+
+- `--opt-enum`
+
+    Enumerates stable models by optimality. 
+    This can be used for approximating probabilities and queries.
+    Recommended to use along with -q1 to suppress printing of intermediate models
+    
+- `--balanced=N`
+
+    Approximates a query in a balanced way, i.e. it will determine N stable models containing the query, and N stable models *not* containing the query. This overwrites clingo's `--models` option. Works only for a single ground query atom!
 - `--use-backend`
 
     Adds constraints for query approximation in backend instead of using assumptions.
 
+## References
+<a id="1">[1]</a>
+J. Pajunen and T. Janhunen. (2021).
+Solution Enumeration by Optimality in Answer Set Programming.
+Theory and Practice of Logic Programming, 21(6), 750-767.

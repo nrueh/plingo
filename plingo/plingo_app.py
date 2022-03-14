@@ -37,6 +37,7 @@ class PlingoApp(Application):
     use_unsat_approach: Flag
     two_solve_calls: Flag
     calculate_plog: Flag
+    opt_enum: Flag
     use_backend: Flag
     query: List[Tuple[Symbol, List[int]]]
     evidence_file: str
@@ -52,6 +53,7 @@ class PlingoApp(Application):
         self.use_unsat_approach = Flag(False)
         self.two_solve_calls = Flag(False)
         self.calculate_plog = Flag(False)
+        self.opt_enum = Flag(False)
         self.use_backend = Flag(False)
         self.query = []
         self.evidence_file = ''
@@ -125,6 +127,11 @@ class PlingoApp(Application):
                     multi=True)
         options.add(group, 'evid', 'Provide evidence file',
                     self._parse_evidence)
+        options.add_flag(group, 'opt-enum', 
+                    '''Enumerates models by optimality. 
+                            This can be used for approximating probabilities and queries.
+                            Recommended to use -q1 to suppress printing of intermediate models.''', 
+                        self.opt_enum)
         options.add(
             group, 'balanced,b', '''Approximate query in a balanced way.
                             Use as --balanced N, where max. 2N models are determined
@@ -136,12 +143,19 @@ class PlingoApp(Application):
             group, 'use-backend',
             'Adds constraints for query approximation in backend instead of using assumptions.',
             self.use_backend)
+        
 
     def validate_options(self) -> bool:
         if self.two_solve_calls and not self.translate_hard_rules:
             print(
-                'The two-solve-calls mode only works if hard rules are translated.'
+                'The two-solve-calls mode only works if hard rules are translated (--hr).'
             )
+            return False
+        if self.balanced_models is not None and not self.opt_enum:
+            print('Balanced approximation only works with optimal enumeration algorithm (--opt-enum)')
+            return False
+        if self.use_backend and not self.balanced_models is not None :
+            print('The --use-backend option only works with balanced query approximation (--balanced N).')
             return False
         return True
 
@@ -190,18 +204,18 @@ class PlingoApp(Application):
                 ctl.add("base", [], f'&query({q}).')
             self.query = []
 
-        solve_config = cast(Configuration, ctl.configuration.solve)
-        obs = MinObs(solve_config.opt_mode)
+        obs = MinObs(self.opt_enum.flag)
         ctl.register_observer(obs)
-        return solve_config, obs
+        return obs
 
-    def _solve(self, ctl: Control, solve_config: Configuration, obs: MinObs):
+    def _solve(self, ctl: Control, obs: MinObs):
         '''
         Solves either for most probable stable model, all models
         or enumerates models by optimality.
         The latter option can be used for approximate calculations.
         '''
-        if solve_config.opt_mode == 'optN':
+        if self.opt_enum.flag:
+            ctl.configuration.solve.opt_mode = 'optN'
             opt = OptEnum(self.query, self.balanced_models, self.use_backend)
             model_costs, self.query = opt.optimize(ctl, obs)
         else:
@@ -257,10 +271,10 @@ class PlingoApp(Application):
         '''
         Parse clingo program with weights and convert to ASP with weak constraints.
         '''
-        solve_config, obs = self._preprocessing(ctl, files)
+        obs = self._preprocessing(ctl, files)
         ctl.ground([("base", [])])
         self.query = collect_query(ctl.theory_atoms, self.balanced_models)
-        model_costs = self._solve(ctl, solve_config, obs)
+        model_costs = self._solve(ctl, obs)
 
         if model_costs != []:
             self._probabilities(model_costs, obs.priorities)
