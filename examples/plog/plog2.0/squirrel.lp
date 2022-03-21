@@ -1,0 +1,53 @@
+% sorts
+boolean(true;false).
+patch(p1;p2).
+day(1..20). 
+
+% attributes
+
+% hidden_in:#patch.
+% found:#day->#boolean.
+% look: #day->#patch.
+
+%statements
+
+&random{ hidden_in(P) : patch(P) }.
+&random { found(D,B) : boolean(B) } :- hidden_in(P), look(D,P).
+
+found(D,f) :- hidden_in(P1), look(D,P2), P1!=P2.
+
+
+&pr { hidden_in(p1) } = "0.8".
+&pr { found(P,D,t) } = "0.2" :- patch(P), day(D).
+
+% pr(hidden_in=p1) = 8/10.
+% pr(found(D)) = 2/10.
+
+
+%SECOND SCENARIO:
+look(1)=p1.
+look(2)=p1.
+look(3)=p1.
+look(4)=p1.
+look(5)=p1.
+look(6)=p1.
+look(7)=p1.
+look(8)=p1.
+look(9)=p1.
+look(10)=p1.
+look(11)=p1.
+look(12)=p1.
+look(13)=p1.
+look(14)=p1.
+look(15)=p1.
+look(16)=p1.
+look(17)=p1.
+look(18)=p1.
+look(19)=p1.
+look(20)=p1.
+obs(found(1), false).
+%obs(found(5), false).
+
+?found(1). 
+
+%?hidden_in=p1.
