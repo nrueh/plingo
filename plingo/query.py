@@ -12,7 +12,10 @@ def _convert_theory_arg(arg: Symbol) -> Symbol:
     '''
     theory_type = str(arg.type).replace('TheoryTermType.', '')
     if theory_type == 'Symbol':
-        return String(str(arg.name).strip('"'))
+        if arg.name.startswith('"'):
+            return String(str(arg.name).strip('"'))
+        else:
+            return Function(arg.name)
     elif theory_type == 'Number':
         return Number(arg.number)
     elif theory_type == 'Function':
