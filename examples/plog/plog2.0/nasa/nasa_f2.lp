@@ -24,19 +24,14 @@ component(C) :- wheel_sensor(C).
 component(C) :- motor_controller(C).
 component(C) :- two_of_three_voter(C).
 
-component_status(intact; detectedBroken; silentBroken).
+% component_status(intact; detected_broken; silent_broken).
+broken_state(detected_broken; silent_broken).
 boolean(true;false).
 
 % Attributes
-% is_battery: #battery -> #boolean.
-% is_processor: #processor -> #boolean.
-% is_motor_controller: #motor_controller -> #boolean.
-% is_voter: #two_of_three_voter -> #boolean.
-% is_wheel_sensor: #wheel_sensor ->#boolean.
-% is_steering_sensor: #steering_sensor -> #boolean.
 % connected: #component, #component -> #boolean.
 % powered:   #device -> #boolean.
-% status: #component -> #component_status.
+% status: #component -> #broken_state.
 % operational: #component -> #boolean.
 % system_failure: #boolean.
 
@@ -116,6 +111,10 @@ operational(S,false) :- powered(S,false), steering_sensor(S).
 operational(W,false) :- powered(W,false), wheel_sensor(W).
 
 % Any component that is broken, either silently or detectably, is not operational.
+&random { status(C,BS) : broken_state(BS) } :- broken(C,true), valid_world.
+% 90% of breakages are detectable.
+&pr { status(C,detected_broken) } = "9/10" :-  broken(C,true).
+
 operational(C,false) :- broken(C,true).
 
 
@@ -134,7 +133,8 @@ system_failure :- #count { 1,W: wheel_sensor(W), operational(W,false) } > 1.
 system_failure :- #count { 1,S: steering_sensor(S), operational(S,false) } > 1.
 
 % we only consider possible worlds no more than four components fail 
-:- #count { 1,C : broken(C,true) } > 4.
+valid_world :- #count { 1,C : broken(C,true) } < 5.
+:- not valid_world.
 
 % *Queries*
 % Probability of failure
