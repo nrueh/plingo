@@ -12,7 +12,7 @@ day(1..days).
 
 %statements
 
-&random{ hidden_in(P) : patch(P) }.
+&random { hidden_in(P) : patch(P) }.
 &random { found(D,B) : boolean(B) } :- hidden_in(P), look(D,P).
 
 found(D,false) :- hidden_in(P1), look(D,P2), P1!=P2.

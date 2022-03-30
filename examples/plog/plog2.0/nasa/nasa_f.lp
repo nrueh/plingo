@@ -94,7 +94,7 @@ powered(C,false) :- not powered(C,true), component(C).
 % v. wheel sensor:   1E-7
 % vi. steering sensor:  2E-6
 
-&random(C) { broken(C,B) : boolean(B) } :- component(C).
+&random { broken(C,B) : boolean(B) } :- component(C).
 
 &pr { broken(C,true) } = "1/1000000" :- battery(C).
 &pr { broken(C,true) } = "5/10000000" :- processor(C). 

@@ -33,7 +33,7 @@ boolean(true;false).
 % v. wheel sensor:   1E-7
 % vi. steering sensor:  2E-6
 
-&random(C) { broken(C,B) : boolean(B) } :- component(C). 
+&random { broken(C,B) : boolean(B) } :- component(C). 
 #show broken/2.
 
 &pr { broken(C,true) } = "1/1000000" :- battery(C).
@@ -49,4 +49,3 @@ lessthan5broken :- #count { 1,C : broken(C,true) } < 5.
 #show lessthan5broken/0.
 
 &query(lessthan5broken).
-

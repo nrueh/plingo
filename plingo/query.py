@@ -1,7 +1,7 @@
 from typing import Tuple, List, Optional
 
 from clingo.solving import Model
-from clingo.symbol import Function, Number, String, Symbol
+from clingo.symbol import Function, Number, String, Symbol, Tuple_
 from clingo.theory_atoms import TheoryAtom
 
 
@@ -21,6 +21,9 @@ def _convert_theory_arg(arg: Symbol) -> Symbol:
     elif theory_type == 'Function':
         args = [_convert_theory_arg(targ) for targ in arg.arguments]
         return Function(arg.name, args)
+    elif theory_type == 'Tuple':
+        args = [_convert_theory_arg(targ) for targ in arg.arguments]
+        return Function("", args)
 
 
 def _convert_theory_query(theory_atom: TheoryAtom) -> Function:
