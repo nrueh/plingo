@@ -6,7 +6,6 @@ boolean(true;false).
 
 % Attributes
 % faulty: #node -> #boolean.
-% faulty: #node, #node -> #boolean
 % Statements
 &random(N) { faulty(N,B) : boolean(B) } :- node(N).
 #show faulty/2.
@@ -15,8 +14,8 @@ boolean(true;false).
 
 % Information flows from node (X,Y) to (X+1,Y) and (X,Y+1) starting from node (1,1)
 flow(1,1) :- not faulty((1,1), true).
-flow(X+1,Y) :- flow(X,Y), node((X+1,Y)), not faulty((X,Y), true).
-flow(X,Y+1) :- flow(X,Y), node((X,Y+1)), not faulty((X,Y), true).
+flow(X,Y) :- node((X,Y)), flow(X-1,Y), not faulty((X-1,Y), true).
+flow(X,Y) :- node((X,Y)), flow(X,Y-1), not faulty((X,Y-1), true).
 
 % flow(X+1,Y) :- flow(X,Y), node((X+1,Y)), faulty((X,Y), false).
 % flow(X,Y+1) :- flow(X,Y), node((X,Y+1)), faulty((X,Y), false).
