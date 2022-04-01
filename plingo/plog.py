@@ -88,6 +88,8 @@ class ConvertPlog:
 
     def convert_obs(self, ta: AST, body: ASTSequence) -> List[AST]:
         '''
+        TODO: No body allowed
+        TODO: Should work in general (not just for random attributes)
         Input:
             &obs { name(D,Y) } = bool :- body.
         Output:
@@ -108,6 +110,8 @@ class ConvertPlog:
 
     def convert_do(self, ta: AST, body: ASTSequence) -> List[AST]:
         '''
+        TODO: No body allowed in &do atoms (new P-Log)
+        TODO: Should be able to specify experiment name
             Input:
                 &do { name(D,Y) } :- body.
             Output:

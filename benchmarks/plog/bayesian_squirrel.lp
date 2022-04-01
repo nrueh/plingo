@@ -22,8 +22,14 @@ day(1..days).
 look(D,p1) :- day(D).
 
 % 2. The squirrel has not found the acorns in all past days
-&obs { found(p1,D,f) } :- day(D), D < days.
+% &obs { found(p1,D,f) } :- day(D), D < 10.
+% &obs {found(1) } = false.
+&obs {found(p1,1,f) }.
+% &obs {found(p1,5,f) }.
 
 found(P,D) :- found(P,D,t).
+found(D) :- found(P,D).
 #show hidden_in/1.
 #show found/2.
+
+&query(found(days)).

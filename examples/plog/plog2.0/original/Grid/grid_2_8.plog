@@ -1,0 +1,49 @@
+% Grid benchmark from Dr. Zhu dissertation
+
+sorts
+
+#m = 1..2.
+#n = 1..8.
+
+#node = node(#m,#n).
+#boolean = {true, false}.
+
+attributes
+leftof: #node, #node -> #boolean.
+belowof: #node, #node -> #boolean.
+faulty: #node -> #boolean.
+flow: #node -> #boolean.
+
+statements
+leftof(node(1,1),node(2,1)).
+leftof(node(1,2),node(2,2)).
+leftof(node(1,3),node(2,3)).
+leftof(node(1,4),node(2,4)).
+leftof(node(1,5),node(2,5)).
+leftof(node(1,6),node(2,6)).
+leftof(node(1,7),node(2,7)).
+leftof(node(1,8),node(2,8)).
+belowof(node(1,1),node(1,2)).
+belowof(node(1,2),node(1,3)).
+belowof(node(1,3),node(1,4)).
+belowof(node(1,4),node(1,5)).
+belowof(node(1,5),node(1,6)).
+belowof(node(1,6),node(1,7)).
+belowof(node(1,7),node(1,8)).
+belowof(node(2,1),node(2,2)).
+belowof(node(2,2),node(2,3)).
+belowof(node(2,3),node(2,4)).
+belowof(node(2,4),node(2,5)).
+belowof(node(2,5),node(2,6)).
+belowof(node(2,6),node(2,7)).
+belowof(node(2,7),node(2,8)).
+
+random(faulty(Node)).
+pr(faulty(N) = true) = 1/10.
+
+flow(node(1,1)) = true :- not faulty(node(1,1)) = true.
+flow(node(X,Y)) = true :- leftof(node(X1,Y),node(X,Y)), flow(node(X1,Y)) = true, not faulty(node(X1,Y)) = true.
+flow(node(X,Y)) = true :- belowof(node(X,Y1),node(X,Y)), flow(node(X,Y1)) = true, not faulty(node(X,Y1)) = true.
+flow(node(X,Y)) = false :- not flow(node(X,Y)) = true.
+
+? flow(node(2,8)) = true.

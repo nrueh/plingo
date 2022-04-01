@@ -68,9 +68,9 @@ This is an example used to illustrate the notion of Bayesian learning where you 
 The squirrel looks for food every day starting with "Day 1" and predict its chances to find the acorns for the next day. For simplicity we have made two extra assumptions in our encoding. 
     1. The squirrel has looked for the acorns in patch `p1` every day since the beginning
     2. She has not found her food in all past days
-The instance can be run with the constant `prediction_day` that specifies for which day the squirrel wants to predict whether to find the acorns. You can run it with
+The instance can be run with the constant `days` that specifies for which day the squirrel wants to predict whether to find the acorns. You can run it with
 ```
-python plingo.py examples/plog/bayesian_squirrel.lp --plog --all -c prediction_day=1
+python plingo.py examples/plog/bayesian_squirrel.lp --plog --all -c days=1
 ```
 With these assumptions it can be seen that the squirrel's initial belief for finding the food in patch `p1` decreases every day.
 ## References

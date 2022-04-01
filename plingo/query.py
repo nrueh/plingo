@@ -12,12 +12,18 @@ def _convert_theory_arg(arg: Symbol) -> Symbol:
     '''
     theory_type = str(arg.type).replace('TheoryTermType.', '')
     if theory_type == 'Symbol':
-        return String(str(arg.name).strip('"'))
+        if arg.name.startswith('"'):
+            return String(str(arg.name).strip('"'))
+        else:
+            return Function(arg.name)
     elif theory_type == 'Number':
         return Number(arg.number)
     elif theory_type == 'Function':
         args = [_convert_theory_arg(targ) for targ in arg.arguments]
         return Function(arg.name, args)
+    elif theory_type == 'Tuple':
+        args = [_convert_theory_arg(targ) for targ in arg.arguments]
+        return Function("", args)
 
 
 def _convert_theory_query(theory_atom: TheoryAtom) -> Function:
