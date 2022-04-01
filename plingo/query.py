@@ -1,7 +1,7 @@
 from typing import Tuple, List, Optional
 
 from clingo.solving import Model
-from clingo.symbol import Function, Number, String, Symbol, Tuple_
+from clingo.symbol import Function, Number, String, Symbol
 from clingo.theory_atoms import TheoryAtom
 
 
