@@ -1,0 +1,341 @@
+
+2 x 2
+Plog 2.1
+answer: 0.891000
+
+2 x 3
+Plog 2.1
+answer: 0.874800
+
+2 x 4
+Plog 2.1
+answer: 0.852930
+
+2 x 5
+Plog 2.1
+answer: 0.826686
+
+2 x 6
+Plog 2.1
+answer: 0.797162
+
+2 x 7
+Plog 2.1
+answer: 0.765275
+
+2 x 8
+Plog 2.1
+answer: 0.731794
+
+2 x 9
+Plog 2.1
+answer: 0.697357
+
+2 x 2
+Plog 2.1
+answer: 0.891000
+
+2 x 3
+Plog 2.1
+answer: 0.874800
+
+2 x 4
+Plog 2.1
+answer: 0.852930
+
+2 x 5
+Plog 2.1
+answer: 0.826686
+
+2 x 6
+Plog 2.1
+answer: 0.797162
+
+2 x 7
+Plog 2.1
+answer: 0.765275
+
+2 x 8
+Plog 2.1
+answer: 0.731794
+
+2 x 2
+Plog 2.1
+answer: 0.891000
+
+2 x 3
+Plog 2.1
+answer: 0.874800
+
+2 x 4
+Plog 2.1
+answer: 0.852930
+
+2 x 5
+Plog 2.1
+answer: 0.826686
+
+2 x 6
+Plog 2.1
+answer: 0.797162
+
+2 x 7
+Plog 2.1
+answer: 0.765275
+
+2 x 8
+Plog 2.1
+answer: 0.731794
+
+2 x 2
+Plog 2.1
+answer: 0.891000
+
+2 x 3
+Plog 2.1
+answer: 0.874800
+
+2 x 4
+Plog 2.1
+answer: 0.852930
+
+2 x 5
+Plog 2.1
+answer: 0.826686
+
+2 x 6
+Plog 2.1
+answer: 0.797162
+
+2 x 7
+Plog 2.1
+answer: 0.765275
+
+2 x 8
+Plog 2.1
+answer: 0.731794
+
+2 x 9
+Plog 2.1
+answer: 0.697357
+
+2 x 10
+Plog 2.1
+answer: 0.662489
+
+3 x 2
+Plog 2.1
+answer: 0.874800
+
+3 x 3
+Plog 2.1
+answer: 0.877271
+
+3 x 4
+Plog 2.1
+answer: 0.872531
+
+3 x 5
+Plog 2.1
+answer: 0.864967
+
+3 x 6
+Plog 2.1
+answer: 0.854948
+
+3 x 7
+Plog 2.1
+answer: 0.842585
+
+3 x 8
+Plog 2.1
+
+2 x 2
+
+2 x 3
+
+2 x 4
+
+2 x 5
+
+2 x 6
+
+2 x 7
+
+2 x 8
+
+2 x 9
+
+2 x 10
+
+3 x 2
+
+3 x 3
+
+3 x 4
+
+3 x 5
+
+3 x 6
+
+3 x 7
+
+3 x 8
+
+3 x 9
+
+3 x 10
+
+4 x 2
+
+4 x 3
+
+4 x 4
+
+4 x 5
+
+4 x 6
+
+4 x 7
+
+4 x 8
+
+4 x 9
+
+4 x 10
+
+5 x 2
+
+5 x 3
+
+5 x 4
+
+5 x 5
+
+5 x 6
+
+5 x 7
+
+5 x 8
+
+5 x 9
+
+5 x 10
+
+2 x 2
+
+2 x 3
+
+2 x 4
+
+2 x 5
+
+2 x 6
+
+2 x 7
+
+2 x 8
+
+2 x 9
+
+2 x 10
+
+3 x 2
+
+3 x 3
+
+3 x 4
+
+3 x 5
+
+3 x 6
+
+3 x 7
+
+3 x 8
+
+3 x 9
+
+3 x 10
+
+4 x 2
+
+4 x 3
+
+4 x 4
+
+4 x 5
+
+4 x 6
+
+4 x 7
+
+4 x 8
+
+4 x 9
+
+4 x 10
+
+5 x 2
+
+5 x 3
+
+5 x 4
+
+5 x 5
+
+5 x 6
+
+5 x 7
+
+5 x 8
+
+5 x 9
+
+5 x 10
+
+2 x 2
+Plog 2.1
+answer: 0.891000
+0.00user 0.00system 0:00.00elapsed 80%CPU (0avgtext+0avgdata 9044maxresident)k
+0inputs+0outputs (0major+429minor)pagefaults 0swaps
+
+2 x 3
+Plog 2.1
+answer: 0.874800
+0.00user 0.00system 0:00.00elapsed 85%CPU (0avgtext+0avgdata 8876maxresident)k
+0inputs+0outputs (0major+434minor)pagefaults 0swaps
+
+2 x 4
+Plog 2.1
+answer: 0.852930
+0.01user 0.00system 0:00.01elapsed 92%CPU (0avgtext+0avgdata 8876maxresident)k
+0inputs+0outputs (0major+439minor)pagefaults 0swaps
+
+2 x 5
+Plog 2.1
+answer: 0.826686
+0.05user 0.00system 0:00.05elapsed 98%CPU (0avgtext+0avgdata 8676maxresident)k
+0inputs+0outputs (0major+449minor)pagefaults 0swaps
+
+2 x 6
+Plog 2.1
+answer: 0.797162
+0.23user 0.00system 0:00.23elapsed 100%CPU (0avgtext+0avgdata 8928maxresident)k
+0inputs+0outputs (0major+450minor)pagefaults 0swaps
+
+2 x 7
+Plog 2.1
+answer: 0.765275
+1.16user 0.00system 0:01.17elapsed 100%CPU (0avgtext+0avgdata 8760maxresident)k
+0inputs+0outputs (0major+454minor)pagefaults 0swaps
+
+2 x 8
+Plog 2.1
+answer: 0.731794
+4.86user 0.00system 0:04.86elapsed 100%CPU (0avgtext+0avgdata 8928maxresident)k
+0inputs+0outputs (0major+470minor)pagefaults 0swaps
+
+2 x 9
+Plog 2.1
+answer: 0.697357
