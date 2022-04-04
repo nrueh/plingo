@@ -15,7 +15,7 @@ do
     do
         echo
 	echo "${m} x ${n}"
-	/usr/bin/time -o $logfile -a timeout 1200 ./plog2 original/Grid/grid_${m}_${n}.plog
+	/usr/bin/time -o $logfile -a timeout 1200 ./plog2 plog2.0/grid_${m}_${n}.plog
     done
 done
 
