@@ -4,8 +4,7 @@ __pycache__/
 .DS_Store
 
 benchmarks/relaxed_clique/random_graphs
-examples/birds_conversion.lp
-examples/birds_evid.lp
-examples/test.lp
 additions.bib
 *.egg-info
+
+plog2
