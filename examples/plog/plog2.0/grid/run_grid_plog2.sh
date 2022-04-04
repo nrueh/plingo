@@ -9,9 +9,9 @@ fi
 export logfile="logs/grid_plog2_${timestamp}.log"
 exec >> $logfile
 
-for m in 2 3 4 5
+for m in {2..9}
 do
-    for n in 2 3 4 5 6 7 8 9 10
+    for (( n = 2; n <= $m; n += 1 ))
     do
         echo
 	echo "${m} x ${n}"

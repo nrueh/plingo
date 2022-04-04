@@ -2,8 +2,8 @@
 
 sorts
 
-#m = 1..5.
-#n = 1..5.
+#m = 1..7.
+#n = 1..4.
 
 #node = node(#m,#n).
 #boolean = {true, false}.
@@ -19,53 +19,54 @@ rightof(node(1,1),node(2,1)).
 rightof(node(1,2),node(2,2)).
 rightof(node(1,3),node(2,3)).
 rightof(node(1,4),node(2,4)).
-rightof(node(1,5),node(2,5)).
 rightof(node(2,1),node(3,1)).
 rightof(node(2,2),node(3,2)).
 rightof(node(2,3),node(3,3)).
 rightof(node(2,4),node(3,4)).
-rightof(node(2,5),node(3,5)).
 rightof(node(3,1),node(4,1)).
 rightof(node(3,2),node(4,2)).
 rightof(node(3,3),node(4,3)).
 rightof(node(3,4),node(4,4)).
-rightof(node(3,5),node(4,5)).
 rightof(node(4,1),node(5,1)).
 rightof(node(4,2),node(5,2)).
 rightof(node(4,3),node(5,3)).
 rightof(node(4,4),node(5,4)).
-rightof(node(4,5),node(5,5)).
+rightof(node(5,1),node(6,1)).
+rightof(node(5,2),node(6,2)).
+rightof(node(5,3),node(6,3)).
+rightof(node(5,4),node(6,4)).
+rightof(node(6,1),node(7,1)).
+rightof(node(6,2),node(7,2)).
+rightof(node(6,3),node(7,3)).
+rightof(node(6,4),node(7,4)).
 belowof(node(1,1),node(1,2)).
 belowof(node(1,2),node(1,3)).
 belowof(node(1,3),node(1,4)).
-belowof(node(1,4),node(1,5)).
 belowof(node(2,1),node(2,2)).
 belowof(node(2,2),node(2,3)).
 belowof(node(2,3),node(2,4)).
-belowof(node(2,4),node(2,5)).
 belowof(node(3,1),node(3,2)).
 belowof(node(3,2),node(3,3)).
 belowof(node(3,3),node(3,4)).
-belowof(node(3,4),node(3,5)).
 belowof(node(4,1),node(4,2)).
 belowof(node(4,2),node(4,3)).
 belowof(node(4,3),node(4,4)).
-belowof(node(4,4),node(4,5)).
 belowof(node(5,1),node(5,2)).
 belowof(node(5,2),node(5,3)).
 belowof(node(5,3),node(5,4)).
-belowof(node(5,4),node(5,5)).
+belowof(node(6,1),node(6,2)).
+belowof(node(6,2),node(6,3)).
+belowof(node(6,3),node(6,4)).
+belowof(node(7,1),node(7,2)).
+belowof(node(7,2),node(7,3)).
+belowof(node(7,3),node(7,4)).
 
 random(faulty(Node)).
 pr(faulty(N) = true) = 1/10.
 
 flow(node(1,1)) = true :- not faulty(node(1,1)) = true.
-<<<<<<< HEAD
-flow(node(X,Y)) = true :- leftof(node(X1,Y),node(X,Y)), flow(node(X1,Y)) = true, not faulty(node(X1,Y)) = true.
-=======
 flow(node(X,Y)) = true :- rightof(node(X1,Y),node(X,Y)), flow(node(X1,Y)) = true, not faulty(node(X1,Y)) = true.
->>>>>>> 95b9fefeed4a6c5a9a7b203fd0b0b372c5c1eded
 flow(node(X,Y)) = true :- belowof(node(X,Y1),node(X,Y)), flow(node(X,Y1)) = true, not faulty(node(X,Y1)) = true.
 flow(node(X,Y)) = false :- not flow(node(X,Y)) = true.
 
-? flow(node(5,5)) = true.
+? flow(node(7,4)) = true.

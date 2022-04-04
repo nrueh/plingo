@@ -6,16 +6,16 @@ then
     mkdir logs
 fi
 
-export logfile="logs/grid_${timestamp}.log"
+export logfile="logs/grid_plingo_${timestamp}.log"
 exec >> $logfile
 
-for m in 2 3 4 5 6 7 8 9 10
+for m in {2..9}
 do
-    for n in 2 3 4 5 6 7 8 9 10
+    for (( n = 2; n <= $m; n += 1 ))
     do
         echo
 	echo "${m} x ${n}"
-	plingo grid.lp --plog -q2 -c m=$m -c n=$n --time-limit=1200 2>/dev/null
+	plingo plingo/encoding.lp plingo/grid_${m}_${n}.lp --plog -q2 -c m=$m -c n=$n --time-limit=1200 2>/dev/null
     done
 done
 
