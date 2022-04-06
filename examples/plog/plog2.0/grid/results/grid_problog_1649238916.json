@@ -1,0 +1,272 @@
+{
+    "0": {
+        "name": "2 x 2",
+        "timeout": 0,
+        "runtime": "0.0216",
+        "query_prob": "0.891"
+    },
+    "1": {
+        "name": "3 x 2",
+        "timeout": 0,
+        "runtime": "0.0328",
+        "query_prob": "0.8748"
+    },
+    "2": {
+        "name": "3 x 3",
+        "timeout": 0,
+        "runtime": "0.0532",
+        "query_prob": "0.87727131"
+    },
+    "3": {
+        "name": "4 x 2",
+        "timeout": 0,
+        "runtime": "0.0495",
+        "query_prob": "0.85293"
+    },
+    "4": {
+        "name": "4 x 3",
+        "timeout": 0,
+        "runtime": "0.0769",
+        "query_prob": "0.87253105"
+    },
+    "5": {
+        "name": "4 x 4",
+        "timeout": 0,
+        "runtime": "0.1125",
+        "query_prob": "0.87453145"
+    },
+    "6": {
+        "name": "5 x 2",
+        "timeout": 0,
+        "runtime": "0.0829",
+        "query_prob": "0.826686"
+    },
+    "7": {
+        "name": "5 x 3",
+        "timeout": 0,
+        "runtime": "0.1018",
+        "query_prob": "0.86496673"
+    },
+    "8": {
+        "name": "5 x 4",
+        "timeout": 0,
+        "runtime": "0.1359",
+        "query_prob": "0.87296996"
+    },
+    "9": {
+        "name": "5 x 5",
+        "timeout": 0,
+        "runtime": "0.1826",
+        "query_prob": "0.87416964"
+    },
+    "10": {
+        "name": "6 x 2",
+        "timeout": 0,
+        "runtime": "0.0761",
+        "query_prob": "0.7971615"
+    },
+    "11": {
+        "name": "6 x 3",
+        "timeout": 0,
+        "runtime": "0.1220",
+        "query_prob": "0.85494752"
+    },
+    "12": {
+        "name": "6 x 4",
+        "timeout": 0,
+        "runtime": "0.1713",
+        "query_prob": "0.86995887"
+    },
+    "13": {
+        "name": "6 x 5",
+        "timeout": 0,
+        "runtime": "0.2301",
+        "query_prob": "0.87362029"
+    },
+    "14": {
+        "name": "6 x 6",
+        "timeout": 0,
+        "runtime": "0.3335",
+        "query_prob": "0.87429781"
+    },
+    "15": {
+        "name": "7 x 2",
+        "timeout": 0,
+        "runtime": "0.1035",
+        "query_prob": "0.76527504"
+    },
+    "16": {
+        "name": "7 x 3",
+        "timeout": 0,
+        "runtime": "0.1580",
+        "query_prob": "0.84258509"
+    },
+    "17": {
+        "name": "7 x 4",
+        "timeout": 0,
+        "runtime": "0.2224",
+        "query_prob": "0.86573489"
+    },
+    "18": {
+        "name": "7 x 5",
+        "timeout": 0,
+        "runtime": "0.3048",
+        "query_prob": "0.87232678"
+    },
+    "19": {
+        "name": "7 x 6",
+        "timeout": 0,
+        "runtime": "0.4337",
+        "query_prob": "0.87409942"
+    },
+    "20": {
+        "name": "7 x 7",
+        "timeout": 0,
+        "runtime": "0.8122",
+        "query_prob": "0.8744742"
+    },
+    "21": {
+        "name": "8 x 2",
+        "timeout": 0,
+        "runtime": "0.1286",
+        "query_prob": "0.73179426"
+    },
+    "22": {
+        "name": "8 x 3",
+        "timeout": 0,
+        "runtime": "0.1968",
+        "query_prob": "0.82801971"
+    },
+    "23": {
+        "name": "8 x 4",
+        "timeout": 0,
+        "runtime": "0.2764",
+        "query_prob": "0.86026555"
+    },
+    "24": {
+        "name": "8 x 5",
+        "timeout": 0,
+        "runtime": "0.3709",
+        "query_prob": "0.87043309"
+    },
+    "25": {
+        "name": "8 x 6",
+        "timeout": 0,
+        "runtime": "0.5709",
+        "query_prob": "0.87351611"
+    },
+    "26": {
+        "name": "8 x 7",
+        "timeout": 0,
+        "runtime": "1.3378",
+        "query_prob": "0.87440275"
+    },
+    "27": {
+        "name": "8 x 8",
+        "timeout": 0,
+        "runtime": "8.2120",
+        "query_prob": "0.87460821"
+    },
+    "28": {
+        "name": "9 x 2",
+        "timeout": 0,
+        "runtime": "0.1406",
+        "query_prob": "0.69735688"
+    },
+    "29": {
+        "name": "9 x 3",
+        "timeout": 0,
+        "runtime": "0.2295",
+        "query_prob": "0.81142833"
+    },
+    "30": {
+        "name": "9 x 4",
+        "timeout": 0,
+        "runtime": "0.3129",
+        "query_prob": "0.85350083"
+    },
+    "31": {
+        "name": "9 x 5",
+        "timeout": 0,
+        "runtime": "0.4597",
+        "query_prob": "0.86790789"
+    },
+    "32": {
+        "name": "9 x 6",
+        "timeout": 0,
+        "runtime": "0.6769",
+        "query_prob": "0.87263151"
+    },
+    "33": {
+        "name": "9 x 7",
+        "timeout": 0,
+        "runtime": "2.0443",
+        "query_prob": "0.87413065"
+    },
+    "34": {
+        "name": "9 x 8",
+        "timeout": 0,
+        "runtime": "14.4821",
+        "query_prob": "0.87458337"
+    },
+    "35": {
+        "name": "9 x 9",
+        "timeout": 0,
+        "runtime": "175.5590",
+        "query_prob": "0.87469551"
+    },
+    "36": {
+        "name": "10 x 2",
+        "timeout": 0,
+        "runtime": "0.1673",
+        "query_prob": "0.66248904"
+    },
+    "37": {
+        "name": "10 x 3",
+        "timeout": 0,
+        "runtime": "0.2651",
+        "query_prob": "0.79301313"
+    },
+    "38": {
+        "name": "10 x 4",
+        "timeout": 0,
+        "runtime": "0.3743",
+        "query_prob": "0.84541103"
+    },
+    "39": {
+        "name": "10 x 5",
+        "timeout": 0,
+        "runtime": "0.5168",
+        "query_prob": "0.86468986"
+    },
+    "40": {
+        "name": "10 x 6",
+        "timeout": 0,
+        "runtime": "0.8028",
+        "query_prob": "0.87142817"
+    },
+    "41": {
+        "name": "10 x 7",
+        "timeout": 0,
+        "runtime": "2.2159",
+        "query_prob": "0.87370519"
+    },
+    "42": {
+        "name": "10 x 8",
+        "timeout": 0,
+        "runtime": "22.5587",
+        "query_prob": "0.8744532"
+    },
+    "43": {
+        "name": "10 x 9",
+        "timeout": 0,
+        "runtime": "283.6490",
+        "query_prob": "0.87468762"
+    },
+    "44": {
+        "name": "10 x 10",
+        "timeout": 1,
+        "runtime": 1200,
+        "query_prob": null
+    }
+}

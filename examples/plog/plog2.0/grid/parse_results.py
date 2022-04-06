@@ -23,40 +23,60 @@ def parse_plog(instance):
     return runtime, query_prob
 
 
+def parse_problog(instance):
+    runtime = instance[6].split(':')[1].strip()[:-1]
+    query_prob = instance[7].split(':')[1].strip()
+    return runtime, query_prob
+
+
 if __name__ == '__main__':
     with open(args.log, 'r') as f:
         log = f.read().strip().split('START INSTANCE')[1:]
     results = {}
+    mode = args.log.split('_')[1]
 
     for id_, instance in enumerate(log):
         results[id_] = {}
         lines = instance.strip().strip('\n').split('\n')
         current_instance = lines[0]
         results[id_]['name'] = current_instance
-        if 'plingo' in instance:
+        if mode == 'plingo':
             if 'EXIT CODE 30' in instance:
-                results[id_]['timeout'] = 0
+                timeout = 0
                 runtime, query_prob = parse_plingo(lines)
             elif 'EXIT CODE 137' in instance:
-                results[id_]['timeout'] = 1
+                timeout = 1
                 runtime = 1200
                 query_prob = None
             else:
                 raise ValueError(f'Unknown exit code {instance}.')
-        elif 'Plog' in instance:
+        elif mode == 'plog2':
             if 'EXIT CODE 0' in instance:
-                results[id_]['timeout'] = 0
+                timeout = 0
                 runtime, query_prob = parse_plog(lines)
             elif 'EXIT CODE 124' in instance or 'EXIT CODE 33' in instance:
-                results[id_]['timeout'] = 1
+                timeout = 1
                 runtime = 1200
                 query_prob = None
             else:
                 raise ValueError(f'Unknown exit code {instance}.')
+        elif mode == 'problog':
+            if 'Timeout' in instance:
+                timeout = 1
+                runtime = 1200
+                query_prob = None
+            else:
+                timeout = 0
+                runtime, query_prob = parse_problog(lines)
 
-        results[id_]['runtime'] = runtime
-        results[id_]['query_prob'] = query_prob
+        results[id_] = {
+            'name': current_instance,
+            'timeout': timeout,
+            'runtime': runtime,
+            'query_prob': query_prob
+        }
 
     outname = os.path.basename(args.log).replace('.log', '.json')
+    print(outname)
     with open(os.path.join('results', outname), 'w') as f:
         f.write(json.dumps(results))
