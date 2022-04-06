@@ -13,9 +13,11 @@ for m in {2..9}
 do
     for (( n = 2; n <= $m; n += 1 ))
     do
+        echo "START INSTANCE"
+        echo "${m} x ${n}"
+        /usr/bin/time -o $logfile -a timeout 1200 ./plog2 plog2.0/grid_${m}_${n}.plog
+        echo "EXIT CODE ${?}"
         echo
-	echo "${m} x ${n}"
-	/usr/bin/time -o $logfile -a timeout 1200 ./plog2 plog2.0/grid_${m}_${n}.plog
-    done
+        done
 done
 

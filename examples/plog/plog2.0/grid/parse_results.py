@@ -25,35 +25,37 @@ def parse_plog(instance):
 
 if __name__ == '__main__':
     with open(args.log, 'r') as f:
-        log = f.read().strip().split('\n')
+        log = f.read().strip().split('START INSTANCE')[1:]
     results = {}
 
-    idx = [i for i, line in enumerate(log) if ' x ' in line]
-    idx.append(-1)
-    instances = [log[idx[i]:idx[i + 1]] for i in range(len(idx) - 1)]
-
-    for instance in instances:
-        current_instance = instance[0].strip()
-        results[current_instance] = {}
-        if 'plingo' in instance[1]:
-            if 'OPTIMUM FOUND' in instance:
-                results[current_instance]['timeout'] = 0
-                runtime, query_prob = parse_plingo(instance)
-            else:
-                results[current_instance]['timeout'] = 1
-                runtime = 1200
-                query_prob = None
-        elif 'Plog' in instance[1]:
-            if 'Command exited with non-zero status 124' in instance:
-                results[current_instance]['timeout'] = 1
+    for id_, instance in enumerate(log):
+        results[id_] = {}
+        lines = instance.strip().strip('\n').split('\n')
+        current_instance = lines[0]
+        results[id_]['name'] = current_instance
+        if 'plingo' in instance:
+            if 'EXIT CODE 30' in instance:
+                results[id_]['timeout'] = 0
+                runtime, query_prob = parse_plingo(lines)
+            elif 'EXIT CODE 137' in instance:
+                results[id_]['timeout'] = 1
                 runtime = 1200
                 query_prob = None
             else:
-                results[current_instance]['timeout'] = 0
-                runtime, query_prob = parse_plog(instance)
+                raise ValueError(f'Unknown exit code {instance}.')
+        elif 'Plog' in instance:
+            if 'EXIT CODE 0' in instance:
+                results[id_]['timeout'] = 0
+                runtime, query_prob = parse_plog(lines)
+            elif 'EXIT CODE 124' in instance or 'EXIT CODE 33' in instance:
+                results[id_]['timeout'] = 1
+                runtime = 1200
+                query_prob = None
+            else:
+                raise ValueError(f'Unknown exit code {instance}.')
 
-        results[current_instance]['runtime'] = runtime
-        results[current_instance]['query_prob'] = query_prob
+        results[id_]['runtime'] = runtime
+        results[id_]['query_prob'] = query_prob
 
     outname = os.path.basename(args.log).replace('.log', '.json')
     with open(os.path.join('results', outname), 'w') as f:
