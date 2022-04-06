@@ -1,0 +1,630 @@
+START INSTANCE
+2 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0173s
+[INFO] Cycle breaking: 0.0003s
+[INFO] Compiling SDD: 0.0004s
+[INFO] Total time: 0.0216s
+flow(2,2):	0.891     
+Command exited with non-zero status 1
+0.14user 0.05system 0:00.19elapsed 102%CPU (0avgtext+0avgdata 17688maxresident)k
+0inputs+0outputs (0major+8932minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+3 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0283s
+[INFO] Cycle breaking: 0.0004s
+[INFO] Compiling SDD: 0.0004s
+[INFO] Total time: 0.0328s
+flow(3,2):	0.8748    
+Command exited with non-zero status 1
+0.13user 0.02system 0:00.15elapsed 101%CPU (0avgtext+0avgdata 17640maxresident)k
+0inputs+0outputs (0major+8838minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+3 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0473s
+[INFO] Cycle breaking: 0.0007s
+[INFO] Compiling SDD: 0.0008s
+[INFO] Total time: 0.0532s
+flow(3,3):	0.87727131
+Command exited with non-zero status 1
+0.16user 0.02system 0:00.18elapsed 101%CPU (0avgtext+0avgdata 17716maxresident)k
+0inputs+0outputs (0major+8898minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+4 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0433s
+[INFO] Cycle breaking: 0.0009s
+[INFO] Compiling SDD: 0.0009s
+[INFO] Total time: 0.0495s
+flow(4,2):	0.85293   
+Command exited with non-zero status 1
+0.12user 0.03system 0:00.16elapsed 101%CPU (0avgtext+0avgdata 17808maxresident)k
+0inputs+0outputs (0major+8922minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+4 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0696s
+[INFO] Cycle breaking: 0.0013s
+[INFO] Compiling SDD: 0.0010s
+[INFO] Total time: 0.0769s
+flow(4,3):	0.87253105
+Command exited with non-zero status 1
+0.18user 0.02system 0:00.20elapsed 100%CPU (0avgtext+0avgdata 17956maxresident)k
+0inputs+0outputs (0major+9032minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+4 x 4
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1034s
+[INFO] Cycle breaking: 0.0017s
+[INFO] Compiling SDD: 0.0016s
+[INFO] Total time: 0.1125s
+flow(4,4):	0.87453145
+Command exited with non-zero status 1
+0.20user 0.01system 0:00.22elapsed 100%CPU (0avgtext+0avgdata 18384maxresident)k
+0inputs+0outputs (0major+9252minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+5 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0756s
+[INFO] Cycle breaking: 0.0012s
+[INFO] Compiling SDD: 0.0012s
+[INFO] Total time: 0.0829s
+flow(5,2):	0.826686  
+Command exited with non-zero status 1
+0.19user 0.02system 0:00.21elapsed 100%CPU (0avgtext+0avgdata 17724maxresident)k
+0inputs+0outputs (0major+8962minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+5 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0926s
+[INFO] Cycle breaking: 0.0016s
+[INFO] Compiling SDD: 0.0019s
+[INFO] Total time: 0.1018s
+flow(5,3):	0.86496673
+Command exited with non-zero status 1
+0.18user 0.02system 0:00.20elapsed 100%CPU (0avgtext+0avgdata 18372maxresident)k
+0inputs+0outputs (0major+9209minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+5 x 4
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1265s
+[INFO] Cycle breaking: 0.0018s
+[INFO] Compiling SDD: 0.0021s
+[INFO] Total time: 0.1359s
+flow(5,4):	0.87296996
+Command exited with non-zero status 1
+0.24user 0.01system 0:00.25elapsed 100%CPU (0avgtext+0avgdata 19208maxresident)k
+0inputs+0outputs (0major+9514minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+5 x 5
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1678s
+[INFO] Cycle breaking: 0.0023s
+[INFO] Compiling SDD: 0.0065s
+[INFO] Total time: 0.1826s
+flow(5,5):	0.87416964
+Command exited with non-zero status 1
+0.29user 0.01system 0:00.30elapsed 100%CPU (0avgtext+0avgdata 22096maxresident)k
+0inputs+0outputs (0major+10985minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+6 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0698s
+[INFO] Cycle breaking: 0.0008s
+[INFO] Compiling SDD: 0.0011s
+[INFO] Total time: 0.0761s
+flow(6,2):	0.7971615 
+Command exited with non-zero status 1
+0.16user 0.01system 0:00.18elapsed 100%CPU (0avgtext+0avgdata 17836maxresident)k
+0inputs+8outputs (0major+9038minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+6 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1133s
+[INFO] Cycle breaking: 0.0015s
+[INFO] Compiling SDD: 0.0015s
+[INFO] Total time: 0.1220s
+flow(6,3):	0.85494752
+Command exited with non-zero status 1
+0.24user 0.01system 0:00.25elapsed 101%CPU (0avgtext+0avgdata 18404maxresident)k
+0inputs+0outputs (0major+9272minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+6 x 4
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1604s
+[INFO] Cycle breaking: 0.0019s
+[INFO] Compiling SDD: 0.0031s
+[INFO] Total time: 0.1713s
+flow(6,4):	0.86995887
+Command exited with non-zero status 1
+0.28user 0.02system 0:00.30elapsed 100%CPU (0avgtext+0avgdata 20296maxresident)k
+0inputs+0outputs (0major+10096minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+6 x 5
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.2139s
+[INFO] Cycle breaking: 0.0028s
+[INFO] Compiling SDD: 0.0067s
+[INFO] Total time: 0.2301s
+flow(6,5):	0.87362029
+Command exited with non-zero status 1
+0.33user 0.02system 0:00.36elapsed 100%CPU (0avgtext+0avgdata 24148maxresident)k
+0inputs+0outputs (0major+11892minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+6 x 6
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.3024s
+[INFO] Cycle breaking: 0.0034s
+[INFO] Compiling SDD: 0.0198s
+[INFO] Total time: 0.3335s
+flow(6,6):	0.87429781
+Command exited with non-zero status 1
+0.44user 0.02system 0:00.46elapsed 100%CPU (0avgtext+0avgdata 35368maxresident)k
+0inputs+0outputs (0major+17427minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+7 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.0965s
+[INFO] Cycle breaking: 0.0011s
+[INFO] Compiling SDD: 0.0011s
+[INFO] Total time: 0.1035s
+flow(7,2):	0.76527504
+Command exited with non-zero status 1
+0.21user 0.01system 0:00.23elapsed 100%CPU (0avgtext+0avgdata 18080maxresident)k
+0inputs+0outputs (0major+9010minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+7 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1485s
+[INFO] Cycle breaking: 0.0017s
+[INFO] Compiling SDD: 0.0021s
+[INFO] Total time: 0.1580s
+flow(7,3):	0.84258509
+Command exited with non-zero status 1
+0.26user 0.01system 0:00.27elapsed 100%CPU (0avgtext+0avgdata 18944maxresident)k
+0inputs+0outputs (0major+9410minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+7 x 4
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.2087s
+[INFO] Cycle breaking: 0.0025s
+[INFO] Compiling SDD: 0.0044s
+[INFO] Total time: 0.2224s
+flow(7,4):	0.86573489
+Command exited with non-zero status 1
+0.34user 0.01system 0:00.35elapsed 100%CPU (0avgtext+0avgdata 21552maxresident)k
+0inputs+0outputs (0major+10653minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+7 x 5
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.2776s
+[INFO] Cycle breaking: 0.0036s
+[INFO] Compiling SDD: 0.0164s
+[INFO] Total time: 0.3048s
+flow(7,5):	0.87232678
+Command exited with non-zero status 1
+0.41user 0.02system 0:00.43elapsed 100%CPU (0avgtext+0avgdata 33228maxresident)k
+0inputs+0outputs (0major+16351minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+7 x 6
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.3499s
+[INFO] Cycle breaking: 0.0092s
+[INFO] Compiling SDD: 0.0651s
+[INFO] Total time: 0.4337s
+flow(7,6):	0.87409942
+Command exited with non-zero status 1
+0.50user 0.05system 0:00.56elapsed 100%CPU (0avgtext+0avgdata 72900maxresident)k
+0inputs+0outputs (0major+35754minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+7 x 7
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.4610s
+[INFO] Cycle breaking: 0.0048s
+[INFO] Compiling SDD: 0.3328s
+[INFO] Total time: 0.8122s
+flow(7,7):	0.8744742 
+Command exited with non-zero status 1
+0.87user 0.09system 0:00.96elapsed 100%CPU (0avgtext+0avgdata 139692maxresident)k
+0inputs+8outputs (0major+67972minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+8 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1200s
+[INFO] Cycle breaking: 0.0015s
+[INFO] Compiling SDD: 0.0013s
+[INFO] Total time: 0.1286s
+flow(8,2):	0.73179426
+Command exited with non-zero status 1
+0.24user 0.02system 0:00.26elapsed 101%CPU (0avgtext+0avgdata 18112maxresident)k
+0inputs+0outputs (0major+9102minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+8 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1852s
+[INFO] Cycle breaking: 0.0020s
+[INFO] Compiling SDD: 0.0024s
+[INFO] Total time: 0.1968s
+flow(8,3):	0.82801971
+Command exited with non-zero status 1
+0.31user 0.03system 0:00.35elapsed 96%CPU (0avgtext+0avgdata 19376maxresident)k
+0inputs+0outputs (0major+9682minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+8 x 4
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.2597s
+[INFO] Cycle breaking: 0.0030s
+[INFO] Compiling SDD: 0.0066s
+[INFO] Total time: 0.2764s
+flow(8,4):	0.86026555
+Command exited with non-zero status 1
+0.38user 0.02system 0:00.40elapsed 100%CPU (0avgtext+0avgdata 24108maxresident)k
+0inputs+0outputs (0major+11914minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+8 x 5
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.3322s
+[INFO] Cycle breaking: 0.0036s
+[INFO] Compiling SDD: 0.0268s
+[INFO] Total time: 0.3709s
+flow(8,5):	0.87043309
+Command exited with non-zero status 1
+0.47user 0.02system 0:00.50elapsed 100%CPU (0avgtext+0avgdata 45308maxresident)k
+0inputs+0outputs (0major+22207minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+8 x 6
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.4167s
+[INFO] Cycle breaking: 0.0046s
+[INFO] Compiling SDD: 0.1385s
+[INFO] Total time: 0.5709s
+flow(8,6):	0.87351611
+Command exited with non-zero status 1
+0.63user 0.07system 0:00.71elapsed 100%CPU (0avgtext+0avgdata 112716maxresident)k
+0inputs+0outputs (0major+55063minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+8 x 7
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.5014s
+[INFO] Cycle breaking: 0.0050s
+[INFO] Compiling SDD: 0.8142s
+[INFO] Total time: 1.3378s
+flow(8,7):	0.87440275
+Command exited with non-zero status 1
+1.37user 0.11system 0:01.48elapsed 100%CPU (0avgtext+0avgdata 176928maxresident)k
+0inputs+0outputs (0major+84832minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+8 x 8
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.6057s
+[INFO] Cycle breaking: 0.0061s
+[INFO] Compiling SDD: 7.5497s
+[INFO] Total time: 8.2120s
+flow(8,8):	0.87460821
+Command exited with non-zero status 1
+8.29user 0.15system 0:08.44elapsed 99%CPU (0avgtext+0avgdata 234372maxresident)k
+0inputs+0outputs (0major+104429minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1322s
+[INFO] Cycle breaking: 0.0015s
+[INFO] Compiling SDD: 0.0016s
+[INFO] Total time: 0.1406s
+flow(9,2):	0.69735688
+Command exited with non-zero status 1
+0.22user 0.03system 0:00.24elapsed 101%CPU (0avgtext+0avgdata 18416maxresident)k
+0inputs+0outputs (0major+9225minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.2180s
+[INFO] Cycle breaking: 0.0023s
+[INFO] Compiling SDD: 0.0030s
+[INFO] Total time: 0.2295s
+flow(9,3):	0.81142833
+Command exited with non-zero status 1
+0.33user 0.02system 0:00.36elapsed 100%CPU (0avgtext+0avgdata 19932maxresident)k
+0inputs+0outputs (0major+9908minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 4
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.2934s
+[INFO] Cycle breaking: 0.0032s
+[INFO] Compiling SDD: 0.0089s
+[INFO] Total time: 0.3129s
+flow(9,4):	0.85350083
+Command exited with non-zero status 1
+0.39user 0.03system 0:00.42elapsed 100%CPU (0avgtext+0avgdata 26128maxresident)k
+0inputs+8outputs (0major+12820minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 5
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.4126s
+[INFO] Cycle breaking: 0.0047s
+[INFO] Compiling SDD: 0.0323s
+[INFO] Total time: 0.4597s
+flow(9,5):	0.86790789
+Command exited with non-zero status 1
+0.55user 0.04system 0:00.59elapsed 100%CPU (0avgtext+0avgdata 47772maxresident)k
+0inputs+0outputs (0major+23251minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 6
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.4976s
+[INFO] Cycle breaking: 0.0049s
+[INFO] Compiling SDD: 0.1616s
+[INFO] Total time: 0.6769s
+flow(9,6):	0.87263151
+Command exited with non-zero status 1
+0.73user 0.07system 0:00.81elapsed 100%CPU (0avgtext+0avgdata 118912maxresident)k
+0inputs+0outputs (0major+57969minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 7
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.7164s
+[INFO] Cycle breaking: 0.0070s
+[INFO] Compiling SDD: 1.3010s
+[INFO] Total time: 2.0443s
+flow(9,7):	0.87413065
+Command exited with non-zero status 1
+2.09user 0.12system 0:02.21elapsed 100%CPU (0avgtext+0avgdata 189960maxresident)k
+0inputs+0outputs (0major+90502minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 8
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.7434s
+[INFO] Cycle breaking: 0.0071s
+[INFO] Compiling SDD: 13.6648s
+[INFO] Total time: 14.4821s
+flow(9,8):	0.87458337
+Command exited with non-zero status 1
+14.60user 0.14system 0:14.75elapsed 100%CPU (0avgtext+0avgdata 263196maxresident)k
+0inputs+0outputs (0major+113545minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+9 x 9
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.8447s
+[INFO] Cycle breaking: 0.0136s
+[INFO] Compiling SDD: 174.4216s
+[INFO] Total time: 175.5590s
+flow(9,9):	0.87469551
+Command exited with non-zero status 1
+176.25user 0.36system 2:56.64elapsed 99%CPU (0avgtext+0avgdata 571696maxresident)k
+0inputs+8outputs (0major+202044minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 2
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.1524s
+[INFO] Cycle breaking: 0.0017s
+[INFO] Compiling SDD: 0.0015s
+[INFO] Total time: 0.1673s
+flow(10,2):	0.66248904
+Command exited with non-zero status 1
+0.27user 0.03system 0:00.30elapsed 99%CPU (0avgtext+0avgdata 18616maxresident)k
+8inputs+0outputs (0major+9248minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 3
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.2462s
+[INFO] Cycle breaking: 0.0026s
+[INFO] Compiling SDD: 0.0030s
+[INFO] Total time: 0.2651s
+flow(10,3):	0.79301313
+Command exited with non-zero status 1
+0.36user 0.03system 0:00.40elapsed 99%CPU (0avgtext+0avgdata 20272maxresident)k
+8inputs+0outputs (0major+9937minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 4
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.3439s
+[INFO] Cycle breaking: 0.0078s
+[INFO] Compiling SDD: 0.0087s
+[INFO] Total time: 0.3743s
+flow(10,4):	0.84541103
+Command exited with non-zero status 1
+0.47user 0.02system 0:00.50elapsed 99%CPU (0avgtext+0avgdata 26436maxresident)k
+8inputs+0outputs (0major+12878minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 5
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.4544s
+[INFO] Cycle breaking: 0.0044s
+[INFO] Compiling SDD: 0.0415s
+[INFO] Total time: 0.5168s
+flow(10,5):	0.86468986
+Command exited with non-zero status 1
+0.58user 0.04system 0:00.63elapsed 99%CPU (0avgtext+0avgdata 56236maxresident)k
+8inputs+0outputs (0major+27395minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 6
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.5652s
+[INFO] Cycle breaking: 0.0055s
+[INFO] Compiling SDD: 0.2125s
+[INFO] Total time: 0.8028s
+flow(10,6):	0.87142817
+Command exited with non-zero status 1
+0.84user 0.10system 0:00.95elapsed 99%CPU (0avgtext+0avgdata 130284maxresident)k
+8inputs+8outputs (0major+63483minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 7
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.6923s
+[INFO] Cycle breaking: 0.0069s
+[INFO] Compiling SDD: 1.4866s
+[INFO] Total time: 2.2159s
+flow(10,7):	0.87370519
+Command exited with non-zero status 1
+2.25user 0.12system 0:02.38elapsed 99%CPU (0avgtext+0avgdata 191588maxresident)k
+8inputs+0outputs (0major+91023minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 8
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.8298s
+[INFO] Cycle breaking: 0.0079s
+[INFO] Compiling SDD: 21.6211s
+[INFO] Total time: 22.5587s
+flow(10,8):	0.8744532 
+Command exited with non-zero status 1
+22.68user 0.17system 0:22.86elapsed 99%CPU (0avgtext+0avgdata 277348maxresident)k
+8inputs+8outputs (0major+117057minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 9
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 0.9711s
+[INFO] Cycle breaking: 0.0091s
+[INFO] Compiling SDD: 282.3314s
+[INFO] Total time: 283.6490s
+flow(10,9):	0.87468762
+Command exited with non-zero status 1
+284.12user 0.38system 4:44.65elapsed 99%CPU (0avgtext+0avgdata 580328maxresident)k
+8inputs+8outputs (0major+204132minor)pagefaults 0swaps
+EXIT CODE 1
+
+START INSTANCE
+10 x 10
+[INFO] Output level: INFO
+[INFO] Propagating evidence: 0.0000s
+[INFO] Grounding: 1.1833s
+[INFO] Cycle breaking: 0.0108s
+[INFO] Compiling SDD: 1281.0519s
+[INFO] Total time: 1282.2670s
+Timeout exceeded
+Command exited with non-zero status 1
+1283.59user 0.68system 21:24.73elapsed 99%CPU (0avgtext+0avgdata 1192672maxresident)k
+176inputs+8outputs (0major+372003minor)pagefaults 0swaps
+EXIT CODE 1
+
