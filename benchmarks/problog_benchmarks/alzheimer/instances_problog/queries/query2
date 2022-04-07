@@ -1,0 +1,2 @@
+query :- p('hgnc_983', 'hgnc_582').
+query(query).

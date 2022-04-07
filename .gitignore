@@ -7,3 +7,4 @@ additions.bib
 *.egg-info
 
 plog2
+.backup_instances

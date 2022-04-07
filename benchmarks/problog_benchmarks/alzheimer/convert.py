@@ -79,10 +79,10 @@ if __name__ == '__main__':
         if args.output == 'problog':
             new_program.append('p(X,Y) :- drc(X,Y).')
             new_program.append('p(X,Y) :- drc(X, Z), Z \\= Y, p(Z, Y).')
-            new_program.append("query :- p('hgnc_582', 'hgnc_983').")
-            new_program.append('query(query).')
+            # new_program.append("query :- p('hgnc_582', 'hgnc_983').")
+            # new_program.append('query(query).')
             file_ending = '.pl'
-
+        new_program.append('')
         new_instance_name = instance.split('.')[0] + file_ending
 
         outpath = os.path.join(outdir, new_instance_name)
