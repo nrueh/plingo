@@ -1,6 +1,7 @@
 import argparse
 import os
 from math import log
+from shutil import copytree
 
 parser = argparse.ArgumentParser(
     description=
@@ -22,21 +23,33 @@ def parse_lpmln(line):
 def parse_plingo(line):
     edge, prob = line.split(':-')
     edge = edge.strip()
-    prob = prob[prob.index('(') + 1:prob.index(')')]
-    return edge, prob
+    prob = prob[prob.index('(') + 2:prob.index(')') - 1]
+    return prob, edge
 
 
 if __name__ == '__main__':
     instances = os.listdir(args.input)
     outdir = f'instances_{args.output}'
-    os.makedirs(outdir)
+    if os.path.isdir(outdir):
+        res = input(f'Directory {outdir} exists already. Continue? y/n  ')
+        if res not in ['yes', 'y', 'Yes', 'Y']:
+            quit()
+        copytree(outdir, '.backup_instances', dirs_exist_ok=True)
+        os.makedirs(outdir, exist_ok=True)
+
     for instance in instances:
+        if instance.endswith('.py') or instance in [
+                'encoding.lp', 'evidence.lp', 'query.lp'
+        ]:
+            continue
         print(instance)
         with open(os.path.join(args.input, instance), 'r') as fp:
             lines = fp.read().strip().split('\n')
+        if 'problog' in args.input:
+            lines = [l for l in lines if '::' in l]
 
         new_program = []
-        for line in lines[:-6]:
+        for line in lines:
             line = line.strip()
             if line == '' or line[0] == '%':
                 continue
@@ -51,6 +64,7 @@ if __name__ == '__main__':
                 raise ValueError('Input format not recognized')
 
             if args.output == 'problog':
+                edge = edge.replace('"', '\'')
                 new_rule = f'{prob}::{edge}.'
             elif args.output == 'lpmln':
                 edge = edge.replace('\'', '"')
