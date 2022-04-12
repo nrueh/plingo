@@ -18,10 +18,13 @@ do
         echo "${instance} ${query}"
         cat instances/${instance} > instance.pl
         cat queries/${query} >> instance.pl
-        problog instance.pl -v --timeout=1200
+        /usr/bin/time -o $logfile -a problog instance.pl -v --timeout=1200
         echo "EXIT CODE ${?}"
         echo
     done
 done
 
-rm instance.pl
+if [[ -f instance.pl ]]
+then
+    rm instance.pl
+fi

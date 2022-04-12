@@ -1,0 +1,519 @@
+START INSTANCE
+182n362e.lp
+plingo version 1.0
+Reading from instances/182n362e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 4156
+  Optimum    : yes
+Optimization : -1838044
+Calls        : 1
+Time         : 10.778s (Solving: 10.41s 1st Model: 0.02s Unsat: 0.00s)
+CPU Time     : 10.760s
+Command exited with non-zero status 30
+11.11user 0.58system 0:11.14elapsed 104%CPU (0avgtext+0avgdata 83864maxresident)k
+36264inputs+0outputs (183major+25002minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+403n399e.lp
+plingo version 1.0
+Reading from instances/403n399e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 4398
+  Optimum    : yes
+Optimization : -1114671
+Calls        : 1
+Time         : 0.649s (Solving: 0.47s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.774s
+Command exited with non-zero status 30
+0.97user 0.52system 0:00.86elapsed 171%CPU (0avgtext+0avgdata 43832maxresident)k
+56inputs+0outputs (0major+13723minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+449n465e.lp
+plingo version 1.0
+Reading from instances/449n465e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 5886
+  Optimum    : yes
+Optimization : -1238327
+Calls        : 1
+Time         : 1.011s (Solving: 0.80s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 1.135s
+Command exited with non-zero status 30
+1.30user 0.52system 0:01.19elapsed 151%CPU (0avgtext+0avgdata 45724maxresident)k
+64inputs+0outputs (0major+14221minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+502n542e.lp
+plingo version 1.0
+Reading from instances/502n542e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 5618
+  Optimum    : yes
+Optimization : -1384663
+Calls        : 1
+Time         : 1.875s (Solving: 1.63s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 2.003s
+Command exited with non-zero status 30
+2.15user 0.56system 0:02.09elapsed 129%CPU (0avgtext+0avgdata 48284maxresident)k
+80inputs+8outputs (0major+14859minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+543n606e.lp
+plingo version 1.0
+Reading from instances/543n606e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 7330
+  Optimum    : yes
+Optimization : -1493893
+Calls        : 1
+Time         : 2.751s (Solving: 2.46s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 2.882s
+Command exited with non-zero status 30
+3.06user 0.52system 0:02.97elapsed 121%CPU (0avgtext+0avgdata 52476maxresident)k
+88inputs+0outputs (0major+16032minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+581n681e.lp
+plingo version 1.0
+Reading from instances/581n681e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 6817
+  Optimum    : yes
+Optimization : -1665803
+Calls        : 1
+Time         : 3.842s (Solving: 3.49s 1st Model: 0.03s Unsat: 0.00s)
+CPU Time     : 3.971s
+Command exited with non-zero status 30
+4.14user 0.54system 0:04.06elapsed 115%CPU (0avgtext+0avgdata 59164maxresident)k
+96inputs+0outputs (0major+17746minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+624n764e.lp
+plingo version 1.0
+Reading from instances/624n764e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 10001
+  Optimum    : yes
+Optimization : -1831672
+Calls        : 1
+Time         : 12.624s (Solving: 12.18s 1st Model: 0.02s Unsat: 0.00s)
+CPU Time     : 12.747s
+Command exited with non-zero status 30
+12.94user 0.50system 0:12.83elapsed 104%CPU (0avgtext+0avgdata 71320maxresident)k
+104inputs+0outputs (0major+21165minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+669n878e.lp
+plingo version 1.0
+Reading from instances/669n878e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 12409
+  Optimum    : yes
+Optimization : -2028101
+Calls        : 1
+Time         : 38.214s (Solving: 37.52s 1st Model: 0.03s Unsat: 0.00s)
+CPU Time     : 38.332s
+Command exited with non-zero status 30
+38.55user 0.53system 0:38.47elapsed 101%CPU (0avgtext+0avgdata 103884maxresident)k
+120inputs+0outputs (0major+30694minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+718n992e.lp
+plingo version 1.0
+Reading from instances/718n992e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 8646
+  Optimum    : yes
+Optimization : -2305895
+Calls        : 1
+Time         : 38.648s (Solving: 37.71s 1st Model: 0.06s Unsat: 0.00s)
+CPU Time     : 38.772s
+Command exited with non-zero status 30
+39.02user 0.53system 0:38.94elapsed 101%CPU (0avgtext+0avgdata 135780maxresident)k
+136inputs+8outputs (0major+39818minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+789n1257e.lp
+plingo version 1.0
+Reading from instances/789n1257e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 26837
+  Optimum    : yes
+Optimization : -2799769
+Calls        : 1
+Time         : 253.766s (Solving: 251.84s 1st Model: 0.17s Unsat: 0.01s)
+CPU Time     : 253.793s
+Command exited with non-zero status 30
+254.14user 0.59system 4:14.21elapsed 100%CPU (0avgtext+0avgdata 273104maxresident)k
+168inputs+8outputs (0major+78667minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+820n1400e.lp
+plingo version 1.0
+Reading from instances/820n1400e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 17024
+  Optimum    : yes
+Optimization : -3111435
+Calls        : 1
+Time         : 235.667s (Solving: 232.77s 1st Model: 0.30s Unsat: 0.01s)
+CPU Time     : 235.688s
+Command exited with non-zero status 30
+236.03user 0.69system 3:56.21elapsed 100%CPU (0avgtext+0avgdata 404108maxresident)k
+192inputs+8outputs (0major+117140minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+829n1567e.lp
+plingo version 1.0
+Reading from instances/829n1567e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 14115
+  Optimum    : yes
+Optimization : -3634186
+Calls        : 1
+Time         : 313.962s (Solving: 309.04s 1st Model: 0.58s Unsat: 0.03s)
+CPU Time     : 313.955s
+Command exited with non-zero status 30
+314.45user 0.78system 5:14.74elapsed 100%CPU (0avgtext+0avgdata 676856maxresident)k
+216inputs+8outputs (0major+194110minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+837n1722e.lp
+plingo version 1.0
+Reading from instances/837n1722e.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 28178
+  Optimum    : yes
+Optimization : -3984382
+Calls        : 1
+Time         : 865.125s (Solving: 857.21s 1st Model: 0.84s Unsat: 0.06s)
+CPU Time     : 864.838s
+Command exited with non-zero status 30
+865.38user 1.22system 14:26.39elapsed 100%CPU (0avgtext+0avgdata 1151676maxresident)k
+232inputs+8outputs (0major+325398minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+989n2056e.lp
+plingo version 1.0
+Reading from instances/989n2056e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 38096+
+  Optimum    : unknown
+Optimization : -149018
+Calls        : 1
+Time         : 1200.061s (Solving: 1188.76s 1st Model: 1.42s Unsat: 0.00s)
+CPU Time     : 1199.737s
+Command exited with non-zero status 11
+1200.68user 1.27system 20:01.79elapsed 100%CPU (0avgtext+0avgdata 1517188maxresident)k
+280inputs+16outputs (0major+431736minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+1143n2384e.lp
+plingo version 1.0
+Reading from instances/1143n2384e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 43382+
+  Optimum    : unknown
+Optimization : 6428445
+Calls        : 1
+Time         : 1200.068s (Solving: 1184.64s 1st Model: 1.64s Unsat: 0.00s)
+CPU Time     : 1199.794s
+Command exited with non-zero status 11
+1201.20user 1.37system 20:02.34elapsed 100%CPU (0avgtext+0avgdata 2011152maxresident)k
+320inputs+8outputs (0major+577731minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+1291n2700e.lp
+plingo version 1.0
+Reading from instances/1291n2700e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 55820+
+  Optimum    : unknown
+Optimization : 18859448
+Calls        : 1
+Time         : 1200.122s (Solving: 1179.68s 1st Model: 2.54s Unsat: 0.00s)
+CPU Time     : 1199.678s
+Command exited with non-zero status 11
+1201.57user 1.56system 20:03.08elapsed 100%CPU (0avgtext+0avgdata 2434660maxresident)k
+368inputs+8outputs (0major+736414minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+1437n3018e.lp
+plingo version 1.0
+Reading from instances/1437n3018e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 73381+
+  Optimum    : unknown
+Optimization : 56158600
+Calls        : 1
+Time         : 1200.146s (Solving: 1174.98s 1st Model: 3.57s Unsat: 0.00s)
+CPU Time     : 1199.994s
+Command exited with non-zero status 11
+1202.36user 1.65system 20:03.67elapsed 100%CPU (0avgtext+0avgdata 2869056maxresident)k
+408inputs+16outputs (0major+873455minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+1580n3334e.lp
+plingo version 1.0
+Reading from instances/1580n3334e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 56821+
+  Optimum    : unknown
+Optimization : 73593091
+Calls        : 1
+Time         : 1200.166s (Solving: 1169.16s 1st Model: 4.16s Unsat: 0.00s)
+CPU Time     : 1200.026s
+Command exited with non-zero status 11
+1203.22user 1.96system 20:04.83elapsed 100%CPU (0avgtext+0avgdata 3494376maxresident)k
+448inputs+8outputs (0major+1067459minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+1713n3620e.lp
+plingo version 1.0
+Reading from instances/1713n3620e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 48288+
+  Optimum    : unknown
+Optimization : 89925075
+Calls        : 1
+Time         : 1200.213s (Solving: 1161.92s 1st Model: 5.41s Unsat: 0.00s)
+CPU Time     : 1199.815s
+Command exited with non-zero status 11
+1203.51user 2.35system 20:05.77elapsed 100%CPU (0avgtext+0avgdata 4146984maxresident)k
+488inputs+8outputs (0major+1287183minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+1857n3930e.lp
+plingo version 1.0
+Reading from instances/1857n3930e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 42006+
+  Optimum    : unknown
+Optimization : 108651900
+Calls        : 1
+Time         : 1200.263s (Solving: 1156.30s 1st Model: 7.14s Unsat: 0.00s)
+CPU Time     : 1199.780s
+Command exited with non-zero status 11
+1203.37user 2.70system 20:06.06elapsed 100%CPU (0avgtext+0avgdata 4792584maxresident)k
+528inputs+8outputs (0major+1502865minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+1989n4234e.lp
+plingo version 1.0
+Reading from instances/1989n4234e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 39913+
+  Optimum    : unknown
+Optimization : 131166237
+Calls        : 1
+Time         : 1200.309s (Solving: 1149.53s 1st Model: 8.87s Unsat: 0.00s)
+CPU Time     : 1199.851s
+Command exited with non-zero status 11
+1204.97user 2.97system 20:07.90elapsed 100%CPU (0avgtext+0avgdata 5519680maxresident)k
+568inputs+8outputs (0major+1809806minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+2120n4520e.lp
+plingo version 1.0
+Reading from instances/2120n4520e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 32110+
+  Optimum    : unknown
+Optimization : 138649105
+Calls        : 1
+Time         : 1200.221s (Solving: 1142.98s 1st Model: 8.49s Unsat: 0.00s)
+CPU Time     : 1199.710s
+Command exited with non-zero status 11
+1205.49user 3.31system 20:08.83elapsed 99%CPU (0avgtext+0avgdata 6226636maxresident)k
+608inputs+8outputs (0major+2034644minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+2244n4798e.lp
+plingo version 1.0
+Reading from instances/2244n4798e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 27963+
+  Optimum    : unknown
+Optimization : 154072852
+Calls        : 1
+Time         : 1200.277s (Solving: 1133.98s 1st Model: 10.83s Unsat: 0.00s)
+CPU Time     : 1200.197s
+Command exited with non-zero status 11
+1206.84user 3.67system 20:10.10elapsed 100%CPU (0avgtext+0avgdata 7041348maxresident)k
+648inputs+16outputs (0major+2267839minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+2368n5070e.lp
+plingo version 1.0
+Reading from instances/2368n5070e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 26143+
+  Optimum    : unknown
+Optimization : 168613014
+Calls        : 1
+Time         : 1200.308s (Solving: 1127.27s 1st Model: 12.04s Unsat: 0.00s)
+CPU Time     : 1199.922s
+Command exited with non-zero status 11
+1207.26user 3.96system 20:11.12elapsed 100%CPU (0avgtext+0avgdata 7731580maxresident)k
+680inputs+16outputs (0major+2643495minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+2484n5332e.lp
+plingo version 1.0
+Reading from instances/2484n5332e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 24475+
+  Optimum    : unknown
+Optimization : 182714061
+Calls        : 1
+Time         : 1200.337s (Solving: 1115.07s 1st Model: 14.02s Unsat: 0.00s)
+CPU Time     : 1199.858s
+Command exited with non-zero status 11
+1208.24user 4.32system 20:12.55elapsed 100%CPU (0avgtext+0avgdata 8640708maxresident)k
+720inputs+16outputs (0major+2925042minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+2592n5578e.lp
+plingo version 1.0
+Reading from instances/2592n5578e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 26491+
+  Optimum    : unknown
+Optimization : 202693911
+Calls        : 1
+Time         : 1200.383s (Solving: 1108.38s 1st Model: 14.64s Unsat: 0.00s)
+CPU Time     : 1199.957s
+Command exited with non-zero status 11
+1209.03user 4.73system 20:13.70elapsed 100%CPU (0avgtext+0avgdata 9375880maxresident)k
+752inputs+16outputs (0major+3134711minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+2707n5832e.lp
+plingo version 1.0
+Reading from instances/2707n5832e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 21853+
+  Optimum    : unknown
+Optimization : 208647617
+Calls        : 1
+Time         : 1200.386s (Solving: 1100.18s 1st Model: 14.19s Unsat: 0.00s)
+CPU Time     : 1200.001s
+Command exited with non-zero status 11
+1210.15user 4.86system 20:14.90elapsed 100%CPU (0avgtext+0avgdata 10201304maxresident)k
+784inputs+16outputs (0major+3351814minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+2814n6072e.lp
+plingo version 1.0
+Reading from instances/2814n6072e.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 21900+
+  Optimum    : unknown
+Optimization : 223653705
+Calls        : 1
+Time         : 1200.445s (Solving: 1091.93s 1st Model: 16.85s Unsat: 0.00s)
+CPU Time     : 1200.222s
+Command exited with non-zero status 11
+1211.04user 5.73system 20:16.50elapsed 100%CPU (0avgtext+0avgdata 10971600maxresident)k
+816inputs+16outputs (0major+3657843minor)pagefaults 0swaps
+EXIT CODE 11
+

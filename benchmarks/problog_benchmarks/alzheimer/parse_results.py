@@ -37,7 +37,6 @@ if __name__ == '__main__':
         results[id_] = {}
         lines = instance.strip().strip('\n').split('\n')
         current_instance = lines[0]
-        results[id_]['name'] = current_instance
         if mode == 'plingo':
             if 'EXIT CODE 30' in instance:
                 timeout = 0
