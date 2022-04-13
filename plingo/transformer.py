@@ -71,7 +71,10 @@ class PlingoTransformer(Transformer):
         """
         Creates the 'unsat' and 'not unsat' atoms
         """
-        unsat_arguments = [idx, self.weight, self.global_variables]
+        unsat_arguments = [
+            idx,
+            ast.SymbolicTerm(location, self.weight), self.global_variables
+        ]
 
         unsat = ast.SymbolicAtom(
             ast.Function(location, "unsat", unsat_arguments, False))
