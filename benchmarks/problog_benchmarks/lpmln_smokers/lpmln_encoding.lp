@@ -4,3 +4,4 @@
 {smokes(X)} :- person(X).
 {cancer(X)} :- person(X).
 
+#show .
