@@ -210,35 +210,37 @@ class OptEnum:
         minimize = [
             x[1] for x in sorted(obs.literals.items(), key=lambda x: -x[0])
         ]
+        try:
+            while (res.satisfiable and not res.interrupted and minimize
+                   and 'costs' in ctl.statistics['summary']):
+                summary = ctl.statistics['summary']
+                if num_models > 0:
+                    num_models -= int(summary['models']['optimal'])
+                    if num_models <= 0:
+                        break
+                    solve_config.models = num_models
+                costs = cast(
+                    Tuple[int],
+                    tuple(int(x) for x in ctl.statistics['summary']['costs']))
 
-        while (res.satisfiable and not res.interrupted and minimize
-               and 'costs' in ctl.statistics['summary']):
-            summary = ctl.statistics['summary']
-            if num_models > 0:
-                num_models -= int(summary['models']['optimal'])
-                if num_models <= 0:
-                    break
-                solve_config.models = num_models
-            costs = cast(
-                Tuple[int],
-                tuple(int(x) for x in ctl.statistics['summary']['costs']))
+                with ctl.backend() as backend:
+                    self._set_upper_bound(backend, minimize, costs)
+                    if self.use_backend:
+                        if self.reached_max:
+                            backend.add_rule([], [query_literal])
+                            self.use_backend = False
+                        elif self.reached_max is False:
+                            backend.add_rule([], [-query_literal])
+                            self.use_backend = False
 
-            with ctl.backend() as backend:
-                self._set_upper_bound(backend, minimize, costs)
-                if self.use_backend:
-                    if self.reached_max:
-                        backend.add_rule([], [query_literal])
-                        self.use_backend = False
-                    elif self.reached_max is False:
-                        backend.add_rule([], [-query_literal])
-                        self.use_backend = False
-
-            # if self._heu is not None:
-            #     self._heu.set_restore(costs)
-            res = cast(
-                SolveResult,
-                ctl.solve(assumptions=self.assumptions,
-                          on_model=self._on_model,
-                          on_statistics=self._on_statistics))
-
+                # if self._heu is not None:
+                #     self._heu.set_restore(costs)
+                res = cast(
+                    SolveResult,
+                    ctl.solve(assumptions=self.assumptions,
+                              on_model=self._on_model,
+                              on_statistics=self._on_statistics))
+        except RuntimeError:
+            # This catches a timeout/keyboard interrupt and still returns the already found model costs
+            pass
         return self.model_costs, self.query
