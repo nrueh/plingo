@@ -9,7 +9,10 @@ args = parser.parse_args()
 
 
 def parse_plingo(instance):
-    time_line = [line for line in instance if line.startswith('Time')][0]
+    try:
+        time_line = [line for line in instance if line.startswith('Time')][0]
+    except IndexError:
+        time_line = [line for line in instance if 'Time' in line][0]
     runtime = time_line.split(' : ')[1].split('(')[0].strip()[:-1]
     query_line = [line for line in instance if line.startswith('flow')][0]
     query_prob = query_line.split(':')[1].strip()
@@ -41,13 +44,16 @@ if __name__ == '__main__':
         current_instance = lines[0]
         results[id_]['name'] = current_instance
         if mode == 'plingo':
-            if 'EXIT CODE 30' in instance:
+            if 'EXIT CODE 30' in instance or 'EXIT CODE 10' in instance:
                 timeout = 0
                 runtime, query_prob = parse_plingo(lines)
-            elif 'EXIT CODE 137' in instance:
+            elif 'EXIT CODE 137' in instance or 'TIME LIMIT' in instance:
                 timeout = 1
                 runtime = 1200
-                query_prob = None
+                try:
+                    _, query_prob = parse_plingo(lines)
+                except IndexError:
+                    query_prob = None
             else:
                 raise ValueError(f'Unknown exit code {instance}.')
         elif mode == 'plog2':
