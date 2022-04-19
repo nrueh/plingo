@@ -1,0 +1,31 @@
+<runscript output="output/{DOM}/{APP}">
+
+	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
+	
+	<config name="seq-general" template="programs/seq-general.sh"/>
+  
+	<system name="plingo" version="1" measures="clingo" config="seq-general">
+
+		<!-- <setting name="{OPT}" cmdline="{OPT} {APP} {DOM} {EXTRA}" tag="basic" /> -->
+		<setting name="mpe" cmdline="mpe {APP} {DOM}" tag="basic" />
+		<!-- <setting name="exact" cmdline="exact {APP} {DOM}" tag="basic" /> -->
+		<!-- <setting name="sample" cmdline="sample {APP} {DOM} 10" tag="basic" /> -->
+
+
+    </system>
+
+	<pbsjob name="pbs-gen" partition="short" timeout="1200" runs="1" script_mode="timeout" walltime="00:50:00" cpt="4"/>
+	<seqjob name="seq-gen" timeout="1200" runs="1" script_mode="timeout" walltime="00:50:00" parallel="1"/>
+
+	<benchmark name="plingo-benchmark">
+		<folder path="../../dom/{DOM}/{APP}/instances"> 
+		</folder> 
+	</benchmark>
+	
+	<project name="plingo-project-cl" job="pbs-gen">
+		<runtag machine="komputer" benchmark="plingo-benchmark" tag="basic"/>
+	</project>
+
+
+</runscript>
+

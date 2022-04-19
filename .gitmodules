@@ -1,0 +1,12 @@
+[submodule "benchmarks/systems/plog"]
+	path = benchmarks/systems/plog
+	url = git@github.com:iensen/plog2.0.git
+[submodule "benchmarks/systems/benchmark-tool"]
+	path = benchmarks/systems/benchmark-tool
+	url = https://github.com/potassco/benchmark-tool.git
+[submodule "benchmarks/systems/problog"]
+	path = benchmarks/systems/problog
+	url = git@github.com:ML-KULeuven/problog.git
+[submodule "benchmarks/systems/azreasoners"]
+	path = benchmarks/systems/azreasoners
+	url = git@github.com:azreasoners/lpmln.git
