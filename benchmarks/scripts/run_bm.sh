@@ -14,8 +14,8 @@ mode=py
 # mode=cl
 
 # PRJ_PATH=$HOME
-PRJ_PATH=$HOME/Education/Phd/potassco
-
+#PRJ_PATH=$HOME/Education/Phd/potassco
+PRJ_PATH=$HOME/Potassco
 # if mode==cl, set username to your login in the cluster
 USERNAME="hahnmar"
 

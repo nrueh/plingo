@@ -14,6 +14,7 @@ clean:
 	rm -rf fault_runsolver.txt
 	make clean-runscripts
 	make clean-output
+$(eval PATH_BASE = dom/$(DOM)/$(APP))
 
 mpe:
 ifeq ($(APP), plingo)

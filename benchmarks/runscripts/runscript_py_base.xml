@@ -6,8 +6,8 @@
   
 	<system name="plingo" version="1" measures="clingo" config="seq-general">
 
-		<setting name="simple" cmdline="" tag="basic" />
-		<setting name="all" cmdline="--all" tag="basic" />
+		<setting name="mpe" cmdline="mpe {APP} {DOM}" tag="basic" />
+		<setting name="exact" cmdline="exact {APP} {DOM}" tag="basic" />
 
 
     </system>
