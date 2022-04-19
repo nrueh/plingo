@@ -127,11 +127,11 @@ class PlingoApp(Application):
                     multi=True)
         options.add(group, 'evid', 'Provide evidence file',
                     self._parse_evidence)
-        options.add_flag(group, 'opt-enum', 
-                    '''Enumerates models by optimality. 
+        options.add_flag(
+            group, 'opt-enum', '''Enumerates models by optimality.
                             This can be used for approximating probabilities and queries.
-                            Recommended to use -q1 to suppress printing of intermediate models.''', 
-                        self.opt_enum)
+                            Recommended to use -q1 to suppress printing of intermediate models.''',
+            self.opt_enum)
         options.add(
             group, 'balanced,b', '''Approximate query in a balanced way.
                             Use as --balanced N, where max. 2N models are determined
@@ -143,7 +143,6 @@ class PlingoApp(Application):
             group, 'use-backend',
             'Adds constraints for query approximation in backend instead of using assumptions.',
             self.use_backend)
-        
 
     def validate_options(self) -> bool:
         if self.two_solve_calls and not self.translate_hard_rules:
@@ -152,10 +151,14 @@ class PlingoApp(Application):
             )
             return False
         if self.balanced_models is not None and not self.opt_enum:
-            print('Balanced approximation only works with optimal enumeration algorithm (--opt-enum)')
+            print(
+                'Balanced approximation only works with optimal enumeration algorithm (--opt-enum)'
+            )
             return False
-        if self.use_backend and not self.balanced_models is not None :
-            print('The --use-backend option only works with balanced query approximation (--balanced N).')
+        if self.use_backend and self.balanced_models is not None:
+            print(
+                'The --use-backend option only works with balanced query approximation (--balanced N).'
+            )
             return False
         return True
 
