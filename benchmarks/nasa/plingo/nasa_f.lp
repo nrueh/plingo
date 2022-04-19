@@ -96,12 +96,19 @@ powered(C,false) :- not powered(C,true), component(C).
 
 &random { broken(C,B) : boolean(B) } :- component(C).
 
-&pr { broken(C,true) } = "1/1000000" :- battery(C).
-&pr { broken(C,true) } = "5/10000000" :- processor(C). 
-&pr { broken(C,true) } = "1/10000000" :- motor_controller(C). 
-&pr { broken(C,true) } = "1/10000000" :- two_of_three_voter(C). 
-&pr { broken(C,true) } = "1/10000000" :- wheel_sensor(C). 
-&pr { broken(C,true) } = "2/1000000" :- steering_sensor(C). 
+% &pr { broken(C,true) } = "1/1000000" :- battery(C).
+% &pr { broken(C,true) } = "5/10000000" :- processor(C). 
+% &pr { broken(C,true) } = "1/10000000" :- motor_controller(C). 
+% &pr { broken(C,true) } = "1/10000000" :- two_of_three_voter(C). 
+% &pr { broken(C,true) } = "1/10000000" :- wheel_sensor(C). 
+% &pr { broken(C,true) } = "2/1000000" :- steering_sensor(C). 
+
+&pr { broken(C,true) } = "1/2" :- battery(C).
+&pr { broken(C,true) } = "1/2" :- processor(C). 
+&pr { broken(C,true) } = "1/2" :- motor_controller(C). 
+&pr { broken(C,true) } = "1/2" :- two_of_three_voter(C). 
+&pr { broken(C,true) } = "1/2" :- wheel_sensor(C). 
+&pr { broken(C,true) } = "1/2" :- steering_sensor(C). 
 
 % *Component Operation*
 
