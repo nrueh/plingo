@@ -1,0 +1,516 @@
+START INSTANCE
+182n362e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 928
+  Optimum    : yes
+Optimization : -18294
+Calls        : 1
+Time         : 3.602s (Solving: 3.38s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 3.591s
+Total time:  4.389174938201904
+4.95user 0.34system 0:05.25elapsed 100%CPU (0avgtext+0avgdata 74524maxresident)k
+79336inputs+208outputs (256major+42040minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+403n399e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1040
+  Optimum    : yes
+Optimization : -11092
+Calls        : 1
+Time         : 0.386s (Solving: 0.33s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.386s
+Total time:  1.1459248065948486
+1.57user 0.22system 0:01.59elapsed 113%CPU (0avgtext+0avgdata 74424maxresident)k
+48inputs+232outputs (5major+32659minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+449n465e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1244
+  Optimum    : yes
+Optimization : -12321
+Calls        : 1
+Time         : 0.663s (Solving: 0.60s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.663s
+Total time:  1.4699153900146484
+1.91user 0.24system 0:01.95elapsed 110%CPU (0avgtext+0avgdata 74376maxresident)k
+56inputs+272outputs (3major+33091minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+502n542e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1384
+  Optimum    : yes
+Optimization : -13778
+Calls        : 1
+Time         : 0.742s (Solving: 0.67s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.741s
+Total time:  1.6285183429718018
+2.03user 0.24system 0:02.06elapsed 110%CPU (0avgtext+0avgdata 74760maxresident)k
+64inputs+304outputs (3major+33733minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+543n606e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1407
+  Optimum    : yes
+Optimization : -14862
+Calls        : 1
+Time         : 1.379s (Solving: 1.29s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1.379s
+Total time:  2.2717514038085938
+2.67user 0.27system 0:02.74elapsed 107%CPU (0avgtext+0avgdata 74424maxresident)k
+72inputs+344outputs (5major+34757minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+581n681e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1883
+  Optimum    : yes
+Optimization : -16570
+Calls        : 1
+Time         : 3.047s (Solving: 2.93s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 3.045s
+Total time:  3.993403196334839
+4.42user 0.21system 0:04.43elapsed 104%CPU (0avgtext+0avgdata 74724maxresident)k
+80inputs+400outputs (5major+36267minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+624n764e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 2146
+  Optimum    : yes
+Optimization : -18222
+Calls        : 1
+Time         : 7.711s (Solving: 7.53s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 7.710s
+Total time:  8.73135781288147
+9.09user 0.29system 0:09.18elapsed 102%CPU (0avgtext+0avgdata 74664maxresident)k
+96inputs+448outputs (4major+39047minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+669n878e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1964
+  Optimum    : yes
+Optimization : -20176
+Calls        : 1
+Time         : 18.690s (Solving: 18.35s 1st Model: 0.01s Unsat: 0.00s)
+CPU Time     : 18.687s
+Total time:  19.77414894104004
+20.12user 0.29system 0:20.21elapsed 101%CPU (0avgtext+0avgdata 75040maxresident)k
+104inputs+480outputs (4major+46822minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+718n992e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 3278
+  Optimum    : yes
+Optimization : -22939
+Calls        : 1
+Time         : 75.173s (Solving: 74.63s 1st Model: 0.02s Unsat: 0.00s)
+CPU Time     : 75.162s
+Total time:  76.37640285491943
+76.72user 0.31system 1:16.84elapsed 100%CPU (0avgtext+0avgdata 86048maxresident)k
+120inputs+632outputs (4major+54844minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+789n1257e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 3281
+  Optimum    : yes
+Optimization : -27847
+Calls        : 1
+Time         : 205.481s (Solving: 204.08s 1st Model: 0.05s Unsat: 0.00s)
+CPU Time     : 205.374s
+Total time:  206.9194052219391
+207.15user 0.33system 3:27.38elapsed 100%CPU (0avgtext+0avgdata 187596maxresident)k
+152inputs+752outputs (6major+85042minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+820n1400e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1895
+  Optimum    : yes
+Optimization : -30948
+Calls        : 1
+Time         : 193.545s (Solving: 191.37s 1st Model: 0.07s Unsat: 0.00s)
+CPU Time     : 193.463s
+Total time:  195.1921067237854
+195.38user 0.42system 3:15.67elapsed 100%CPU (0avgtext+0avgdata 279932maxresident)k
+168inputs+712outputs (5major+112667minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+829n1567e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1414
+  Optimum    : yes
+Optimization : -36149
+Calls        : 1
+Time         : 174.443s (Solving: 170.44s 1st Model: 0.12s Unsat: 0.00s)
+CPU Time     : 174.369s
+Total time:  176.2123670578003
+176.30user 0.49system 2:56.66elapsed 100%CPU (0avgtext+0avgdata 472132maxresident)k
+184inputs+752outputs (4major+169734minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+837n1722e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 2746
+  Optimum    : yes
+Optimization : -39634
+Calls        : 1
+Time         : 715.355s (Solving: 708.20s 1st Model: 0.13s Unsat: 0.00s)
+CPU Time     : 714.972s
+Total time:  717.700083732605
+717.36user 0.62system 11:58.16elapsed 99%CPU (0avgtext+0avgdata 784796maxresident)k
+200inputs+976outputs (5major+267821minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+989n2056e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1324
+  Optimum    : yes
+Optimization : -42530
+Calls        : 1
+Time         : 315.675s (Solving: 305.67s 1st Model: 0.18s Unsat: 0.00s)
+CPU Time     : 315.572s
+Total time:  318.03663992881775
+317.92user 0.66system 5:18.48elapsed 100%CPU (0avgtext+0avgdata 1088248maxresident)k
+240inputs+968outputs (4major+357835minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+1143n2384e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1812
+  Optimum    : yes
+Optimization : -44290
+Calls        : 1
+Time         : 859.025s (Solving: 844.72s 1st Model: 0.32s Unsat: 0.00s)
+CPU Time     : 858.564s
+Total time:  861.8541131019592
+861.14user 0.92system 14:22.31elapsed 99%CPU (0avgtext+0avgdata 1474380maxresident)k
+280inputs+1192outputs (4major+487901minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+1291n2700e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 1993+
+  Optimum    : unknown
+Optimization : -33539
+Calls        : 1
+Time         : 1197.248s (Solving: 1179.00s 1st Model: 0.42s Unsat: 0.00s)
+CPU Time     : 1196.762s
+Command exited with non-zero status 124
+2.70user 0.21system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 76904maxresident)k
+312inputs+1088outputs (5major+35624minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+1437n3018e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+OPTIMUM FOUND
+
+Models       : 1288
+  Optimum    : yes
+Optimization : -48774
+Calls        : 1
+Time         : 819.552s (Solving: 796.48s 1st Model: 0.56s Unsat: 0.00s)
+CPU Time     : 819.364s
+Total time:  823.301522731781
+822.46user 1.28system 13:43.72elapsed 100%CPU (0avgtext+0avgdata 2309624maxresident)k
+352inputs+1416outputs (3major+763018minor)pagefaults 0swaps
+EXIT CODE 0
+
+START INSTANCE
+1580n3334e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 1555+
+  Optimum    : unknown
+Optimization : -49139
+Calls        : 1
+Time         : 1196.611s (Solving: 1166.78s 1st Model: 0.73s Unsat: 0.00s)
+CPU Time     : 1195.787s
+Command exited with non-zero status 124
+3.18user 0.36system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 76568maxresident)k
+392inputs+1352outputs (4major+143509minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+1713n3620e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 1363+
+  Optimum    : unknown
+Optimization : -39441
+Calls        : 1
+Time         : 1196.362s (Solving: 1161.54s 1st Model: 0.90s Unsat: 0.00s)
+CPU Time     : 1196.088s
+Command exited with non-zero status 124
+3.47user 0.32system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 77596maxresident)k
+424inputs+1464outputs (3major+195667minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+1857n3930e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 1234+
+  Optimum    : unknown
+Optimization : -39647
+Calls        : 1
+Time         : 1196.177s (Solving: 1155.38s 1st Model: 1.08s Unsat: 0.00s)
+CPU Time     : 1195.602s
+Command exited with non-zero status 124
+3.66user 0.32system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 77908maxresident)k
+456inputs+1592outputs (5major+169314minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+1989n4234e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 1116+
+  Optimum    : unknown
+Optimization : -35882
+Calls        : 1
+Time         : 1195.722s (Solving: 1148.38s 1st Model: 1.23s Unsat: 0.00s)
+CPU Time     : 1195.083s
+Command exited with non-zero status 124
+4.02user 0.40system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 78024maxresident)k
+496inputs+1712outputs (3major+283791minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+2120n4520e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 896+
+  Optimum    : unknown
+Optimization : -30682
+Calls        : 1
+Time         : 1195.546s (Solving: 1138.64s 1st Model: 2.20s Unsat: 0.00s)
+CPU Time     : 1194.846s
+Command exited with non-zero status 124
+4.24user 0.37system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 78588maxresident)k
+528inputs+1832outputs (4major+267639minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+2244n4798e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 826+
+  Optimum    : unknown
+Optimization : -22413
+Calls        : 1
+Time         : 1195.193s (Solving: 1130.69s 1st Model: 2.56s Unsat: 0.00s)
+CPU Time     : 1194.357s
+Command exited with non-zero status 124
+4.46user 0.50system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 78736maxresident)k
+560inputs+1944outputs (4major+345297minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+2368n5070e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 664+
+  Optimum    : unknown
+Optimization : -21230
+Calls        : 1
+Time         : 1194.956s (Solving: 1123.41s 1st Model: 2.88s Unsat: 0.00s)
+CPU Time     : 1194.633s
+Command exited with non-zero status 124
+4.70user 0.49system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 79492maxresident)k
+592inputs+2056outputs (5major+355543minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+2484n5332e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 662+
+  Optimum    : unknown
+Optimization : -20398
+Calls        : 1
+Time         : 1194.659s (Solving: 1115.64s 1st Model: 3.21s Unsat: 0.00s)
+CPU Time     : 1193.940s
+Command exited with non-zero status 124
+4.92user 0.58system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 79784maxresident)k
+624inputs+2160outputs (3major+493443minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+2592n5578e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 614+
+  Optimum    : unknown
+Optimization : -21246
+Calls        : 1
+Time         : 1194.367s (Solving: 1107.07s 1st Model: 3.46s Unsat: 0.00s)
+CPU Time     : 1194.047s
+Command exited with non-zero status 124
+5.15user 0.63system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 80376maxresident)k
+648inputs+2264outputs (3major+448159minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+2707n5832e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 579+
+  Optimum    : unknown
+Optimization : -15109
+Calls        : 1
+Time         : 1194.173s (Solving: 1097.15s 1st Model: 3.85s Unsat: 0.00s)
+CPU Time     : 1193.875s
+Command exited with non-zero status 124
+5.36user 0.62system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 81240maxresident)k
+680inputs+2368outputs (4major+484181minor)pagefaults 0swaps
+EXIT CODE 124
+
+START INSTANCE
+2814n6072e.lp
+clingo version 5.4.0
+Reading from ...marks/alzheimer/instances_lpmln/asp.pl
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 532+
+  Optimum    : unknown
+Optimization : -13995
+Calls        : 1
+Time         : 1193.887s (Solving: 1090.32s 1st Model: 4.08s Unsat: 0.00s)
+CPU Time     : 1193.258s
+Command exited with non-zero status 124
+5.67user 0.60system 20:00.00elapsed 0%CPU (0avgtext+0avgdata 80472maxresident)k
+704inputs+2464outputs (4major+533455minor)pagefaults 0swaps
+EXIT CODE 124
+
