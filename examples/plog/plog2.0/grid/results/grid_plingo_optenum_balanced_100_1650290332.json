@@ -1,0 +1,110 @@
+{
+    "0": {
+        "name": "6 x 5",
+        "timeout": 0,
+        "runtime": "0.143",
+        "query_prob": "0.90000"
+    },
+    "1": {
+        "name": "6 x 6",
+        "timeout": 0,
+        "runtime": "0.127",
+        "query_prob": "0.90000"
+    },
+    "2": {
+        "name": "7 x 4",
+        "timeout": 0,
+        "runtime": "0.035",
+        "query_prob": "0.90000"
+    },
+    "3": {
+        "name": "7 x 5",
+        "timeout": 0,
+        "runtime": "0.062",
+        "query_prob": "0.90000"
+    },
+    "4": {
+        "name": "7 x 6",
+        "timeout": 0,
+        "runtime": "0.051",
+        "query_prob": "0.90000"
+    },
+    "5": {
+        "name": "7 x 7",
+        "timeout": 0,
+        "runtime": "0.116",
+        "query_prob": "0.90000"
+    },
+    "6": {
+        "name": "8 x 4",
+        "timeout": 0,
+        "runtime": "0.072",
+        "query_prob": "0.90000"
+    },
+    "7": {
+        "name": "8 x 5",
+        "timeout": 0,
+        "runtime": "0.098",
+        "query_prob": "0.90000"
+    },
+    "8": {
+        "name": "8 x 6",
+        "timeout": 0,
+        "runtime": "0.086",
+        "query_prob": "0.90000"
+    },
+    "9": {
+        "name": "8 x 7",
+        "timeout": 0,
+        "runtime": "0.091",
+        "query_prob": "0.90000"
+    },
+    "10": {
+        "name": "8 x 8",
+        "timeout": 0,
+        "runtime": "0.147",
+        "query_prob": "0.90000"
+    },
+    "11": {
+        "name": "9 x 3",
+        "timeout": 0,
+        "runtime": "0.014",
+        "query_prob": "0.90000"
+    },
+    "12": {
+        "name": "9 x 4",
+        "timeout": 0,
+        "runtime": "0.097",
+        "query_prob": "0.90000"
+    },
+    "13": {
+        "name": "9 x 5",
+        "timeout": 0,
+        "runtime": "0.115",
+        "query_prob": "0.90000"
+    },
+    "14": {
+        "name": "9 x 6",
+        "timeout": 0,
+        "runtime": "0.065",
+        "query_prob": "0.90000"
+    },
+    "15": {
+        "name": "9 x 7",
+        "timeout": 0,
+        "runtime": "0.044",
+        "query_prob": "0.90000"
+    },
+    "16": {
+        "name": "9 x 8",
+        "timeout": 0,
+        "runtime": "0.023",
+        "query_prob": "0.90000"
+    },
+    "17": {
+        "name": "9 x 9",
+        "timeout": 0,
+        "runtime": "0.026",
+        "query_prob": "0.90000"
+    }
+}
