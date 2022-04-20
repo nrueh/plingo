@@ -26,5 +26,3 @@ look(D,p1) :- day(D).
 
 #show hidden_in/1.
 #show found/2.
-
-&query(found(days,true)).
