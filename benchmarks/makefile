@@ -42,20 +42,22 @@ endif
 ifeq ($(APP), plog)
 	./systems/plog/plog2 $(INS) $(EXTRA)
 endif
-ifeq ($(APP), plogdco)
+ifeq ($(APP), plog-dco)
 	./systems/plog/plog2 $(INS) --algo=dco $(EXTRA)
 endif
 
 sample:
+# ifeq ($(APP), plingo)
+# 	plingo $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp --opt-enum -q2 -b$(N) $(EXTRA)
+# endif
 ifeq ($(APP), plingo)
-	$(eval X = $(shell echo $$(( $(N) / 2 ))))
-	plingo $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp --opt-enum -q2 -b$(X) $(EXTRA)
+	plingo $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp --opt-enum -q2 $(EXTRA)
 endif
-ifeq ($(APP), problog)
-	problog sample $(INS) --estimate -N $(N) $(EXTRA)
-	exit 0
-endif
-ifeq ($(APP), azreasoners)
-	source /usr/local/apps/anaconda3/etc/profile.d/conda.sh && conda activate lpmln && python systems/azreasoners/lpmln_infer.py show.lp $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp  -mcasp -samp $(N) -q query && conda activate plingo $(EXTRA)
-endif
+# ifeq ($(APP), problog)
+# 	problog sample $(INS) --estimate -N $(N) $(EXTRA)
+# 	exit 0
+# endif
+# ifeq ($(APP), azreasoners)
+# 	source /usr/local/apps/anaconda3/etc/profile.d/conda.sh && conda activate lpmln && python systems/azreasoners/lpmln_infer.py show.lp $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp  -mcasp -samp $(N) -q query && conda activate plingo $(EXTRA)
+# endif
 
