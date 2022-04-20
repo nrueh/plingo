@@ -35,9 +35,9 @@
 
 # LPMLN benchmarks
 ./scripts/run_bm.sh plingo alzheimer_problog mpe
-./scripts/run_bm.sh plingo alzheimer_problog mpe --unsat
+./scripts/run_bm.sh plingo alzheimer_problog mpe unsat # unsat should be transformed to --unsat
 ./scripts/run_bm.sh azreasoners alzheimer_problog mpe
 
 ./scripts/run_bm.sh plingo smokers mpe
-./scripts/run_bm.sh plingo smokers mpe --unsat
+./scripts/run_bm.sh plingo smokers mpe unsat
 ./scripts/run_bm.sh azreasoners smokers mpe
