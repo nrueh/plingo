@@ -8,3 +8,5 @@ belowof((1,1),(1,2)).
 belowof((2,1),(2,2)).
 belowof((3,1),(3,2)).
 belowof((4,1),(4,2)).
+#const m = 4.
+#const n = 2.

@@ -91,3 +91,5 @@ belowof((9,2),(9,3)).
 belowof((9,3),(9,4)).
 belowof((9,4),(9,5)).
 belowof((9,5),(9,6)).
+#const m = 9.
+#const n = 6.

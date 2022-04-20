@@ -36,3 +36,5 @@ belowof((5,3),(5,4)).
 belowof((6,1),(6,2)).
 belowof((6,2),(6,3)).
 belowof((6,3),(6,4)).
+#const m = 6.
+#const n = 4.

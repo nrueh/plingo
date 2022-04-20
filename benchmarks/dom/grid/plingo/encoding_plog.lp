@@ -18,3 +18,5 @@ flow(N) :- rightof(N1,N), flow(N1), not faulty(N1, true).
 flow(N) :- belowof(N1,N), flow(N1), not faulty(N1, true).
 
 #show flow/1.
+
+query :- flow((m,n)).

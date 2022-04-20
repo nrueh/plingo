@@ -38,3 +38,5 @@ belowof((5,1),(5,2)).
 belowof((5,2),(5,3)).
 belowof((5,3),(5,4)).
 belowof((5,4),(5,5)).
+#const m = 5.
+#const n = 5.

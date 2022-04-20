@@ -17,3 +17,5 @@ belowof((4,1),(4,2)).
 belowof((5,1),(5,2)).
 belowof((6,1),(6,2)).
 belowof((7,1),(7,2)).
+#const m = 7.
+#const n = 2.

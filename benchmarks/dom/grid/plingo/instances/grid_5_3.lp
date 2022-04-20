@@ -20,3 +20,5 @@ belowof((4,1),(4,2)).
 belowof((4,2),(4,3)).
 belowof((5,1),(5,2)).
 belowof((5,2),(5,3)).
+#const m = 5.
+#const n = 3.

@@ -35,3 +35,5 @@ belowof((7,1),(7,2)).
 belowof((7,2),(7,3)).
 belowof((8,1),(8,2)).
 belowof((8,2),(8,3)).
+#const m = 8.
+#const n = 3.
