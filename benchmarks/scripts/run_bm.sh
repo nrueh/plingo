@@ -20,8 +20,11 @@ PRJ_PATH=$HOME/Potassco
 USERNAME="hahnmar"
 
 ############## Commandline parameters
-DOM=$2
-APPROACH=$1
+NAME=$1
+APPROACH=$2
+DOM=$3
+OPT=$4
+EXTRA=$5
 # HORIZON=$3
 # MODELS=$4
 # PREFIX=$5
@@ -30,7 +33,7 @@ APPROACH=$1
 # : ${PREFIX:=''}
 
 
-NAME=${PREFIX}${APPROACH}_all
+# NAME=${PREFIX}${APPROACH}_all
 
 MACHINE=komputer # Value in <machine name="komputer"
 BT_PATH=$PRJ_PATH/plingo/benchmarks/systems/benchmark-tool
@@ -50,17 +53,17 @@ make clean -s
 
 
 # Create the runscript for the arguments
-RUNSCRIPT_PATH=$PWD/runscripts/runscript_${mode}_${DOM}_$APPROACH.xml
+RUNSCRIPT_PATH=$PWD/runscripts/runscript_${mode}_${APPROACH}_${DOM}_${OPT}_${NAME}.xml
 # RUNSCRIPT_PATH=$PWD/runscripts/runscript_${mode}_plingo.xml
 echo "$Y Creating runscript in "
 echo "$B    $RUNSCRIPT_PATH $NC"
-sed "s/{DOM}/"$DOM"/g; s/{APP}/"$APPROACH"/g" ./runscripts/runscript_${mode}_base.xml >  $RUNSCRIPT_PATH
+sed "s/{DOM}/"$DOM"/g; s/{APP}/"$APPROACH"/g; s/{OPT}/"$OPT"/g; s/{EXTRA}/"$EXTRA"/g; s/{NAME}/"$NAME"/g" ./runscripts/runscript_${mode}_base.xml >  $RUNSCRIPT_PATH
 
 
 # Results directory
 echo "$Y Removing old result directory $NC"
 mkdir -p $dir/results/$DOM
-RES_DIR=$dir/results/$DOM/$APPROACH
+RES_DIR=$dir/results/$APPROACH/$DOM/$OPT/$NAME
 rm -rf $RES_DIR
 mkdir -p $RES_DIR
 
@@ -71,7 +74,7 @@ cd $BT_PATH
 
 
 #Output directory inside benchmark-tool is the value in <runscript output="">
-OUTPUT_DIR=output/$DOM/${APPROACH}/$PROJECT 
+OUTPUT_DIR=output/$APPROACH/$DOM/$OPT/$NAME/$PROJECT 
 echo "$Y Calling ./bgen $RUNSCRIPT_PATH $NC"
 ./bgen $RUNSCRIPT_PATH
 

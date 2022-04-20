@@ -1,4 +1,4 @@
-<runscript output="output/{DOM}/{APP}">
+<runscript output="output/{APP}/{DOM}/{OPT}/{NAME}">
 
 	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
 	
@@ -6,10 +6,7 @@
   
 	<system name="plingo" version="1" measures="clingo" config="seq-general">
 
-		<!-- <setting name="{OPT}" cmdline="{OPT} {APP} {DOM} {EXTRA}" tag="basic" /> -->
-		<setting name="mpe" cmdline="mpe {APP} {DOM}" tag="basic" />
-		<!-- <setting name="exact" cmdline="exact {APP} {DOM}" tag="basic" /> -->
-		<!-- <setting name="sample" cmdline="sample {APP} {DOM} 10" tag="basic" /> -->
+		<setting name="{OPT}" cmdline="{OPT} {APP} {DOM} {EXTRA}" tag="basic" />
 
 
     </system>
