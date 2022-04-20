@@ -9,7 +9,7 @@ clean-results:
 clean-output:
 	rm -rf systems/benchmark-tool/output/*
 clean-runscripts:
-	rm -rf ./runscripts/runscript_*_*_*
+	rm -rf ./runscripts/runscript_*_*_*_*_*
 clean:
 	rm -rf fault_runsolver.txt
 	make clean-runscripts

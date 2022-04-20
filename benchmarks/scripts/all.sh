@@ -4,16 +4,18 @@
 
 
 # Grid benchmark
-# TODO: There are two encodings for plingo grid (P-log and Problog syntax). Add both
-./script/run_bm.sh bm_plog plingo grid exact '--plog' # plog should be transformed to option --plog
+# TODO: The corrrect encodings (encoding_problog.lp or encoding_plog.lp) 
+# needs to be pasted inside the encoding.lp file before running
+./script/run_bm.sh bm_plog plingo grid exact '--plog'
+./script/run_bm.sh bm_problog plingo grid exact
 
-./script/run_bm.sh bm_normal plog grid exact
+./script/run_bm.sh bm plog grid exact
 ./script/run_bm.sh bm plog-dco grid exact
 ./script/run_bm.sh bm problog grid exact
 
-./script/run_bm.sh bm_defaultplingo grid sample '--plog' # Default sample mode is timeout
-./script/run_bm.sh bm_b10 plingo grid sample '-b10 --plog' # '-b10 's-ould' be transformed to option -b10
-./script/run_bm.sh bm_b100 plingo grid sample '-b100 --plog' # the extra arguments can be used to uniquely name the results
+./script/run_bm.sh bm grid sample '--plog' # Default sample mode is timeout
+./script/run_bm.sh bm_b10 plingo grid sample '-b10 --plog'
+./script/run_bm.sh bm_b100 plingo grid sample '-b100 --plog'
 ./script/run_bm.sh bm_b1000 plingo grid sample '-b1000 --plog'
 ./script/run_bm.sh bm_b10000 plingo grid sample '-b10000 --plog'
 ./script/run_bm.sh bm_b100000 plingo grid sample '-b100000 --plog'
@@ -35,7 +37,7 @@
 
 # LPMLN benchmarks
 ./scripts/run_bm.sh bm plingo alzheimer_problog mpe
-./scripts/run_bm.sh bm_default plingo alzheimer_problog mpe '--unsat' # unsat should be transformed to --unsat
+./scripts/run_bm.sh bm_unsat plingo alzheimer_problog mpe '--unsat'
 ./scripts/run_bm.sh bm azreasoners alzheimer_problog mpe
 
 ./scripts/run_bm.sh bm plingo smokers mpe
