@@ -10,12 +10,12 @@ set -e
 
 ############## Users parameters
 # set mode: sequential=py or cluster=cl
-mode=py
-# mode=cl
+#mode=py
+mode=cl
 
-# PRJ_PATH=$HOME
+PRJ_PATH=$HOME
 #PRJ_PATH=$HOME/Education/Phd/potassco
-PRJ_PATH=$HOME/Potassco
+#PRJ_PATH=$HOME/Potassco
 # if mode==cl, set username to your login in the cluster
 USERNAME="hahnmar"
 
@@ -25,15 +25,6 @@ APPROACH=$2
 DOM=$3
 OPT=$4
 EXTRA=$5
-# HORIZON=$3
-# MODELS=$4
-# PREFIX=$5
-# CLINGO_ARGS=$6
-# : ${CLINGO_ARGS:=''}
-# : ${PREFIX:=''}
-
-
-# NAME=${PREFIX}${APPROACH}_all
 
 MACHINE=komputer # Value in <machine name="komputer"
 BT_PATH=$PRJ_PATH/plingo/benchmarks/systems/benchmark-tool
@@ -43,9 +34,9 @@ PROJECT=plingo-project-$mode
 
 dir=$PWD
 echo ""
-echo "$C ---------------------------"
-echo " Starting benchmarks for $APPROACH in $DOM" 
-echo "$C ---------------------------$NC"
+echo "$C ------------------------------------------------------------------"
+echo " Starting benchmark $NAME for APP=$APPROACH DOM=$DOM OPT=$OPT EXTRA=$EXTRA "
+echo "$C ------------------------------------------------------------------$NC"
 
 
 echo "$Y Cleaning with make "

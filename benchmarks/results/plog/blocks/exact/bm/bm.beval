@@ -1,0 +1,200 @@
+<result>
+	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
+	<config name="seq-general" template="programs/seq-general.sh"/>
+	<system name="plingo" version="1" measures="clingo" config="seq-general">
+		<setting name="exact" cmdline="exact plog blocks " tag="basic" pbstemplate="templates/single.pbs"/>
+	</system>
+	<pbsjob name="pbs-gen" timeout="1200" runs="1" script_mode="timeout" walltime="3000" cpt="4" partition="short"/>
+	<benchmark name="plingo-benchmark">
+		<class name="." id="0">
+			<instance name="blockmap10_1.plg" id="0"/>
+			<instance name="blockmap10_2.plg" id="1"/>
+			<instance name="blockmap10_3.plg" id="2"/>
+			<instance name="blockmap15_1.plg" id="3"/>
+			<instance name="blockmap15_2.plg" id="4"/>
+			<instance name="blockmap15_3.plg" id="5"/>
+			<instance name="blockmap20_1.plg" id="6"/>
+			<instance name="blockmap20_2.plg" id="7"/>
+			<instance name="blockmap20_3.plg" id="8"/>
+			<instance name="blockmap20_4.plg" id="9"/>
+			<instance name="blockmap20_5.plg" id="10"/>
+			<instance name="blockmap5_1.plg" id="11"/>
+			<instance name="blockmap5_2.plg" id="12"/>
+			<instance name="blockmap5_3.plg" id="13"/>
+		</class>
+	</benchmark>
+	<project name="plingo-project-cl" job="pbs-gen">
+		<runspec machine="komputer" system="plingo" version="1" benchmark="plingo-benchmark" setting="exact">
+			<class id="0">
+				<instance id="12">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="0.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.137451"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="8">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="43464.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.454386"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.740226"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="6">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="38484.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.8"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.198805"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="10">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="50648.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.191692"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="6.69827"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="5">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="40100.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.318681"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.290801"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="13">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="0.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.137315"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="1">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="38048.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.266667"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.146301"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="9">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="43876.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.308153"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="1.74115"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="7">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="42924.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.621053"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.350544"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="3">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="38408.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.733333"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.159985"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="0">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="37500.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.6"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.161585"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="4">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="37492.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.504762"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.211525"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="2">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="38176.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.083333"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.153856"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="11">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="0.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="query" type="float" val="0.4"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="0.134771"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+			</class>
+		</runspec>
+	</project>
+</result>

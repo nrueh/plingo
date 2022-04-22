@@ -1,0 +1,14 @@
+<result>
+	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
+	<config name="seq-general" template="programs/seq-general.sh"/>
+	<system name="plingo" version="1" measures="clingo" config="seq-general">
+		<setting name="exact" cmdline="exact plog-dco squirrel " tag="basic" pbstemplate="templates/single.pbs"/>
+	</system>
+	<pbsjob name="pbs-gen" timeout="1200" runs="1" script_mode="timeout" walltime="3000" cpt="4" partition="short"/>
+	<benchmark name="plingo-benchmark">
+	</benchmark>
+	<project name="plingo-project-cl" job="pbs-gen">
+		<runspec machine="komputer" system="plingo" version="1" benchmark="plingo-benchmark" setting="exact">
+		</runspec>
+	</project>
+</result>
