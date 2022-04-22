@@ -1,4 +1,4 @@
-<runscript output="output/azreasoners/smokers/mpe/bm">
+<runscript output="output/plog/blocks/exact/bm_dco">
 
 	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
 	
@@ -6,7 +6,7 @@
   
 	<system name="plingo" version="1" measures="clingo" config="seq-general">
 
-		<setting name="mpe" cmdline="mpe azreasoners smokers " tag="basic" />
+		<setting name="exact" cmdline="exact plog blocks --algo=dco" tag="basic" />
 
 
     </system>
@@ -15,7 +15,7 @@
 	<seqjob name="seq-gen" timeout="1200" runs="1" script_mode="timeout" walltime="00:50:00" parallel="1"/>
 
 	<benchmark name="plingo-benchmark">
-		<folder path="../../dom/smokers/azreasoners/instances"> 
+		<folder path="../../dom/blocks/plog/instances"> 
 		</folder> 
 	</benchmark>
 	
