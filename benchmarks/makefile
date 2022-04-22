@@ -25,7 +25,7 @@ ifeq ($(APP), problog)
 	exit 0
 endif
 ifeq ($(APP), azreasoners)
-	python systems/azreasoners/lpmln_infer.py show.lp $(INS) $(PATH_BASE)/encoding.lp $(EXTRA)
+	python systems/azreasoners/lpmln_infer.py show.lp $(INS) $(PATH_BASE)/encoding.lp $(EXTRA) | sed '/Answer:/,+2 d'
 endif
 
 exact:
@@ -37,13 +37,10 @@ ifeq ($(APP), problog)
 	exit 0
 endif
 ifeq ($(APP), azreasoners)
-	python systems/azreasoners/lpmln_infer.py show.lp $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp -exact -q query $(EXTRA)
+	python systems/azreasoners/lpmln_infer.py show.lp $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp -exact -q query $(EXTRA) | sed '/Answer:/,+2 d'
 endif
 ifeq ($(APP), plog)
 	./systems/plog/plog2 $(INS) $(EXTRA)
-endif
-ifeq ($(APP), plog-dco)
-	./systems/plog/plog2 $(INS) --algo=dco $(EXTRA)
 endif
 
 sample:
