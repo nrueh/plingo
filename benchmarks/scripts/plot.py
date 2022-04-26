@@ -19,13 +19,7 @@ import argparse
 parser = argparse.ArgumentParser(
     description='Plot obs files from benchmark tool',
     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument(
-    "--stat",
-    type=str,
-    action='append',
-    help=
-    "Status: choices,conflicts,cons,csolve,ctime,error,mem,memout,models,ngadded,optimal,restarts,status,time,timeout,vars,ptime"
-)
+
 parser.add_argument(
     "--approach",
     "-a",
@@ -40,10 +34,6 @@ parser.add_argument("--opt",
                     type=str,
                     default='mpe',
                     help="mpe, sample or exact")
-# parser.add_argument("--name", type=str,
-# help="Name of benchmark bm")
-# parser.add_argument("--horizon", type=int, action='append',
-#         help="Horizon to be plotted. Can pass multiple",required=True)
 parser.add_argument(
     "--models",
     type=int,
@@ -194,84 +184,45 @@ def clean_df(df):
     return df
 
 
+# ------- Aux for marking minimum
+def mark_minimum(df):
+    mins = df.min(axis=1)
+    min_mx = df.eq(mins, axis=0)
+    for c in min_mx.columns:
+        if c == 'instance-name':
+            continue
+        for row in df.index:
+            str_value = "NaN" if math.isnan(df.loc[row, c]) else str(
+                float(df.loc[row, c]))
+            # # str_value = "\\color{red}{-}" if math.isnan(df.loc[row,c]) else str(f'{int(df.loc[row,c]):,}')
+            df.loc[row, c] = str_value + "*" if min_mx.loc[row,
+                                                           c] else str_value
+    return df
+
+
 # ------- Aux for tex output
-def csv2textable(df,
-                 ins,
-                 approaches,
-                 spetial_words,
-                 base_headers=[""],
-                 caption=None,
-                 limitter='stats'):
-    n_base_headers = len(base_headers)
-    non_mc_approaches = [x for x in approaches if x != 'nc']
-    used_words = {}
-    formats = {'stats': 'textbf', 'ins': 'texttt', 'cons': 'texttt'}
+def csv2textable(df, caption=None):
 
-    def f_tex(x):
-        if isinstance(x, np.floating):
-            if np.isnan(x):
-                return "\\color{red}{-}"
-            return str(f'{int(x):,}')
-        if x in spetial_words:
-            to_ret = ""
-            word_type = spetial_words[x]
-            if word_type in used_words:
-                if used_words[word_type] != x:
-                    to_ret = f'\\{formats[word_type]}' + '{' + x + '}'
-                    if word_type == limitter:
-                        to_ret = '\\hline' + to_ret
-            else:
-                to_ret = f'\\{formats[word_type]}' + '{' + x + '}'
-                if word_type == limitter:
-                    to_ret = '\\hline' + to_ret
-            used_words[word_type] = x
+    def f_names(x):
+        return str(x)
 
-            return to_ret
-        if type(x) is str and x[-1] == '~':
-            return '\\sout{' + x[:-1] + '}'
+    def f_values(x):
         if type(x) is str and x[-1] == '*':
-            val = str(f'{int(x[:-1]):,}')
-            return "\\textbf{" + val + "}"
-        if type(x) is int:
-            return str(f'{x:,}')
-        if x == "NaN":
-            return "\\color{red}{-}"
-        return str(f'{int(x):,}')
+            val = str(f'{float(x[:-1]):.2f}')
+            return f'\\textbf{{{val}s}}'
+        return str(f'{float(x):.2f}s')
 
-    cons_name = "\\texttt{" + cons.replace('_', ' ') + "}"
-    ins_name = "\\texttt{" + ins.replace('_', ' ') + "}"
-    app_names = df.columns[n_base_headers:] if use_gmean else df.columns[
-        n_base_headers + 1:]
-    if use_lambda:
-        approaches_map = {
-            "afw": "\\WFA",
-            "dfa-mso": "\\WFMm",
-            "dfa-stm": "\\WFMs",
-            "telingo": "\\WFT",
-            "nc": "\\WFNC"
-        }
-        headers = base_headers + ["$\\lambda$"] + [
-            "$" + approaches_map[str(c)] + "$" for c in app_names
-        ]
-    else:
-        headers = base_headers + ["", "H"] + [
-            "\\textbf{" + str(c) + "}" for c in app_names
-        ]
+    app_names = df.columns[1:]
+    headers = ['\\textbf{Instance}'] + [f'\\textbf{{{n}}}' for n in app_names]
+    column_format = f'|l{"|l"*len(app_names)}|'
 
-    if use_gmean:
-        headers = headers[0:n_base_headers] + headers[n_base_headers + 1:]
-
-    models_str = f"getting {'one model' if models==1 else 'all_models'}"
-    column_format = f'|{"l"*n_base_headers}{"" if use_gmean else "l"}|{"r"*len(non_mc_approaches)}{"|r" if "nc" in approaches else ""}|'
-    if caption is None:
-        caption = f"Statistics instance {ins_name} {models_str}. Crossed out lambdas are those for which the instance was UNSAT with the constraint. Best performance excluding NC (No Constraint) is found in bold."
-    tex_table = df.to_latex(index=False,
-                            caption=caption,
-                            formatters=[f_tex] * len(df.columns),
-                            escape=False,
-                            header=headers,
-                            label=f"tbl:eval:{cons}:{ins}",
+    tex_table = df.to_latex(header=headers,
+                            index=False,
+                            formatters=[f_names] + [f_values] * len(app_names),
                             column_format=column_format,
+                            caption=caption,
+                            escape=False,
+                            label="",
                             na_rep="\\color{red}{-}")
     return tex_table
 
@@ -285,9 +236,6 @@ if __name__ == "__main__":
     approaches.sort()
 
     opt = args.opt
-
-    # Statistics
-    stats = args.stat
     prefix = args.prefix
 
     # Instances
@@ -304,7 +252,6 @@ if __name__ == "__main__":
         DOM: {dom}
         APPROACHES: {approaches}
         OPT: {opt}
-        STATS: {stats}
     """
 
     if single_instance:
@@ -362,55 +309,28 @@ if __name__ == "__main__":
 
     if args.type == "table":
         # -------- Save CVS
-        for ins, df in dfs_per_instance.items():
-            file_name_csv = f'./plots/tables/{dom}/{prefix}-{ins}.csv'
-            file_name_tex_csv = file_name_csv[:-3] + "tex"
-            dir_name = os.path.dirname(file_name_csv)
-            if not os.path.exists(dir_name): os.makedirs(dir_name)
+        file_name_csv = f'./plots/tables/{dom}/{prefix}-all.csv'
+        file_name_tex_csv = file_name_csv.replace('.csv', '.tex')
+        dir_name = os.path.dirname(file_name_csv)
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
+        if 'runtime' in prefix:
+            df = time_df
+        elif 'query' in prefix:
+            df = query_df
 
-            # Compute gmean
-            # if use_gmean:
-            #     mx_gmeans = []
-            #     for s in [y for y in stats if y!='status']:
-            #         df_s = df[df['Stat']==s]
-            #         gmeans = []
-            #         for app in approaches:
-            #             arr_app = df_s[app].to_numpy()
-            #             arr_app = [arr_app[~np.isnan(arr_app)]]
-            #             gmean = list(scipy.stats.gmean(arr_app,axis=1))
-            #             if len(gmean)==0:
-            #                 gmean= [np.NaN]
-            #             gmeans.append(gmean[0])
-            #         row_list=[s]+gmeans
-            #         mx_gmeans.append(row_list)
-            #     df = pd.DataFrame(mx_gmeans, columns=["Stat"]+approaches)
+        # Add mark to minimum value
+        df = mark_minimum(df)
+        if args.csv:
+            df.to_csv(file_name_csv, float_format='%.0f', index=False)
 
-            # Add mark to minimum value
-            non_mc_approaches = [x for x in approaches if x != 'nc']
-            mins = df[non_mc_approaches].min(axis=1)
-            min_mx = df[non_mc_approaches].astype(float).eq(mins, axis=0)
-            for c in min_mx.columns:
-                for row in df.index:
-                    str_value = "NaN" if math.isnan(df.loc[row, c]) else str(
-                        int(df.loc[row, c]))
-                    # str_value = "\\color{red}{-}" if math.isnan(df.loc[row,c]) else str(f'{int(df.loc[row,c]):,}')
-                    df.loc[row,
-                           c] = str_value + "*" if min_mx.loc[row,
-                                                              c] else str_value
-            if args.csv:
-                df.to_csv(file_name_csv, float_format='%.0f', index=False)
+        tex_table = csv2textable(df)
 
-            tex_table = csv2textable(df,
-                                     ins,
-                                     approaches,
-                                     spetial_words={s: 'stats'
-                                                    for s in stats})
-
-            f = open(file_name_tex_csv, "w")
+        with open(file_name_tex_csv, "w") as f:
             f.write(tex_table)
-            f.close()
+        if args.csv:
             print("Saved {}".format(file_name_csv))
-            print("Saved {}".format(file_name_tex_csv))
+        print("Saved {}".format(file_name_tex_csv))
 
     elif args.type == "bar":
 
@@ -450,7 +370,7 @@ if __name__ == "__main__":
 
             if dom == 'grid':
                 plt.yscale('log')
-                plt.ylim(bottom=0.1, top=2000)
+                plt.ylim(bottom=0.8, top=2000)
                 plt.axhline(1200, color='gray', ls='dashdot')
 
             plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
@@ -479,11 +399,6 @@ if __name__ == "__main__":
         plt.xlabel(args.x)
         plt.xticks(rotation='horizontal')
         plt.ylabel(args.y)
-
-        # if dom == 'squirrel':
-        #     plt.yscale('log')
-        #     plt.ylim(bottom=0.1, top=1400)
-        #     plt.axhline(1200, color='gray', ls='dashdot')
 
         if 'log' in prefix:
             plt.yscale('log')
