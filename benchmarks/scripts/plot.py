@@ -108,6 +108,9 @@ class ParseInstanceNames:
     def alzheimer_problog(self, i):
         return i.split('n')[0]
 
+    def smokers(self, i):
+        return i.split('.')[0].split('-')[1]
+
 
 name_parser = ParseInstanceNames()
 
@@ -183,7 +186,7 @@ def clean_df(df):
         # Keep only size 20 domain
         df = df[[x.startswith('20')
                  for x in df['instance-name']]].reset_index()
-    elif dom == 'alzheimer_problog':
+    elif dom == 'alzheimer_problog' or dom == 'smokers':
         # Sort by ascending order (instance names are integers)
         df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], downcast="integer")
         df.sort_values(['instance-name'], inplace=True, ignore_index=True)
@@ -320,7 +323,7 @@ if __name__ == "__main__":
             df = read_ods(path, 1)
             df = clean_df(df)
             dfs[(a, n)] = df
-            last_df = df
+            instances = df['instance-name']
         except Exception as e:
             print(e)
             print("Error reading file {}".format(path))
@@ -332,15 +335,17 @@ if __name__ == "__main__":
             return 'plog-dco'
         elif approach == 'plingo' and n[1] == 'bm_unsat':
             return 'plingo-unsat'
+        elif n[1] == 'bm_problog':
+            return 'plingo-problog'
         return approach
 
     # -------- Reorder dfs
-    instances = last_df['instance-name']
     time_df = pd.concat([instances] + [dfs[df]['time'] for df in dfs],
                         axis=1,
                         keys=['instance-name'] +
                         [parse_name(df) for df in dfs])
-    if 'query' in last_df.columns:
+
+    if 'query' in args.prefix:
         query_df = pd.concat([instances] + [dfs[df]['query'] for df in dfs],
                              axis=1,
                              keys=['instance-name'] + [df for df in dfs])
@@ -348,6 +353,7 @@ if __name__ == "__main__":
     approaches_colors = {
         "plingo": "#C8F69B",
         "plingo-unsat": "#7a965e",
+        "plingo-problog": "#7a965e",
         "problog": "#FFB1AF",
         "plog": "#D6D4FF",
         "plog-dco": "#83819e",
@@ -463,18 +469,24 @@ if __name__ == "__main__":
         colors = [approaches_colors[n] for n in time_df.columns[1:]]
 
         print(time_df)
-        time_df.plot(x='instance-name', y=time_df.columns[1:], color=colors)
+        time_df.plot(x='instance-name',
+                     y=time_df.columns[1:],
+                     color=colors,
+                     ls='dashed',
+                     marker='x')
 
         plt.title(f"{dom} {opt}", fontsize=12, fontweight=0)
         plt.xlabel(args.x)
         plt.xticks(rotation='horizontal')
         plt.ylabel(args.y)
 
-        if dom == 'squirrel':
+        # if dom == 'squirrel':
+        #     plt.yscale('log')
+        #     plt.ylim(bottom=0.1, top=1400)
+        #     plt.axhline(1200, color='gray', ls='dashdot')
+
+        if 'log' in prefix:
             plt.yscale('log')
-            plt.ylim(bottom=0.1, top=1400)
-            plt.axhline(1200, color='gray', ls='dashdot')
-        plt.yscale('log')
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
         print("Saved {}".format(file_name_img))
         plt.clf()
