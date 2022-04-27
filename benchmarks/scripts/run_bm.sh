@@ -48,7 +48,7 @@ RUNSCRIPT_PATH=$PWD/runscripts/runscript_${mode}_${APPROACH}_${DOM}_${OPT}_${NAM
 # RUNSCRIPT_PATH=$PWD/runscripts/runscript_${mode}_plingo.xml
 echo "$Y Creating runscript in "
 echo "$B    $RUNSCRIPT_PATH $NC"
-sed "s/{DOM}/${DOM}/g; s/{APP}/${APPROACH}/g; s/{OPT}/${OPT}/g; s/{EXTRA}/${EXTRA}/g; s/{NAME}/${NAME}/g" ./runscripts/runscript_${mode}_base.xml >  $RUNSCRIPT_PATH
+sed "s/{DOM}/${DOM}/g; s/{APP}/${APPROACH}/g; s/{OPT}/${OPT}/g; s/{EXTRA}/'${EXTRA}'/g; s/{NAME}/${NAME}/g" ./runscripts/runscript_${mode}_base.xml >  $RUNSCRIPT_PATH
 
 
 # Results directory

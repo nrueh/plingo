@@ -23,4 +23,4 @@ INSTANCE=${PATH_FROM_PLINGO_TO_ROOT}${INSTANCE}
 
 pwd
 echo "( cd $ROOT ; cd $PATH_FROM_ROOT_TO_PLINGO/benchmarks ; make $OPT APP=$APP DOM=$DOM INS=$INSTANCE EXTRA='$EXTRA ')"
-( cd $ROOT ; cd $PATH_FROM_ROOT_TO_PLINGO/benchmarks ; make $OPT APP=$APP DOM=$DOM INS=$INSTANCE EXTRA="$EXTRA " -i | tail -n200)
+( cd $ROOT ; cd $PATH_FROM_ROOT_TO_PLINGO/benchmarks ; timeout 1200s make $OPT APP=$APP DOM=$DOM INS=$INSTANCE EXTRA="$EXTRA " -i )

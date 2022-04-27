@@ -6,14 +6,14 @@
 # Grid benchmark
 # TODO: The corrrect encodings (encoding_problog.lp or encoding_plog.lp) 
 # needs to be pasted inside the encoding.lp file before running
-cat ./dom/grid/plingo/encoding_problog.lp > ./dom/grid/plingo/encoding.lp
-./scripts/run_bm.sh bm_problog plingo grid exact
+#cat ./dom/grid/plingo/encoding_problog.lp > ./dom/grid/plingo/encoding.lp
+#./scripts/run_bm.sh bm_problog plingo grid exact
 cat ./dom/grid/plingo/encoding_plog.lp > ./dom/grid/plingo/encoding.lp
-./scripts/run_bm.sh bm_plog plingo grid exact '--plog'
+#./scripts/run_bm.sh bm_plog plingo grid exact '--plog'
 
-# ./scripts/run_bm.sh bm plog grid exact
-./scripts/run_bm.sh bm_dco plog grid exact '--algo=dco'
-./scripts/run_bm.sh bm problog grid exact
+#./scripts/run_bm.sh bm plog grid exact
+#./scripts/run_bm.sh bm_dco plog grid exact '--algo=dco'
+#./scripts/run_bm.sh bm problog grid exact
 
 ./scripts/run_bm.sh bm plingo grid sample '--plog' # Default sample mode is timeout
 ./scripts/run_bm.sh bm_b10 plingo grid sample '-b10 --plog'
@@ -26,16 +26,16 @@ cat ./dom/grid/plingo/encoding_plog.lp > ./dom/grid/plingo/encoding.lp
 
 # Other P-Log benchmarks
 # ./scripts/run_bm.sh bm plingo nasa exact '--plog' 
-./scripts/run_bm.sh bm plingo squirrel exact '--plog'
+#./scripts/run_bm.sh bm plingo squirrel exact '--plog'
 # ./scripts/run_bm.sh bm plingo blocks exact '--plog'
 
 # ./scripts/run_bm.sh bm plog nasa exact
 # ./scripts/run_bm.sh bm plog squirrel exact
 # ./scripts/run_bm.sh bm plog blocks exact
 
-./scripts/run_bm.sh bm_dco plog nasa exact '--algo=dco'
-./scripts/run_bm.sh bm_dco plog squirrel exact '--algo=dco'
-./scripts/run_bm.sh bm_dco plog blocks exact '--algo=dco'
+#./scripts/run_bm.sh bm_dco plog nasa exact '--algo=dco'
+#./scripts/run_bm.sh bm_dco plog squirrel exact '--algo=dco'
+#./scripts/run_bm.sh bm_dco plog blocks exact '--algo=dco'
 
 # LPMLN benchmarks
 # ./scripts/run_bm.sh bm plingo alzheimer_problog mpe

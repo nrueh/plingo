@@ -1,4 +1,4 @@
-<runscript output="output/plog/blocks/exact/bm_dco">
+<runscript output="output/plingo/grid/sample/bm_b10000000">
 
 	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
 	
@@ -6,16 +6,16 @@
   
 	<system name="plingo" version="1" measures="clingo" config="seq-general">
 
-		<setting name="exact" cmdline="exact plog blocks --algo=dco" tag="basic" />
+		<setting name="sample" cmdline="sample plingo grid '-b10000000 --plog'" tag="basic" />
 
 
     </system>
 
 	<pbsjob name="pbs-gen" partition="short" timeout="1200" runs="1" script_mode="timeout" walltime="00:50:00" cpt="4"/>
-	<seqjob name="seq-gen" timeout="1200" runs="1" script_mode="timeout" walltime="00:50:00" parallel="1"/>
+	<seqjob name="seq-gen" timeout="1220" runs="1" script_mode="timeout" walltime="00:50:00" parallel="1"/>
 
 	<benchmark name="plingo-benchmark">
-		<folder path="../../dom/blocks/plog/instances"> 
+		<folder path="../../dom/grid/plingo/instances"> 
 		</folder> 
 	</benchmark>
 	
