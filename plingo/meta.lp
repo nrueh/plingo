@@ -11,6 +11,9 @@ _plingo_h(A) :- _plingo_do(A).
 
 _plingo_int((P,X)) :- _plingo_do((P,X,V)).
 
+#defined _plingo_obs/2.
+#defined _plingo_do/1.
+#defined _plingo_pr/3.
 
 %
 % Probabilities
