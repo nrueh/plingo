@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # libraries and data
+# from cProfile import label
 import os
 import math
 import sys
 import matplotlib.pyplot as plt
-import numpy as np
+# import numpy as np
 import pandas as pd
 import itertools
 # import seaborn as sns
@@ -161,11 +162,13 @@ def clean_df(df):
 
     df['instance-name'] = df['instance-name'].apply(rename)
 
-    if dom == 'grid' and len(df) == 35:
+    if dom == 'grid' and len(df) == 35 and args.type == 'bar':
         # Insert missing P-log instance which timed out (by copying row from below...)
         df = pd.concat([df.iloc[:33], df.iloc[32:].replace('9_6', '9_7')],
                        ignore_index=True)
         df.index += 1
+    # elif dom == 'grid' and args.type == 'prob':
+    #     df.loc[df.status == 0, "query"] = 0
     elif dom == 'squirrel':
         # Sort by ascending order (instance names are integers)
         df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], downcast="integer")
@@ -292,7 +295,7 @@ if __name__ == "__main__":
                         keys=['instance-name'] +
                         [parse_name(df) for df in dfs])
 
-    if 'query' in args.prefix:
+    if args.type == 'prob':
         query_df = pd.concat([instances] + [dfs[df]['query'] for df in dfs],
                              axis=1,
                              keys=['instance-name'] + [df for df in dfs])
@@ -402,6 +405,38 @@ if __name__ == "__main__":
 
         if 'log' in prefix:
             plt.yscale('log')
+        plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
+        print("Saved {}".format(file_name_img))
+        plt.clf()
+
+    elif args.type == 'prob':
+        app_names = query_df.columns[1:-1]
+        true_prob = list(query_df[query_df.columns[-1]].to_numpy())
+
+        # for labels in [app_names[:3], app_names[3:]]:
+        for name in app_names:
+            # min = str(labels[0][1]).split('_')[1][1:]
+            # max = str(labels[-1][1]).split('_')[1][1:]
+            # file_name_img = f'plots/img/{dom}/{prefix}-{min}-{max}.png'
+            file_name_img = f'plots/img/{dom}/{prefix}-all.png'
+            dir_name = os.path.dirname(file_name_img)
+            if not os.path.exists(dir_name):
+                os.makedirs(dir_name)
+
+            label = f'k = {str(name[1]).split("_")[1][1:]}'
+            plt.scatter(x=true_prob,
+                        y=query_df[name].to_numpy(),
+                        marker='x',
+                        label=label,
+                        s=15,
+                        lw=0.5)
+
+        plt.title(f"{dom} {opt}", fontsize=12, fontweight=0)
+        plt.axline([0, 0], [1, 1], color='grey', ls='dashed', lw=0.5)
+        plt.xlim(left=0.5, right=1)
+        plt.ylim(bottom=0.5, top=1)
+        plt.xticks([i * 0.1 for i in range(6, 11)])
+        plt.legend(loc='lower right')
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
         print("Saved {}".format(file_name_img))
         plt.clf()
