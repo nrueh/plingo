@@ -1,0 +1,468 @@
+START INSTANCE
+2 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 16
+  Optimum    : yes
+Calls        : 1
+Time         : 0.007s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.007s
+
+
+flow((2,2)): 0.89100
+
+
+EXIT CODE 30
+
+START INSTANCE
+3 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 64
+  Optimum    : yes
+Calls        : 1
+Time         : 0.008s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.008s
+
+
+flow((3,2)): 0.87480
+
+
+EXIT CODE 30
+
+START INSTANCE
+3 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 512
+  Optimum    : yes
+Calls        : 1
+Time         : 0.013s (Solving: 0.01s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.013s
+
+
+flow((3,3)): 0.87727
+
+
+EXIT CODE 30
+
+START INSTANCE
+4 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 256
+  Optimum    : yes
+Calls        : 1
+Time         : 0.010s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.010s
+
+
+flow((4,2)): 0.85293
+
+
+EXIT CODE 30
+
+START INSTANCE
+4 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 4096
+  Optimum    : yes
+Calls        : 1
+Time         : 0.048s (Solving: 0.04s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.049s
+
+
+flow((4,3)): 0.87253
+
+
+EXIT CODE 30
+
+START INSTANCE
+4 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 65536
+  Optimum    : yes
+Calls        : 1
+Time         : 0.615s (Solving: 0.61s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.615s
+
+
+flow((4,4)): 0.87453
+
+
+EXIT CODE 30
+
+START INSTANCE
+5 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 1024
+  Optimum    : yes
+Calls        : 1
+Time         : 0.018s (Solving: 0.01s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.018s
+
+
+flow((5,2)): 0.82669
+
+
+EXIT CODE 30
+
+START INSTANCE
+5 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 32768
+  Optimum    : yes
+Calls        : 1
+Time         : 0.312s (Solving: 0.30s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.313s
+
+
+flow((5,3)): 0.86497
+
+
+EXIT CODE 30
+
+START INSTANCE
+5 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 1048576
+  Optimum    : yes
+Calls        : 1
+Time         : 10.013s (Solving: 10.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 10.020s
+
+
+flow((5,4)): 0.87297
+
+
+EXIT CODE 30
+
+START INSTANCE
+5 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 33554432
+  Optimum    : yes
+Calls        : 1
+Time         : 324.137s (Solving: 324.13s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 324.109s
+
+
+flow((5,5)): 0.87417
+
+
+EXIT CODE 30
+
+START INSTANCE
+6 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 4096
+  Optimum    : yes
+Calls        : 1
+Time         : 0.050s (Solving: 0.04s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.061s
+
+
+flow((6,2)): 0.79716
+
+
+EXIT CODE 30
+
+START INSTANCE
+6 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 262144
+  Optimum    : yes
+Calls        : 1
+Time         : 2.484s (Solving: 2.47s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 2.484s
+
+
+flow((6,3)): 0.85495
+
+
+EXIT CODE 30
+
+START INSTANCE
+6 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 16777216
+  Optimum    : yes
+Calls        : 1
+Time         : 158.525s (Solving: 158.51s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 158.509s
+
+
+flow((6,4)): 0.86996
+
+
+EXIT CODE 30
+
+START INSTANCE
+6 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+6 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+7 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 16384
+  Optimum    : yes
+Calls        : 1
+Time         : 0.180s (Solving: 0.16s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.176s
+
+
+flow((7,2)): 0.76527
+
+
+EXIT CODE 30
+
+START INSTANCE
+7 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 2097152
+  Optimum    : yes
+Calls        : 1
+Time         : 20.387s (Solving: 20.37s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 20.505s
+
+
+flow((7,3)): 0.84258
+
+
+EXIT CODE 30
+
+START INSTANCE
+7 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+7 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+7 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+7 x 7
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+8 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 65536
+  Optimum    : yes
+Calls        : 1
+Time         : 0.635s (Solving: 0.61s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.629s
+
+
+flow((8,2)): 0.73179
+
+
+EXIT CODE 30
+
+START INSTANCE
+8 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 16777216
+  Optimum    : yes
+Calls        : 1
+Time         : 161.304s (Solving: 161.28s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 161.396s
+
+
+flow((8,3)): 0.82802
+
+
+EXIT CODE 30
+
+START INSTANCE
+8 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+8 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+8 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+8 x 7
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+8 x 8
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+9 x 2
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 262144
+  Optimum    : yes
+Calls        : 1
+Time         : 2.489s (Solving: 2.47s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 2.484s
+
+
+flow((9,2)): 0.69736
+
+
+EXIT CODE 30
+
+START INSTANCE
+9 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+9 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+9 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+9 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+9 x 7
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+9 x 8
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+
+START INSTANCE
+9 x 9
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+Solving...
+EXIT CODE 137
+

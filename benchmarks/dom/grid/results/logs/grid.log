@@ -1,0 +1,516 @@
+2 x 2
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 16
+  Optimum    : yes
+Calls        : 1
+Time         : 0.011s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.085s
+
+
+flow(2,2): 0.89100
+
+
+
+2 x 3
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 64
+  Optimum    : yes
+Calls        : 1
+Time         : 0.012s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.095s
+
+
+flow(2,3): 0.87480
+
+
+
+2 x 4
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 256
+  Optimum    : yes
+Calls        : 1
+Time         : 0.015s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.123s
+
+
+flow(2,4): 0.85293
+
+
+
+2 x 5
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 1024
+  Optimum    : yes
+Calls        : 1
+Time         : 0.024s (Solving: 0.01s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.161s
+
+
+flow(2,5): 0.82669
+
+
+
+2 x 6
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 4096
+  Optimum    : yes
+Calls        : 1
+Time         : 0.050s (Solving: 0.04s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.111s
+
+
+flow(2,6): 0.79716
+
+
+
+2 x 7
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 16384
+  Optimum    : yes
+Calls        : 1
+Time         : 0.172s (Solving: 0.16s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.307s
+
+
+flow(2,7): 0.76527
+
+
+
+2 x 8
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 65536
+  Optimum    : yes
+Calls        : 1
+Time         : 0.626s (Solving: 0.61s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.764s
+
+
+flow(2,8): 0.73179
+
+
+
+2 x 9
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 262144
+  Optimum    : yes
+Calls        : 1
+Time         : 2.517s (Solving: 2.50s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 2.653s
+
+
+flow(2,9): 0.69736
+
+
+
+2 x 10
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 1048576
+  Optimum    : yes
+Calls        : 1
+Time         : 10.336s (Solving: 10.32s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 10.380s
+
+
+flow(2,10): 0.66249
+
+
+
+3 x 2
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 64
+  Optimum    : yes
+Calls        : 1
+Time         : 0.012s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.093s
+
+
+flow(3,2): 0.87480
+
+
+
+3 x 3
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 512
+  Optimum    : yes
+Calls        : 1
+Time         : 0.020s (Solving: 0.01s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.153s
+
+
+flow(3,3): 0.87727
+
+
+
+3 x 4
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 4096
+  Optimum    : yes
+Calls        : 1
+Time         : 0.054s (Solving: 0.04s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.191s
+
+
+flow(3,4): 0.87253
+
+
+
+3 x 5
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 32768
+  Optimum    : yes
+Calls        : 1
+Time         : 0.324s (Solving: 0.31s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.463s
+
+
+flow(3,5): 0.86497
+
+
+
+3 x 6
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 262144
+  Optimum    : yes
+Calls        : 1
+Time         : 2.513s (Solving: 2.50s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 2.645s
+
+
+flow(3,6): 0.85495
+
+
+
+3 x 7
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 2097152
+  Optimum    : yes
+Calls        : 1
+Time         : 20.693s (Solving: 20.68s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 20.828s
+
+
+flow(3,7): 0.84258
+
+
+
+3 x 8
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 16777216
+  Optimum    : yes
+Calls        : 1
+Time         : 160.934s (Solving: 160.92s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 161.066s
+
+
+flow(3,8): 0.82802
+
+
+
+3 x 9
+plingo version 1.0
+Reading from grid.lp
+Solving...
+
+3 x 10
+plingo version 1.0
+Reading from grid.lp
+Solving...
+
+4 x 2
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 256
+  Optimum    : yes
+Calls        : 1
+Time         : 0.018s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.014s
+
+
+flow(4,2): 0.85293
+
+
+
+4 x 3
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 4096
+  Optimum    : yes
+Calls        : 1
+Time         : 0.059s (Solving: 0.05s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.059s
+
+
+flow(4,3): 0.87253
+
+
+
+4 x 4
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 65536
+  Optimum    : yes
+Calls        : 1
+Time         : 0.652s (Solving: 0.64s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.652s
+
+
+flow(4,4): 0.87453
+
+
+
+4 x 5
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 1048576
+  Optimum    : yes
+Calls        : 1
+Time         : 9.825s (Solving: 9.81s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 9.949s
+
+
+flow(4,5): 0.87297
+
+
+
+4 x 6
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 16777216
+  Optimum    : yes
+Calls        : 1
+Time         : 160.679s (Solving: 160.66s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 160.779s
+
+
+flow(4,6): 0.86996
+
+
+
+4 x 7
+plingo version 1.0
+Reading from grid.lp
+Solving...
+
+4 x 8
+plingo version 1.0
+Reading from grid.lp
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 3136887+
+  Optimum    : unknown
+Calls        : 1
+Time         : 30.219s (Solving: 30.20s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 30.210s
+
+
+flow(4,8): 0.98674
+
+
+
+4 x 9
+plingo version 1.0
+Reading from grid.lp
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 620978+
+  Optimum    : unknown
+Calls        : 1
+Time         : 6.124s (Solving: 6.11s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 6.256s
+
+
+flow(4,9): 0.99793
+
+
+
+4 x 10
+plingo version 1.0
+Reading from grid.lp
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 973235+
+  Optimum    : unknown
+Calls        : 1
+Time         : 9.502s (Solving: 9.48s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 9.628s
+
+
+flow(4,10): 0.98691
+
+
+
+5 x 2
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 1024
+  Optimum    : yes
+Calls        : 1
+Time         : 0.025s (Solving: 0.01s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.158s
+
+
+flow(5,2): 0.82669
+
+
+
+5 x 3
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 32768
+  Optimum    : yes
+Calls        : 1
+Time         : 0.317s (Solving: 0.30s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.447s
+
+
+flow(5,3): 0.86497
+
+
+
+5 x 4
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 1048576
+  Optimum    : yes
+Calls        : 1
+Time         : 9.991s (Solving: 9.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 10.093s
+
+
+flow(5,4): 0.87297
+
+
+
+5 x 5
+plingo version 1.0
+Reading from grid.lp
+Solving...
+OPTIMUM FOUND
+
+Models       : 33554432
+  Optimum    : yes
+Calls        : 1
+Time         : 322.524s (Solving: 322.51s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 322.606s
+
+
+flow(5,5): 0.87417
+
+
+
+5 x 6
+plingo version 1.0
+Reading from grid.lp
+Solving...
+
+5 x 7
+plingo version 1.0
+Reading from grid.lp
+Solving...
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 59456793+
+  Optimum    : unknown
+Calls        : 1
+Time         : 579.426s (Solving: 579.41s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 579.306s
+
+
+flow(5,7): 0.98611
+
+

@@ -1,0 +1,1184 @@
+START INSTANCE
+smokers-3-6-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 5
+  Optimum    : yes
+Optimization : -1413969
+Calls        : 1
+Time         : 0.009s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.068s
+Command exited with non-zero status 30
+0.35user 0.54system 0:00.26elapsed 337%CPU (0avgtext+0avgdata 37708maxresident)k
+0inputs+0outputs (0major+12188minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-4-8-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 4
+  Optimum    : yes
+Optimization : -1413969
+Calls        : 1
+Time         : 0.009s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.069s
+Command exited with non-zero status 30
+0.31user 0.55system 0:00.24elapsed 362%CPU (0avgtext+0avgdata 37936maxresident)k
+0inputs+0outputs (0major+12278minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-5-10-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 20
+  Optimum    : yes
+Optimization : -2585145
+Calls        : 1
+Time         : 0.010s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.067s
+Command exited with non-zero status 30
+0.35user 0.41system 0:00.23elapsed 332%CPU (0avgtext+0avgdata 37836maxresident)k
+0inputs+0outputs (1major+12301minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-6-12-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 10
+  Optimum    : yes
+Optimization : -1722056
+Calls        : 1
+Time         : 0.009s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.068s
+Command exited with non-zero status 30
+0.33user 0.52system 0:00.23elapsed 369%CPU (0avgtext+0avgdata 38048maxresident)k
+0inputs+0outputs (0major+12230minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-7-14-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 26
+  Optimum    : yes
+Optimization : -3640763
+Calls        : 1
+Time         : 0.010s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.079s
+Command exited with non-zero status 30
+0.31user 0.52system 0:00.22elapsed 371%CPU (0avgtext+0avgdata 38172maxresident)k
+0inputs+0outputs (0major+12309minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-8-16-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 45
+  Optimum    : yes
+Optimization : -3721856
+Calls        : 1
+Time         : 0.011s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.085s
+Command exited with non-zero status 30
+0.31user 0.55system 0:00.23elapsed 364%CPU (0avgtext+0avgdata 38092maxresident)k
+0inputs+0outputs (0major+12232minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-9-18-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 36
+  Optimum    : yes
+Optimization : -4865839
+Calls        : 1
+Time         : 0.011s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.086s
+Command exited with non-zero status 30
+0.34user 0.51system 0:00.22elapsed 375%CPU (0avgtext+0avgdata 37972maxresident)k
+0inputs+0outputs (0major+12227minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-10-20-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 42
+  Optimum    : yes
+Optimization : -5428113
+Calls        : 1
+Time         : 0.011s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.090s
+Command exited with non-zero status 30
+0.33user 0.53system 0:00.23elapsed 374%CPU (0avgtext+0avgdata 38276maxresident)k
+0inputs+0outputs (0major+12256minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-11-22-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 57
+  Optimum    : yes
+Optimization : -6037015
+Calls        : 1
+Time         : 0.142s (Solving: 0.13s 1st Model: 0.00s Unsat: 0.10s)
+CPU Time     : 0.274s
+Command exited with non-zero status 30
+0.47user 0.50system 0:00.36elapsed 271%CPU (0avgtext+0avgdata 38716maxresident)k
+0inputs+0outputs (0major+12467minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-12-24-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 54
+  Optimum    : yes
+Optimization : -5682300
+Calls        : 1
+Time         : 0.020s (Solving: 0.01s 1st Model: 0.00s Unsat: 0.01s)
+CPU Time     : 0.152s
+Command exited with non-zero status 30
+0.33user 0.49system 0:00.20elapsed 405%CPU (0avgtext+0avgdata 38252maxresident)k
+0inputs+0outputs (0major+12313minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-13-26-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 68
+  Optimum    : yes
+Optimization : -6684018
+Calls        : 1
+Time         : 48.855s (Solving: 48.84s 1st Model: 0.00s Unsat: 40.63s)
+CPU Time     : 48.983s
+Command exited with non-zero status 30
+49.13user 0.54system 0:49.05elapsed 101%CPU (0avgtext+0avgdata 43208maxresident)k
+0inputs+0outputs (0major+13636minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-14-28-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 61
+  Optimum    : yes
+Optimization : -7993823
+Calls        : 1
+Time         : 70.576s (Solving: 70.56s 1st Model: 0.00s Unsat: 70.55s)
+CPU Time     : 70.706s
+Command exited with non-zero status 30
+70.84user 0.54system 1:10.76elapsed 100%CPU (0avgtext+0avgdata 43532maxresident)k
+0inputs+8outputs (0major+13797minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-15-30-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 69
+  Optimum    : yes
+Optimization : -7400720
+Calls        : 1
+Time         : 2.777s (Solving: 2.76s 1st Model: 0.00s Unsat: 2.75s)
+CPU Time     : 2.906s
+Command exited with non-zero status 30
+3.09user 0.53system 0:02.99elapsed 120%CPU (0avgtext+0avgdata 39624maxresident)k
+0inputs+0outputs (0major+12777minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-16-32-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 45
+  Optimum    : yes
+Optimization : -9588644
+Calls        : 1
+Time         : 0.020s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.149s
+Command exited with non-zero status 30
+0.33user 0.51system 0:00.21elapsed 390%CPU (0avgtext+0avgdata 38248maxresident)k
+0inputs+0outputs (0major+12360minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-17-34-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 51
+  Optimum    : yes
+Optimization : -9303628
+Calls        : 1
+Time         : 0.027s (Solving: 0.01s 1st Model: 0.00s Unsat: 0.01s)
+CPU Time     : 0.159s
+Command exited with non-zero status 30
+0.28user 0.56system 0:00.22elapsed 385%CPU (0avgtext+0avgdata 38484maxresident)k
+0inputs+0outputs (0major+12374minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-18-36-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 90
+  Optimum    : yes
+Optimization : -9596685
+Calls        : 1
+Time         : 912.718s (Solving: 912.71s 1st Model: 0.00s Unsat: 912.69s)
+CPU Time     : 912.597s
+Command exited with non-zero status 30
+912.75user 0.54system 15:12.91elapsed 100%CPU (0avgtext+0avgdata 52856maxresident)k
+0inputs+8outputs (0major+16109minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-19-38-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 63
+  Optimum    : yes
+Optimization : -9781173
+Calls        : 1
+Time         : 8.389s (Solving: 8.37s 1st Model: 0.00s Unsat: 8.32s)
+CPU Time     : 8.511s
+Command exited with non-zero status 30
+8.72user 0.50system 0:08.60elapsed 107%CPU (0avgtext+0avgdata 40020maxresident)k
+0inputs+0outputs (0major+12989minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-20-40-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 68+
+  Optimum    : unknown
+Optimization : -12007967
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.99s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1200.027s
+Command exited with non-zero status 11
+1200.21user 0.52system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 55780maxresident)k
+0inputs+16outputs (1major+16874minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-21-42-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 86+
+  Optimum    : unknown
+Optimization : -10443975
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.99s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.817s
+Command exited with non-zero status 11
+1199.93user 0.56system 20:00.19elapsed 100%CPU (0avgtext+0avgdata 57832maxresident)k
+0inputs+8outputs (0major+17419minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-22-44-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 77+
+  Optimum    : unknown
+Optimization : -12007967
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.906s
+Command exited with non-zero status 11
+1200.04user 0.57system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 56468maxresident)k
+0inputs+8outputs (0major+17184minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-23-46-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 97
+  Optimum    : yes
+Optimization : -13980574
+Calls        : 1
+Time         : 38.235s (Solving: 38.22s 1st Model: 0.00s Unsat: 35.37s)
+CPU Time     : 38.360s
+Command exited with non-zero status 30
+38.48user 0.56system 0:38.42elapsed 101%CPU (0avgtext+0avgdata 42796maxresident)k
+0inputs+0outputs (0major+13436minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-24-48-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 88
+  Optimum    : yes
+Optimization : -12405188
+Calls        : 1
+Time         : 0.223s (Solving: 0.21s 1st Model: 0.00s Unsat: 0.19s)
+CPU Time     : 0.354s
+Command exited with non-zero status 30
+0.52user 0.52system 0:00.41elapsed 253%CPU (0avgtext+0avgdata 39220maxresident)k
+0inputs+0outputs (0major+12565minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-25-50-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 98
+  Optimum    : yes
+Optimization : -13248842
+Calls        : 1
+Time         : 0.612s (Solving: 0.59s 1st Model: 0.00s Unsat: 0.49s)
+CPU Time     : 0.744s
+Command exited with non-zero status 30
+0.96user 0.48system 0:00.82elapsed 176%CPU (0avgtext+0avgdata 39432maxresident)k
+0inputs+0outputs (0major+12643minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-26-52-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 125+
+  Optimum    : unknown
+Optimization : -14099768
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.903s
+Command exited with non-zero status 11
+1200.13user 0.49system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 57024maxresident)k
+0inputs+8outputs (0major+17250minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-27-54-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+OPTIMUM FOUND
+
+Models       : 101
+  Optimum    : yes
+Optimization : -15036192
+Calls        : 1
+Time         : 6.249s (Solving: 6.23s 1st Model: 0.00s Unsat: 6.05s)
+CPU Time     : 6.377s
+Command exited with non-zero status 30
+6.51user 0.58system 0:06.46elapsed 109%CPU (0avgtext+0avgdata 39836maxresident)k
+0inputs+0outputs (0major+12967minor)pagefaults 0swaps
+EXIT CODE 30
+
+START INSTANCE
+smokers-28-56-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 108+
+  Optimum    : unknown
+Optimization : -17216358
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.909s
+Command exited with non-zero status 11
+1200.08user 0.53system 20:00.20elapsed 100%CPU (0avgtext+0avgdata 57008maxresident)k
+0inputs+8outputs (0major+17251minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-29-58-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 116+
+  Optimum    : unknown
+Optimization : -13672487
+Calls        : 1
+Time         : 1200.008s (Solving: 1199.99s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.946s
+Command exited with non-zero status 11
+1200.11user 0.54system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 57272maxresident)k
+0inputs+8outputs (0major+17333minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-30-60-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 125+
+  Optimum    : unknown
+Optimization : -17555274
+Calls        : 1
+Time         : 1199.996s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.856s
+Command exited with non-zero status 11
+1200.05user 0.54system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 57820maxresident)k
+0inputs+8outputs (0major+17426minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-31-62-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 128+
+  Optimum    : unknown
+Optimization : -16465191
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.993s
+Command exited with non-zero status 11
+1200.07user 0.64system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 63640maxresident)k
+0inputs+8outputs (0major+18844minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-32-64-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 151+
+  Optimum    : unknown
+Optimization : -18106640
+Calls        : 1
+Time         : 1200.081s (Solving: 1200.06s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1200.018s
+Command exited with non-zero status 11
+1200.15user 0.58system 20:00.29elapsed 100%CPU (0avgtext+0avgdata 59408maxresident)k
+0inputs+8outputs (0major+17899minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-33-66-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 157+
+  Optimum    : unknown
+Optimization : -18198641
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.859s
+Command exited with non-zero status 11
+1199.97user 0.59system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 60456maxresident)k
+0inputs+8outputs (0major+18045minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-34-68-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 150+
+  Optimum    : unknown
+Optimization : -19223430
+Calls        : 1
+Time         : 1200.052s (Solving: 1200.03s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.976s
+Command exited with non-zero status 11
+1200.12user 0.56system 20:00.26elapsed 100%CPU (0avgtext+0avgdata 59416maxresident)k
+0inputs+8outputs (0major+17851minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-35-70-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 154+
+  Optimum    : unknown
+Optimization : -20036255
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.922s
+Command exited with non-zero status 11
+1200.07user 0.56system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 59440maxresident)k
+0inputs+8outputs (0major+17681minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-36-72-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 186+
+  Optimum    : unknown
+Optimization : -20171248
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.881s
+Command exited with non-zero status 11
+1199.98user 0.60system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 64380maxresident)k
+0inputs+8outputs (2major+19141minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-37-74-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 169+
+  Optimum    : unknown
+Optimization : -20767987
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.985s
+Command exited with non-zero status 11
+1200.11user 0.60system 20:00.23elapsed 100%CPU (0avgtext+0avgdata 63280maxresident)k
+0inputs+16outputs (0major+18805minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-38-76-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 151+
+  Optimum    : unknown
+Optimization : -21153531
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1200.017s
+Command exited with non-zero status 11
+1200.12user 0.60system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 62252maxresident)k
+0inputs+8outputs (0major+18762minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-39-78-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 193+
+  Optimum    : unknown
+Optimization : -23507560
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.963s
+Command exited with non-zero status 11
+1200.14user 0.52system 20:00.20elapsed 100%CPU (0avgtext+0avgdata 63320maxresident)k
+0inputs+8outputs (0major+18800minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-40-80-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 184+
+  Optimum    : unknown
+Optimization : -22894253
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1200.035s
+Command exited with non-zero status 11
+1200.18user 0.56system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 58620maxresident)k
+0inputs+8outputs (0major+17628minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-41-82-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 235+
+  Optimum    : unknown
+Optimization : -23303354
+Calls        : 1
+Time         : 1200.004s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.963s
+Command exited with non-zero status 11
+1200.13user 0.56system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 69376maxresident)k
+0inputs+8outputs (0major+21383minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-42-84-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 193+
+  Optimum    : unknown
+Optimization : -24285151
+Calls        : 1
+Time         : 1200.031s (Solving: 1200.01s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1200.010s
+Command exited with non-zero status 11
+1200.15user 0.55system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 55252maxresident)k
+0inputs+8outputs (0major+16822minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-43-86-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 177+
+  Optimum    : unknown
+Optimization : -23934841
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.954s
+Command exited with non-zero status 11
+1200.06user 0.58system 20:00.19elapsed 100%CPU (0avgtext+0avgdata 65360maxresident)k
+0inputs+8outputs (0major+19760minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-44-88-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 191+
+  Optimum    : unknown
+Optimization : -25853548
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.956s
+Command exited with non-zero status 11
+1200.14user 0.53system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 62056maxresident)k
+0inputs+8outputs (0major+18708minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-45-90-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 210+
+  Optimum    : unknown
+Optimization : -25232969
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.908s
+Command exited with non-zero status 11
+1200.00user 0.59system 20:00.19elapsed 100%CPU (0avgtext+0avgdata 65836maxresident)k
+0inputs+16outputs (0major+19865minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-46-92-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 228+
+  Optimum    : unknown
+Optimization : -27298346
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.932s
+Command exited with non-zero status 11
+1200.05user 0.57system 20:00.19elapsed 100%CPU (0avgtext+0avgdata 69412maxresident)k
+0inputs+8outputs (0major+20582minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-47-94-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 200+
+  Optimum    : unknown
+Optimization : -27675363
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.902s
+Command exited with non-zero status 11
+1200.05user 0.56system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 63304maxresident)k
+0inputs+8outputs (0major+19164minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-48-96-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 214+
+  Optimum    : unknown
+Optimization : -28253436
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.931s
+Command exited with non-zero status 11
+1200.07user 0.57system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 62552maxresident)k
+0inputs+8outputs (0major+18668minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-49-98-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 184+
+  Optimum    : unknown
+Optimization : -28045108
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.888s
+Command exited with non-zero status 11
+1200.10user 0.50system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 66904maxresident)k
+0inputs+8outputs (0major+19772minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-50-100-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 279+
+  Optimum    : unknown
+Optimization : -28989007
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.900s
+Command exited with non-zero status 11
+1199.98user 0.63system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 74608maxresident)k
+0inputs+8outputs (0major+21641minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-51-102-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 274+
+  Optimum    : unknown
+Optimization : -27602514
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.870s
+Command exited with non-zero status 11
+1200.05user 0.53system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 76236maxresident)k
+0inputs+8outputs (0major+22215minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-52-104-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 227+
+  Optimum    : unknown
+Optimization : -29297377
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.877s
+Command exited with non-zero status 11
+1200.03user 0.56system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 66860maxresident)k
+0inputs+8outputs (0major+20032minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-53-106-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 215+
+  Optimum    : unknown
+Optimization : -29123717
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.959s
+Command exited with non-zero status 11
+1200.05user 0.63system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 71996maxresident)k
+0inputs+16outputs (0major+21164minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-54-108-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 293+
+  Optimum    : unknown
+Optimization : -31654962
+Calls        : 1
+Time         : 1200.007s (Solving: 1199.98s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.921s
+Command exited with non-zero status 11
+1200.09user 0.53system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 79352maxresident)k
+0inputs+8outputs (1major+23117minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-55-110-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 231+
+  Optimum    : unknown
+Optimization : -31677830
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.848s
+Command exited with non-zero status 11
+1199.93user 0.60system 20:00.19elapsed 100%CPU (0avgtext+0avgdata 71956maxresident)k
+0inputs+8outputs (0major+21486minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-56-112-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 227+
+  Optimum    : unknown
+Optimization : -32414170
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.842s
+Command exited with non-zero status 11
+1199.96user 0.57system 20:00.20elapsed 100%CPU (0avgtext+0avgdata 72956maxresident)k
+0inputs+8outputs (0major+21451minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-57-114-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 319+
+  Optimum    : unknown
+Optimization : -34709408
+Calls        : 1
+Time         : 1200.021s (Solving: 1199.99s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.908s
+Command exited with non-zero status 11
+1200.02user 0.57system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 77340maxresident)k
+0inputs+8outputs (0major+22414minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-58-116-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 319+
+  Optimum    : unknown
+Optimization : -34455221
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.942s
+Command exited with non-zero status 11
+1200.08user 0.58system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 72108maxresident)k
+0inputs+8outputs (0major+21030minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-59-118-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 269+
+  Optimum    : unknown
+Optimization : -35618639
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.990s
+Command exited with non-zero status 11
+1200.09user 0.59system 20:00.19elapsed 100%CPU (0avgtext+0avgdata 66992maxresident)k
+0inputs+8outputs (0major+20361minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-60-120-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 285+
+  Optimum    : unknown
+Optimization : -37237300
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.813s
+Command exited with non-zero status 11
+1199.99user 0.54system 20:00.21elapsed 100%CPU (0avgtext+0avgdata 70168maxresident)k
+0inputs+8outputs (0major+20887minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-61-122-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 303+
+  Optimum    : unknown
+Optimization : -37549023
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.905s
+Command exited with non-zero status 11
+1200.05user 0.54system 20:00.18elapsed 100%CPU (0avgtext+0avgdata 64800maxresident)k
+0inputs+8outputs (1major+20038minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-62-124-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 339+
+  Optimum    : unknown
+Optimization : -36947596
+Calls        : 1
+Time         : 1200.054s (Solving: 1200.03s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.968s
+Command exited with non-zero status 11
+1200.16user 0.52system 20:00.27elapsed 100%CPU (0avgtext+0avgdata 78820maxresident)k
+0inputs+8outputs (0major+22755minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-63-126-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 344+
+  Optimum    : unknown
+Optimization : -38061519
+Calls        : 1
+Time         : 1200.018s (Solving: 1199.99s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.940s
+Command exited with non-zero status 11
+1200.05user 0.59system 20:00.23elapsed 100%CPU (0avgtext+0avgdata 78704maxresident)k
+0inputs+8outputs (0major+22765minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-64-128-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 391+
+  Optimum    : unknown
+Optimization : -35969232
+Calls        : 1
+Time         : 1200.000s (Solving: 1199.97s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.904s
+Command exited with non-zero status 11
+1200.05user 0.57system 20:00.22elapsed 100%CPU (0avgtext+0avgdata 79724maxresident)k
+0inputs+8outputs (0major+23315minor)pagefaults 0swaps
+EXIT CODE 11
+
+START INSTANCE
+smokers-65-130-8.lp
+plingo version 1.0
+Reading from encoding.lp ...
+Solving...
+SATISFIABLE
+
+TIME LIMIT   : 1
+Models       : 376+
+  Optimum    : unknown
+Optimization : -39818323
+Calls        : 1
+Time         : 1200.091s (Solving: 1200.06s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 1199.933s
+Command exited with non-zero status 11
+1200.03user 0.61system 20:00.31elapsed 100%CPU (0avgtext+0avgdata 84820maxresident)k
+0inputs+8outputs (0major+24576minor)pagefaults 0swaps
+EXIT CODE 11
+SATISFIABLE
+
+INTERRUPTED  : 1
+Models       : 343+
+  Optimum    : unknown
+Optimization : -37779370
+Calls        : 1
+Time         : 585.531s (Solving: 585.50s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 331.496s

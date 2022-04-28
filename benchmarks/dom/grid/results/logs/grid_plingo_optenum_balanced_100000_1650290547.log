@@ -1,0 +1,342 @@
+START INSTANCE
+6 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200049+
+  Optimum    : yes
+  Optimal    : 62649
+Optimization : 1634412
+Calls        : 7
+CPU Time     : 2.711s
+
+
+flow((6,5)): 0.88347
+
+
+EXIT CODE 10
+
+START INSTANCE
+6 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200052+
+  Optimum    : yes
+  Optimal    : 24738
+Optimization : 1697628
+Calls        : 7
+CPU Time     : 3.588s
+
+
+flow((6,6)): 0.88485
+
+
+EXIT CODE 10
+
+START INSTANCE
+7 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200057+
+  Optimum    : yes
+  Optimal    : 77562
+Optimization : 1613340
+Calls        : 7
+CPU Time     : 5.681s
+
+
+flow((7,4)): 0.87802
+
+
+EXIT CODE 10
+
+START INSTANCE
+7 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200057+
+  Optimum    : yes
+  Optimal    : 31855
+Optimization : 1687092
+Calls        : 7
+CPU Time     : 3.425s
+
+
+flow((7,5)): 0.88434
+
+
+EXIT CODE 10
+
+START INSTANCE
+7 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200053+
+  Optimum    : yes
+  Optimal    : 86667
+Optimization : 1541122
+Calls        : 6
+CPU Time     : 2.682s
+
+
+flow((7,6)): 0.89289
+
+
+EXIT CODE 10
+
+START INSTANCE
+7 x 7
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200064+
+  Optimum    : yes
+  Optimal    : 79072
+Optimization : 1614874
+Calls        : 6
+CPU Time     : 3.097s
+
+
+flow((7,7)): 0.89297
+
+
+EXIT CODE 10
+
+START INSTANCE
+8 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200052+
+  Optimum    : yes
+  Optimal    : 44941
+Optimization : 1655484
+Calls        : 7
+CPU Time     : 2.882s
+
+
+flow((8,4)): 0.87807
+
+
+EXIT CODE 10
+
+START INSTANCE
+8 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200070+
+  Optimum    : yes
+  Optimal    : 97909
+Optimization : 1520050
+Calls        : 6
+CPU Time     : 3.488s
+
+
+flow((8,5)): 0.88980
+
+
+EXIT CODE 10
+
+START INSTANCE
+8 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200065+
+  Optimum    : yes
+  Optimal    : 80299
+Optimization : 1604338
+Calls        : 6
+CPU Time     : 2.745s
+
+
+flow((8,6)): 0.89294
+
+
+EXIT CODE 10
+
+START INSTANCE
+8 x 7
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200070+
+  Optimum    : yes
+  Optimal    : 69027
+Optimization : 1688626
+Calls        : 6
+CPU Time     : 3.100s
+
+
+flow((8,7)): 0.89319
+
+
+EXIT CODE 10
+
+START INSTANCE
+8 x 8
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200084+
+  Optimum    : yes
+  Optimal    : 54107
+Optimization : 1772914
+Calls        : 6
+CPU Time     : 3.770s
+
+
+flow((8,8)): 0.89354
+
+
+EXIT CODE 10
+
+START INSTANCE
+9 x 3
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200056+
+  Optimum    : yes
+  Optimal    : 98416
+Optimization : 1602804
+Calls        : 7
+CPU Time     : 3.064s
+
+
+flow((9,3)): 0.83129
+
+
+EXIT CODE 10
+
+START INSTANCE
+9 x 4
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200052+
+  Optimum    : yes
+  Optimal    : 11260
+Optimization : 1697628
+Calls        : 7
+CPU Time     : 5.314s
+
+
+flow((9,4)): 0.87726
+
+
+EXIT CODE 10
+
+START INSTANCE
+9 x 5
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200062+
+  Optimum    : yes
+  Optimal    : 83690
+Optimization : 1572730
+Calls        : 6
+CPU Time     : 2.720s
+
+
+flow((9,5)): 0.89290
+
+
+EXIT CODE 10
+
+START INSTANCE
+9 x 6
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200072+
+  Optimum    : yes
+  Optimal    : 72167
+Optimization : 1667554
+Calls        : 6
+CPU Time     : 3.172s
+
+
+flow((9,6)): 0.89312
+
+
+EXIT CODE 10
+
+START INSTANCE
+9 x 7
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200079+
+  Optimum    : yes
+  Optimal    : 56189
+Optimization : 1762378
+Calls        : 6
+CPU Time     : 3.871s
+
+
+flow((9,7)): 0.89350
+
+
+EXIT CODE 10
+
+START INSTANCE
+9 x 8
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200104+
+  Optimum    : yes
+  Optimal    : 35027
+Optimization : 1857202
+Calls        : 6
+CPU Time     : 5.364s
+
+
+flow((9,8)): 0.89393
+
+
+EXIT CODE 10
+
+START INSTANCE
+9 x 9
+plingo version 1.0
+Reading from plingo/encoding.lp ...
+OPTIMUM FOUND
+
+Models       : 200120+
+  Optimum    : yes
+  Optimal    : 7952
+Optimization : 1952026
+Calls        : 6
+CPU Time     : 8.512s
+
+
+flow((9,9)): 0.89436
+
+
+EXIT CODE 10
+

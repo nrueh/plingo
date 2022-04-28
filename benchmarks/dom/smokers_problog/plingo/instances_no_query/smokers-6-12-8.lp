@@ -1,0 +1,11 @@
+people(p1;p2;p4;p5).
+&evidence(cancer(p2),false).
+&evidence(cancer(p4),false).
+&evidence(smokes(p5),false).
+&evidence(cancer(p5),true).
+friend(p1,p2).
+friend(p2,p1).
+friend(p4,p5).
+friend(p5,p4).
+friend(p1,p4).
+friend(p4,p1).

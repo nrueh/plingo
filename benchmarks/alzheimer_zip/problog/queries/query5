@@ -1,2 +1,0 @@
-query :- p('hgnc_582', 'hgnc_620').
-query(query).

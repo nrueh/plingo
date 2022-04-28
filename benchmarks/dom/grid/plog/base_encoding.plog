@@ -1,0 +1,29 @@
+% Grid benchmark from Dr. Zhu dissertation
+
+sorts
+
+#m = 1..$M.
+#n = 1..$N.
+
+#node = node(#m,#n).
+#boolean = {true, false}.
+
+attributes
+rightof: #node, #node -> #boolean.
+belowof: #node, #node -> #boolean.
+faulty: #node -> #boolean.
+flow: #node -> #boolean.
+
+statements
+$RIGHTOF
+$BELOWOF
+
+random(faulty(Node)).
+pr(faulty(N) = true) = 1/10.
+
+flow(node(1,1)) = true :- not faulty(node(1,1)) = true.
+flow(node(X,Y)) = true :- rightof(node(X1,Y),node(X,Y)), flow(node(X1,Y)) = true, not faulty(node(X1,Y)) = true.
+flow(node(X,Y)) = true :- belowof(node(X,Y1),node(X,Y)), flow(node(X,Y1)) = true, not faulty(node(X,Y1)) = true.
+flow(node(X,Y)) = false :- not flow(node(X,Y)) = true.
+
+? flow(node($M,$N)) = true.
