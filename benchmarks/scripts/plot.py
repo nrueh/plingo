@@ -437,6 +437,11 @@ if __name__ == "__main__":
         plt.ylim(bottom=0.5, top=1)
         plt.xticks([i * 0.1 for i in range(6, 11)])
         plt.legend(loc='lower right')
+
+        plt.xlabel(args.x)
+        # plt.xticks(rotation='horizontal')
+        plt.ylabel(args.y)
+
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
         print("Saved {}".format(file_name_img))
         plt.clf()
