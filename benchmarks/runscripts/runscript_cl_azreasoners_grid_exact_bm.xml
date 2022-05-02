@@ -1,4 +1,4 @@
-<runscript output="output/plingo/grid/sample/bm_b10000000">
+<runscript output="output/azreasoners/grid/exact/bm">
 
 	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
 	
@@ -6,7 +6,7 @@
   
 	<system name="plingo" version="1" measures="clingo" config="seq-general">
 
-		<setting name="sample" cmdline="sample plingo grid '-b10000000 --plog'" tag="basic" />
+		<setting name="exact" cmdline="exact azreasoners grid ''" tag="basic" />
 
 
     </system>
@@ -15,7 +15,7 @@
 	<seqjob name="seq-gen" timeout="1220" runs="1" script_mode="timeout" walltime="00:50:00" parallel="1"/>
 
 	<benchmark name="plingo-benchmark">
-		<folder path="../../dom/grid/plingo/instances"> 
+		<folder path="../../dom/grid/azreasoners/instances"> 
 		</folder> 
 	</benchmark>
 	
