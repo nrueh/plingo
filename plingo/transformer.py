@@ -207,6 +207,9 @@ class PlingoTransformer(Transformer):
 
         return asp_rules[-1]
 
+    def visit_Minimize(self, rule: AST, *args: Any, **kwargs: Any) -> AST:
+        return rule
+
     def visit_Variable(self, variable: AST) -> AST:
         """
         Collects all global variables encountered in a rule

@@ -5,7 +5,7 @@ import os
 import math
 import sys
 import matplotlib.pyplot as plt
-# import numpy as np
+import numpy as np
 import pandas as pd
 import itertools
 # import seaborn as sns
@@ -72,10 +72,7 @@ parser.add_argument("--ignore_any",
                     action='append',
                     help="Any to ignore in the instances")
 parser.add_argument("--y", type=str, default=None, help="Name for the y axis")
-parser.add_argument("--x",
-                    type=str,
-                    default="Horizon",
-                    help="Name for the x axis")
+parser.add_argument("--x", type=str, default="", help="Name for the x axis")
 args = parser.parse_args()
 
 
@@ -183,7 +180,7 @@ def clean_df(df):
         # Sort by ascending order (instance names are integers)
         df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], downcast="integer")
         df.sort_values(['instance-name'], inplace=True, ignore_index=True)
-    print(df)
+    # print(df)
     return df
 
 
@@ -287,6 +284,8 @@ if __name__ == "__main__":
             return 'plingo-unsat'
         elif n[1] == 'bm_problog':
             return 'plingo-problog'
+        elif approach == 'azreasoners':
+            return 'LPMLN'
         return approach
 
     # -------- Reorder dfs
@@ -300,6 +299,15 @@ if __name__ == "__main__":
                              axis=1,
                              keys=['instance-name'] + [df for df in dfs])
 
+    # ------- Fix wrong timeout times for plingo and LPMLN
+    if dom == 'grid':
+        lpmln_fixes = ['5_5', '6_5', '6_6', '7_4', '7_5', '8_7', '9_3', '9_9']
+        plingo_fixes = ['8_6', '9_6', '9_8']
+        time_df.loc[time_df['instance-name'].isin(lpmln_fixes),
+                    'LPMLN'] = 1200.0
+        time_df.loc[time_df['instance-name'].isin(plingo_fixes),
+                    'plingo'] = 1200.0
+
     approaches_colors = {
         "plingo": "#C8F69B",
         "plingo-unsat": "#7a965e",
@@ -307,7 +315,7 @@ if __name__ == "__main__":
         "problog": "#FFB1AF",
         "plog": "#D6D4FF",
         "plog-dco": "#83819e",
-        "azreasoners": "#B3EEFF"
+        "LPMLN": "#B3EEFF"
     }
 
     if args.type == "table":
@@ -339,7 +347,7 @@ if __name__ == "__main__":
 
         # -------- Bar Plot
 
-        if dom == 'grid':
+        if dom == 'grid' and 'all' not in args.prefix:
             splits = ['5_5', '7_7', '8_8', '9_9']
             until_idx = [
                 time_df.index[time_df['instance-name'] == ins].tolist()[0]
@@ -348,6 +356,11 @@ if __name__ == "__main__":
             idxs = list(zip([0] + until_idx[:-1], until_idx))
             partial_dfs = [time_df[idx[0]:idx[1]] for idx in idxs]
             partial_dfs = zip(splits, partial_dfs)
+        elif dom == 'grid' and 'all' in args.prefix:
+            instances = time_df[~time_df['instance-name'].str.
+                                contains("_2")].reset_index(drop=True)[3:15]
+            partial_dfs = [('all', instances)]
+            prefix = 'runtime'
         else:
             partial_dfs = [('all', time_df)]
 
@@ -384,6 +397,11 @@ if __name__ == "__main__":
 
         # -------- Line Plot
 
+        if dom == 'grid':
+            instances = time_df[~time_df['instance-name'].str.
+                                contains("_2")].reset_index(drop=True)[3:15]
+            partial_dfs = [('all', instances)]
+
         file_name_img = f'plots/img/{dom}/{prefix}-line.png'
         dir_name = os.path.dirname(file_name_img)
         if not os.path.exists(dir_name):
@@ -391,7 +409,6 @@ if __name__ == "__main__":
 
         colors = [approaches_colors[n] for n in time_df.columns[1:]]
 
-        print(time_df)
         time_df.plot(x='instance-name',
                      y=time_df.columns[1:],
                      color=colors,
@@ -405,6 +422,7 @@ if __name__ == "__main__":
 
         if 'log' in prefix:
             plt.yscale('log')
+            plt.ylim(bottom=0.8)
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
         print("Saved {}".format(file_name_img))
         plt.clf()
@@ -413,15 +431,16 @@ if __name__ == "__main__":
         app_names = query_df.columns[1:-1]
         true_prob = list(query_df[query_df.columns[-1]].to_numpy())
 
+        file_name_img = f'plots/img/{dom}/{prefix}-all.png'
+        dir_name = os.path.dirname(file_name_img)
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
+
         # for labels in [app_names[:3], app_names[3:]]:
         for name in app_names:
             # min = str(labels[0][1]).split('_')[1][1:]
             # max = str(labels[-1][1]).split('_')[1][1:]
             # file_name_img = f'plots/img/{dom}/{prefix}-{min}-{max}.png'
-            file_name_img = f'plots/img/{dom}/{prefix}-all.png'
-            dir_name = os.path.dirname(file_name_img)
-            if not os.path.exists(dir_name):
-                os.makedirs(dir_name)
 
             label = f'k = {str(name[1]).split("_")[1][1:]}'
             plt.scatter(x=true_prob,
@@ -440,6 +459,43 @@ if __name__ == "__main__":
 
         plt.xlabel(args.x)
         # plt.xticks(rotation='horizontal')
+        plt.ylabel(args.y)
+
+        plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
+        print("Saved {}".format(file_name_img))
+        plt.clf()
+
+    elif args.type == 'cactus':
+        time_df.replace(1200, 1e5, inplace=True)
+
+        app_names = time_df.columns[1:]
+        file_name_img = f'plots/img/{dom}/{prefix}-cactus.png'
+        dir_name = os.path.dirname(file_name_img)
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
+
+        for name in app_names:
+            runtimes = time_df[name].sort_values().to_numpy()
+            x = np.arange(len(runtimes))
+            # color = approaches_colors[name]
+            plt.plot(
+                x,
+                runtimes,
+                # ls='dashed',
+                #  color=color,
+                lw=1,
+                marker='x',
+                ms=5,
+                label=name)
+
+        plt.ylim(bottom=0, top=800)
+        plt.xlim(left=0)
+        plt.grid()
+        plt.legend()
+
+        plt.title(f"{dom} {opt}", fontsize=12, fontweight=0)
+        plt.xlabel(args.x)
+        plt.xticks(list(range(10, 40, 10)))
         plt.ylabel(args.y)
 
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
