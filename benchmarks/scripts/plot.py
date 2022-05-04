@@ -286,6 +286,10 @@ if __name__ == "__main__":
             return 'plingo-problog'
         elif approach == 'azreasoners':
             return 'LPMLN'
+        if args.type == 'cactus' and approach == 'plingo' and '_b' in n[1]:
+            k = n[1].split('_')[1][1:]
+            # return f'k={k}'
+            return f'z{k}'  # 'z' added for sorting
         return approach
 
     # -------- Reorder dfs
@@ -454,7 +458,7 @@ if __name__ == "__main__":
         plt.axline([0, 0], [1, 1], color='grey', ls='dashed', lw=0.5)
         plt.xlim(left=0.5, right=1)
         plt.ylim(bottom=0.5, top=1)
-        plt.xticks([i * 0.1 for i in range(6, 11)])
+        plt.xticks([i * 0.1 for i in range(5, 11)])
         plt.legend(loc='lower right')
 
         plt.xlabel(args.x)
@@ -468,7 +472,7 @@ if __name__ == "__main__":
     elif args.type == 'cactus':
         time_df.replace(1200, 1e5, inplace=True)
 
-        app_names = time_df.columns[1:]
+        app_names = time_df.columns[1:].sort_values()
         file_name_img = f'plots/img/{dom}/{prefix}-cactus.png'
         dir_name = os.path.dirname(file_name_img)
         if not os.path.exists(dir_name):
@@ -476,16 +480,22 @@ if __name__ == "__main__":
 
         for name in app_names:
             runtimes = time_df[name].sort_values().to_numpy()
+
+            ls = 'solid'
+            if name.startswith('z'):
+                name = f'k = 10^{len(name[2:])}'
+                ls = 'dashed'
+
             x = np.arange(len(runtimes))
             # color = approaches_colors[name]
             plt.plot(
                 x,
                 runtimes,
-                # ls='dashed',
+                ls=ls,
                 #  color=color,
                 lw=1,
-                marker='x',
-                ms=5,
+                # marker='x',
+                # ms=5,
                 label=name)
 
         plt.ylim(bottom=0, top=800)
