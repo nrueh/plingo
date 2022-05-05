@@ -1,5 +1,6 @@
 # P-log examples
 This directory contains the five examples from [[1]](#1) plus a variant of the Monty Hall problem taken from [[2]](#2). To run any of the examples add the `--plog` option.
+The folder `plog2.0` contains some shorts examples and tests from the most recent [plog implementation](https://github.com/iensen/plog2.0) plus an incomplete script to convert instances in the plog2.0 format.
 
 ## Instances
 ### Dice

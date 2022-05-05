@@ -13,6 +13,7 @@ or if additional evidence should be provided
 ```
 python plingo.py examples/birds.lp --evid=examples/birds_evid.lp --all
 ```
+The translation of the birds example to the plingo language can be found in file `birds_plingo.lp`.
 
 ### Firing Squad
 This example is originally from Pearl's causal model [[2]](#2) and shows counterfactual reasoning. The LP^MLN encoding stems from [[3]](#3). There are two rifleman A and B. Either one of them shooting causes the prisoner's death (D). The court orders the execution (U) with probability 0.7 which in turn causes the Captain to give the order to shoot (C). Further, rifleman A is nervous (W) with probability 0.2. The nervousness causes him to shoot as well. We are looking to answer the query "Given that the prisoner is dead, what is the probability that the prisoner would be alive if Rifleman A had not shot?". 

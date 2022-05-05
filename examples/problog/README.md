@@ -1,5 +1,7 @@
 # ProbLog examples
 This directory contains examples from ProbLog converted to the input language of our system. Many of these examples are taken from the ProbLog website's [tutorial](https://dtai.cs.kuleuven.be/problog/tutorial/various/01_montyhall.html) section where a lot more instances can be found. Note that there are some constructions in ProbLog that are not supported by our system (for examples the first [Monty Hall](https://dtai.cs.kuleuven.be/problog/tutorial/various/01_montyhall.html) encoding).
+
+The translations of the alarm and second coin tossing example can be found in files `alarm_plingo.lp` and `tosssing_coins2_plingo.lp`.
 ## Instances
 ### Simple
 Just a simple encoding showcasing both ways to write probabilistic facts in our system
