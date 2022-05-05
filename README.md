@@ -144,8 +144,12 @@ A number of examples can be found in the directory `examples`. There are also tw
     Uses the conversion with `unsat` atoms
 
 
-### Solution enumeration by optimality algorithm
-Taken from [[1]](#1).
+### Approximation algorithm
+For large problems it is infeasible to determine all stable models. 
+Plingo offers an option to determine approximate probabilities using
+answer set enumeration by optimality (ASEO) [[1]](#1).
+
+For approximation of probabilistic queries it is recommended to use the `--opt-enum` option together with `--balanced=N`.
 
 - `--opt-enum`
 
