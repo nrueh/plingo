@@ -3,12 +3,11 @@
 TABLE='-t table --csv'
 
 # Grid
-# echo $(python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a problog.bm -a plog.bm -a plog.bm_dco ${LABEL})
 python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a problog.bm -a plog.bm -a plog.bm_dco -a azreasoners.bm --y 'Runtime (s)'
-python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a problog.bm -a plog.bm -a plog.bm_dco -a azreasoners.bm --y 'Runtime (s)' -t line
+# python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a problog.bm -a plog.bm -a plog.bm_dco -a azreasoners.bm --y 'Runtime (s)' -t line
 python scripts/plot.py --dom grid --opt exact --prefix 'runtime-all' -a plingo.bm_plog -a problog.bm -a plog.bm -a plog.bm_dco --y 'Runtime (s)' -a azreasoners.bm -t cactus --x 'Instances' --y 'Runtime (s)'
-# python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a plingo.bm_problog --y 'Runtime (s)'
-python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a problog.bm -a plog.bm -a plog.bm_dco --y 'Runtime (s)'
+python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a plingo.bm_problog --y 'Runtime (s)'
+# python scripts/plot.py --dom grid --opt exact --prefix 'runtime' -a plingo.bm_plog -a problog.bm -a plog.bm -a plog.bm_dco --y 'Runtime (s)'
 
 # Grid approximate
 python scripts/plot.py --dom grid --opt sample --prefix 'prob' -t prob -a plingo.bm_b10 -a plingo.bm_b100 -a plingo.bm_b1000 -a plingo.bm_b10000 -a plingo.bm_b100000 -a plingo.bm_b1000000 -a problog.bm --x 'True probability' --y 'Approximate Probability'

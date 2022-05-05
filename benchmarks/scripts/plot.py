@@ -449,16 +449,16 @@ if __name__ == "__main__":
             # k = str(name[1]).split("_")[1][1:]
             label = f'k = 10^{len(name[1][5:])}'
 
-            abs_error = np.abs(true_prob - query_df[name].to_numpy())
+            abs_error = np.abs(true_prob - query_df[name].to_numpy()) * 100
             rel_error = (abs_error / true_prob) * 100
 
             print(label)
             print(
-                f'Avg. error: {abs_error.mean():.3f} +- {abs_error.std():.3f}')
-            print(f'Max error: {abs_error.max():.3f}')
-            print(
-                f'Avg. relative error: {rel_error.mean():.2f} +- {rel_error.std():.2f}'
-            )
+                f'Avg. error: {abs_error.mean():.1f} +- {abs_error.std():.1f}')
+            print(f'Max error: {abs_error.max():.1f}')
+            # print(
+            #     f'Avg. relative error: {rel_error.mean():.2f} +- {rel_error.std():.2f}'
+            # )
             print("")
 
             plt.scatter(x=true_prob,
