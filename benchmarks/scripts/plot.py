@@ -446,7 +446,21 @@ if __name__ == "__main__":
             # max = str(labels[-1][1]).split('_')[1][1:]
             # file_name_img = f'plots/img/{dom}/{prefix}-{min}-{max}.png'
 
-            label = f'k = {str(name[1]).split("_")[1][1:]}'
+            # k = str(name[1]).split("_")[1][1:]
+            label = f'k = 10^{len(name[1][5:])}'
+
+            abs_error = np.abs(true_prob - query_df[name].to_numpy())
+            rel_error = (abs_error / true_prob) * 100
+
+            print(label)
+            print(
+                f'Avg. error: {abs_error.mean():.3f} +- {abs_error.std():.3f}')
+            print(f'Max error: {abs_error.max():.3f}')
+            print(
+                f'Avg. relative error: {rel_error.mean():.2f} +- {rel_error.std():.2f}'
+            )
+            print("")
+
             plt.scatter(x=true_prob,
                         y=query_df[name].to_numpy(),
                         marker='x',
