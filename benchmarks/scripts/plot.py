@@ -73,6 +73,7 @@ parser.add_argument("--ignore_any",
                     help="Any to ignore in the instances")
 parser.add_argument("--y", type=str, default=None, help="Name for the y axis")
 parser.add_argument("--x", type=str, default="", help="Name for the x axis")
+parser.add_argument("--title", type=str, default=None, help="Title")
 args = parser.parse_args()
 
 
@@ -91,7 +92,8 @@ class ParseInstanceNames:
         return i[8:].split('.')[0]
 
     def blocks(self, i):
-        return i.split('.')[0].replace('blockmap', '').replace('L', '')
+        s=  i.split('.')[0].replace('blockmap', '').replace('L', '')
+        return s
 
     def alzheimer_problog(self, i):
         return i.split('n')[0]
@@ -176,6 +178,7 @@ def clean_df(df):
         # Keep only size 20 domain
         df = df[[x.startswith('20')
                  for x in df['instance-name']]].reset_index()
+        df['instance-name'] = df['instance-name'].apply(lambda x: x.split('_')[1])
     elif dom == 'alzheimer_problog' or dom == 'smokers':
         # Sort by ascending order (instance names are integers)
         df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], downcast="integer")
@@ -280,6 +283,8 @@ if __name__ == "__main__":
         approach = n[0]
         if approach == 'plog' and n[1] == 'bm_dco':
             return 'plog-dco'
+        elif approach == 'plog' and n[1] == 'bm':
+            return 'plog-naive'
         elif approach == 'plingo' and n[1] == 'bm_unsat':
             return 'plingo-unsat'
         elif n[1] == 'bm_problog':
@@ -312,15 +317,30 @@ if __name__ == "__main__":
         time_df.loc[time_df['instance-name'].isin(plingo_fixes),
                     'plingo'] = 1200.0
 
+
+    GREEN="#77B762"
+    BLUE="#4477CC"
+    PURPLE="#5C4B84"
+    PURPLE_LIGHT="#9477BF"
+    ORANGE="#D78C1F"
+    RED="#CF3A19"
+    YELLOW="#D7CF1F"
     approaches_colors = {
-        "plingo": "#C8F69B",
+        "plingo": BLUE,
         "plingo-unsat": "#7a965e",
         "plingo-problog": "#7a965e",
-        "problog": "#FFB1AF",
-        "plog": "#D6D4FF",
-        "plog-dco": "#83819e",
-        "LPMLN": "#B3EEFF"
+        "problog": YELLOW,
+        "plog-naive": RED,
+        "plog-dco": ORANGE,
+        "k = 10^5": "#565CC9",
+        "k = 10^6": "#82D1ED",
+        "LPMLN": GREEN
     }
+
+    title = f"{dom} {opt}"
+    if args.title:
+        title= args.title
+
 
     if args.type == "table":
         # -------- Save CVS
@@ -383,7 +403,7 @@ if __name__ == "__main__":
                             kind="bar",
                             color=colors)
 
-            plt.title(f"{dom} {opt}", fontsize=12, fontweight=0)
+            plt.title(title, fontsize=12, fontweight=0)
             plt.xlabel(args.x)
             plt.xticks(rotation='horizontal')
             plt.ylabel(args.y)
@@ -416,10 +436,12 @@ if __name__ == "__main__":
         time_df.plot(x='instance-name',
                      y=time_df.columns[1:],
                      color=colors,
-                     ls='dashed',
-                     marker='x')
+                    #  ls='dashed',
+                    lw=1,
+                    markersize=3,
+                     marker='o')
 
-        plt.title(f"{dom} {opt}", fontsize=12, fontweight=0)
+        plt.title(title, fontsize=12, fontweight=0)
         plt.xlabel(args.x)
         plt.xticks(rotation='horizontal')
         plt.ylabel(args.y)
@@ -440,8 +462,9 @@ if __name__ == "__main__":
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
 
+        colors = ["#7B3381","#72418D","#765FB080","#565CC970","#6396DA60","#82D1ED40"]
         # for labels in [app_names[:3], app_names[3:]]:
-        for name in app_names:
+        for i, name in enumerate(app_names):
             # min = str(labels[0][1]).split('_')[1][1:]
             # max = str(labels[-1][1]).split('_')[1][1:]
             # file_name_img = f'plots/img/{dom}/{prefix}-{min}-{max}.png'
@@ -463,12 +486,13 @@ if __name__ == "__main__":
 
             plt.scatter(x=true_prob,
                         y=query_df[name].to_numpy(),
-                        marker='x',
+                        marker='o',
                         label=label,
-                        s=15,
+                        s=(i+1)*10,
+                        c=colors[i],
                         lw=0.5)
 
-        plt.title(f"{dom} {opt}", fontsize=12, fontweight=0)
+        plt.title(title, fontsize=12, fontweight=0)
         plt.axline([0, 0], [1, 1], color='grey', ls='dashed', lw=0.5)
         plt.xlim(left=0.5, right=1)
         plt.ylim(bottom=0.5, top=1)
@@ -501,25 +525,25 @@ if __name__ == "__main__":
                 ls = 'dashed'
 
             x = np.arange(len(runtimes))
-            # color = approaches_colors[name]
+            color = approaches_colors[name]
             plt.plot(
                 x,
                 runtimes,
                 ls=ls,
-                #  color=color,
+                color=color,
                 lw=1,
-                # marker='x',
+                # marker='o',
                 # ms=5,
                 label=name)
 
         plt.ylim(bottom=0, top=800)
         plt.xlim(left=0)
-        plt.grid()
+        # plt.grid()
         plt.legend()
 
-        plt.title(f"{dom} {opt}", fontsize=12, fontweight=0)
+        plt.title(title, fontsize=12, fontweight=0)
         plt.xlabel(args.x)
-        plt.xticks(list(range(10, 40, 10)))
+        plt.xticks(list(range(5, 40, 5)))
         plt.ylabel(args.y)
 
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
