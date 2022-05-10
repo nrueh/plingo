@@ -74,9 +74,10 @@ parser.add_argument("--ignore_any",
 parser.add_argument("--y", type=str, default=None, help="Name for the y axis")
 parser.add_argument("--x", type=str, default="", help="Name for the x axis")
 parser.add_argument("--title", type=str, default=None, help="Title")
-parser.add_argument("--range-from", type=int, default=0, help="Start range")
-parser.add_argument("--range-to", type=int, default=None, help="End range")
-parser.add_argument("--range-every", type=int, default=1, help="Every range")
+parser.add_argument("--range",
+                    type=str,
+                    default=None,
+                    help="Range for x-axis ticks")
 args = parser.parse_args()
 
 
@@ -95,7 +96,7 @@ class ParseInstanceNames:
         return i[8:].split('.')[0]
 
     def blocks(self, i):
-        s=  i.split('.')[0].replace('blockmap', '').replace('L', '')
+        s = i.split('.')[0].replace('blockmap', '').replace('L', '')
         return s
 
     def alzheimer_problog(self, i):
@@ -181,7 +182,8 @@ def clean_df(df):
         # Keep only size 20 domain
         df = df[[x.startswith('20')
                  for x in df['instance-name']]].reset_index()
-        df['instance-name'] = df['instance-name'].apply(lambda x: x.split('_')[1])
+        df['instance-name'] = df['instance-name'].apply(
+            lambda x: x.split('_')[1])
     elif dom == 'alzheimer_problog' or dom == 'smokers':
         # Sort by ascending order (instance names are integers)
         df.iloc[:, 0] = pd.to_numeric(df.iloc[:, 0], downcast="integer")
@@ -320,14 +322,13 @@ if __name__ == "__main__":
         time_df.loc[time_df['instance-name'].isin(plingo_fixes),
                     'plingo'] = 1200.0
 
-
-    GREEN="#77B762"
-    BLUE="#4477CC"
-    PURPLE="#5C4B84"
-    PURPLE_LIGHT="#9477BF"
-    ORANGE="#D78C1F"
-    RED="#CF3A19"
-    YELLOW="#D7CF1F"
+    GREEN = "#77B762"
+    BLUE = "#4477CC"
+    PURPLE = "#5C4B84"
+    PURPLE_LIGHT = "#9477BF"
+    ORANGE = "#D78C1F"
+    RED = "#CF3A19"
+    YELLOW = "#D7CF1F"
     approaches_colors = {
         "plingo": BLUE,
         "plingo-unsat": "#7a965e",
@@ -354,8 +355,7 @@ if __name__ == "__main__":
 
     title = f"{dom} {opt}"
     if args.title:
-        title= args.title
-
+        title = args.title
 
     if args.type == "table":
         # -------- Save CVS
@@ -441,7 +441,10 @@ if __name__ == "__main__":
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
 
-        colors = ["#7B3381","#72418D","#765FB080","#565CC970","#6396DA60","#82D1ED40"]
+        colors = [
+            "#7B3381", "#72418D", "#765FB080", "#565CC970", "#6396DA60",
+            "#82D1ED40"
+        ]
         # for labels in [app_names[:3], app_names[3:]]:
         for i, name in enumerate(app_names):
             # min = str(labels[0][1]).split('_')[1][1:]
@@ -467,7 +470,7 @@ if __name__ == "__main__":
                         y=query_df[name].to_numpy(),
                         marker='o',
                         label=label,
-                        s=(i+1)*10,
+                        s=(i + 1) * 10,
                         c=colors[i],
                         lw=0.5)
 
@@ -479,18 +482,17 @@ if __name__ == "__main__":
         plt.legend(loc='lower right')
 
         plt.xlabel(args.x)
-        # plt.xticks(rotation='horizontal')
         plt.ylabel(args.y)
 
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
         print("Saved {}".format(file_name_img))
         plt.clf()
 
-    elif args.type == 'cactus' or args.type=='line':
-        is_cactus =  args.type == 'cactus'
+    elif args.type == 'cactus' or args.type == 'line':
+        is_cactus = args.type == 'cactus'
         if is_cactus:
             time_df.replace(1200, 1e5, inplace=True)
-        
+
         print(time_df)
         app_names = time_df.columns[1:].sort_values()
         file_name_img = f'plots/img/{dom}/{prefix}-{args.type}.png'
@@ -508,24 +510,25 @@ if __name__ == "__main__":
             if name.startswith('z'):
                 name = f'k = 10^{len(name[2:])}'
                 ls = 'dashed'
-
-            x = np.arange(len(runtimes))
+            if is_cactus:
+                x = np.arange(len(runtimes))
+            else:
+                x = time_df['instance-name'].to_numpy()
             color = approaches_colors[name]
-            plt.plot(
-                x,
-                runtimes,
-                ls=ls,
-                color=color,
-                lw=1,
-                marker=approaches_markers[name],
-                ms=3,
-                label=name)
+            plt.plot(x,
+                     runtimes,
+                     ls=ls,
+                     color=color,
+                     lw=1,
+                     marker=approaches_markers[name],
+                     ms=3,
+                     label=name)
 
         plt.xlim(left=0)
         if is_cactus:
             plt.ylim(bottom=0, top=800)
         # else:
-            # plt.ylim(bottom=0)
+        # plt.ylim(bottom=0)
         # plt.grid()
         # print(time_df['instance-name'])
         # print(list(time_df['instance-name']))
@@ -533,17 +536,11 @@ if __name__ == "__main__":
 
         plt.title(title, fontsize=12, fontweight=0)
         plt.xlabel(args.x)
-        l = list(time_df['instance-name'])
-        # print(l)
-        f = args.range_from
-        t = args.range_to if args.range_to is not None else len(l)
-        e = args.range_every
-        ticks_num = list(range(f,t,e))
-        ticks_label = [l[x] for x in ticks_num]
-        # print(ticks_label)
-        if is_cactus:
-            ticks_label = ticks_num
-        plt.xticks(ticks = ticks_num , labels = ticks_label)
+
+        if args.range is not None:
+            tr = [int(i) for i in args.range.split(',')]
+            plt.xticks(list(range(tr[0], tr[1], tr[2])))
+        # plt.xticks(ticks=ticks_num, labels=ticks_label)
         # plt.xticks(list(range(0,3000,500)))
         plt.ylabel(args.y)
 
