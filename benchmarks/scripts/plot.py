@@ -74,6 +74,9 @@ parser.add_argument("--ignore_any",
 parser.add_argument("--y", type=str, default=None, help="Name for the y axis")
 parser.add_argument("--x", type=str, default="", help="Name for the x axis")
 parser.add_argument("--title", type=str, default=None, help="Title")
+parser.add_argument("--range-from", type=int, default=0, help="Start range")
+parser.add_argument("--range-to", type=int, default=None, help="End range")
+parser.add_argument("--range-every", type=int, default=1, help="Every range")
 args = parser.parse_args()
 
 
@@ -329,12 +332,24 @@ if __name__ == "__main__":
         "plingo": BLUE,
         "plingo-unsat": "#7a965e",
         "plingo-problog": "#7a965e",
-        "problog": YELLOW,
-        "plog-naive": RED,
+        "problog": RED,
+        "plog-naive": YELLOW,
         "plog-dco": ORANGE,
         "k = 10^5": "#565CC9",
         "k = 10^6": "#82D1ED",
         "LPMLN": GREEN
+    }
+
+    approaches_markers = {
+        "plingo": "D",
+        # "plingo-unsat": "#7a965e",
+        # "plingo-problog": "#7a965e",
+        "problog": "o",
+        "plog-naive": "^",
+        "plog-dco": "v",
+        "k = 10^5": "",
+        "k = 10^6": "",
+        "LPMLN": "s"
     }
 
     title = f"{dom} {opt}"
@@ -417,42 +432,6 @@ if __name__ == "__main__":
             print("Saved {}".format(file_name_img))
             plt.clf()
 
-    elif args.type == "line":
-
-        # -------- Line Plot
-
-        if dom == 'grid':
-            instances = time_df[~time_df['instance-name'].str.
-                                contains("_2")].reset_index(drop=True)[3:15]
-            partial_dfs = [('all', instances)]
-
-        file_name_img = f'plots/img/{dom}/{prefix}-line.png'
-        dir_name = os.path.dirname(file_name_img)
-        if not os.path.exists(dir_name):
-            os.makedirs(dir_name)
-
-        colors = [approaches_colors[n] for n in time_df.columns[1:]]
-
-        time_df.plot(x='instance-name',
-                     y=time_df.columns[1:],
-                     color=colors,
-                    #  ls='dashed',
-                    lw=1,
-                    markersize=3,
-                     marker='o')
-
-        plt.title(title, fontsize=12, fontweight=0)
-        plt.xlabel(args.x)
-        plt.xticks(rotation='horizontal')
-        plt.ylabel(args.y)
-
-        if 'log' in prefix:
-            plt.yscale('log')
-            plt.ylim(bottom=0.8)
-        plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
-        print("Saved {}".format(file_name_img))
-        plt.clf()
-
     elif args.type == 'prob':
         app_names = query_df.columns[1:-1]
         true_prob = list(query_df[query_df.columns[-1]].to_numpy())
@@ -507,17 +486,23 @@ if __name__ == "__main__":
         print("Saved {}".format(file_name_img))
         plt.clf()
 
-    elif args.type == 'cactus':
-        time_df.replace(1200, 1e5, inplace=True)
-
+    elif args.type == 'cactus' or args.type=='line':
+        is_cactus =  args.type == 'cactus'
+        if is_cactus:
+            time_df.replace(1200, 1e5, inplace=True)
+        
+        print(time_df)
         app_names = time_df.columns[1:].sort_values()
-        file_name_img = f'plots/img/{dom}/{prefix}-cactus.png'
+        file_name_img = f'plots/img/{dom}/{prefix}-{args.type}.png'
         dir_name = os.path.dirname(file_name_img)
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
 
         for name in app_names:
-            runtimes = time_df[name].sort_values().to_numpy()
+            if is_cactus:
+                runtimes = time_df[name].sort_values().to_numpy()
+            else:
+                runtimes = time_df[name].to_numpy()
 
             ls = 'solid'
             if name.startswith('z'):
@@ -532,18 +517,34 @@ if __name__ == "__main__":
                 ls=ls,
                 color=color,
                 lw=1,
-                # marker='o',
-                # ms=5,
+                marker=approaches_markers[name],
+                ms=3,
                 label=name)
 
-        plt.ylim(bottom=0, top=800)
         plt.xlim(left=0)
+        if is_cactus:
+            plt.ylim(bottom=0, top=800)
+        # else:
+            # plt.ylim(bottom=0)
         # plt.grid()
+        # print(time_df['instance-name'])
+        # print(list(time_df['instance-name']))
         plt.legend()
 
         plt.title(title, fontsize=12, fontweight=0)
         plt.xlabel(args.x)
-        plt.xticks(list(range(5, 40, 5)))
+        l = list(time_df['instance-name'])
+        # print(l)
+        f = args.range_from
+        t = args.range_to if args.range_to is not None else len(l)
+        e = args.range_every
+        ticks_num = list(range(f,t,e))
+        ticks_label = [l[x] for x in ticks_num]
+        # print(ticks_label)
+        if is_cactus:
+            ticks_label = ticks_num
+        plt.xticks(ticks = ticks_num , labels = ticks_label)
+        # plt.xticks(list(range(0,3000,500)))
         plt.ylabel(args.y)
 
         plt.savefig(file_name_img, dpi=300, bbox_inches='tight')
