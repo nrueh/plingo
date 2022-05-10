@@ -3,9 +3,5 @@ __pycache__/
 .python-version
 .DS_Store
 
-additions.bib
 *.egg-info
 
-plog2
-.backup_instances
-asp.pl
