@@ -329,10 +329,11 @@ if __name__ == "__main__":
     ORANGE = "#D78C1F"
     RED = "#CF3A19"
     YELLOW = "#D7CF1F"
+    GREENBLUE = "#226367"
     approaches_colors = {
         "plingo": BLUE,
         "plingo-unsat": "#7a965e",
-        "plingo-problog": PURPLE_LIGHT,
+        "plingo-problog": GREENBLUE,
         "problog": RED,
         "plog-naive": YELLOW,
         "plog-dco": ORANGE,
