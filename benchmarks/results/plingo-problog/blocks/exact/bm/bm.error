@@ -1,12 +1,15 @@
 Traceback (most recent call last):
-  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/beval.py", line 24, in <module>
-    run.evalResults(sys.stdout)
-  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 1238, in evalResults
-    jobGen.evalResults(out, "\t\t\t\t\t", runspec, instance)
-  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 347, in evalResults
-    result = getattr(benchmarktool.config, runspec.system.measures)(self._path(runspec, instance, run), runspec, instance)
-  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/resultparser/clingo.py", line 66, in clingo
-    for line in codecs.open(os.path.join(root, f), errors='ignore', encoding='utf-8'):
-  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/codecs.py", line 905, in open
-    file = builtins.open(filename, mode, buffering)
-FileNotFoundError: [Errno 2] No such file or directory: 'output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/./L20_1.lp_problog.lp/run1/runsolver.solver'
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/bconv.py", line 37, in <module>
+    res = p.parse(inFile)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/result/parser.py", line 43, in parse
+    etree.parse(infile, parser)
+  File "src/lxml/etree.pyx", line 3541, in lxml.etree.parse
+  File "src/lxml/parser.pxi", line 1900, in lxml.etree._parseDocument
+  File "src/lxml/parser.pxi", line 1920, in lxml.etree._parseFilelikeDocument
+  File "src/lxml/parser.pxi", line 1814, in lxml.etree._parseDocFromFilelike
+  File "src/lxml/parser.pxi", line 1204, in lxml.etree._BaseParser._parseDocFromFilelike
+  File "src/lxml/parsertarget.pxi", line 192, in lxml.etree._TargetParserContext._handleParseResultDoc
+  File "src/lxml/parsertarget.pxi", line 182, in lxml.etree._TargetParserContext._handleParseResultDoc
+  File "src/lxml/parser.pxi", line 657, in lxml.etree._raiseParseError
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/plingo-problog/blocks/exact/bm/bm.beval", line 72
+lxml.etree.XMLSyntaxError: Premature end of data in tag run line 71, line 72, column 1
