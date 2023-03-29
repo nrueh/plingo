@@ -325,14 +325,14 @@ if __name__ == "__main__":
     GREEN = "#77B762"
     BLUE = "#4477CC"
     PURPLE = "#5C4B84"
-    PURPLE_LIGHT = "#9477BF"
+    PURPLE_LIGHT = "#9477BF90"
     ORANGE = "#D78C1F"
     RED = "#CF3A19"
     YELLOW = "#D7CF1F"
     approaches_colors = {
         "plingo": BLUE,
         "plingo-unsat": "#7a965e",
-        "plingo-problog": "#7a965e",
+        "plingo-problog": PURPLE_LIGHT,
         "problog": RED,
         "plog-naive": YELLOW,
         "plog-dco": ORANGE,
@@ -343,9 +343,10 @@ if __name__ == "__main__":
 
     approaches_markers = {
         "plingo": "D",
+        "plingo-problog": "o",
         # "plingo-unsat": "#7a965e",
         # "plingo-problog": "#7a965e",
-        "problog": "o",
+        "problog": "+",
         "plog-naive": "^",
         "plog-dco": "v",
         "k = 10^5": "",
