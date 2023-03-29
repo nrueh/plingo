@@ -20,6 +20,9 @@ mpe:
 ifeq ($(APP), plingo)
 	plingo $(INS) $(PATH_BASE)/encoding.lp -q2 $(EXTRA)
 endif
+ifeq ($(APP), plingo-problog)
+	plingo $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp -q2 $(EXTRA) --problog=$(INS)_problog.lp >/dev/null ; problog mpe $(INS)_problog.lp 
+endif
 ifeq ($(APP), problog)
 	problog mpe $(INS) -v $(EXTRA)
 	exit 0
@@ -31,6 +34,9 @@ endif
 exact:
 ifeq ($(APP), plingo)
 	plingo $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp -q2 $(EXTRA)
+endif
+ifeq ($(APP), plingo-problog)
+	plingo $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp -q2 $(EXTRA) --problog=$(INS)_problog.lp >/dev/null ; problog $(INS)_problog.lp ; rm $(INS)_problog.lp
 endif
 ifeq ($(APP), problog)
 	problog $(INS)
@@ -57,4 +63,5 @@ endif
 # ifeq ($(APP), azreasoners)
 # 	source /usr/local/apps/anaconda3/etc/profile.d/conda.sh && conda activate lpmln && python systems/azreasoners/lpmln_infer.py show.lp $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp  -mcasp -samp $(N) -q query && conda activate plingo $(EXTRA)
 # endif
+
 

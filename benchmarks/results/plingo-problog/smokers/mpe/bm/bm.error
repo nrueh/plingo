@@ -1,0 +1,18 @@
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-600.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-300.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-400.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-10.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-500.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-50.lp_problog.lp/run1 failed with unrecognized status or error!
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/beval.py", line 24, in <module>
+    run.evalResults(sys.stdout)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 1238, in evalResults
+    jobGen.evalResults(out, "\t\t\t\t\t", runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 347, in evalResults
+    result = getattr(benchmarktool.config, runspec.system.measures)(self._path(runspec, instance, run), runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/resultparser/clingo.py", line 66, in clingo
+    for line in codecs.open(os.path.join(root, f), errors='ignore', encoding='utf-8'):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/codecs.py", line 905, in open
+    file = builtins.open(filename, mode, buffering)
+FileNotFoundError: [Errno 2] No such file or directory: 'output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-700.lp_problog.lp/run1/runsolver.solver'

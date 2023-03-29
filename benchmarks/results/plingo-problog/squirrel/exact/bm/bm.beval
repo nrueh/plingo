@@ -1,0 +1,82 @@
+<result>
+	<machine name="komputer" cpu="24x8xE5520@2.27GHz" memory="24GB"/>
+	<config name="seq-general" template="programs/seq-general.sh"/>
+	<system name="plingo" version="1" measures="clingo" config="seq-general">
+		<setting name="exact" cmdline="exact plingo-problog squirrel '--frontend=plog'" tag="basic" pbstemplate="templates/single.pbs"/>
+	</system>
+	<pbsjob name="pbs-gen" timeout="1200" runs="1" script_mode="timeout" walltime="3000" cpt="4" partition="short"/>
+	<benchmark name="plingo-benchmark">
+		<class name="." id="0">
+			<instance name="squirrel1.lp" id="0"/>
+			<instance name="squirrel10.lp" id="1"/>
+			<instance name="squirrel11.lp" id="2"/>
+			<instance name="squirrel12.lp" id="3"/>
+			<instance name="squirrel13.lp" id="4"/>
+			<instance name="squirrel14.lp" id="5"/>
+			<instance name="squirrel15.lp" id="6"/>
+			<instance name="squirrel16.lp" id="7"/>
+			<instance name="squirrel17.lp" id="8"/>
+			<instance name="squirrel17.lp_problog.lp" id="9"/>
+			<instance name="squirrel18.lp" id="10"/>
+			<instance name="squirrel18.lp_problog.lp" id="11"/>
+			<instance name="squirrel19.lp" id="12"/>
+			<instance name="squirrel19.lp_problog.lp" id="13"/>
+			<instance name="squirrel2.lp" id="14"/>
+			<instance name="squirrel20.lp" id="15"/>
+			<instance name="squirrel20.lp_problog.lp" id="16"/>
+			<instance name="squirrel21.lp" id="17"/>
+			<instance name="squirrel21.lp_problog.lp" id="18"/>
+			<instance name="squirrel22.lp" id="19"/>
+			<instance name="squirrel22.lp_problog.lp" id="20"/>
+			<instance name="squirrel23.lp" id="21"/>
+			<instance name="squirrel23.lp_problog.lp" id="22"/>
+			<instance name="squirrel24.lp" id="23"/>
+			<instance name="squirrel24.lp_problog.lp" id="24"/>
+			<instance name="squirrel25.lp" id="25"/>
+			<instance name="squirrel25.lp_problog.lp" id="26"/>
+			<instance name="squirrel26.lp" id="27"/>
+			<instance name="squirrel26.lp_problog.lp" id="28"/>
+			<instance name="squirrel27.lp" id="29"/>
+			<instance name="squirrel27.lp_problog.lp" id="30"/>
+			<instance name="squirrel28.lp" id="31"/>
+			<instance name="squirrel28.lp_problog.lp" id="32"/>
+			<instance name="squirrel29.lp" id="33"/>
+			<instance name="squirrel29.lp_problog.lp" id="34"/>
+			<instance name="squirrel3.lp" id="35"/>
+			<instance name="squirrel30.lp" id="36"/>
+			<instance name="squirrel30.lp_problog.lp" id="37"/>
+			<instance name="squirrel4.lp" id="38"/>
+			<instance name="squirrel5.lp" id="39"/>
+			<instance name="squirrel6.lp" id="40"/>
+			<instance name="squirrel7.lp" id="41"/>
+			<instance name="squirrel8.lp" id="42"/>
+			<instance name="squirrel9.lp" id="43"/>
+		</class>
+	</benchmark>
+	<project name="plingo-project-cl" job="pbs-gen">
+		<runspec machine="komputer" system="plingo" version="1" benchmark="plingo-benchmark" setting="exact">
+			<class id="0">
+				<instance id="41">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="81756.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="1.96834"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="31">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="20480504.0"/>
+						<measure name="memout" type="float" val="1"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="18">
+					<run number="1">

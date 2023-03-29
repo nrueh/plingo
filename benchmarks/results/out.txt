@@ -1,335 +1,790 @@
 
 [36m ------------------------------------------------------------------
- Starting benchmark bm for APP=azreasoners DOM=grid OPT=exact EXTRA= 
+ Starting benchmark bm for APP=plingo-problog DOM=grid OPT=exact EXTRA=--frontend=problog 
 [36m ------------------------------------------------------------------(B[m
 [33m Cleaning with make 
 [33m Creating runscript in 
-[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_azreasoners_grid_exact_bm.xml (B[m
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_grid_exact_bm.xml (B[m
 [33m Removing old result directory (B[m
 [33m Moving to benchmarks-tool directory 
 [35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
-[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_azreasoners_grid_exact_bm.xml (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_grid_exact_bm.xml (B[m
 [33m Running sh start file 
-[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/start.sh (B[m
-Submitted batch job 17935
-Submitted batch job 17936
-Submitted batch job 17937
-Submitted batch job 17938
-Submitted batch job 17939
-Submitted batch job 17940
-Submitted batch job 17941
-Submitted batch job 17942
-Submitted batch job 17943
-Submitted batch job 17944
-Submitted batch job 17945
-Submitted batch job 17946
-Submitted batch job 17947
-Submitted batch job 17948
-Submitted batch job 17949
-Submitted batch job 17950
-Submitted batch job 17951
-Submitted batch job 17952
-Submitted batch job 17953
-Submitted batch job 17954
-Submitted batch job 17955
-Submitted batch job 17956
-Submitted batch job 17957
-Submitted batch job 17958
-Submitted batch job 17959
-Submitted batch job 17960
-Submitted batch job 17961
-Submitted batch job 17962
-Submitted batch job 17963
-Submitted batch job 17964
-Submitted batch job 17965
-Submitted batch job 17966
-Submitted batch job 17967
-Submitted batch job 17968
-Submitted batch job 17969
-Submitted batch job 17970
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 470018
+Submitted batch job 470019
+Submitted batch job 470020
+Submitted batch job 470021
+Submitted batch job 470022
+Submitted batch job 470023
+Submitted batch job 470024
+Submitted batch job 470025
+Submitted batch job 470026
+Submitted batch job 470027
+Submitted batch job 470028
+Submitted batch job 470029
+Submitted batch job 470030
+Submitted batch job 470031
+Submitted batch job 470032
+Submitted batch job 470033
+Submitted batch job 470034
+Submitted batch job 470035
+Submitted batch job 470036
+Submitted batch job 470037
+Submitted batch job 470038
+Submitted batch job 470039
+Submitted batch job 470040
+Submitted batch job 470041
+Submitted batch job 470042
+Submitted batch job 470043
+Submitted batch job 470044
+Submitted batch job 470045
+Submitted batch job 470046
+Submitted batch job 470047
+Submitted batch job 470048
+Submitted batch job 470049
+Submitted batch job 470050
+Submitted batch job 470051
+Submitted batch job 470052
+Submitted batch job 470053
 [35m Waiting for all slurm process to finish...
 [32m Slurm queue is now empty (B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_3.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_3.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_3.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_3.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: *** wait: No child processes.  Stop.
-make: *** Waiting for unfinished jobs....
-make: *** wait: No child processes.  Stop.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_3.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_3.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_3.lp_problog.lp
+show(query):	0.84258415
+(True, {show(query): 0.8425841532794163})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_3.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_3.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_3.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_3.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_3.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_3.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_3.lp_problog.lp
+show(query):	0.82801865
+(True, {show(query): 0.8280186484846832})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_3_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_3_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8747993993605678
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_2.lp_problog.lp
+show(query):	0.8747994 
+(True, {show(query): 0.8747993984633394})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_8.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_8.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_8.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_8.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_8.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_8.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_8.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_8.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_8.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_8.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_8.lp_problog.lp
+show(query):	0.87458272
+(True, {show(query): 0.874582717797054})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_3.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_3.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_3_3.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_3_3.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8772707076185985
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_3_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_3.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_3.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_3_3.lp_problog.lp
+show(query):	0.87727071
+(True, {show(query): 0.8772707067187753})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_3.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_3.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_3.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_3.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_3.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_3.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_3.lp_problog.lp
+show(query):	0.81142713
+(True, {show(query): 0.8114271292880743})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_6.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_6.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_6.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_6.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_6.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_6.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_6.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_6.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_6.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_6.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_6.lp_problog.lp
+show(query):	0.87409875
+(True, {show(query): 0.8740987540782734})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.731792818609897
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_2.lp_problog.lp
+show(query):	0.73179282
+(True, {show(query): 0.7317928164614663})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_4.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_4.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_4.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_4.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: *** wait: No child processes.  Stop.
-make: *** Waiting for unfinished jobs....
-make: *** wait: No child processes.  Stop.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_4.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_4.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_4.lp_problog.lp
+show(query):	0.87296929
+(True, {show(query): 0.8729692948411115})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_5.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_5.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_5.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_5.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_5.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_5.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_5.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_5.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_5.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_5.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_5.lp_problog.lp
+show(query):	0.87361963
+(True, {show(query): 0.8736196297093056})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.7971604053346771
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_2.lp_problog.lp
+show(query):	0.7971604 
+(True, {show(query): 0.7971604036994362})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_9.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_9.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_9.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_9.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_9.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_9.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_9.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_9.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_9.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_9.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_9.lp_problog.lp
+show(query):	0.87469486
+(True, {show(query): 0.8746948591190986})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_8.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_8.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_8.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_8.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_8.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_8.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_8.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_8.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_8.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_8.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_8.lp_problog.lp
+show(query):	0.87460756
+(True, {show(query): 0.8746075573403118})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_7.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_7.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_7.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_7.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_7.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_7.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_7.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_7.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_7.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_7.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_7.lp_problog.lp
+show(query):	0.87412998
+(True, {show(query): 0.8741299823920341})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_3.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_3.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_4_3.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_4_3.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8725304004057307
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_3.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_3.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_3.lp_problog.lp
+show(query):	0.8725304 
+(True, {show(query): 0.8725303994306797})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_7.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_7.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_7.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_7.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_7.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_7.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_7.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_7.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_7.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_7.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_7.lp_problog.lp
+show(query):	0.87447354
+(True, {show(query): 0.8744735405761056})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_4.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_4.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_4.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_4.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_4.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_4.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_4.lp_problog.lp
+show(query):	0.86995817
+(True, {show(query): 0.8699581657595886})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_6.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_6.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_6.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_6.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_6.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_6.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_6.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_6.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_6.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_6.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_6.lp_problog.lp
+show(query):	0.87351544
+(True, {show(query): 0.8735154375303973})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.6973552841802011
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_2.lp_problog.lp
+show(query):	0.69735528
+(True, {show(query): 0.6973552817945107})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_5.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_5.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_5.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_5.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: *** wait: No child processes.  Stop.
-make: *** Waiting for unfinished jobs....
-make: *** wait: No child processes.  Stop.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_5.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_5.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_5.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_5.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_5.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_5.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_5.lp_problog.lp
+show(query):	0.86790713
+(True, {show(query): 0.8679071316909811})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_3.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_3.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_3.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_3.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8649660054813141
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_3.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_3.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_3.lp_problog.lp
+show(query):	0.864966  
+(True, {show(query): 0.8649660043929677})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_6.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_6.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_6.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_6.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: *** wait: No child processes.  Stop.
-make: *** Waiting for unfinished jobs....
-make: *** wait: No child processes.  Stop.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_6.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_6.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_6.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_6.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_6.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_6.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_6.lp_problog.lp
+show(query):	0.87263082
+(True, {show(query): 0.8726308233161629})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.7652737701882304
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_2.lp_problog.lp
+show(query):	0.76527377
+(True, {show(query): 0.7652737682915067})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_4.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_4.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_4.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_4.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_4.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_4.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_4.lp_problog.lp
+show(query):	0.86573413
+(True, {show(query): 0.8657341346566509})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_2_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_2_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_2_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_2_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8909995180054947
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_2_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_2_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_2_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_2_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_2_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_2_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_2_2.lp_problog.lp
+show(query):	0.89099952
+(True, {show(query): 0.890999517285498})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_7.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_7.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_7.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_7.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_7.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_7.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_7.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_7.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_7.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_7.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_7.lp_problog.lp
+show(query):	0.8744021 
+(True, {show(query): 0.8744020961156685})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_4.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_4.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_4_4.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_4_4.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8745308122757204
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_4.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_4.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_4.lp_problog.lp
+show(query):	0.87453081
+(True, {show(query): 0.8745308113157451})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_5.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_5.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_5.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_7_5.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_5.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_7_5.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_5.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_5.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_5.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_5.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_7_5.lp_problog.lp
+show(query):	0.87232609
+(True, {show(query): 0.8723260912009042})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_4.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_4.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_4.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_4.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_4.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_4.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_4.lp_problog.lp
+show(query):	0.86026472
+(True, {show(query): 0.8602647216460253})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_4.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_4.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_4.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_9_4.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: [makefile:40: exact] Terminated (ignored)
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_9_4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_4.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_4.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_9_4.lp_problog.lp
+show(query):	0.85349993
+(True, {show(query): 0.8534999270777291})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_3.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_3.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_3.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_3.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.854946694039301
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_3.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_3.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_3.lp_problog.lp
+show(query):	0.85494669
+(True, {show(query): 0.8549466928053236})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_5.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_5.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_5.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_8_5.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-make: *** wait: No child processes.  Stop.
-make: *** Waiting for unfinished jobs....
-make: *** wait: No child processes.  Stop.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_5.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_8_5.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_5.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_5.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_5.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_5.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_8_5.lp_problog.lp
+show(query):	0.87043237
+(True, {show(query): 0.8704323708600503})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_6.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_6.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_6.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_6_6.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_6.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_6_6.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_6.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_6.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_6.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_6.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_6_6.lp_problog.lp
+show(query):	0.87429715
+(True, {show(query): 0.8742971546798832})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_5.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_5.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_5.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_5.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_5.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_5.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_5.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_5.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_5.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_5.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_5.lp_problog.lp
+show(query):	0.87416899
+(True, {show(query): 0.874168987173019})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_5_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8266850810215939
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_5_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_5_2.lp_problog.lp
+show(query):	0.82668508
+(True, {show(query): 0.8266850796488349})
 [32m SUCESSFULL runsolver.solver(B[m
-./output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_2.lp/run1/runsolver.solver
-/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/azreasoners/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_2.lp/run1
-( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=azreasoners DOM=grid INS=systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_4_2.lp EXTRA=' ')
-python systems/azreasoners/lpmln_infer.py show.lp systems/benchmark-tool/../../dom/grid/azreasoners/instances/grid_4_2.lp dom/grid/azreasoners/encoding.lp dom/grid/azreasoners/query.lp -exact -q query  | sed '/Answer:/,+2 d'
-opt-mode=enum: No bound given, optimize statement ignored.
-
-
-query : 0.8529292492006431
+./output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/grid/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/grid_4_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=grid INS=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_2.lp EXTRA='--frontend=problog ')
+plingo systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_2.lp dom/grid/plingo-problog/encoding.lp dom/grid/plingo-problog/query.lp -q2 --frontend=problog  --problog=systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/grid/plingo-problog/instances/grid_4_2.lp_problog.lp
+show(query):	0.85292925
+(True, {show(query): 0.8529292480791054})
 [32m SUCESSFULL runsolver.solver(B[m
 [33m beval...(B[m
 [32m Evaluation results saved in  
-[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/azreasoners/grid/exact/bm/bm.beval(B[m
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/plingo-problog/grid/exact/bm/bm.beval(B[m
 [32m Done bm(B[m
+
+[36m ------------------------------------------------------------------
+ Starting benchmark bm for APP=plingo-problog DOM=nasa OPT=exact EXTRA=--frontend=plog 
+[36m ------------------------------------------------------------------(B[m
+[33m Cleaning with make 
+[33m Creating runscript in 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_nasa_exact_bm.xml (B[m
+[33m Removing old result directory (B[m
+[33m Moving to benchmarks-tool directory 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_nasa_exact_bm.xml (B[m
+[33m Running sh start file 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 470054
+Submitted batch job 470055
+Submitted batch job 470056
+[35m Waiting for all slurm process to finish...
+[32m Slurm queue is now empty (B[m
+./output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/nasa_f2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/nasa_f2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=nasa INS=systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f2.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f2.lp dom/nasa/plingo-problog/encoding.lp dom/nasa/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f2.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/nasa_f.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/nasa_f.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=nasa INS=systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f.lp dom/nasa/plingo-problog/encoding.lp dom/nasa/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f.lp_problog.lp ; rm systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_f.lp_problog.lp
+show(query):	0.82946935
+(True, {show(query): 0.8294693456980943})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/nasa_a4n.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/nasa_a4n.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=nasa INS=systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_a4n.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_a4n.lp dom/nasa/plingo-problog/encoding.lp dom/nasa/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_a4n.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_a4n.lp_problog.lp ; rm systems/benchmark-tool/../../dom/nasa/plingo-problog/instances/nasa_a4n.lp_problog.lp
+show(query):	0.059234619
+(True, {show(query): 0.0592346191406237})
+[32m SUCESSFULL runsolver.solver(B[m
+[33m beval...(B[m
+[31m Error during evaluation
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/beval.py", line 24, in <module>
+    run.evalResults(sys.stdout)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 1238, in evalResults
+    jobGen.evalResults(out, "\t\t\t\t\t", runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 347, in evalResults
+    result = getattr(benchmarktool.config, runspec.system.measures)(self._path(runspec, instance, run), runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/resultparser/clingo.py", line 66, in clingo
+    for line in codecs.open(os.path.join(root, f), errors='ignore', encoding='utf-8'):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/codecs.py", line 905, in open
+    file = builtins.open(filename, mode, buffering)
+FileNotFoundError: [Errno 2] No such file or directory: 'output/plingo-problog/nasa/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/./nasa_f2.lp_problog.lp/run1/runsolver.solver'
+(B[m
+
+[36m ------------------------------------------------------------------
+ Starting benchmark bm for APP=plingo-problog DOM=squirrel OPT=exact EXTRA=--frontend=plog 
+[36m ------------------------------------------------------------------(B[m
+[33m Cleaning with make 
+[33m Creating runscript in 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_squirrel_exact_bm.xml (B[m
+[33m Removing old result directory (B[m
+[33m Moving to benchmarks-tool directory 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_squirrel_exact_bm.xml (B[m
+[33m Running sh start file 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 470057
+Submitted batch job 470058
+Submitted batch job 470059
+Submitted batch job 470060
+Submitted batch job 470061
+Submitted batch job 470062
+Submitted batch job 470063
+Submitted batch job 470064
+Submitted batch job 470065
+Submitted batch job 470066
+Submitted batch job 470067
+Submitted batch job 470068
+Submitted batch job 470069
+Submitted batch job 470070
+Submitted batch job 470071
+Submitted batch job 470072
+Submitted batch job 470073
+Submitted batch job 470074
+Submitted batch job 470075
+Submitted batch job 470076
+Submitted batch job 470077
+Submitted batch job 470078
+Submitted batch job 470079
+Submitted batch job 470080
+Submitted batch job 470081
+Submitted batch job 470082
+Submitted batch job 470083
+Submitted batch job 470084
+Submitted batch job 470085
+Submitted batch job 470086
+[35m Waiting for all slurm process to finish...
+[32m Slurm queue is now empty (B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel17.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel17.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel17.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel17.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel17.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel17.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel17.lp_problog.lp
+Terminated
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel6.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel6.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel6.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel6.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel6.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel6.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel6.lp_problog.lp
+show(query):	0.15238226
+(True, {show(query): 0.152382257773853})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel27.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel27.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel27.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel27.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel27.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel27.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel27.lp_problog.lp
+make: *** wait: No child processes.  Stop.
+make: *** Waiting for unfinished jobs....
+make: *** wait: No child processes.  Stop.
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel13.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel13.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel13.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel13.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel13.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel13.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel13.lp_problog.lp
+show(query):	0.15238338
+(True, {show(query): 0.1523833815902466})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel15.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel15.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel15.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel15.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel15.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel15.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel15.lp_problog.lp
+show(query):	0.1523837 
+(True, {show(query): 0.15238370267729562})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel9.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel9.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel9.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel9.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel9.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel9.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel9.lp_problog.lp
+show(query):	0.15238274
+(True, {show(query): 0.1523827394116834})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel10.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel10.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel10.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel10.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel10.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel10.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel10.lp_problog.lp
+show(query):	0.1523829 
+(True, {show(query): 0.15238289995688187})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel26.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel26.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel26.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel26.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel26.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel26.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel26.lp_problog.lp
+Terminated
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel14.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel14.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel14.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel14.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel14.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel14.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel14.lp_problog.lp
+show(query):	0.15238354
+(True, {show(query): 0.15238354213395777})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel8.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel8.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel8.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel8.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel8.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel8.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel8.lp_problog.lp
+show(query):	0.15238258
+(True, {show(query): 0.15238257886611162})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel21.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel21.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel21.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel21.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel21.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel21.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel21.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel19.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel19.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel19.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel19.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel19.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel19.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel19.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel23.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel23.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel23.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel23.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel23.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel23.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel23.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel28.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel28.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel28.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel28.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel28.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel28.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel28.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel2.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel2.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel2.lp_problog.lp
+show(query):	0.15238162
+(True, {show(query): 0.1523816155848675})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel12.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel12.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel12.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel12.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel12.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel12.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel12.lp_problog.lp
+show(query):	0.15238322
+(True, {show(query): 0.15238322104616428})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel11.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel11.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel11.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel11.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel11.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel11.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel11.lp_problog.lp
+show(query):	0.15238306
+(True, {show(query): 0.15238306050170972})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel7.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel7.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel7.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel7.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel7.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel7.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel7.lp_problog.lp
+show(query):	0.15238242
+(True, {show(query): 0.1523824183201687})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel29.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel29.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel29.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel29.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel29.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel29.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel29.lp_problog.lp
+make: *** wait: No child processes.  Stop.
+make: *** Waiting for unfinished jobs....
+make: *** wait: No child processes.  Stop.
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel24.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel24.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel24.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel24.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel24.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel24.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel24.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel18.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel18.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel18.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel18.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel18.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel18.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel18.lp_problog.lp
+Terminated
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel1.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel1.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel1.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel1.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel1.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel1.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel1.lp_problog.lp
+show(query):	0         
+(True, {show(query): 0.0})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel30.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel30.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel30.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel30.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel30.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel30.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel30.lp_problog.lp
+Terminated
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel3.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel3.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel3.lp_problog.lp
+show(query):	0.15238178
+(True, {show(query): 0.15238177613267206})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel5.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel5.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel5.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel5.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel5.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel5.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel5.lp_problog.lp
+show(query):	0.1523821 
+(True, {show(query): 0.15238209722716456})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel22.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel22.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel22.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel22.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel22.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel22.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel22.lp_problog.lp
+Terminated
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel4.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel4.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel4.lp_problog.lp
+show(query):	0.15238194
+(True, {show(query): 0.15238193668010414})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel25.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel25.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel25.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel25.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel25.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel25.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel25.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel16.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel16.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel16.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel16.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel16.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel16.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel16.lp_problog.lp
+show(query):	0.15238386
+(True, {show(query): 0.15238386322026343})
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel20.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/squirrel20.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=squirrel INS=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel20.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel20.lp dom/squirrel/plingo-problog/encoding.lp dom/squirrel/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel20.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel20.lp_problog.lp ; rm systems/benchmark-tool/../../dom/squirrel/plingo-problog/instances/squirrel20.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+Terminated
+[32m SUCESSFULL runsolver.solver(B[m
+[33m beval...(B[m
+[31m Error during evaluation
+*** MEMOUT: Run output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/./squirrel28.lp/run1 did a memout!
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/beval.py", line 24, in <module>
+    run.evalResults(sys.stdout)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 1238, in evalResults
+    jobGen.evalResults(out, "\t\t\t\t\t", runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 347, in evalResults
+    result = getattr(benchmarktool.config, runspec.system.measures)(self._path(runspec, instance, run), runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/resultparser/clingo.py", line 66, in clingo
+    for line in codecs.open(os.path.join(root, f), errors='ignore', encoding='utf-8'):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/codecs.py", line 905, in open
+    file = builtins.open(filename, mode, buffering)
+FileNotFoundError: [Errno 2] No such file or directory: 'output/plingo-problog/squirrel/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/./squirrel21.lp_problog.lp/run1/runsolver.solver'
+(B[m
+
+[36m ------------------------------------------------------------------
+ Starting benchmark bm for APP=plingo-problog DOM=blocks OPT=exact EXTRA=--frontend=plog 
+[36m ------------------------------------------------------------------(B[m
+[33m Cleaning with make 
+[33m Creating runscript in 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_blocks_exact_bm.xml (B[m
+[33m Removing old result directory (B[m
+[33m Moving to benchmarks-tool directory 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_blocks_exact_bm.xml (B[m
+[33m Running sh start file 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 471111
+Submitted batch job 471112
+Submitted batch job 471113
+Submitted batch job 471114
+Submitted batch job 471115
+Submitted batch job 471116
+Submitted batch job 471117
+Submitted batch job 471118
+Submitted batch job 471119
+Submitted batch job 471120
+Submitted batch job 471121
+Submitted batch job 471122
+Submitted batch job 471123
+Submitted batch job 471124
+Submitted batch job 471125
+[35m Waiting for all slurm process to finish...
+[32m Slurm queue is now empty (B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L5_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L5_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_3.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_3.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_3.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_3.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_3.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp_problog.lp
+systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp:10:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp:13:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp:13:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp:15:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp:15:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp_problog.lp'"))
+rm: cannot remove 'systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp_problog.lp': No such file or directory
+make: [makefile:39: exact] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L15_1.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L15_1.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_1.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_1.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_1.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_1.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_1.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L10_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L10_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_2.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_2.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_2.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L15_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L15_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_3.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_3.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_3.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L5_1.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L5_1.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_1.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_1.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_1.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_1.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_1.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_5.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_5.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_5.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_5.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_5.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_5.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_5.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_4.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_4.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_4.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_4.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_4.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_4.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_4.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L10_1.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L10_1.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_1.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_1.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_1.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_1.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_1.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L10_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L10_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_3.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_3.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L10_3.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L5_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L5_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_2.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_2.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L5_2.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_2.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_2.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_2.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_1.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_1.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_1.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_1.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_1.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_1.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_1.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L15_2.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L15_2.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_2.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_2.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_2.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_2.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L15_2.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_3.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/L20_3.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make exact APP=plingo-problog DOM=blocks INS=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp EXTRA='--frontend=plog ')
+plingo systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp dom/blocks/plingo-problog/encoding.lp dom/blocks/plingo-problog/query.lp -q2 --frontend=plog  --problog=systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp >/dev/null ; problog systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp ; rm systems/benchmark-tool/../../dom/blocks/plingo-problog/instances/L20_3.lp_problog.lp
+make: [makefile:39: exact] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+[33m beval...(B[m
+[31m Error during evaluation
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/beval.py", line 24, in <module>
+    run.evalResults(sys.stdout)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 1238, in evalResults
+    jobGen.evalResults(out, "\t\t\t\t\t", runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 347, in evalResults
+    result = getattr(benchmarktool.config, runspec.system.measures)(self._path(runspec, instance, run), runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/resultparser/clingo.py", line 66, in clingo
+    for line in codecs.open(os.path.join(root, f), errors='ignore', encoding='utf-8'):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/codecs.py", line 905, in open
+    file = builtins.open(filename, mode, buffering)
+FileNotFoundError: [Errno 2] No such file or directory: 'output/plingo-problog/blocks/exact/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-exact/./L20_1.lp_problog.lp/run1/runsolver.solver'
+(B[m

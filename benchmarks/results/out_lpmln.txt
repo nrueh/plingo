@@ -1,0 +1,1148 @@
+
+[36m ------------------------------------------------------------------
+ Starting benchmark bm for APP=plingo-problog DOM=alzheimer_problog OPT=mpe EXTRA=--frontend=lpmln-alt 
+[36m ------------------------------------------------------------------(B[m
+[33m Cleaning with make 
+[33m Creating runscript in 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_alzheimer_problog_mpe_bm.xml (B[m
+[33m Removing old result directory (B[m
+[33m Moving to benchmarks-tool directory 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_alzheimer_problog_mpe_bm.xml (B[m
+[33m Running sh start file 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 471606
+Submitted batch job 471607
+Submitted batch job 471608
+Submitted batch job 471609
+Submitted batch job 471610
+Submitted batch job 471611
+Submitted batch job 471612
+Submitted batch job 471613
+Submitted batch job 471614
+Submitted batch job 471615
+Submitted batch job 471616
+Submitted batch job 471617
+Submitted batch job 471618
+Submitted batch job 471619
+Submitted batch job 471620
+Submitted batch job 471621
+Submitted batch job 471622
+Submitted batch job 471623
+Submitted batch job 471624
+Submitted batch job 471625
+Submitted batch job 471626
+Submitted batch job 471627
+Submitted batch job 471628
+Submitted batch job 471629
+Submitted batch job 471630
+Submitted batch job 471631
+Submitted batch job 471632
+Submitted batch job 471633
+Submitted batch job 471634
+Submitted batch job 471635
+Submitted batch job 471636
+Submitted batch job 471637
+Submitted batch job 471638
+Submitted batch job 471639
+Submitted batch job 471640
+Submitted batch job 471641
+Submitted batch job 471642
+[35m Waiting for all slurm process to finish...
+[32m Slurm queue is now empty (B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/581n681e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/581n681e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp 
+% Probability: 1
+(True, (1.0, []))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/543n606e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/543n606e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp:20215:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp:20218:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp:20218:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp:20220:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp:20220:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2120n4520e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2120n4520e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2120n4520e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2120n4520e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2120n4520e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2120n4520e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+Terminated
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2592n5578e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2592n5578e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2592n5578e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2592n5578e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2592n5578e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2592n5578e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/718n992e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/718n992e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/718n992e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/718n992e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/718n992e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/718n992e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1713n3620e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1713n3620e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp:8:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp:11:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp:11:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp:13:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp:13:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/502n542e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/502n542e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp 
+% Probability: 1
+(True, (1.0, []))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2484n5332e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2484n5332e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2484n5332e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2484n5332e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2484n5332e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2484n5332e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/624n764e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/624n764e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp 
+% Probability: 1
+(True, (1.0, []))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1437n3018e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1437n3018e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1437n3018e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1437n3018e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1437n3018e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1437n3018e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+Terminated
+make: *** wait: No child processes.  Stop.
+make: *** Waiting for unfinished jobs....
+make: *** wait: No child processes.  Stop.
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1857n3930e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1857n3930e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1857n3930e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1857n3930e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1857n3930e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1857n3930e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/837n1722e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/837n1722e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/837n1722e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/837n1722e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/837n1722e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/837n1722e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/502n542e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/502n542e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13896:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13899:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13899:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13901:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13901:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/789n1257e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/789n1257e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/789n1257e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/789n1257e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/789n1257e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/789n1257e.lp_problog.lp 
+*** Info : (plingo): INTERRUPTED by signal!
+*** Info : (clingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/829n1567e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/829n1567e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/829n1567e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/829n1567e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/829n1567e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/829n1567e.lp_problog.lp 
+make: [makefile:24: mpe] Terminated (ignored)
+*** Info : (plingo): INTERRUPTED by signal!
+*** Info : (clingo): INTERRUPTED by signal!
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/581n681e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/581n681e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp:29832:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp:29835:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp:29835:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp:29837:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp:29837:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1143n2384e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1143n2384e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1143n2384e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1143n2384e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1143n2384e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1143n2384e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1989n4234e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1989n4234e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp:8:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp:11:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp:11:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp:13:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp:13:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/624n764e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/624n764e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp:47445:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp:47448:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp:47448:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp:47450:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp:47450:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/449n465e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/449n465e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp:10501:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp:10504:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp:10504:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp:10506:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp:10506:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/449n465e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/449n465e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp_problog.lp 
+% Probability: 1
+(True, (1.0, []))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/820n1400e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/820n1400e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/820n1400e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/820n1400e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/820n1400e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/820n1400e.lp_problog.lp 
+make: [makefile:24: mpe] Terminated (ignored)
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/182n362e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/182n362e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/182n362e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/182n362e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/182n362e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/182n362e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/669n878e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/669n878e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/669n878e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/669n878e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/669n878e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/669n878e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/543n606e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/543n606e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp_problog.lp 
+% Probability: 1
+(True, (1.0, []))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/989n2056e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/989n2056e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/989n2056e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/989n2056e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/989n2056e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/989n2056e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2707n5832e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2707n5832e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2707n5832e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2707n5832e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2707n5832e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2707n5832e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2244n4798e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2244n4798e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2244n4798e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2244n4798e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp:8:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp:11:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp:11:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp:13:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp:13:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1713n3620e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1713n3620e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1989n4234e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1989n4234e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1580n3334e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1580n3334e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1580n3334e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1580n3334e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1580n3334e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1580n3334e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/403n399e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/403n399e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp 
+% Probability: 1
+(True, (1.0, []))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2368n5070e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2368n5070e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2368n5070e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2368n5070e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2368n5070e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2368n5070e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1291n2700e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1291n2700e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1291n2700e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1291n2700e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1291n2700e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1291n2700e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/403n399e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/403n399e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp:7743:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp:7746:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp:7746:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp:7748:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp:7748:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2814n6072e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2814n6072e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2814n6072e.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2814n6072e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2814n6072e.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2814n6072e.lp_problog.lp 
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+[33m beval...(B[m
+[31m Found error inside output of runsolver
+output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./502n542e.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/502n542e.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13896:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13899:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13899:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13901:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp:13901:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+(B[m
+[32m Evaluation results saved in  
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/plingo-problog/alzheimer_problog/mpe/bm/bm.beval(B[m
+[32m Done bm(B[m
+
+[36m ------------------------------------------------------------------
+ Starting benchmark bm for APP=plingo-problog DOM=smokers OPT=mpe EXTRA=--frontend=lpmln-alt 
+[36m ------------------------------------------------------------------(B[m
+[33m Cleaning with make 
+[33m Creating runscript in 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_smokers_mpe_bm.xml (B[m
+[33m Removing old result directory (B[m
+[33m Moving to benchmarks-tool directory 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_smokers_mpe_bm.xml (B[m
+[33m Running sh start file 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 471643
+Submitted batch job 471644
+Submitted batch job 471645
+Submitted batch job 471646
+Submitted batch job 471647
+Submitted batch job 471648
+Submitted batch job 471649
+Submitted batch job 471650
+Submitted batch job 471651
+Submitted batch job 471652
+Submitted batch job 471653
+Submitted batch job 471654
+Submitted batch job 471655
+Submitted batch job 471656
+Submitted batch job 471657
+Submitted batch job 471658
+Submitted batch job 471659
+Submitted batch job 471660
+Submitted batch job 471661
+Submitted batch job 471662
+[35m Waiting for all slurm process to finish...
+[32m Slurm queue is now empty (B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-900.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-900.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-900.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-900.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-900.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-900.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-10.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-10.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-600.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-600.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp:16179:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp:16182:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp:16182:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp:16184:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp:16184:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-500.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-500.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 199, in mpe_maxsat
+    result = frozenset(solver.evaluate(cnf, invert_weights=minpe))
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 63, in evaluate
+    output = self.call_process(inputf)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 57, in call_process
+    return subprocess_check_output(self.command + [filename])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/util.py", line 164, in subprocess_check_output
+    raise subprocess.CalledProcessError(retcode, cmd, output=err)
+subprocess.CalledProcessError: Command '['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpzs31c7i9.cnf']' returned non-zero exit status 1.
+
+An unexpected error has occurred.
+(False, CalledProcessError(1, ['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpzs31c7i9.cnf']))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-800.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-800.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-800.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-800.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-800.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-800.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-600.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-600.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 199, in mpe_maxsat
+    result = frozenset(solver.evaluate(cnf, invert_weights=minpe))
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 63, in evaluate
+    output = self.call_process(inputf)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 57, in call_process
+    return subprocess_check_output(self.command + [filename])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/util.py", line 164, in subprocess_check_output
+    raise subprocess.CalledProcessError(retcode, cmd, output=err)
+subprocess.CalledProcessError: Command '['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpigs2xw9o.cnf']' returned non-zero exit status 1.
+
+An unexpected error has occurred.
+(False, CalledProcessError(1, ['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpigs2xw9o.cnf']))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-50.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-50.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp:171:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp:174:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp:174:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp:176:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp:176:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-50.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-50.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-400.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-400.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-700.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-700.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-700.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-700.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-700.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-700.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 199, in mpe_maxsat
+    result = frozenset(solver.evaluate(cnf, invert_weights=minpe))
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 63, in evaluate
+    output = self.call_process(inputf)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 57, in call_process
+    return subprocess_check_output(self.command + [filename])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/util.py", line 164, in subprocess_check_output
+    raise subprocess.CalledProcessError(retcode, cmd, output=err)
+subprocess.CalledProcessError: Command '['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpsvlgqnvk.cnf']' returned non-zero exit status 1.
+
+An unexpected error has occurred.
+(False, CalledProcessError(1, ['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpsvlgqnvk.cnf']))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-100.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-100.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp:704:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp:707:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp:707:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp:709:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp:709:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-100.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-100.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-200.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-200.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp:1887:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp:1890:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp:1890:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp:1892:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp:1892:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-300.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-300.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-500.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-500.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp:15523:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp:15526:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp:15526:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp:15528:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp:15528:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-200.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-200.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-10.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-10.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp:35:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp:38:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp:38:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp:40:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp:40:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-400.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-400.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp:8828:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp:8831:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp:8831:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp:8833:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp:8833:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-1000.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-1000.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-1000.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-1000.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-1000.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-1000.lp_problog.lp 
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:24: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-300.lp_problog.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-300.lp_problog.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp EXTRA='--frontend=lpmln-alt ')
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp_problog.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp_problog.lp 
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp:5076:2-3: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp:5079:10-11: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp:5079:65-66: error: syntax error, unexpected .
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp:5081:9-10: error: syntax error, unexpected :
+
+systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp:5081:66-67: error: syntax error, unexpected .
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/application.py", line 359, in _pyclingo_application_main
+    app.main(Control(control), [_to_str(files[i]) for i in range(size)])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 319, in main
+    obs = self._preprocessing(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 244, in _preprocessing
+    self._convert(ctl, files)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/plingo/plingo_app.py", line 211, in _convert
+    parse_files(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/ast.py", line 1263, in parse_files
+    _handle_error(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/clingo/_internal.py", line 75, in _handle_error
+    raise RuntimeError(msg)
+RuntimeError: syntax error
+*** ERROR: (plingo): syntax error
+ProbLogError: [Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp_problog.lp'.
+(False, ProbLogError("[Errno 2] No such file or directory: 'systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp_problog.lp_problog.lp'"))
+make: [makefile:24: mpe] Error 1 (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+[33m beval...(B[m
+[31m Error during evaluation
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-600.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-300.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-400.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-10.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-500.lp_problog.lp/run1 failed with unrecognized status or error!
+*** ERROR: Run output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-50.lp_problog.lp/run1 failed with unrecognized status or error!
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/beval.py", line 24, in <module>
+    run.evalResults(sys.stdout)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 1238, in evalResults
+    jobGen.evalResults(out, "\t\t\t\t\t", runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/runscript/runscript.py", line 347, in evalResults
+    result = getattr(benchmarktool.config, runspec.system.measures)(self._path(runspec, instance, run), runspec, instance)
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/src/benchmarktool/resultparser/clingo.py", line 66, in clingo
+    for line in codecs.open(os.path.join(root, f), errors='ignore', encoding='utf-8'):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/codecs.py", line 905, in open
+    file = builtins.open(filename, mode, buffering)
+FileNotFoundError: [Errno 2] No such file or directory: 'output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/./evidence-700.lp_problog.lp/run1/runsolver.solver'
+(B[m
