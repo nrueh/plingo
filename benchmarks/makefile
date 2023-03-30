@@ -24,7 +24,7 @@ ifeq ($(APP), plingo)
 endif
 ifeq ($(APP), plingo-problog)
 	mkdir -p $(TMP_DIR)
-	plingo $(INS) $(PATH_BASE)/encoding.lp $(PATH_BASE)/query.lp -q2 $(EXTRA) --problog=$(TMP_FILE) >/dev/null ; problog mpe $(TMP_FILE) ; rm $(TMP_FILE)
+	plingo $(INS) $(PATH_BASE)/encoding.lp -q2 $(EXTRA) --problog=$(TMP_FILE) >/dev/null ; problog mpe $(TMP_FILE) ; rm $(TMP_FILE)
 endif
 ifeq ($(APP), problog)
 	problog mpe $(INS) -v $(EXTRA)
