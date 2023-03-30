@@ -22,22 +22,22 @@ python scripts/plot.py --dom grid --opt exact --prefix 'runtime-all' --x '#Insta
 # python scripts/plot.py --opt exact --prefix 'runtime' --dom blocks -a plog.bm -a plog.bm_dco -a plingo.bm -t line --y 'Runtime (s)'
 # python scripts/plot.py --opt exact --prefix 'runtime' --dom blocks -a plog.bm -a plog.bm_dco -a plingo.bm --y 'Runtime (s)'
 # python scripts/plot.py --opt exact --prefix 'runtime' --dom blocks -a plog.bm -a plog.bm_dco -a plingo.bm $TABLE
-# python scripts/plot.py --opt exact --prefix 'runtime' --dom blocks -a plog.bm -a plog.bm_dco -a plingo.bm -t line --y 'Runtime (s)' --x '#Blocks' --title="Blocks (Marginal inference)"
+python scripts/plot.py --opt exact --prefix 'runtime' --dom blocks -a plog.bm -a plog.bm_dco -a plingo.bm -a plingo-problog.bm -t line --y 'Runtime (s)' --x '#Blocks' --title="Blocks (Marginal inference)"
 
 # Squirrel
 # python scripts/plot.py --opt exact --y 'Runtime (s)' --x '#Days' --prefix 'runtime' --dom squirrel -a plog.bm -a plog.bm_dco -a plingo.bm -t line
 # python scripts/plot.py --opt exact --y 'Runtime (s)' --x '#Days' --prefix 'runtime-log' --dom squirrel -a plog.bm -a plog.bm_dco -a plingo.bm -t line
 # python scripts/plot.py --opt exact --y 'Runtime (s)' --x '#Days' --prefix 'runtime' --dom squirrel -a plog.bm -a plog.bm_dco -a plingo.bm $TABLE
-# python scripts/plot.py --opt exact --y 'Runtime (s)' --x '#Days' --prefix 'runtime' --dom squirrel -a plog.bm -a plog.bm_dco -a plingo.bm -t line --title 'Squirrel (Marginal inference)'
+python scripts/plot.py --opt exact --y 'Runtime (s)' --x '#Days' --prefix 'runtime' --dom squirrel -a plog.bm -a plog.bm_dco -a plingo.bm -a plingo-problog.bm -t line --title 'Squirrel (Marginal inference)'
 
 # Alzheimer
 # python scripts/plot.py --opt mpe --prefix 'runtime' --dom alzheimer_problog -a plingo.bm -a azreasoners.bm -t line --y 'Runtime (s)'
 # python scripts/plot.py --opt mpe --prefix 'runtime-log' --dom alzheimer_problog -a plingo.bm -a azreasoners.bm -t line --y 'Runtime (s)'
 # python scripts/plot.py --opt mpe --prefix 'runtime' --dom alzheimer_problog -a plingo.bm -a azreasoners.bm $TABLE
-python scripts/plot.py --opt mpe --prefix 'runtime' --dom alzheimer_problog -a plingo.bm -a azreasoners.bm -t line --y 'Runtime (s)' --title="Alzheimer (MPE inference)" --x 'Instance size' --range "500,3000,500"
+python scripts/plot.py --opt mpe --prefix 'runtime' --dom alzheimer_problog -a plingo.bm -a plingo-problog.bm -a azreasoners.bm -t line --y 'Runtime (s)' --title="Alzheimer (MPE inference)" --x 'Instance size' --range "500,3000,500"
 
 # Smokers
 # python scripts/plot.py --opt mpe --y 'Runtime (s)' --x '#Person' --prefix 'runtime' --dom smokers -a plingo.bm -a azreasoners.bm -t line
 # python scripts/plot.py --opt mpe --y 'Runtime (s)' --x '#Person' --prefix 'runtime-log' --dom smokers -a plingo.bm -a azreasoners.bm -t line
 # python scripts/plot.py --opt mpe --y 'Runtime (s)' --x '#Person' --prefix 'runtime' --dom smokers -a plingo.bm -a azreasoners.bm $TABLE
-python scripts/plot.py --opt mpe --y 'Runtime (s)' --prefix 'runtime' --dom smokers -a plingo.bm -a azreasoners.bm -t line --x 'Instance size' --title="Smokers (MPE inference)" --range "200,1100,200"
+python scripts/plot.py --opt mpe --y 'Runtime (s)' --prefix 'runtime' --dom smokers -a plingo.bm -a plingo-problog.bm -a azreasoners.bm -t line --x 'Instance size' --title="Smokers (MPE inference)" --range "200,1100,200"
