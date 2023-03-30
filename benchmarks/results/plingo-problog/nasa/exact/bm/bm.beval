@@ -10,7 +10,6 @@
 			<instance name="nasa_a4n.lp" id="0"/>
 			<instance name="nasa_f.lp" id="1"/>
 			<instance name="nasa_f2.lp" id="2"/>
-			<instance name="nasa_f2.lp_problog.lp" id="3"/>
 		</class>
 	</benchmark>
 	<project name="plingo-project-cl" job="pbs-gen">
@@ -39,23 +38,7 @@
 <measure name="roriginal" type="float" val="NaN"/>
 <measure name="rules" type="float" val="NaN"/>
 <measure name="vars" type="float" val="NaN"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="227.021"/>
+						<measure name="time" type="float" val="228.39"/>
 						<measure name="timeout" type="float" val="0"/>
 					</run>
 				</instance>
@@ -82,6 +65,17 @@
 <measure name="roriginal" type="float" val="NaN"/>
 <measure name="rules" type="float" val="NaN"/>
 <measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="20.3171"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="2">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="457636.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
 <measure name="atoms" type="float" val="NaN"/>
 <measure name="bodies" type="float" val="NaN"/>
 <measure name="calls" type="float" val="NaN"/>
@@ -98,9 +92,11 @@
 <measure name="roriginal" type="float" val="NaN"/>
 <measure name="rules" type="float" val="NaN"/>
 <measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="20.4396"/>
-						<measure name="timeout" type="float" val="0"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
 					</run>
 				</instance>
-				<instance id="3">
-					<run number="1">
+			</class>
+		</runspec>
+	</project>
+</result>
