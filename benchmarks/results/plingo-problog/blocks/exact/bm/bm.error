@@ -11,5 +11,5 @@ Traceback (most recent call last):
   File "src/lxml/parsertarget.pxi", line 192, in lxml.etree._TargetParserContext._handleParseResultDoc
   File "src/lxml/parsertarget.pxi", line 182, in lxml.etree._TargetParserContext._handleParseResultDoc
   File "src/lxml/parser.pxi", line 657, in lxml.etree._raiseParseError
-  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/plingo-problog/blocks/exact/bm/bm.beval", line 72
-lxml.etree.XMLSyntaxError: Premature end of data in tag run line 71, line 72, column 1
+  File "/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/plingo-problog/blocks/exact/bm/bm.beval", line 88
+lxml.etree.XMLSyntaxError: Premature end of data in tag run line 87, line 88, column 1

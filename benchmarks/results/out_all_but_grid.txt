@@ -1,0 +1,531 @@
+
+[36m ------------------------------------------------------------------
+ Starting benchmark bm for APP=plingo-problog DOM=alzheimer_problog OPT=mpe EXTRA=--frontend=lpmln-alt 
+[36m ------------------------------------------------------------------(B[m
+[33m Cleaning with make 
+[33m Creating runscript in 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_alzheimer_problog_mpe_bm.xml (B[m
+[33m Removing old result directory (B[m
+[33m Moving to benchmarks-tool directory 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_alzheimer_problog_mpe_bm.xml (B[m
+[33m Running sh start file 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 472565
+Submitted batch job 472566
+Submitted batch job 472567
+Submitted batch job 472568
+Submitted batch job 472569
+Submitted batch job 472570
+Submitted batch job 472571
+Submitted batch job 472572
+Submitted batch job 472573
+Submitted batch job 472574
+Submitted batch job 472575
+Submitted batch job 472576
+Submitted batch job 472577
+Submitted batch job 472578
+Submitted batch job 472579
+Submitted batch job 472580
+Submitted batch job 472581
+Submitted batch job 472582
+Submitted batch job 472583
+Submitted batch job 472584
+Submitted batch job 472585
+Submitted batch job 472586
+Submitted batch job 472587
+Submitted batch job 472588
+Submitted batch job 472589
+Submitted batch job 472590
+Submitted batch job 472591
+Submitted batch job 472592
+[35m Waiting for all slurm process to finish...
+[32m Slurm queue is now empty (B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2244n4798e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2244n4798e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2244n4798e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2244n4798e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2244n4798e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2244n4798e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/403n399e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/403n399e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/403n399e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/403n399e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/403n399e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/403n399e.lp
+% Probability: 1
+(True, (1.0, []))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/624n764e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/624n764e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/624n764e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/624n764e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/624n764e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/624n764e.lp
+% Probability: 1
+(True, (1.0, []))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/449n465e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/449n465e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/449n465e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/449n465e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/449n465e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/449n465e.lp
+% Probability: 1
+(True, (1.0, []))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/829n1567e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/829n1567e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/829n1567e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/829n1567e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/829n1567e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/829n1567e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/829n1567e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1857n3930e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1857n3930e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1857n3930e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1857n3930e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1857n3930e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1857n3930e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1857n3930e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1713n3620e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1713n3620e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1713n3620e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1713n3620e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1713n3620e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1713n3620e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2120n4520e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2120n4520e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2120n4520e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2120n4520e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2120n4520e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2120n4520e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2120n4520e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1989n4234e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1989n4234e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1989n4234e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1989n4234e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1989n4234e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1989n4234e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/820n1400e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/820n1400e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/820n1400e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/820n1400e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/820n1400e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/820n1400e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/820n1400e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2368n5070e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2368n5070e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2368n5070e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2368n5070e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2368n5070e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2368n5070e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2368n5070e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/718n992e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/718n992e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/718n992e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/718n992e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/718n992e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/718n992e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/718n992e.lp
+*** Info : (plingo): INTERRUPTED by signal!
+*** Info : (clingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2592n5578e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2592n5578e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2592n5578e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2592n5578e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2592n5578e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2592n5578e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2592n5578e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1291n2700e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1291n2700e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1291n2700e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1291n2700e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1291n2700e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1291n2700e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1291n2700e.lp
+*** Info : (plingo): INTERRUPTED by signal!
+*** Info : (clingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/182n362e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/182n362e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/182n362e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/182n362e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/182n362e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/182n362e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/182n362e.lp
+make: [makefile:27: mpe] Terminated (ignored)
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1580n3334e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1580n3334e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1580n3334e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1580n3334e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1580n3334e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1580n3334e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1580n3334e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/837n1722e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/837n1722e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/837n1722e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/837n1722e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/837n1722e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/837n1722e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/837n1722e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/989n2056e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/989n2056e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/989n2056e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/989n2056e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/989n2056e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/989n2056e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/989n2056e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2484n5332e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2484n5332e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2484n5332e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2484n5332e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2484n5332e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2484n5332e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2484n5332e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/502n542e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/502n542e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/502n542e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/502n542e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/502n542e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/502n542e.lp
+% Probability: 1
+(True, (1.0, []))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1437n3018e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1437n3018e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1437n3018e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1437n3018e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1437n3018e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1437n3018e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1437n3018e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/581n681e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/581n681e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/581n681e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/581n681e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/581n681e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/581n681e.lp
+% Probability: 1
+(True, (1.0, []))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/543n606e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/543n606e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/543n606e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/543n606e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/543n606e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/543n606e.lp
+% Probability: 1
+(True, (1.0, []))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/669n878e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/669n878e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/669n878e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/669n878e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/669n878e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/669n878e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/669n878e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/789n1257e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/789n1257e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/789n1257e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/789n1257e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/789n1257e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/789n1257e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/789n1257e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2707n5832e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2707n5832e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2707n5832e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2707n5832e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2707n5832e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2707n5832e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2707n5832e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+Terminated
+make: *** wait: No child processes.  Stop.
+make: *** Waiting for unfinished jobs....
+make: *** wait: No child processes.  Stop.
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2814n6072e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/2814n6072e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2814n6072e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/2814n6072e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2814n6072e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2814n6072e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/2814n6072e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1143n2384e.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/alzheimer_problog/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/1143n2384e.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=alzheimer_problog INS=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1143n2384e.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances/1143n2384e.lp dom/alzheimer_problog/plingo-problog/encoding.lp dom/alzheimer_problog/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1143n2384e.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1143n2384e.lp ; rm systems/benchmark-tool/../../dom/alzheimer_problog/plingo-problog/instances//../tmp/1143n2384e.lp
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+[33m beval...(B[m
+[32m Evaluation results saved in  
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/plingo-problog/alzheimer_problog/mpe/bm/bm.beval(B[m
+[32m Done bm(B[m
+
+[36m ------------------------------------------------------------------
+ Starting benchmark bm for APP=plingo-problog DOM=smokers OPT=mpe EXTRA=--frontend=lpmln-alt 
+[36m ------------------------------------------------------------------(B[m
+[33m Cleaning with make 
+[33m Creating runscript in 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_smokers_mpe_bm.xml (B[m
+[33m Removing old result directory (B[m
+[33m Moving to benchmarks-tool directory 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool (B[m
+[33m Calling ./bgen /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/runscripts/runscript_cl_plingo-problog_smokers_mpe_bm.xml (B[m
+[33m Running sh start file 
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/start.sh (B[m
+Submitted batch job 472593
+Submitted batch job 472594
+Submitted batch job 472595
+Submitted batch job 472596
+Submitted batch job 472597
+Submitted batch job 472598
+Submitted batch job 472599
+Submitted batch job 472600
+Submitted batch job 472601
+Submitted batch job 472602
+Submitted batch job 472603
+Submitted batch job 472604
+[35m Waiting for all slurm process to finish...
+[32m Slurm queue is now empty (B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-900.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-900.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-900.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-900.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-900.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-900.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-900.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-10.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-10.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-10.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-10.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-10.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-10.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-500.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-500.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-500.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-500.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-500.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-500.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 199, in mpe_maxsat
+    result = frozenset(solver.evaluate(cnf, invert_weights=minpe))
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 63, in evaluate
+    output = self.call_process(inputf)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 57, in call_process
+    return subprocess_check_output(self.command + [filename])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/util.py", line 164, in subprocess_check_output
+    raise subprocess.CalledProcessError(retcode, cmd, output=err)
+subprocess.CalledProcessError: Command '['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmp_tlb5ybw.cnf']' returned non-zero exit status 1.
+
+An unexpected error has occurred.
+(False, CalledProcessError(1, ['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmp_tlb5ybw.cnf']))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-800.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-800.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-800.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-800.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-800.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-800.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-800.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+*** Info : (plingo): INTERRUPTED by signal!
+*** Info : (clingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-600.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-600.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-600.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-600.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-600.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-600.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 199, in mpe_maxsat
+    result = frozenset(solver.evaluate(cnf, invert_weights=minpe))
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 63, in evaluate
+    output = self.call_process(inputf)
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/maxsat.py", line 57, in call_process
+    return subprocess_check_output(self.command + [filename])
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/util.py", line 164, in subprocess_check_output
+    raise subprocess.CalledProcessError(retcode, cmd, output=err)
+subprocess.CalledProcessError: Command '['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpujdm4iqm.cnf']' returned non-zero exit status 1.
+
+An unexpected error has occurred.
+(False, CalledProcessError(1, ['/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/bin/linux/maxsatz', '/tmp/tmpujdm4iqm.cnf']))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-50.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-50.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-50.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-50.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-50.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-50.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-400.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-400.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-400.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-400.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-400.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-400.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-700.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-700.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-700.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-700.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-700.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-700.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-700.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-100.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-100.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-100.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-100.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-100.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-100.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-300.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-300.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-300.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-300.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-300.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-300.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-200.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-200.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-200.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-200.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-200.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-200.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+Traceback (most recent call last):
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 164, in main_mpe_maxsat
+    prob, output_facts = mpe_maxsat(
+  File "/mnt/beegfs/home/hahnmartinlu/miniconda3/envs/plingo/lib/python3.9/site-packages/problog/tasks/mpe.py", line 210, in mpe_maxsat
+    elif -qi in result:
+TypeError: bad operand type for unary -: 'NoneType'
+
+An unexpected error has occurred.
+(False, TypeError("bad operand type for unary -: 'NoneType'"))
+[32m SUCESSFULL runsolver.solver(B[m
+./output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-1000.lp/run1/runsolver.solver
+/mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/systems/benchmark-tool/output/plingo-problog/smokers/mpe/bm/plingo-project-cl/komputer/results/plingo-benchmark/plingo-1-mpe/evidence-1000.lp/run1
+( cd ../../../../../../../../../../../../ ; cd ../../..//benchmarks ; make mpe APP=plingo-problog DOM=smokers INS=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-1000.lp EXTRA='--frontend=lpmln-alt ')
+mkdir -p systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp
+plingo systems/benchmark-tool/../../dom/smokers/plingo-problog/instances/evidence-1000.lp dom/smokers/plingo-problog/encoding.lp dom/smokers/plingo-problog/query.lp -q2 --frontend=lpmln-alt  --problog=systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-1000.lp >/dev/null ; problog mpe systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-1000.lp ; rm systems/benchmark-tool/../../dom/smokers/plingo-problog/instances//../tmp/evidence-1000.lp
+-:3:1-15: info: no atoms over signature occur in program:
+  query/0
+
+*** Info : (clingo): INTERRUPTED by signal!
+*** Info : (plingo): INTERRUPTED by signal!
+make: [makefile:27: mpe] Terminated (ignored)
+[32m SUCESSFULL runsolver.solver(B[m
+[33m beval...(B[m
+[32m Evaluation results saved in  
+[35m    /mnt/beegfs/home/hahnmartinlu/plingo/benchmarks/results/plingo-problog/smokers/mpe/bm/bm.beval(B[m
+[32m Done bm(B[m

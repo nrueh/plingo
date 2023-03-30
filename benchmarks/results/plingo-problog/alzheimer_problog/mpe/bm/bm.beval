@@ -12,47 +12,38 @@
 			<instance name="1437n3018e.lp" id="2"/>
 			<instance name="1580n3334e.lp" id="3"/>
 			<instance name="1713n3620e.lp" id="4"/>
-			<instance name="1713n3620e.lp_problog.lp" id="5"/>
-			<instance name="182n362e.lp" id="6"/>
-			<instance name="1857n3930e.lp" id="7"/>
-			<instance name="1989n4234e.lp" id="8"/>
-			<instance name="1989n4234e.lp_problog.lp" id="9"/>
-			<instance name="2120n4520e.lp" id="10"/>
-			<instance name="2244n4798e.lp" id="11"/>
-			<instance name="2244n4798e.lp_problog.lp" id="12"/>
-			<instance name="2368n5070e.lp" id="13"/>
-			<instance name="2484n5332e.lp" id="14"/>
-			<instance name="2592n5578e.lp" id="15"/>
-			<instance name="2707n5832e.lp" id="16"/>
-			<instance name="2814n6072e.lp" id="17"/>
-			<instance name="403n399e.lp" id="18"/>
-			<instance name="403n399e.lp_problog.lp" id="19"/>
-			<instance name="449n465e.lp" id="20"/>
-			<instance name="449n465e.lp_problog.lp" id="21"/>
-			<instance name="502n542e.lp" id="22"/>
-			<instance name="502n542e.lp_problog.lp" id="23"/>
-			<instance name="543n606e.lp" id="24"/>
-			<instance name="543n606e.lp_problog.lp" id="25"/>
-			<instance name="581n681e.lp" id="26"/>
-			<instance name="581n681e.lp_problog.lp" id="27"/>
-			<instance name="624n764e.lp" id="28"/>
-			<instance name="624n764e.lp_problog.lp" id="29"/>
-			<instance name="669n878e.lp" id="30"/>
-			<instance name="718n992e.lp" id="31"/>
-			<instance name="789n1257e.lp" id="32"/>
-			<instance name="820n1400e.lp" id="33"/>
-			<instance name="829n1567e.lp" id="34"/>
-			<instance name="837n1722e.lp" id="35"/>
-			<instance name="989n2056e.lp" id="36"/>
+			<instance name="182n362e.lp" id="5"/>
+			<instance name="1857n3930e.lp" id="6"/>
+			<instance name="1989n4234e.lp" id="7"/>
+			<instance name="2120n4520e.lp" id="8"/>
+			<instance name="2244n4798e.lp" id="9"/>
+			<instance name="2368n5070e.lp" id="10"/>
+			<instance name="2484n5332e.lp" id="11"/>
+			<instance name="2592n5578e.lp" id="12"/>
+			<instance name="2707n5832e.lp" id="13"/>
+			<instance name="2814n6072e.lp" id="14"/>
+			<instance name="403n399e.lp" id="15"/>
+			<instance name="449n465e.lp" id="16"/>
+			<instance name="502n542e.lp" id="17"/>
+			<instance name="543n606e.lp" id="18"/>
+			<instance name="581n681e.lp" id="19"/>
+			<instance name="624n764e.lp" id="20"/>
+			<instance name="669n878e.lp" id="21"/>
+			<instance name="718n992e.lp" id="22"/>
+			<instance name="789n1257e.lp" id="23"/>
+			<instance name="820n1400e.lp" id="24"/>
+			<instance name="829n1567e.lp" id="25"/>
+			<instance name="837n1722e.lp" id="26"/>
+			<instance name="989n2056e.lp" id="27"/>
 		</class>
 	</benchmark>
 	<project name="plingo-project-cl" job="pbs-gen">
 		<runspec machine="komputer" system="plingo" version="1" benchmark="plingo-benchmark" setting="mpe">
 			<class id="0">
-				<instance id="24">
+				<instance id="27">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="434928.0"/>
+						<measure name="mem" type="float" val="4169620.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -72,14 +63,14 @@
 <measure name="roriginal" type="float" val="NaN"/>
 <measure name="rules" type="float" val="NaN"/>
 <measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="78.8944"/>
-						<measure name="timeout" type="float" val="0"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
 					</run>
 				</instance>
-				<instance id="22">
+				<instance id="16">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="284280.0"/>
+						<measure name="mem" type="float" val="213144.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -99,14 +90,14 @@
 <measure name="roriginal" type="float" val="NaN"/>
 <measure name="rules" type="float" val="NaN"/>
 <measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="40.623"/>
+						<measure name="time" type="float" val="19.5009"/>
 						<measure name="timeout" type="float" val="0"/>
 					</run>
 				</instance>
-				<instance id="7">
+				<instance id="2">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="15404440.0"/>
+						<measure name="mem" type="float" val="9700336.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -132,171 +123,9 @@
 				</instance>
 				<instance id="23">
 					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="68688.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="35">
-					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="2944784.0"/>
+						<measure name="mem" type="float" val="1662380.0"/>
 						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="13">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="20516436.0"/>
-						<measure name="memout" type="float" val="1"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="26">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="617520.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="189.975"/>
-						<measure name="timeout" type="float" val="0"/>
-					</run>
-				</instance>
-				<instance id="25">
-					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="69200.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="1">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="7473852.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="11">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="21021708.0"/>
-						<measure name="memout" type="float" val="1"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
 <measure name="atoms" type="float" val="NaN"/>
@@ -321,360 +150,9 @@
 				</instance>
 				<instance id="12">
 					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="69200.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="9">
-					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="68432.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="36">
-					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="4169660.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="19">
-					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="67920.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="29">
-					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="58628.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="8">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="19004340.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="28">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="1091476.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="572.425"/>
-						<measure name="timeout" type="float" val="0"/>
-					</run>
-				</instance>
-				<instance id="16">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="21109964.0"/>
+						<measure name="mem" type="float" val="21780872.0"/>
 						<measure name="memout" type="float" val="1"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="17">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="20894204.0"/>
-						<measure name="memout" type="float" val="1"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="20">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="211820.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="20.5766"/>
-						<measure name="timeout" type="float" val="0"/>
-					</run>
-				</instance>
-				<instance id="33">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="1820640.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="10">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="20514912.0"/>
-						<measure name="memout" type="float" val="1"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="5">
-					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="68688.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="32">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="1679912.0"/>
-						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
 <measure name="atoms" type="float" val="NaN"/>
@@ -700,7 +178,7 @@
 				<instance id="18">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="167656.0"/>
+						<measure name="mem" type="float" val="435192.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -720,15 +198,15 @@
 <measure name="roriginal" type="float" val="NaN"/>
 <measure name="rules" type="float" val="NaN"/>
 <measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="10.9955"/>
+						<measure name="time" type="float" val="85.1731"/>
 						<measure name="timeout" type="float" val="0"/>
 					</run>
 				</instance>
-				<instance id="27">
+				<instance id="9">
 					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="68176.0"/>
-						<measure name="memout" type="float" val="0"/>
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="21021824.0"/>
+						<measure name="memout" type="float" val="1"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
 <measure name="atoms" type="float" val="NaN"/>
@@ -751,37 +229,10 @@
 						<measure name="timeout" type="float" val="1"/>
 					</run>
 				</instance>
-				<instance id="6">
+				<instance id="24">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="2553408.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="34">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="1938948.0"/>
+						<measure name="mem" type="float" val="1820752.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -808,7 +259,61 @@
 				<instance id="15">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="21780828.0"/>
+						<measure name="mem" type="float" val="168128.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="10.9847"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="25">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="1938932.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="11">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="20719636.0"/>
 						<measure name="memout" type="float" val="1"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -832,10 +337,10 @@
 						<measure name="timeout" type="float" val="1"/>
 					</run>
 				</instance>
-				<instance id="3">
+				<instance id="1">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="10875740.0"/>
+						<measure name="mem" type="float" val="7479100.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -859,11 +364,11 @@
 						<measure name="timeout" type="float" val="1"/>
 					</run>
 				</instance>
-				<instance id="2">
+				<instance id="10">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="9700284.0"/>
-						<measure name="memout" type="float" val="0"/>
+						<measure name="mem" type="float" val="20516376.0"/>
+						<measure name="memout" type="float" val="1"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
 <measure name="atoms" type="float" val="NaN"/>
@@ -886,91 +391,10 @@
 						<measure name="timeout" type="float" val="1"/>
 					</run>
 				</instance>
-				<instance id="30">
+				<instance id="26">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="1893616.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="4">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="13918700.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="21">
-					<run number="1">
-						<measure name="error" type="float" val="1"/>
-						<measure name="mem" type="float" val="68432.0"/>
-						<measure name="memout" type="float" val="0"/>
-						<measure name="ngadded" type="float" val="0.0"/>
-						<measure name="status" type="float" val="2"/>
-<measure name="atoms" type="float" val="NaN"/>
-<measure name="bodies" type="float" val="NaN"/>
-<measure name="calls" type="float" val="NaN"/>
-<measure name="choices" type="float" val="NaN"/>
-<measure name="conflicts" type="float" val="NaN"/>
-<measure name="cons" type="float" val="NaN"/>
-<measure name="csolve" type="float" val="NaN"/>
-<measure name="ctime" type="float" val="NaN"/>
-<measure name="equiv" type="float" val="NaN"/>
-<measure name="models" type="float" val="NaN"/>
-<measure name="ptime" type="float" val="NaN"/>
-<measure name="rchoices" type="float" val="NaN"/>
-<measure name="restarts" type="float" val="NaN"/>
-<measure name="roriginal" type="float" val="NaN"/>
-<measure name="rules" type="float" val="NaN"/>
-<measure name="vars" type="float" val="NaN"/>
-						<measure name="time" type="float" val="1200"/>
-						<measure name="timeout" type="float" val="1"/>
-					</run>
-				</instance>
-				<instance id="31">
-					<run number="1">
-						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="2170448.0"/>
+						<measure name="mem" type="float" val="2944756.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -997,7 +421,7 @@
 				<instance id="0">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="5594764.0"/>
+						<measure name="mem" type="float" val="5594744.0"/>
 						<measure name="memout" type="float" val="0"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -1021,10 +445,37 @@
 						<measure name="timeout" type="float" val="1"/>
 					</run>
 				</instance>
-				<instance id="14">
+				<instance id="3">
 					<run number="1">
 						<measure name="error" type="float" val="0"/>
-						<measure name="mem" type="float" val="20720312.0"/>
+						<measure name="mem" type="float" val="10875780.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="13">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="21110036.0"/>
 						<measure name="memout" type="float" val="1"/>
 						<measure name="ngadded" type="float" val="0.0"/>
 						<measure name="status" type="float" val="2"/>
@@ -1046,6 +497,303 @@
 <measure name="vars" type="float" val="NaN"/>
 						<measure name="time" type="float" val="1200"/>
 						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="21">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="1880940.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="5">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="2551700.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="6">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="15404476.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="4">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="13821752.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="7">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="19071820.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="20">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="1091476.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="516.427"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="14">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="20894136.0"/>
+						<measure name="memout" type="float" val="1"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="19">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="617392.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="183.871"/>
+						<measure name="timeout" type="float" val="0"/>
+					</run>
+				</instance>
+				<instance id="8">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="20514888.0"/>
+						<measure name="memout" type="float" val="1"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="22">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="2137244.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="1200"/>
+						<measure name="timeout" type="float" val="1"/>
+					</run>
+				</instance>
+				<instance id="17">
+					<run number="1">
+						<measure name="error" type="float" val="0"/>
+						<measure name="mem" type="float" val="284804.0"/>
+						<measure name="memout" type="float" val="0"/>
+						<measure name="ngadded" type="float" val="0.0"/>
+						<measure name="status" type="float" val="2"/>
+<measure name="atoms" type="float" val="NaN"/>
+<measure name="bodies" type="float" val="NaN"/>
+<measure name="calls" type="float" val="NaN"/>
+<measure name="choices" type="float" val="NaN"/>
+<measure name="conflicts" type="float" val="NaN"/>
+<measure name="cons" type="float" val="NaN"/>
+<measure name="csolve" type="float" val="NaN"/>
+<measure name="ctime" type="float" val="NaN"/>
+<measure name="equiv" type="float" val="NaN"/>
+<measure name="models" type="float" val="NaN"/>
+<measure name="ptime" type="float" val="NaN"/>
+<measure name="rchoices" type="float" val="NaN"/>
+<measure name="restarts" type="float" val="NaN"/>
+<measure name="roriginal" type="float" val="NaN"/>
+<measure name="rules" type="float" val="NaN"/>
+<measure name="vars" type="float" val="NaN"/>
+						<measure name="time" type="float" val="37.2386"/>
+						<measure name="timeout" type="float" val="0"/>
 					</run>
 				</instance>
 			</class>
