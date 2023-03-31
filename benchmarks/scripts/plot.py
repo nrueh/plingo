@@ -82,7 +82,6 @@ args = parser.parse_args()
 
 
 class ParseInstanceNames:
-
     def default(self, i):
         return i
 
@@ -210,7 +209,6 @@ def mark_minimum(df):
 
 # ------- Aux for tex output
 def csv2textable(df, caption=None):
-
     def f_names(x):
         return str(x)
 
@@ -321,6 +319,11 @@ if __name__ == "__main__":
                     'LPMLN'] = 1200.0
         time_df.loc[time_df['instance-name'].isin(plingo_fixes),
                     'plingo'] = 1200.0
+    if dom == 'squirrel':
+        plingo_problog_fixes = [26]
+        time_df.loc[time_df['instance-name'].isin(plingo_problog_fixes),
+                    'plingo-problog'] = None
+        print(time_df)
 
     GREEN = "#77B762"
     BLUE = "#4477CC"
