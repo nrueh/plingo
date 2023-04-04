@@ -284,6 +284,9 @@ if __name__ == "__main__":
 
     def parse_name(n):
         approach = n[0]
+        print("start")
+        print(approach)
+        print(n[1])
         if approach == 'plog' and n[1] == 'bm_dco':
             return 'plog-dco'
         elif approach == 'plog' and n[1] == 'bm':
@@ -298,6 +301,8 @@ if __name__ == "__main__":
             k = n[1].split('_')[1][1:]
             # return f'k={k}'
             return f'z{k}'  # 'z' added for sorting
+        if approach == 'plingo':
+            return 'plingo-basic'
         return approach
 
     # -------- Reorder dfs
@@ -318,12 +323,14 @@ if __name__ == "__main__":
         time_df.loc[time_df['instance-name'].isin(lpmln_fixes),
                     'LPMLN'] = 1200.0
         time_df.loc[time_df['instance-name'].isin(plingo_fixes),
-                    'plingo'] = 1200.0
+                    'plingo-basic'] = 1200.0
     if dom == 'squirrel':
         plingo_problog_fixes = [26]
         time_df.loc[time_df['instance-name'].isin(plingo_problog_fixes),
                     'plingo-problog'] = None
-        print(time_df)
+    if dom == 'alzheimer_problog':
+        # plingo_problog_fixes = ['182']
+        time_df = time_df.iloc[1:, :]
 
     GREEN = "#77B762"
     BLUE = "#4477CC"
@@ -334,7 +341,7 @@ if __name__ == "__main__":
     YELLOW = "#D7CF1F"
     GREENBLUE = "#226367"
     approaches_colors = {
-        "plingo": BLUE,
+        "plingo-basic": BLUE,
         "plingo-unsat": "#7a965e",
         "plingo-problog": GREENBLUE,
         "problog": RED,
@@ -346,7 +353,7 @@ if __name__ == "__main__":
     }
 
     approaches_markers = {
-        "plingo": "D",
+        "plingo-basic": "D",
         "plingo-problog": "o",
         # "plingo-unsat": "#7a965e",
         # "plingo-problog": "#7a965e",
@@ -411,7 +418,7 @@ if __name__ == "__main__":
         for p in partial_dfs:
             ins = p[0]
             current_df = p[1]
-            file_name_img = f'plots/img/{dom}/{prefix}-{ins}.png'
+            file_name_img = f'plots/img/{dom}/{prefix}-{ins}.pdf'
             dir_name = os.path.dirname(file_name_img)
             if not os.path.exists(dir_name):
                 os.makedirs(dir_name)
@@ -441,7 +448,7 @@ if __name__ == "__main__":
         app_names = query_df.columns[1:-1]
         true_prob = list(query_df[query_df.columns[-1]].to_numpy())
 
-        file_name_img = f'plots/img/{dom}/{prefix}-all.png'
+        file_name_img = f'plots/img/{dom}/{prefix}-all.pdf'
         dir_name = os.path.dirname(file_name_img)
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
@@ -500,7 +507,7 @@ if __name__ == "__main__":
 
         print(time_df)
         app_names = time_df.columns[1:].sort_values()
-        file_name_img = f'plots/img/{dom}/{prefix}-{args.type}.png'
+        file_name_img = f'plots/img/{dom}/{prefix}-{args.type}.pdf'
         dir_name = os.path.dirname(file_name_img)
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
@@ -519,6 +526,7 @@ if __name__ == "__main__":
                 x = np.arange(len(runtimes))
             else:
                 x = time_df['instance-name'].to_numpy()
+
             color = approaches_colors[name]
             plt.plot(x,
                      runtimes,
@@ -530,6 +538,8 @@ if __name__ == "__main__":
                      label=name)
 
         plt.xlim(left=0)
+        if dom == 'alzheimer_problog':
+            plt.xlim(left=300)
         if is_cactus:
             plt.ylim(bottom=0, top=800)
         # else:

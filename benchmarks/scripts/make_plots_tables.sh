@@ -12,7 +12,7 @@ python scripts/plot.py --dom grid --opt exact --prefix 'runtime-all' --x '#Insta
 
 # Grid approximate
 # python scripts/plot.py --dom grid --opt sample --prefix 'prob' -t prob -a plingo.bm_b10 -a plingo.bm_b100 -a plingo.bm_b1000 -a plingo.bm_b10000 -a plingo.bm_b100000 -a plingo.bm_b1000000 -a problog.bm --x 'True probability' --y 'Approximate Probability'
-# python scripts/plot.py --dom grid --opt sample --prefix 'prob' -t prob -a plingo.bm_b10 -a plingo.bm_b100 -a plingo.bm_b1000 -a plingo.bm_b10000 -a plingo.bm_b100000 -a plingo.bm_b1000000 -a problog.bm --x 'True probability' --y 'Approximate Probability' --title="Grid (Marginal inference approximate)"
+python scripts/plot.py --dom grid --opt sample --prefix 'prob' -t prob -a plingo.bm_b10 -a plingo.bm_b100 -a plingo.bm_b1000 -a plingo.bm_b10000 -a plingo.bm_b100000 -a plingo.bm_b1000000 -a problog.bm --x 'True probability' --y 'Approximate Probability' --title="Grid (Marginal inference approximate)"
 
 # Nasa
 # python scripts/plot.py --opt exact  --prefix 'runtime' --dom nasa -a plog.bm -a plog.bm_dco -a plingo.bm --y 'Runtime (s)'
